@@ -32,7 +32,7 @@ class Entity {
 			components[T::typeID] = component;
 		}
 	private:
-		std::vector<Component*> components;
+		std::vector<BaseComponent*> components;
 };
 
 #endif

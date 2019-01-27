@@ -5,7 +5,7 @@
 #include "component.hpp"
 
 // Change to RGBA after we get everything running.
-class ColorComponent : public Component
+class ColorComponent : public BaseComponent
 { 
   public:
     ColorComponent(glm::vec3 _RGB);

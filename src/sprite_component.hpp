@@ -6,7 +6,7 @@
 #include "program.hpp"
 #include "texture.hpp"
 
-class SpriteComponent : public Component
+class SpriteComponent : public BaseComponent
 {
   public:
     SpriteComponent(Program *_program, Texture *_texture);  

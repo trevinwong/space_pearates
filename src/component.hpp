@@ -9,7 +9,7 @@ int const TRANSFORM_COMPONENT_TYPEID = 0;
 int const SPRITE_COMPONENT_TYPEID = 1;
 int const COLOR_COMPONENT_TYPEID = 2;
 
-class Component {
+class BaseComponent {
 	public:
 		// Adding const means the function should not modify any data in the class, adding = 0 means it is a pure virtual function.
 		virtual int getTypeID() const = 0;

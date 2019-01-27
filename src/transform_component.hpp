@@ -4,7 +4,7 @@
 #include "utility.hpp"
 #include "component.hpp"
 
-class TransformComponent : public Component
+class TransformComponent : public BaseComponent
 { 
   public:
     TransformComponent(glm::vec2 _position, glm::vec2 _size, GLfloat _rotate);
