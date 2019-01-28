@@ -1,7 +1,7 @@
 #include "color_component.hpp"
 
-ColorComponent::ColorComponent(glm::vec3 _RGB) : 
-	RGB(_RGB)	
+ColorComponent::ColorComponent(glm::vec4 _RGBA) : 
+	RGBA(_RGBA)	
 {
 }
 
