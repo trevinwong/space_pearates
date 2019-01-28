@@ -23,12 +23,17 @@
 #include <glm/gtc/matrix_transform.hpp>                                     
 #define GLM_ENABLE_EXPERIMENTAL // allow printing out of glm
 #include "glm/gtx/string_cast.hpp" // use glm::to_string() to print out vectors/matrices
+
+#define SDL_MAIN_HANDLED // otherwise windows system cannot find entry point
 #include <SDL.h>
 #include <SDL_mixer.h> // audio
 #include <stb_image.h> // loading images 
 
 // To avoid conflicts with Windows.
 #define NOMINMAX
+#if defined(_WIN32) || defined(_WIN64)
+  #undef RGB
+#endif
 
 // Utility macro, allows us to write "audiopath("audio.ogg")" instead of "data/audio/audio.ogg" for example
 // This allows code to compile cleanly on all machines because each machine will have their own project directory structure.
