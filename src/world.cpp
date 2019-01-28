@@ -24,7 +24,7 @@ void World::init(glm::vec2 screen)
 	Texture *texture = new Texture(texture_path("turtle.png"), true);
 	SpriteComponent *spriteComponent = new SpriteComponent(program, texture);
 	TransformComponent *transformComponent = new TransformComponent(glm::vec2(200.0f, 200.0f), glm::vec2(50.0f, 40.0f), 0.0f);
-	ColorComponent *colorComponent = new ColorComponent(glm::vec3(0.5f, 0.8f, 0.5f));
+	ColorComponent *colorComponent = new ColorComponent(glm::vec4(0.5f, 0.8f, 0.5f, 1.0f));
 	e.setComponent<SpriteComponent>(spriteComponent);
 	e.setComponent<TransformComponent>(transformComponent);
 	e.setComponent<ColorComponent>(colorComponent);

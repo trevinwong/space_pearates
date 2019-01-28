@@ -31,9 +31,6 @@
 
 // To avoid conflicts with Windows.
 #define NOMINMAX
-#if defined(_WIN32) || defined(_WIN64)
-  #undef RGB
-#endif
 
 // Utility macro, allows us to write "audiopath("audio.ogg")" instead of "data/audio/audio.ogg" for example
 // This allows code to compile cleanly on all machines because each machine will have their own project directory structure.

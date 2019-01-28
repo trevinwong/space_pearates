@@ -8,9 +8,9 @@
 class ColorComponent : public BaseComponent
 { 
   public:
-    ColorComponent(glm::vec3 _RGB);
+    ColorComponent(glm::vec4 _RGBA);
 		~ColorComponent();
-		glm::vec3 RGB;
+		glm::vec4 RGBA;
     static const int typeID = COLOR_COMPONENT_TYPEID;
     inline virtual int getTypeID() const { return typeID; };
 };
