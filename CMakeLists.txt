@@ -66,6 +66,8 @@ set(SOURCE_FILES_CORE
 	src/TileMapping/tile_map_system.hpp
 	src/TileMapping/tile_factory.cpp
 	src/TileMapping/tile_factory.hpp
+  src/tower_entity_factory.cpp
+  src/tower_entity_factory.hpp
 )
 
 set(SOURCE_FILES
