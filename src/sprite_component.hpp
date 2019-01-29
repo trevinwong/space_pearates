@@ -8,13 +8,13 @@
 
 class SpriteComponent : public BaseComponent
 {
-  public:
+public:
 	SpriteComponent(Program *_program, Texture *_texture);
 	~SpriteComponent();
-    static const int typeID = SPRITE_COMPONENT_TYPEID;
-    inline virtual int getTypeID() const { return typeID; };
-   	Program *program;
-	Texture *texture;	
+	static const int typeID = SPRITE_COMPONENT_TYPEID;
+	inline virtual int getTypeID() const { return typeID; };
+	Program *program;
+	Texture *texture;
 	GLuint  quadVAO; // we only need VAO as a member as it remembers any VBOs it's associated with
 };
 
