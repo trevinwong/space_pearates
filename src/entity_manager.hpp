@@ -10,13 +10,13 @@
  * However, we're keeping it simple for now and simply returning all entities to a system and letting them check for the components they want.
  */
 class EntityManager {
-	public:
-		EntityManager();
-		~EntityManager();
-		void addEntity(Entity &e);	
-		std::vector<Entity>& getEntities();
-	private:
-		std::vector<Entity> entities;	
+public:
+	EntityManager();
+	~EntityManager();
+	void addEntity(Entity &e);
+	std::vector<Entity>& getEntities();
+private:
+	std::vector<Entity> entities;
 };
 
 #endif

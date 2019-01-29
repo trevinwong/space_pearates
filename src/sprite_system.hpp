@@ -12,10 +12,10 @@
 class SpriteSystem
 {
 public:
-    SpriteSystem();
-    ~SpriteSystem();
-		// Iterates through all entities. If they have a Sprite, Transform and Color component, they are rendered.
-    void drawSprites(std::vector<Entity> &entities, glm::mat4 projection);
+	SpriteSystem();
+	~SpriteSystem();
+	// Iterates through all entities. If they have a Sprite, Transform and Color component, they are rendered.
+	void drawSprites(std::vector<Entity> &entities, glm::mat4 projection);
 };
 
 #endif

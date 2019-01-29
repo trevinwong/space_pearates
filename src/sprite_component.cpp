@@ -3,44 +3,44 @@
 SpriteComponent::SpriteComponent(Program *_program, Texture *_texture) :
 	program(_program), texture(_texture)
 {
-		// We want to create a square in which we can overlay our texture on.
-    GLuint VBO;
-		// Define our vertices (a square is composed of two triangles.)
-		// We define 6 vertices because we don't want to use IBOs.
-		
-		// OpenGL culls backwards faces, so we would typically define our vertices in a counter-clockwise order, as those are considered front-facing.
-		// However, our projection matrix is a reflection of the X-axis, so faces get flipped.
-		// Hence we define our vertices in clockwise order so that they get flipped to front-facing triangles.
-		// TO-DO: Find out why the template can define in counter-clockwise order and not get culled.
-    GLfloat vertices[] = { 
-        // Pos      // Tex
-        0.0f, 1.0f, 0.0f, 1.0f,
-        1.0f, 0.0f, 1.0f, 0.0f,
-        0.0f, 0.0f, 0.0f, 0.0f, 
+	// We want to create a square in which we can overlay our texture on.
+	GLuint VBO;
+	// Define our vertices (a square is composed of two triangles.)
+	// We define 6 vertices because we don't want to use IBOs.
 
-        0.0f, 1.0f, 0.0f, 1.0f,
-        1.0f, 1.0f, 1.0f, 1.0f,
-        1.0f, 0.0f, 1.0f, 0.0f
-    };
+	// OpenGL culls backwards faces, so we would typically define our vertices in a counter-clockwise order, as those are considered front-facing.
+	// However, our projection matrix is a reflection of the X-axis, so faces get flipped.
+	// Hence we define our vertices in clockwise order so that they get flipped to front-facing triangles.
+	// TO-DO: Find out why the template can define in counter-clockwise order and not get culled.
+	GLfloat vertices[] = {
+		// Pos      // Tex
+		0.0f, 1.0f, 0.0f, 1.0f,
+		1.0f, 0.0f, 1.0f, 0.0f,
+		0.0f, 0.0f, 0.0f, 0.0f,
 
-		// Generate a VAO.
-    glGenVertexArrays(1, &this->quadVAO);
-		// Generate a VBO.
-    glGenBuffers(1, &VBO);
+		0.0f, 1.0f, 0.0f, 1.0f,
+		1.0f, 1.0f, 1.0f, 1.0f,
+		1.0f, 0.0f, 1.0f, 0.0f
+	};
 
-		// Bind our current VBO.
-    glBindBuffer(GL_ARRAY_BUFFER, VBO);
-		// Move the vertices we defined above into our VBO.
-    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-		// Bind our current VAO, which will remember any vertex attribute related calls.
-    glBindVertexArray(this->quadVAO);
-		// Enable the first "in" variable in our vertex shader - make sure that this corresponds to the right variable!
-    glEnableVertexAttribArray(0);
-    glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 4 * sizeof(GLfloat), (GLvoid*)0);
+	// Generate a VAO.
+	glGenVertexArrays(1, &this->quadVAO);
+	// Generate a VBO.
+	glGenBuffers(1, &VBO);
 
-		// Re-bind the current VBO and VAO to 0 to avoid accidentally modifying the ones we just configured here.
-    glBindVertexArray(0);
-    glBindBuffer(GL_ARRAY_BUFFER, 0);
+	// Bind our current VBO.
+	glBindBuffer(GL_ARRAY_BUFFER, VBO);
+	// Move the vertices we defined above into our VBO.
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+	// Bind our current VAO, which will remember any vertex attribute related calls.
+	glBindVertexArray(this->quadVAO);
+	// Enable the first "in" variable in our vertex shader - make sure that this corresponds to the right variable!
+	glEnableVertexAttribArray(0);
+	glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 4 * sizeof(GLfloat), (GLvoid*)0);
+
+	// Re-bind the current VBO and VAO to 0 to avoid accidentally modifying the ones we just configured here.
+	glBindVertexArray(0);
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
 
 SpriteComponent::~SpriteComponent()
