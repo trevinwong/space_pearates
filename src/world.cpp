@@ -19,10 +19,11 @@ void World::init(glm::vec2 screen)
 {
   projection = glm::ortho(0.0f, static_cast<GLfloat>(screen.x), static_cast<GLfloat>(screen.y), 0.0f, -1.0f, 1.0f);
 	entityManager = EntityManager();
+
 	Entity e;
 	Program *program = new Program(shader_path("sprite.vert"), shader_path("sprite.frag"));	
-	Texture *texture = new Texture(texture_path("turtle.png"), true);
-	SpriteComponent *spriteComponent = new SpriteComponent(program, texture);
+	//Texture *texture = new Texture(texture_path("turtle.png"), true);
+	SpriteComponent *spriteComponent = new SpriteComponent(program, new Texture());
 	TransformComponent *transformComponent = new TransformComponent(glm::vec2(200.0f, 200.0f), glm::vec2(50.0f, 40.0f), 0.0f);
 	ColorComponent *colorComponent = new ColorComponent(glm::vec4(0.5f, 0.8f, 0.5f, 1.0f));
 	e.setComponent<SpriteComponent>(spriteComponent);

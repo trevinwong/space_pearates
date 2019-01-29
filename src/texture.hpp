@@ -26,6 +26,8 @@ public:
     GLuint filterMax; // Filtering mode if texture pixels > screen pixels.
     // Constructor (generates ID, loads image and sets default texture modes).
     Texture(const GLchar *file, GLboolean alpha);
+	// Constructor for placeholder texture (white 1x1 box)
+	Texture();
     // Generates texture from image data.
     void generate(unsigned char* data);
     // Binds the texture as the current active GL_TEXTURE_2D texture object.

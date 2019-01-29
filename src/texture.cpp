@@ -17,6 +17,22 @@ Texture::Texture(const GLchar *file, GLboolean alpha)
     stbi_image_free(image);
 }
 
+// Constructs a placeholder texture (white 1x1 box)
+Texture::Texture()
+{
+	glGenTextures(1, &this->ID);
+	GLubyte data[] = { 255, 255, 255, 255 };
+	glBindTexture(GL_TEXTURE_2D, ID);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 1, 1, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
+	// Not sure if these are even needed
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+	// Unbind texture (for safety).
+	glBindTexture(GL_TEXTURE_2D, 0);
+}
+
 // Generates the texture and its configurations for our current texture object.
 void Texture::generate(unsigned char* data)
 {

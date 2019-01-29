@@ -37,6 +37,7 @@ void SpriteSystem::drawSprites(std::vector<Entity> &entities, glm::mat4 projecti
 				spriteComponent->program->setMat4("model", model);
 				spriteComponent->program->setMat4("projection", projection);
 				spriteComponent->program->setVec4("spriteColor", colorComponent->RGBA);
+
 				// Activate texture unit 0.
 				// We can have multiple texture units to use as uniforms in our shader, but we only need 1.
 				glActiveTexture(GL_TEXTURE0);
