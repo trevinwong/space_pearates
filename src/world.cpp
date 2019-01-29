@@ -22,16 +22,16 @@ void World::init(glm::vec2 screen)
 	entityManager = EntityManager();
 	tileMapSystem.loadTileMap(screen, entityManager); // Add platform tiles
 
-	Entity e;
-	Program *program = new Program(shader_path("sprite.vert"), shader_path("sprite.frag"));
-	Texture *texture = new Texture(texture_path("turtle.png"), true);
-	SpriteComponent *spriteComponent = new SpriteComponent(program, texture);
-	TransformComponent *transformComponent = new TransformComponent(glm::vec2(200.0f, 200.0f), glm::vec2(50.0f, 40.0f), 0.0f);
-	ColorComponent *colorComponent = new ColorComponent(glm::vec4(0.5f, 0.8f, 0.5f, 1.0f));
-	e.setComponent<SpriteComponent>(spriteComponent);
-	e.setComponent<TransformComponent>(transformComponent);
-	e.setComponent<ColorComponent>(colorComponent);
-	entityManager.addEntity(e);
+	//Entity e;
+	//Program *program = new Program(shader_path("sprite.vert"), shader_path("sprite.frag"));
+	//Texture *texture = new Texture(texture_path("turtle.png"), true);
+	//SpriteComponent *spriteComponent = new SpriteComponent(program, texture);
+	//TransformComponent *transformComponent = new TransformComponent(glm::vec2(200.0f, 200.0f), glm::vec2(50.0f, 40.0f), 0.0f);
+	//ColorComponent *colorComponent = new ColorComponent(glm::vec4(0.5f, 0.8f, 0.5f, 1.0f));
+	//e.setComponent<SpriteComponent>(spriteComponent);
+	//e.setComponent<TransformComponent>(transformComponent);
+	//e.setComponent<ColorComponent>(colorComponent);
+	//entityManager.addEntity(e);
 }
 
 // dt is known as delta time, how much time has passed since update was last called
