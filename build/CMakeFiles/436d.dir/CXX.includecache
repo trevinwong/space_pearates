@@ -1534,10 +1534,6 @@ intrin.h
 arm_neon.h
 -
 
-/Users/frances/Desktop/team06game/src/base.cpp
-base.hpp
-/Users/frances/Desktop/team06game/src/base.hpp
-
 /Users/frances/Desktop/team06game/src/base.hpp
 vector
 -
@@ -1645,6 +1641,20 @@ stb_image.h
 -
 project_path.hpp
 /Users/frances/Desktop/team06game/src/project_path.hpp
+
+/Users/frances/Desktop/team06game/src/world.cpp
+world.hpp
+/Users/frances/Desktop/team06game/src/world.hpp
+
+/Users/frances/Desktop/team06game/src/world.hpp
+utility.hpp
+/Users/frances/Desktop/team06game/src/utility.hpp
+entity_manager.hpp
+/Users/frances/Desktop/team06game/src/entity_manager.hpp
+sprite_system.hpp
+/Users/frances/Desktop/team06game/src/sprite_system.hpp
+base.hpp
+/Users/frances/Desktop/team06game/src/base.hpp
 
 /usr/local/Cellar/glfw/3.2.1/include/GLFW/glfw3.h
 stddef.h

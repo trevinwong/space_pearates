@@ -1277,6 +1277,7 @@ CMakeFiles/436d.dir/src/main.cpp.o: ../ext/glm/glm/vec3.hpp
 CMakeFiles/436d.dir/src/main.cpp.o: ../ext/glm/glm/vec4.hpp
 CMakeFiles/436d.dir/src/main.cpp.o: ../ext/glm/glm/vector_relational.hpp
 CMakeFiles/436d.dir/src/main.cpp.o: ../ext/stb_image/stb_image.h
+CMakeFiles/436d.dir/src/main.cpp.o: ../src/base.hpp
 CMakeFiles/436d.dir/src/main.cpp.o: ../src/color_component.hpp
 CMakeFiles/436d.dir/src/main.cpp.o: ../src/component.hpp
 CMakeFiles/436d.dir/src/main.cpp.o: ../src/entity.hpp
@@ -2877,6 +2878,7 @@ CMakeFiles/436d.dir/src/world.cpp.o: ../ext/glm/glm/vec3.hpp
 CMakeFiles/436d.dir/src/world.cpp.o: ../ext/glm/glm/vec4.hpp
 CMakeFiles/436d.dir/src/world.cpp.o: ../ext/glm/glm/vector_relational.hpp
 CMakeFiles/436d.dir/src/world.cpp.o: ../ext/stb_image/stb_image.h
+CMakeFiles/436d.dir/src/world.cpp.o: ../src/base.hpp
 CMakeFiles/436d.dir/src/world.cpp.o: ../src/color_component.hpp
 CMakeFiles/436d.dir/src/world.cpp.o: ../src/component.hpp
 CMakeFiles/436d.dir/src/world.cpp.o: ../src/entity.hpp

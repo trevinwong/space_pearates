@@ -19,6 +19,10 @@ class Base : public Entity
 
     bool isAlive() const;
 
+
+    // Called when projectile collides with Base
+    void wasHit();
+
   private:
 
     glm::vec2 position;

@@ -1278,6 +1278,7 @@ CMakeFiles/436d.dir/src/main.cpp.o
  ../ext/glm/glm/vec4.hpp
  ../ext/glm/glm/vector_relational.hpp
  ../ext/stb_image/stb_image.h
+ /Users/frances/Desktop/team06game/src/base.hpp
  /Users/frances/Desktop/team06game/src/color_component.hpp
  /Users/frances/Desktop/team06game/src/component.hpp
  /Users/frances/Desktop/team06game/src/entity.hpp
@@ -2878,6 +2879,7 @@ CMakeFiles/436d.dir/src/world.cpp.o
  ../ext/glm/glm/vec4.hpp
  ../ext/glm/glm/vector_relational.hpp
  ../ext/stb_image/stb_image.h
+ /Users/frances/Desktop/team06game/src/base.hpp
  /Users/frances/Desktop/team06game/src/color_component.hpp
  /Users/frances/Desktop/team06game/src/component.hpp
  /Users/frances/Desktop/team06game/src/entity.hpp

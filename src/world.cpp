@@ -30,12 +30,17 @@ void World::init(glm::vec2 screen)
 	e.setComponent<TransformComponent>(transformComponent);
 	e.setComponent<ColorComponent>(colorComponent);
 	entityManager.addEntity(e);
+
+	base =  new Base(glm::vec2(750.f,300.f));
+	entityManager.addEntity(*base);
 }
 
 // dt is known as delta time, how much time has passed since update was last called
 void World::update(float dt)
 {
-
+	if (!base->isAlive()) {
+		// game over
+	}
 }
 
 void World::processInput(float dt)
