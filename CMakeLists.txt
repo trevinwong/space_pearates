@@ -41,6 +41,8 @@ set(SOURCE_FILES_AUTOGEN
    	src/project_path.hpp
 )
 set(SOURCE_FILES_CORE
+	src/base.cpp
+	src/base.cpp
 	src/color_component.cpp
 	src/color_component.hpp
 	src/component.hpp
