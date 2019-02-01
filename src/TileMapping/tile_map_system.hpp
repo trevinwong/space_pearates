@@ -7,13 +7,13 @@
 class TileMapSystem
 {
 public:
-	TileMapSystem();
-	~TileMapSystem();
-	void loadTileMap(glm::vec2 screen, EntityManager& entities);
+  TileMapSystem();
+  ~TileMapSystem();
+  void loadTileMap(glm::vec2 screen, EntityManager& entities);
 
 private:
-	TileFactory factory;
-	std::vector<std::vector<int>> tileMap;
+  TileFactory factory;
+  std::vector<std::vector<int>> tileMap;
 };
 
 #endif

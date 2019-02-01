@@ -6,8 +6,8 @@
 #include "utility.hpp"
 #include "world.hpp"
 
-const GLuint SCREEN_WIDTH = 800;
-const GLuint SCREEN_HEIGHT = 400;
+const GLuint SCREEN_WIDTH = 1280;
+const GLuint SCREEN_HEIGHT = 800;
 
 World world;
 
