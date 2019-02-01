@@ -4,6 +4,7 @@
 #include "utility.hpp"
 #include "entity_manager.hpp"
 #include "sprite_system.hpp"
+#include "TileMapping\tile_map_system.hpp"
 
 // TO-DO: Look into replacing Keys array with direct callback.
 // TO-DO: Look into replacing processInput with direct callback.
@@ -24,6 +25,7 @@ private:
 	EntityManager entityManager;
 	SpriteSystem spriteSystem;
 	glm::mat4 projection;
+	TileMapSystem tileMapSystem;
 };
 
 #endif
