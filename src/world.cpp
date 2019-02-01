@@ -37,7 +37,6 @@ void World::init(glm::vec2 screen)
 // dt is known as delta time, how much time has passed since update was last called
 void World::update(float dt)
 {
-
 }
 
 void World::processInput(float dt)
