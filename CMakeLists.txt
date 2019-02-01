@@ -41,8 +41,6 @@ set(SOURCE_FILES_AUTOGEN
    	src/project_path.hpp
 )
 set(SOURCE_FILES_CORE
-	src/Base/base.cpp
-	src/Base/base.hpp
     src/Base/base_factory.cpp
 	src/Base/base_factory.hpp
 	src/color_component.cpp
