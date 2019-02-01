@@ -3,11 +3,9 @@
 
 #include <vector>
 #include "utility.hpp"
-#include "entity.hpp"
-#include "entity_manager.hpp"
 #include "sprite_system.hpp"
 
-class Base : public Entity
+class Base
 {
   public:
 
