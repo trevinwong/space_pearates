@@ -64,6 +64,12 @@ set(SOURCE_FILES_CORE
 	src/utility.hpp
 	src/world.cpp
 	src/world.hpp
+	src/TileMapping/tile_map_system.cpp
+	src/TileMapping/tile_map_system.hpp
+	src/TileMapping/tile_factory.cpp
+	src/TileMapping/tile_factory.hpp
+  src/Tower/tower_entity_factory.cpp
+  src/Tower/tower_entity_factory.hpp
 )
 
 set(SOURCE_FILES
