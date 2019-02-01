@@ -5,7 +5,6 @@
 #include "entity_manager.hpp"
 #include "sprite_system.hpp"
 
-#include "base.hpp"
 
 // TO-DO: Look into replacing Keys array with direct callback.
 // TO-DO: Look into replacing processInput with direct callback.
@@ -26,8 +25,6 @@ private:
 	EntityManager entityManager;
 	SpriteSystem spriteSystem;
 	glm::mat4 projection;
-
-	Base * base;
 };
 
 #endif
