@@ -561,6 +561,78 @@ CMakeFiles/436d.dir/src/movement_component.cpp.o.provides: CMakeFiles/436d.dir/s
 CMakeFiles/436d.dir/src/movement_component.cpp.o.provides.build: CMakeFiles/436d.dir/src/movement_component.cpp.o
 
 
+CMakeFiles/436d.dir/src/player_system.cpp.o: CMakeFiles/436d.dir/flags.make
+CMakeFiles/436d.dir/src/player_system.cpp.o: ../src/player_system.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/subi/CPSC436/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/436d.dir/src/player_system.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/436d.dir/src/player_system.cpp.o -c /home/subi/CPSC436/game/src/player_system.cpp
+
+CMakeFiles/436d.dir/src/player_system.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/436d.dir/src/player_system.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/subi/CPSC436/game/src/player_system.cpp > CMakeFiles/436d.dir/src/player_system.cpp.i
+
+CMakeFiles/436d.dir/src/player_system.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/436d.dir/src/player_system.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/subi/CPSC436/game/src/player_system.cpp -o CMakeFiles/436d.dir/src/player_system.cpp.s
+
+CMakeFiles/436d.dir/src/player_system.cpp.o.requires:
+
+.PHONY : CMakeFiles/436d.dir/src/player_system.cpp.o.requires
+
+CMakeFiles/436d.dir/src/player_system.cpp.o.provides: CMakeFiles/436d.dir/src/player_system.cpp.o.requires
+	$(MAKE) -f CMakeFiles/436d.dir/build.make CMakeFiles/436d.dir/src/player_system.cpp.o.provides.build
+.PHONY : CMakeFiles/436d.dir/src/player_system.cpp.o.provides
+
+CMakeFiles/436d.dir/src/player_system.cpp.o.provides.build: CMakeFiles/436d.dir/src/player_system.cpp.o
+
+
+CMakeFiles/436d.dir/src/player_component.cpp.o: CMakeFiles/436d.dir/flags.make
+CMakeFiles/436d.dir/src/player_component.cpp.o: ../src/player_component.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/subi/CPSC436/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object CMakeFiles/436d.dir/src/player_component.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/436d.dir/src/player_component.cpp.o -c /home/subi/CPSC436/game/src/player_component.cpp
+
+CMakeFiles/436d.dir/src/player_component.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/436d.dir/src/player_component.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/subi/CPSC436/game/src/player_component.cpp > CMakeFiles/436d.dir/src/player_component.cpp.i
+
+CMakeFiles/436d.dir/src/player_component.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/436d.dir/src/player_component.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/subi/CPSC436/game/src/player_component.cpp -o CMakeFiles/436d.dir/src/player_component.cpp.s
+
+CMakeFiles/436d.dir/src/player_component.cpp.o.requires:
+
+.PHONY : CMakeFiles/436d.dir/src/player_component.cpp.o.requires
+
+CMakeFiles/436d.dir/src/player_component.cpp.o.provides: CMakeFiles/436d.dir/src/player_component.cpp.o.requires
+	$(MAKE) -f CMakeFiles/436d.dir/build.make CMakeFiles/436d.dir/src/player_component.cpp.o.provides.build
+.PHONY : CMakeFiles/436d.dir/src/player_component.cpp.o.provides
+
+CMakeFiles/436d.dir/src/player_component.cpp.o.provides.build: CMakeFiles/436d.dir/src/player_component.cpp.o
+
+
+CMakeFiles/436d.dir/src/player_factory.cpp.o: CMakeFiles/436d.dir/flags.make
+CMakeFiles/436d.dir/src/player_factory.cpp.o: ../src/player_factory.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/subi/CPSC436/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object CMakeFiles/436d.dir/src/player_factory.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/436d.dir/src/player_factory.cpp.o -c /home/subi/CPSC436/game/src/player_factory.cpp
+
+CMakeFiles/436d.dir/src/player_factory.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/436d.dir/src/player_factory.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/subi/CPSC436/game/src/player_factory.cpp > CMakeFiles/436d.dir/src/player_factory.cpp.i
+
+CMakeFiles/436d.dir/src/player_factory.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/436d.dir/src/player_factory.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/subi/CPSC436/game/src/player_factory.cpp -o CMakeFiles/436d.dir/src/player_factory.cpp.s
+
+CMakeFiles/436d.dir/src/player_factory.cpp.o.requires:
+
+.PHONY : CMakeFiles/436d.dir/src/player_factory.cpp.o.requires
+
+CMakeFiles/436d.dir/src/player_factory.cpp.o.provides: CMakeFiles/436d.dir/src/player_factory.cpp.o.requires
+	$(MAKE) -f CMakeFiles/436d.dir/build.make CMakeFiles/436d.dir/src/player_factory.cpp.o.provides.build
+.PHONY : CMakeFiles/436d.dir/src/player_factory.cpp.o.provides
+
+CMakeFiles/436d.dir/src/player_factory.cpp.o.provides.build: CMakeFiles/436d.dir/src/player_factory.cpp.o
+
+
 # Object files for target 436d
 436d_OBJECTS = \
 "CMakeFiles/436d.dir/src/main.cpp.o" \
@@ -583,7 +655,10 @@ CMakeFiles/436d.dir/src/movement_component.cpp.o.provides.build: CMakeFiles/436d
 "CMakeFiles/436d.dir/src/TileMapping/map_entity_factory.cpp.o" \
 "CMakeFiles/436d.dir/src/Tower/tower_entity_factory.cpp.o" \
 "CMakeFiles/436d.dir/src/movement_system.cpp.o" \
-"CMakeFiles/436d.dir/src/movement_component.cpp.o"
+"CMakeFiles/436d.dir/src/movement_component.cpp.o" \
+"CMakeFiles/436d.dir/src/player_system.cpp.o" \
+"CMakeFiles/436d.dir/src/player_component.cpp.o" \
+"CMakeFiles/436d.dir/src/player_factory.cpp.o"
 
 # External object files for target 436d
 436d_EXTERNAL_OBJECTS =
@@ -609,10 +684,13 @@ CMakeFiles/436d.dir/src/movement_component.cpp.o.provides.build: CMakeFiles/436d
 436d: CMakeFiles/436d.dir/src/Tower/tower_entity_factory.cpp.o
 436d: CMakeFiles/436d.dir/src/movement_system.cpp.o
 436d: CMakeFiles/436d.dir/src/movement_component.cpp.o
+436d: CMakeFiles/436d.dir/src/player_system.cpp.o
+436d: CMakeFiles/436d.dir/src/player_component.cpp.o
+436d: CMakeFiles/436d.dir/src/player_factory.cpp.o
 436d: CMakeFiles/436d.dir/build.make
 436d: /usr/lib/x86_64-linux-gnu/libGL.so
 436d: CMakeFiles/436d.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/subi/CPSC436/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Linking CXX executable 436d"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/subi/CPSC436/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Linking CXX executable 436d"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/436d.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -641,6 +719,9 @@ CMakeFiles/436d.dir/requires: CMakeFiles/436d.dir/src/TileMapping/map_entity_fac
 CMakeFiles/436d.dir/requires: CMakeFiles/436d.dir/src/Tower/tower_entity_factory.cpp.o.requires
 CMakeFiles/436d.dir/requires: CMakeFiles/436d.dir/src/movement_system.cpp.o.requires
 CMakeFiles/436d.dir/requires: CMakeFiles/436d.dir/src/movement_component.cpp.o.requires
+CMakeFiles/436d.dir/requires: CMakeFiles/436d.dir/src/player_system.cpp.o.requires
+CMakeFiles/436d.dir/requires: CMakeFiles/436d.dir/src/player_component.cpp.o.requires
+CMakeFiles/436d.dir/requires: CMakeFiles/436d.dir/src/player_factory.cpp.o.requires
 
 .PHONY : CMakeFiles/436d.dir/requires
 

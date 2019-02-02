@@ -30,6 +30,7 @@ public:
 	void updateVelocity();
 	void applyVelocity(glm::vec2 velocity);
 
+
 };
 
 #endif

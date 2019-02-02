@@ -31,6 +31,9 @@ public:
 	{
 		components[T::typeID] = component;
 	}
+
+	static int next() { return next_id++; };
+	static int next_id;
 private:
 	std::vector<BaseComponent*> components;
 };

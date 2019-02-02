@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="436d"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\src\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/subi/CPSC436/game/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/subi/CPSC436/game/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/subi/CPSC436/game/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/subi/CPSC436/game/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/subi/CPSC436/game/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/subi/CPSC436/game/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/subi/CPSC436/game/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/subi/CPSC436/game/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/subi/CPSC436/game/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/subi/CPSC436/game/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="436d">
+				<Option output="/home/subi/CPSC436/game/cmake-build-debug/436d" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/subi/CPSC436/game/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/subi/CPSC436/game/src"/>
+					<Add directory="/home/subi/CPSC436/game/ext/stb_image"/>
+					<Add directory="/home/subi/CPSC436/game/ext/gl3w"/>
+					<Add directory="/home/subi/CPSC436/game/ext/glm"/>
+					<Add directory="/usr/include/SDL2"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/subi/CPSC436/game/cmake-build-debug/Makefile&quot;  VERBOSE=1 436d"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/subi/CPSC436/game/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/subi/CPSC436/game/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/subi/CPSC436/game/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="436d/fast">
+				<Option output="/home/subi/CPSC436/game/cmake-build-debug/436d" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/subi/CPSC436/game/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/subi/CPSC436/game/src"/>
+					<Add directory="/home/subi/CPSC436/game/ext/stb_image"/>
+					<Add directory="/home/subi/CPSC436/game/ext/gl3w"/>
+					<Add directory="/home/subi/CPSC436/game/ext/glm"/>
+					<Add directory="/usr/include/SDL2"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/subi/CPSC436/game/cmake-build-debug/Makefile&quot;  VERBOSE=1 436d/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/subi/CPSC436/game/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/subi/CPSC436/game/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/subi/CPSC436/game/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/subi/CPSC436/game/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/subi/CPSC436/game/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/subi/CPSC436/game/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/subi/CPSC436/game/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/subi/CPSC436/game/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/subi/CPSC436/game/shaders/sprite.frag">
+			<Option target="436d"/>
+		</Unit>
+		<Unit filename="/home/subi/CPSC436/game/shaders/sprite.vert">
+			<Option target="436d"/>
+		</Unit>
+		<Unit filename="/home/subi/CPSC436/game/src/Base/base_factory.cpp">
+			<Option target="436d"/>
+		</Unit>
+		<Unit filename="/home/subi/CPSC436/game/src/Base/base_factory.hpp">
+			<Option target="436d"/>
+		</Unit>
+		<Unit filename="/home/subi/CPSC436/game/src/Enemies/enemy.cpp">
+			<Option target="436d"/>
+		</Unit>
+		<Unit filename="/home/subi/CPSC436/game/src/Enemies/enemy.hpp">
+			<Option target="436d"/>
+		</Unit>
+		<Unit filename="/home/subi/CPSC436/game/src/Enemies/enemy_factory.cpp">
+			<Option target="436d"/>
+		</Unit>
+		<Unit filename="/home/subi/CPSC436/game/src/Enemies/enemy_factory.hpp">
+			<Option target="436d"/>
+		</Unit>
+		<Unit filename="/home/subi/CPSC436/game/src/TileMapping/map_component.cpp">
+			<Option target="436d"/>
+		</Unit>
+		<Unit filename="/home/subi/CPSC436/game/src/TileMapping/map_component.hpp">
+			<Option target="436d"/>
+		</Unit>
+		<Unit filename="/home/subi/CPSC436/game/src/TileMapping/map_entity_factory.cpp">
+			<Option target="436d"/>
+		</Unit>
+		<Unit filename="/home/subi/CPSC436/game/src/TileMapping/map_entity_factory.hpp">
+			<Option target="436d"/>
+		</Unit>
+		<Unit filename="/home/subi/CPSC436/game/src/TileMapping/tile_factory.cpp">
+			<Option target="436d"/>
+		</Unit>
+		<Unit filename="/home/subi/CPSC436/game/src/TileMapping/tile_factory.hpp">
+			<Option target="436d"/>
+		</Unit>
+		<Unit filename="/home/subi/CPSC436/game/src/TileMapping/tile_map_system.cpp">
+			<Option target="436d"/>
+		</Unit>
+		<Unit filename="/home/subi/CPSC436/game/src/TileMapping/tile_map_system.hpp">
+			<Option target="436d"/>
+		</Unit>
+		<Unit filename="/home/subi/CPSC436/game/src/Tower/tower_entity_factory.cpp">
+			<Option target="436d"/>
+		</Unit>
+		<Unit filename="/home/subi/CPSC436/game/src/Tower/tower_entity_factory.hpp">
+			<Option target="436d"/>
+		</Unit>
+		<Unit filename="/home/subi/CPSC436/game/src/color_component.cpp">
+			<Option target="436d"/>
+		</Unit>
+		<Unit filename="/home/subi/CPSC436/game/src/color_component.hpp">
+			<Option target="436d"/>
+		</Unit>
+		<Unit filename="/home/subi/CPSC436/game/src/component.hpp">
+			<Option target="436d"/>
+		</Unit>
+		<Unit filename="/home/subi/CPSC436/game/src/entity.cpp">
+			<Option target="436d"/>
+		</Unit>
+		<Unit filename="/home/subi/CPSC436/game/src/entity.hpp">
+			<Option target="436d"/>
+		</Unit>
+		<Unit filename="/home/subi/CPSC436/game/src/entity_manager.cpp">
+			<Option target="436d"/>
+		</Unit>
+		<Unit filename="/home/subi/CPSC436/game/src/entity_manager.hpp">
+			<Option target="436d"/>
+		</Unit>
+		<Unit filename="/home/subi/CPSC436/game/src/main.cpp">
+			<Option target="436d"/>
+		</Unit>
+		<Unit filename="/home/subi/CPSC436/game/src/movement_component.cpp">
+			<Option target="436d"/>
+		</Unit>
+		<Unit filename="/home/subi/CPSC436/game/src/movement_component.hpp">
+			<Option target="436d"/>
+		</Unit>
+		<Unit filename="/home/subi/CPSC436/game/src/movement_system.cpp">
+			<Option target="436d"/>
+		</Unit>
+		<Unit filename="/home/subi/CPSC436/game/src/movement_system.hpp">
+			<Option target="436d"/>
+		</Unit>
+		<Unit filename="/home/subi/CPSC436/game/src/player_component.cpp">
+			<Option target="436d"/>
+		</Unit>
+		<Unit filename="/home/subi/CPSC436/game/src/player_component.hpp">
+			<Option target="436d"/>
+		</Unit>
+		<Unit filename="/home/subi/CPSC436/game/src/player_factory.cpp">
+			<Option target="436d"/>
+		</Unit>
+		<Unit filename="/home/subi/CPSC436/game/src/player_factory.hpp">
+			<Option target="436d"/>
+		</Unit>
+		<Unit filename="/home/subi/CPSC436/game/src/player_system.cpp">
+			<Option target="436d"/>
+		</Unit>
+		<Unit filename="/home/subi/CPSC436/game/src/player_system.hpp">
+			<Option target="436d"/>
+		</Unit>
+		<Unit filename="/home/subi/CPSC436/game/src/program.cpp">
+			<Option target="436d"/>
+		</Unit>
+		<Unit filename="/home/subi/CPSC436/game/src/program.hpp">
+			<Option target="436d"/>
+		</Unit>
+		<Unit filename="/home/subi/CPSC436/game/src/project_path.hpp">
+			<Option target="436d"/>
+		</Unit>
+		<Unit filename="/home/subi/CPSC436/game/src/sprite_component.cpp">
+			<Option target="436d"/>
+		</Unit>
+		<Unit filename="/home/subi/CPSC436/game/src/sprite_component.hpp">
+			<Option target="436d"/>
+		</Unit>
+		<Unit filename="/home/subi/CPSC436/game/src/sprite_system.cpp">
+			<Option target="436d"/>
+		</Unit>
+		<Unit filename="/home/subi/CPSC436/game/src/sprite_system.hpp">
+			<Option target="436d"/>
+		</Unit>
+		<Unit filename="/home/subi/CPSC436/game/src/texture.cpp">
+			<Option target="436d"/>
+		</Unit>
+		<Unit filename="/home/subi/CPSC436/game/src/texture.hpp">
+			<Option target="436d"/>
+		</Unit>
+		<Unit filename="/home/subi/CPSC436/game/src/transform_component.cpp">
+			<Option target="436d"/>
+		</Unit>
+		<Unit filename="/home/subi/CPSC436/game/src/transform_component.hpp">
+			<Option target="436d"/>
+		</Unit>
+		<Unit filename="/home/subi/CPSC436/game/src/utility.cpp">
+			<Option target="436d"/>
+		</Unit>
+		<Unit filename="/home/subi/CPSC436/game/src/utility.hpp">
+			<Option target="436d"/>
+		</Unit>
+		<Unit filename="/home/subi/CPSC436/game/src/world.cpp">
+			<Option target="436d"/>
+		</Unit>
+		<Unit filename="/home/subi/CPSC436/game/src/world.hpp">
+			<Option target="436d"/>
+		</Unit>
+		<Unit filename="/home/subi/CPSC436/game/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/home/subi/CPSC436/game/src/project_path.hpp.in">
+			<Option virtualFolder="CMake Files\src\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

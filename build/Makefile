@@ -501,6 +501,87 @@ src/movement_system.cpp.s:
 	$(MAKE) -f CMakeFiles/436d.dir/build.make CMakeFiles/436d.dir/src/movement_system.cpp.s
 .PHONY : src/movement_system.cpp.s
 
+src/player_component.o: src/player_component.cpp.o
+
+.PHONY : src/player_component.o
+
+# target to build an object file
+src/player_component.cpp.o:
+	$(MAKE) -f CMakeFiles/436d.dir/build.make CMakeFiles/436d.dir/src/player_component.cpp.o
+.PHONY : src/player_component.cpp.o
+
+src/player_component.i: src/player_component.cpp.i
+
+.PHONY : src/player_component.i
+
+# target to preprocess a source file
+src/player_component.cpp.i:
+	$(MAKE) -f CMakeFiles/436d.dir/build.make CMakeFiles/436d.dir/src/player_component.cpp.i
+.PHONY : src/player_component.cpp.i
+
+src/player_component.s: src/player_component.cpp.s
+
+.PHONY : src/player_component.s
+
+# target to generate assembly for a file
+src/player_component.cpp.s:
+	$(MAKE) -f CMakeFiles/436d.dir/build.make CMakeFiles/436d.dir/src/player_component.cpp.s
+.PHONY : src/player_component.cpp.s
+
+src/player_factory.o: src/player_factory.cpp.o
+
+.PHONY : src/player_factory.o
+
+# target to build an object file
+src/player_factory.cpp.o:
+	$(MAKE) -f CMakeFiles/436d.dir/build.make CMakeFiles/436d.dir/src/player_factory.cpp.o
+.PHONY : src/player_factory.cpp.o
+
+src/player_factory.i: src/player_factory.cpp.i
+
+.PHONY : src/player_factory.i
+
+# target to preprocess a source file
+src/player_factory.cpp.i:
+	$(MAKE) -f CMakeFiles/436d.dir/build.make CMakeFiles/436d.dir/src/player_factory.cpp.i
+.PHONY : src/player_factory.cpp.i
+
+src/player_factory.s: src/player_factory.cpp.s
+
+.PHONY : src/player_factory.s
+
+# target to generate assembly for a file
+src/player_factory.cpp.s:
+	$(MAKE) -f CMakeFiles/436d.dir/build.make CMakeFiles/436d.dir/src/player_factory.cpp.s
+.PHONY : src/player_factory.cpp.s
+
+src/player_system.o: src/player_system.cpp.o
+
+.PHONY : src/player_system.o
+
+# target to build an object file
+src/player_system.cpp.o:
+	$(MAKE) -f CMakeFiles/436d.dir/build.make CMakeFiles/436d.dir/src/player_system.cpp.o
+.PHONY : src/player_system.cpp.o
+
+src/player_system.i: src/player_system.cpp.i
+
+.PHONY : src/player_system.i
+
+# target to preprocess a source file
+src/player_system.cpp.i:
+	$(MAKE) -f CMakeFiles/436d.dir/build.make CMakeFiles/436d.dir/src/player_system.cpp.i
+.PHONY : src/player_system.cpp.i
+
+src/player_system.s: src/player_system.cpp.s
+
+.PHONY : src/player_system.s
+
+# target to generate assembly for a file
+src/player_system.cpp.s:
+	$(MAKE) -f CMakeFiles/436d.dir/build.make CMakeFiles/436d.dir/src/player_system.cpp.s
+.PHONY : src/player_system.cpp.s
+
 src/program.o: src/program.cpp.o
 
 .PHONY : src/program.o
@@ -741,6 +822,15 @@ help:
 	@echo "... src/movement_system.o"
 	@echo "... src/movement_system.i"
 	@echo "... src/movement_system.s"
+	@echo "... src/player_component.o"
+	@echo "... src/player_component.i"
+	@echo "... src/player_component.s"
+	@echo "... src/player_factory.o"
+	@echo "... src/player_factory.i"
+	@echo "... src/player_factory.s"
+	@echo "... src/player_system.o"
+	@echo "... src/player_system.i"
+	@echo "... src/player_system.s"
 	@echo "... src/program.o"
 	@echo "... src/program.i"
 	@echo "... src/program.s"
