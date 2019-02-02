@@ -2,13 +2,14 @@
 #define COMPONENT_H
 
 // Please increment this every time you create a new component, otherwise you will receive a segmentation fault.
-int const MAX_COMPONENTS = 4;
+int const MAX_COMPONENTS = 5;
 
 // Organize all the static typeID's here.
 int const TRANSFORM_COMPONENT_TYPEID = 0;
 int const SPRITE_COMPONENT_TYPEID = 1;
 int const COLOR_COMPONENT_TYPEID = 2;
 int const COLLISION_COMPONENT_TYPEID = 3;
+int const MOVEMENT_COMPONENT_TYPEID = 4;
 
 class BaseComponent {
 public:

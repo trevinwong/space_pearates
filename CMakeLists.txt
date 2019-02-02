@@ -68,8 +68,12 @@ set(SOURCE_FILES_CORE
 	src/TileMapping/tile_map_system.hpp
 	src/TileMapping/tile_factory.cpp
 	src/TileMapping/tile_factory.hpp
-  src/Tower/tower_entity_factory.cpp
-  src/Tower/tower_entity_factory.hpp
+	src/Tower/tower_entity_factory.cpp
+	src/Tower/tower_entity_factory.hpp
+	src/movement_system.cpp
+	src/movement_system.hpp
+	src/movement_component.cpp
+	src/movement_component.hpp
 )
 
 set(SOURCE_FILES
