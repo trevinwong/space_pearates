@@ -14,4 +14,4 @@ class BaseFactory
   private:
     BaseFactory();
 };
-#endif BASE_H
+#endif
