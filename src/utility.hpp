@@ -40,5 +40,14 @@
 #define texture_path(name)  data_path "/textures/" name
 #define audio_path(name) data_path  "/audio/" name
 #define mesh_path(name) data_path  "/meshes/" name
+#define map_path(name) data_path  "/map/" name
+
+#define SCREEN_WIDTH 1280
+#define SCREEN_HEIGHT 800
+
+#define MAP_EMPTY_BLOCK 0
+#define MAP_PLATFORM_TILE 1
+#define MAP_TOWER_POSITION 2
+#define MAP_BASE_POSITION 3
 
 #endif
