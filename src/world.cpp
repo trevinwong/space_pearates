@@ -30,19 +30,6 @@ void World::init(glm::vec2 screen)
 	PlayerFactory* playerFactory = new PlayerFactory();
 	Entity p = playerFactory->build();
 	entityManager.addEntity(p);
-	Entity e;
-	Program *program = new Program(shader_path("sprite.vert"), shader_path("sprite.frag"));
-	Texture *texture = new Texture(texture_path("turtle.png"), true);
-	SpriteComponent *spriteComponent = new SpriteComponent(program, texture);
-	TransformComponent *transformComponent = new TransformComponent(glm::vec2(200.0f, 200.0f), glm::vec2(50.0f, 40.0f), 0.0f);
-	ColorComponent *colorComponent = new ColorComponent(glm::vec4(0.5f, 0.8f, 0.5f, 1.0f));
-	MovementComponent *movementComponent = new MovementComponent(glm::vec2(0, 0), glm::vec2(0.5f, 0.8f));
-	PlayerComponent *playerComponent = new PlayerComponent();
-	e.setComponent<SpriteComponent>(spriteComponent);
-	e.setComponent<TransformComponent>(transformComponent);
-	e.setComponent<ColorComponent>(colorComponent);
-	e.setComponent<MovementComponent>(movementComponent);
-	entityManager.addEntity(e);
 }
 
 // dt is known as delta time, how much time has passed since update was last called
