@@ -1,0 +1,19 @@
+# Milestone Write-up
+
+* Application compiles and runs. Correctly uses code and shaders to render background and assets.
+* Renders sprites = loading and rendering of textured geometry wiht correct blending.
+* Basic 2D transformations = needed to render sprites in different locations.
+* Keyboard/mouse control. Use the arrow keys to move the turtle up, left, right and down.
+* 
+* Smooth movement from point A to point B, use arrow keys to move the turtle, correctly accounts for time step.
+* Application exits.
+
+## Creative Component
+* Bonus textures added - tiles and towers.
+
+## Discrepancies 
+* Towers do not subtract the health of any enemies. This is because we don't have a messaging system in place for ECS so we're unable to interact with the collision system which is crucial in doing any interactions between entities.
+* Player does not collide with any tiles. Again, no messaging system, so we can't do any interactions between entities.
+* Enemies do not translate towards player but are hard-coded to move around the map. Still figuring out how to pass data between systems.
+* Base does not have destroyed game over condition because we have no messaging system in place for ECS.
+* Basic collision not done because we don't have a messaging system in place which is taking more work than we thought.
