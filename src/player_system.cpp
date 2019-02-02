@@ -29,8 +29,23 @@ void PlayerSystem::interpInput(std::vector<Entity> &entities, GLboolean keys[])
 			}
 			else if (!keys[GLFW_KEY_RIGHT] && !keys[GLFW_KEY_LEFT])
 			{
-				stopMoving(movementComponent);
+				stopMovingX(movementComponent);
 			}
+
+			//Check for vertical movement.
+			if (keys[GLFW_KEY_UP])
+			{
+				moveUp(movementComponent);
+			}
+			else if (keys[GLFW_KEY_DOWN])
+			{
+				moveDown(movementComponent);
+			}
+			else if (!keys[GLFW_KEY_UP] && !keys[GLFW_KEY_DOWN])
+			{
+				stopMovingY(movementComponent);
+			}
+
 		}
 	}
 }
@@ -45,8 +60,24 @@ void PlayerSystem::walkLeft(MovementComponent* mvComp)
 	mvComp->setAcceleration(glm::vec2(-walkAccelSpeed, 0));
 }
 
-void PlayerSystem::stopMoving(MovementComponent * mvComp)
+void PlayerSystem::moveUp(MovementComponent* mvComp)
 {
-	mvComp->setVelocity(glm::vec2(0, 0));
-	mvComp->setAcceleration(glm::vec2(0, 0));
+	mvComp->setAcceleration(glm::vec2(0, -walkAccelSpeed));
+}
+
+void PlayerSystem::moveDown(MovementComponent* mvComp)
+{
+	mvComp->setAcceleration(glm::vec2(0, walkAccelSpeed));
+}
+
+void PlayerSystem::stopMovingX(MovementComponent * mvComp)
+{
+	mvComp->setVelocity(glm::vec2(0, mvComp->m_velocity.y));
+	mvComp->setAcceleration(glm::vec2(0, mvComp->m_accel.y));
+}
+
+void PlayerSystem::stopMovingY(MovementComponent * mvComp)
+{
+	mvComp->setVelocity(glm::vec2(mvComp->m_velocity.x, 0));
+	mvComp->setAcceleration(glm::vec2(mvComp->m_accel.x, 0));
 }

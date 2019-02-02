@@ -58,7 +58,33 @@ void MovementComponent::updateVelocity()
 		}
 	}
 
-	//TODO: Check for minVelocity too
+	// Check for minVelocity too
+	if (abs(m_velocity.x) < m_minVelocity.x)
+	{
+		// If the velocity is negative...
+		if (m_velocity.x < 0)
+		{
+			m_velocity.x = -m_minVelocity.x;
+		}
+		else
+		{
+			m_velocity.x = m_minVelocity.x;
+		}
+	}
+
+	if (abs(m_velocity.y) < m_minVelocity.y)
+	{
+		// If the velocity is negative...
+		if (m_velocity.y < 0)
+		{
+			m_velocity.y = -m_minVelocity.y;
+		}
+		else
+		{
+			m_velocity.y = m_minVelocity.y;
+		}
+	}
+
 }
 
 // Directly applies a velocity to this entity's current velocity.

@@ -20,7 +20,10 @@ public:
 	// Movement functions
 	void walkRight(MovementComponent* mvComp);
 	void walkLeft(MovementComponent* mvComp);
-	void stopMoving(MovementComponent* mvComp);
+	void moveUp(MovementComponent* mvComp);
+	void moveDown(MovementComponent* mvComp);
+	void stopMovingX(MovementComponent* mvComp);
+	void stopMovingY(MovementComponent* mvComp);
 
 private:
 	// Local vars
