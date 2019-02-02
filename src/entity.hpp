@@ -6,7 +6,7 @@
 
 class Entity {
 public:
-	Entity();
+  Entity();
 	int id;
 
 	// Template functions MUST be defined in the header as the compiler must see it before generating code for any usages.
@@ -34,6 +34,11 @@ public:
 
 	static int next() { return next_id++; };
 	static int next_id;
+  
+  bool operator==(const Entity &other) const {
+    return id == other.id;
+  };
+
 private:
 	std::vector<BaseComponent*> components;
 };

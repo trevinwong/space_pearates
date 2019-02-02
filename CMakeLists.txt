@@ -43,10 +43,12 @@ set(SOURCE_FILES_AUTOGEN
 set(SOURCE_FILES_CORE
     src/Base/base_factory.cpp
 	src/Base/base_factory.hpp
-  src/Enemies/enemy.cpp
-  src/Enemies/enemy.hpp
-  src/Enemies/enemy_factory.cpp
-  src/Enemies/enemy_factory.hpp
+	src/Enemies/enemy.cpp
+	src/Enemies/enemy.hpp
+	src/Enemies/enemy_factory.cpp
+	src/Enemies/enemy_factory.hpp
+	src/collision_component.cpp
+	src/collision_component.hpp
 	src/color_component.cpp
 	src/color_component.hpp
 	src/component.hpp
@@ -78,6 +80,8 @@ set(SOURCE_FILES_CORE
 	src/TileMapping/map_entity_factory.hpp
 	src/Tower/tower_entity_factory.cpp
 	src/Tower/tower_entity_factory.hpp
+	src/Systems/collision_system.cpp
+	src/Systems/collision_system.hpp
 	src/movement_system.cpp
 	src/movement_system.hpp
 	src/movement_component.cpp

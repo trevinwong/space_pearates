@@ -8,6 +8,7 @@
 #include "sprite_component.hpp"
 #include "transform_component.hpp"
 #include "color_component.hpp"
+#include "collision_component.hpp"
 
 class SpriteSystem
 {

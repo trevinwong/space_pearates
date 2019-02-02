@@ -3,21 +3,21 @@
 
 #include "utility.hpp"
 #include "component.hpp"
-#include <vector>
 #include "entity.hpp"
+#include <vector>
 
 class CollisionComponent : public BaseComponent
 {
 public:
 
-    // Position, size, and rotation of collision box
-	CollisionComponent(glm::vec2 _position, glm::vec2 _size, GLfloat _rotate);
-	~CollisionComponent();
-    
-    bool hasCollided;
+  // Position, size, and rotation of collision box
+  CollisionComponent(glm::vec2 _position, glm::vec2 _size, GLfloat _rotate);
+  ~CollisionComponent();
 
-    // Entity may collide with multiple objects at once
-    std::vector<Entity> entities;
+  bool hasCollided;
+
+  // Entity may collide with multiple objects at once
+  std::vector<Entity> entities;
 
     // Position, size, and rotation of collision box
     glm::vec2 position;
