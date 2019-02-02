@@ -5,6 +5,8 @@
 #include "entity_manager.hpp"
 #include "sprite_system.hpp"
 #include "movement_system.hpp"
+#include "player_system.hpp"
+#include "player_factory.hpp"
 #include "TileMapping\tile_map_system.hpp"
 
 
@@ -29,6 +31,7 @@ private:
 	glm::mat4 projection;
 	TileMapSystem tileMapSystem;
 	MovementSystem movementSystem;
+	PlayerSystem playerSystem;
 };
 
 #endif

@@ -74,6 +74,12 @@ set(SOURCE_FILES_CORE
 	src/movement_system.hpp
 	src/movement_component.cpp
 	src/movement_component.hpp
+	src/player_system.cpp
+	src/player_system.hpp
+	src/player_component.cpp
+	src/player_component.hpp
+	src/player_factory.cpp
+	src/player_factory.hpp
 )
 
 set(SOURCE_FILES
