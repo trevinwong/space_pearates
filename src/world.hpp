@@ -4,8 +4,14 @@
 #include "utility.hpp"
 #include "entity_manager.hpp"
 #include "sprite_system.hpp"
+<<<<<<< HEAD
 #include "TileMapping/tile_map_system.hpp"
 #include "Enemies/enemy.hpp"
+=======
+#include "movement_system.hpp"
+#include "TileMapping/tile_map_system.hpp"
+#include "TileMapping/map_entity_factory.hpp"
+>>>>>>> d34d243b4fe2ea985337ea47634c292a495c6e88
 
 
 // TO-DO: Look into replacing Keys array with direct callback.
@@ -28,8 +34,12 @@ private:
 	SpriteSystem spriteSystem;
 	glm::mat4 projection;
 	TileMapSystem tileMapSystem;
+<<<<<<< HEAD
 	//Change later after figuring out how to read multiple enemies
 	Enemy enemy;
+=======
+	MovementSystem movementSystem;
+>>>>>>> d34d243b4fe2ea985337ea47634c292a495c6e88
 };
 
 #endif

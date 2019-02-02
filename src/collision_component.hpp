@@ -21,10 +21,10 @@ public:
 
     // Position, size, and rotation of collision box
     glm::vec2 position;
-	glm::vec2 size;
-	GLfloat   rotate;
+		glm::vec2 size;
+		GLfloat   rotate;
 
-	static const int typeID = TRANSFORM_COMPONENT_TYPEID;
+	static const int typeID = COLLISION_COMPONENT_TYPEID;
 	inline virtual int getTypeID() const { return typeID; };
 };
 
