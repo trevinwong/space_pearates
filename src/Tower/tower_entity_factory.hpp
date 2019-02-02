@@ -18,4 +18,4 @@ class TowerEntityFactory
     // factory class does not need instantiation
     TowerEntityFactory();
 };
-#endif TOWER_H
+#endif
