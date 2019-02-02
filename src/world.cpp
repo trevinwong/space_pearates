@@ -18,11 +18,10 @@ void World::init(glm::vec2 screen)
 {
 	projection = glm::ortho(0.0f, static_cast<GLfloat>(screen.x), static_cast<GLfloat>(screen.y), 0.0f, -1.0f, 1.0f);
 	entityManager = EntityManager();
-    enemy.loadEnemy(screen, entityManager);
-
-    Entity mapDataEntity = MapEntityFactory::createMapEntityFromFile(map_path("map0.txt"));
-    entityManager.addEntity(mapDataEntity);
-    tileMapSystem.loadTileMap(entityManager); // Add platform tiles
+  enemy.loadEnemy(screen, entityManager);
+  Entity mapDataEntity = MapEntityFactory::createMapEntityFromFile(map_path("map0.txt"));
+  entityManager.addEntity(mapDataEntity);
+  tileMapSystem.loadTileMap(entityManager); // Add platform tiles
 
 	Entity e;
 	Program *program = new Program(shader_path("sprite.vert"), shader_path("sprite.frag"));
