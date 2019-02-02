@@ -25,7 +25,7 @@ void World::init(glm::vec2 screen)
 	tileMapSystem.loadTileMap(screen, entityManager); // Add platform tiles
 	enemy.loadEnemy(screen, entityManager);
 	//Entity e;
-	//Program *program = new Program(shader_path("sprite.vert"), shader_path("sprite.frag"));
+	//Program *program = new Program(shader_path("sasfsaprite.vert"), shader_path("sprite.frag"));
 	//Texture *texture = new Texture(texture_path("turtle.png"), true);
 	//SpriteComponent *spriteComponent = new SpriteComponent(program, texture);
 	//TransformComponent *transformComponent = new TransformComponent(glm::vec2(200.0f, 200.0f), glm::vec2(50.0f, 40.0f), 0.0f);
