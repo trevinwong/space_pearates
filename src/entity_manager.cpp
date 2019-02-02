@@ -9,7 +9,7 @@ EntityManager::~EntityManager()
 {
 }
 
-void EntityManager::addEntity(Entity &e)
+void EntityManager::addEntity(Entity e)
 {
 	entities.push_back(e);
 }
