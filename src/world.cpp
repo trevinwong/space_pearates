@@ -44,7 +44,6 @@ void World::update(float dt)
 	enemy.move();
 	std::vector<Entity> &entities = entityManager.getEntities();
 	movementSystem.moveEntities(entities);
-	printf("xd\n");
 }
 
 void World::processInput(float dt)
@@ -54,8 +53,8 @@ void World::processInput(float dt)
 
 void World::draw()
 {
-//  std::vector<Entity> &entities = entityManager.getEntities();
-//  spriteSystem.drawSprites(entities, projection);
+ std::vector<Entity> &entities = entityManager.getEntities();
+ spriteSystem.drawSprites(entities, projection);
 }
 
 // Possibly redundant - destructor can serve the same purpose.
