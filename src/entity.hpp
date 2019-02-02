@@ -17,7 +17,7 @@ public:
 			// Check if our component's typeID matches our given component's static typeID.
 			// In the future, we can optimize this by simply indexing into our vector using the component's static typeID
 			// assuming that the typeID corresponds to a valid index. Leave this for now.
-			if (components[i]->getTypeID() == T::typeID)
+			if (components[i] != NULL && components[i]->getTypeID() == T::typeID)
 			{
 				// If it matches, cast it to the correct type and return a pointer to it.
 				return static_cast<T*>(components[i]);
