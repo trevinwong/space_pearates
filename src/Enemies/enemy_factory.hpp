@@ -6,6 +6,7 @@
 #include "sprite_component.hpp"
 #include "transform_component.hpp"
 #include "color_component.hpp"
+#include "movement_component.hpp"
 
 class EnemyFactory
 {
