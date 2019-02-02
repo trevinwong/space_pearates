@@ -9,6 +9,7 @@ World::World()
 	// https://learnopengl.com/In-Practice/2D-Game/Rendering-Sprites
 	spriteSystem = SpriteSystem();
 	tileMapSystem = TileMapSystem();
+	enemy = Enemy();
 }
 
 World::~World()
@@ -21,7 +22,7 @@ void World::init(glm::vec2 screen)
 	projection = glm::ortho(0.0f, static_cast<GLfloat>(screen.x), static_cast<GLfloat>(screen.y), 0.0f, -1.0f, 1.0f);
 	entityManager = EntityManager();
 	tileMapSystem.loadTileMap(screen, entityManager); // Add platform tiles
-
+	enemy.loadEnemy(screen, entityManager);
 	//Entity e;
 	//Program *program = new Program(shader_path("sprite.vert"), shader_path("sprite.frag"));
 	//Texture *texture = new Texture(texture_path("turtle.png"), true);
@@ -37,6 +38,7 @@ void World::init(glm::vec2 screen)
 // dt is known as delta time, how much time has passed since update was last called
 void World::update(float dt)
 {
+	Enemy.move();
 }
 
 void World::processInput(float dt)
