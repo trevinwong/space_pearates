@@ -11,7 +11,7 @@ TileFactory::~TileFactory()
 Entity TileFactory::build(int type, glm::vec2 position, glm::vec2 scale)
 {
   Program *program = new Program(shader_path("sprite.vert"), shader_path("sprite.frag"));
-  SpriteComponent *sprite = new SpriteComponent(program, new Texture());
+  SpriteComponent *sprite = new SpriteComponent(program, new Texture(texture_path("tile_block.png"), true));
   TransformComponent *transform = new TransformComponent(position, scale, 0.0f);
 
   ColorComponent *colour;

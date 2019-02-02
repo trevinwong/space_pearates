@@ -10,7 +10,7 @@ Entity TowerEntityFactory::createTower(glm::vec2 towerCenterBottomPosition, glm:
   glm::vec2 position = {x, y};
 
   Program *program = new Program(shader_path("sprite.vert"), shader_path("sprite.frag"));
-  Texture *towerSampletexture = new Texture();
+  Texture *towerSampletexture = new Texture(texture_path("tower0.png"), true);
 
   SpriteComponent *spriteComponent = new SpriteComponent(program, towerSampletexture);
   TransformComponent *transformComponent = new TransformComponent(position, _size, 0.0f);
