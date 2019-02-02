@@ -68,16 +68,22 @@ set(SOURCE_FILES_CORE
 	src/TileMapping/tile_map_system.hpp
 	src/TileMapping/tile_factory.cpp
 	src/TileMapping/tile_factory.hpp
-  src/TileMapping/map_component.cpp
-  src/TileMapping/map_component.hpp
-  src/TileMapping/map_entity_factory.cpp
-  src/TileMapping/map_entity_factory.hpp
+	src/TileMapping/map_component.cpp
+	src/TileMapping/map_component.hpp
+	src/TileMapping/map_entity_factory.cpp
+	src/TileMapping/map_entity_factory.hpp
 	src/Tower/tower_entity_factory.cpp
 	src/Tower/tower_entity_factory.hpp
 	src/movement_system.cpp
 	src/movement_system.hpp
 	src/movement_component.cpp
 	src/movement_component.hpp
+	src/player_system.cpp
+	src/player_system.hpp
+	src/player_component.cpp
+	src/player_component.hpp
+	src/player_factory.cpp
+	src/player_factory.hpp
 )
 
 set(SOURCE_FILES
