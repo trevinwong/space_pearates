@@ -2,7 +2,7 @@
 #define COLOR_COMPONENT_H
 
 #include "utility.hpp"
-#include "component.hpp"
+#include "base_component.hpp"
 
 // Change to RGBA after we get everything running.
 class ColorComponent : public BaseComponent

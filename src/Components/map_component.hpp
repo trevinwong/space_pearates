@@ -2,7 +2,7 @@
 #define MAP_COMPONENT_H
 
 #include "entity_manager.hpp"
-#include "Components/component.hpp"
+#include "base_component.hpp"
 #include "utility.hpp"
 
 class MapComponent : public BaseComponent

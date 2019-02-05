@@ -49,7 +49,11 @@ set(SOURCE_FILES_CORE
 	src/EntityFactories/player_factory.hpp
 	src/EntityFactories/enemy_factory.cpp
 	src/EntityFactories/enemy_factory.hpp
-	src/Components/component.hpp
+	src/EntityFactories/map_entity_factory.cpp
+	src/EntityFactories/map_entity_factory.hpp
+	src/EntityFactories/tile_factory.cpp
+	src/EntityFactories/tile_factory.hpp
+	src/Components/base_component.hpp
 	src/Components/collision_component.cpp
 	src/Components/collision_component.hpp
 	src/Components/color_component.cpp
@@ -62,6 +66,8 @@ set(SOURCE_FILES_CORE
 	src/Components/movement_component.hpp
 	src/Components/player_component.cpp
 	src/Components/player_component.hpp
+	src/Components/map_component.cpp
+	src/Components/map_component.hpp
 	src/Systems/sprite_system.cpp
 	src/Systems/sprite_system.hpp
 	src/Systems/collision_system.cpp
@@ -70,6 +76,8 @@ set(SOURCE_FILES_CORE
 	src/Systems/movement_system.hpp
 	src/Systems/player_system.cpp
 	src/Systems/player_system.hpp
+	src/Systems/tile_map_system.cpp
+	src/Systems/tile_map_system.hpp
 	src/Enemies/enemy.cpp
 	src/Enemies/enemy.hpp
 	src/entity.cpp
@@ -84,14 +92,6 @@ set(SOURCE_FILES_CORE
 	src/utility.hpp
 	src/world.cpp
 	src/world.hpp
-	src/TileMapping/tile_map_system.cpp
-	src/TileMapping/tile_map_system.hpp
-	src/TileMapping/tile_factory.cpp
-	src/TileMapping/tile_factory.hpp
-	src/TileMapping/map_component.cpp
-	src/TileMapping/map_component.hpp
-	src/TileMapping/map_entity_factory.cpp
-	src/TileMapping/map_entity_factory.hpp
 )
 
 set(SOURCE_FILES

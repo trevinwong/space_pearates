@@ -2,7 +2,7 @@
 #define SPRITE_COMPONENT_H
 
 #include "utility.hpp"
-#include "component.hpp"
+#include "base_component.hpp"
 #include "program.hpp"
 #include "texture.hpp"
 

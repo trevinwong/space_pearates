@@ -1,11 +1,9 @@
 #ifndef MAP_ENTITY_FACTORY_H
 #define MAP_ENTITY_FACTORY_H
 
-#include <iostream>
-#include <fstream>
-#include <sstream>
+#include "utility.hpp"
 #include "entity_manager.hpp"
-#include "map_component.hpp"
+#include "../Components/map_component.hpp"
 #include "utility.hpp"
 
 class MapEntityFactory

@@ -2,7 +2,7 @@
 #define MOVEMENT_COMPONENT_H
 
 #include "utility.hpp"
-#include "component.hpp"
+#include "base_component.hpp"
 
 // Contains information on how an entity should move.
 class MovementComponent : public BaseComponent
