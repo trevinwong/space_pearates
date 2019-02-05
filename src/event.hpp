@@ -1,7 +1,0 @@
-class Event
-{
-	Event();
-	~Event();
-
-	
-};
