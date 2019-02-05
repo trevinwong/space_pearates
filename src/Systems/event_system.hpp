@@ -19,13 +19,14 @@
 class EventSystem
 {
 public:
-	EventSystem();
-	~EventSystem();
-	void process();
-	void addObservable(Observable observable);
-	void subscribe(Observable observable);
-	vector<Observable> observables;
-	unordered_map<int, vector<Observer>> observers;
+	void processEvent(Event event);
+
+	template <typename T>
+	void subscribe(Subscriber &subscriber);
+	{
+		subscribers[T::eventName].push_back(subscriber);
+	}
+	unordered_map<string, vector<Subscriber>> subscribers;
 };
 
 #endif

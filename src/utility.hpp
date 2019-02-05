@@ -13,6 +13,9 @@
 #include <fstream>
 #include <iostream>
 #include <vector>
+#include <unordered_map>
+
+using std::string; // to avoid typing std::string
 
 // libraries
 // gl3w-single-file: https://github.com/gingerBill/gl3w-Single-File

@@ -1,13 +1,5 @@
 #include "collision_system.hpp"
 
-CollisionSystem::CollisionSystem()
-{
-}
-
-CollisionSystem::~CollisionSystem()
-{
-}
-
 void CollisionSystem::checkCollisions(std::vector<Entity> &entities)
 {
   std::vector<Entity> collisionEntities;
@@ -29,6 +21,11 @@ void CollisionSystem::checkCollisions(std::vector<Entity> &entities)
       }
     }
   }
+}
+
+void CollisionSystem::processEvent(Event *event)
+{
+
 }
 
 bool CollisionSystem::isCollision(Entity &one, Entity &two) // AABB - AABB collision
