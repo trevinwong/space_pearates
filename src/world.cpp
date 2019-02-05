@@ -28,28 +28,9 @@ void World::init(glm::vec2 screen)
   tileMapSystem.loadTileMap(entityManager); // Add platform tiles
 
 	// Generate the player entity
-	/*PlayerFactory* playerFactory = new PlayerFactory();
+	PlayerFactory* playerFactory = new PlayerFactory();
 	Entity p = playerFactory->build();
-	entityManager.addEntity(p);*/
-	
-	Entity e;
-	Program *program = new Program(shader_path("sprite.vert"), shader_path("sprite.frag"));
-	Texture *texture = new Texture(texture_path("turtle.png"), true);
-	SpriteComponent *spriteComponent = new SpriteComponent(program, texture);
-  ColorComponent *colorComponent = new ColorComponent(glm::vec4(0.5f, 0.8f, 0.5f, 1.0f));
-
-	glm::vec2 translate = glm::vec2(200.0f, 300.0f);
-  glm::vec2 scale = glm::vec2(50.0f, 40.0f);
-  GLfloat rotate = 0.0f;
-	TransformComponent *transformComponent = new TransformComponent(translate, scale, rotate);
-  CollisionComponent *collision = new CollisionComponent(translate, scale, rotate);
-	MovementComponent *movementComponent = new MovementComponent(glm::vec2(0, 0), glm::vec2(0.5f, 0.8f));
-	e.setComponent<SpriteComponent>(spriteComponent);
-	e.setComponent<TransformComponent>(transformComponent);
-	e.setComponent<ColorComponent>(colorComponent);
-	e.setComponent<MovementComponent>(movementComponent);
-  e.setComponent<CollisionComponent>(collision);
-	entityManager.addEntity(e);
+	entityManager.addEntity(p);
 }
 
 // dt is known as delta time, how much time has passed since update was last called

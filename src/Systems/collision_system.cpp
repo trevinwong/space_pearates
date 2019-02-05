@@ -25,7 +25,7 @@ void CollisionSystem::checkCollisions(std::vector<Entity> &entities)
 
       if (isCollision(e1, e2)) {
         std::cout<< "COLLIDED" <<std::endl;
-        
+        // TODO send CollisionEvent to ..?
       }
     }
   }
@@ -41,9 +41,11 @@ bool CollisionSystem::isCollision(Entity &one, Entity &two) // AABB - AABB colli
   // Collision x-axis?
   bool collisionX = one_p->position.x + one_p->size.x > two_p->position.x &&
     two_p->position.x + two_p->size.x > one_p->position.x;
+
   //// Collision y-axis?
   bool collisionY = one_p->position.y + one_p->size.y > two_p->position.y &&
     two_p->position.y + two_p->size.y > one_p->position.y;
+
   //// Collision only if on both axes
   return collisionX && collisionY;
 }

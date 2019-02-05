@@ -8,6 +8,7 @@
 #include "color_component.hpp"
 #include "player_component.hpp"
 #include "movement_component.hpp"
+#include "collision_component.hpp"
 
 class PlayerFactory
 {
