@@ -18,7 +18,7 @@ public:
 	glm::vec2 m_minVelocity;
 
 	bool m_offScreenOK; // Whether or not the entity can go off screen.
-	static const int typeID = MOVEMENT_COMPONENT_TYPEID;
+	static const int typeID = ComponentType::movement;
 	inline virtual int getTypeID() const { return typeID; };
 
 

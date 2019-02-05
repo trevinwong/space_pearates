@@ -11,7 +11,7 @@ class PlayerComponent : public BaseComponent
 public:
 	PlayerComponent();
 	~PlayerComponent();
-	static const int typeID = PLAYER_COMPONENT_TYPEID;
+	static const int typeID = ComponentType::player;
 	inline virtual int getTypeID() const { return typeID; };
 };
 

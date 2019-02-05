@@ -13,7 +13,7 @@ public:
 	glm::vec2 position;
 	glm::vec2 size;
 	GLfloat   rotate;
-	static const int typeID = COLLISION_COMPONENT_TYPEID;
+	static const int typeID = ComponentType::collision;
 	inline virtual int getTypeID() const { return typeID; };
 };
 

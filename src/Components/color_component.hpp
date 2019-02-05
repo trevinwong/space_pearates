@@ -11,7 +11,7 @@ public:
 	ColorComponent(glm::vec4 _RGBA);
 	~ColorComponent();
 	glm::vec4 RGBA;
-	static const int typeID = COLOR_COMPONENT_TYPEID;
+	static const int typeID = ComponentType::color;
 	inline virtual int getTypeID() const { return typeID; };
 };
 

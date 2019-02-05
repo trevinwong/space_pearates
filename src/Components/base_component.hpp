@@ -1,15 +1,16 @@
 #ifndef COMPONENT_H
 #define COMPONENT_H
 
-int const MAX_COMPONENTS = 100;
-
-int const TRANSFORM_COMPONENT_TYPEID = 0;
-int const SPRITE_COMPONENT_TYPEID = 1;
-int const COLOR_COMPONENT_TYPEID = 2;
-int const COLLISION_COMPONENT_TYPEID = 3;
-int const MAP_COMPONENT_TYPEID = 4;  
-int const MOVEMENT_COMPONENT_TYPEID = 5;
-int const PLAYER_COMPONENT_TYPEID = 6;
+enum ComponentType {
+  transform,
+  sprite,
+  color, // what are we, Amurican?
+  collision,
+  map,
+  movement,
+  player,
+  max_count // not sure if there's a better way to get enum count
+};
 
 class BaseComponent 
 {

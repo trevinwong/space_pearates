@@ -11,7 +11,7 @@ public:
   MapComponent(std::vector<std::vector<int>> _mapData2DArray);
   ~MapComponent();
 
-  static const int typeID = MAP_COMPONENT_TYPEID;
+  static const int typeID = ComponentType::map;
   inline virtual int getTypeID() const { return typeID; };
 
   int num_y_tiles;
