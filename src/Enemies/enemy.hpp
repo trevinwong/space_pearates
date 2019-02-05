@@ -2,7 +2,7 @@
 #define Enemy_H
 
 #include "entity_manager.hpp"
-#include "enemy_factory.hpp"
+#include "EntityFactories/enemy_factory.hpp"
 #include "../TileMapping/tile_map_system.hpp"
 
 class Enemy
