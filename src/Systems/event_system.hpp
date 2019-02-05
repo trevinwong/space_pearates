@@ -1,32 +1,34 @@
-#ifndef SPRITE_SYSTEM_H
-#define SPRITE_SYSTEM_H
+#ifndef EVENT_SYSTEM_H
+#define EVENT_SYSTEM_H
 
 #include "utility.hpp"
-#include "texture.hpp"
-#include "program.hpp"
-#include "entity.hpp"
-#include "sprite_component.hpp"
-#include "transform_component.hpp"
-#include "color_component.hpp"
+#include "Events/event.hpp"
+#include "subscriber.hpp"
 
-/* A subscriber can subscribe itself to a given observable (event).
- * When events come into the event queue, the EventSystem alerts all
- * observers who are subscribed to that type of observable.
+/*
+ * This system handles everything related to Events.
+ *
+ * How it works:
+ * - Have your class (likely a System) inherit from Subscriber so it can subscribe to events that the EventSystem will publish.
+ * - Subscribe your class to an Event by calling subscribe<ExampleEvent>(*this). Make sure that the type you pass in inherits from Event.
+ * - To emit an event, create a pointer to an Event, and then call eventSystem.propagateEvent(myEvent).
+ * - Your event will then be passed to every single System subscribing to that type of event - they will then handle it in their own processEvent().
+ *
+ * Q: How do I call eventSystem.propagateEvent(myEvent) when my System isn't aware of the EventSystem?
+ * A: A global EventSystem is created in World. Pass the reference into your update/draw loop for your System.
  */
-
-// Each event is the observable. Each system is the observer.
 
 class EventSystem
 {
 public:
-	void processEvent(Event event);
+	void propagateEvent(Event *event);
+	unordered_map<string, vector<Subscriber>> subscribers;
 
 	template <typename T>
-	void subscribe(Subscriber &subscriber);
+	void subscribe(Subscriber &subscriber)
 	{
-		subscribers[T::eventName].push_back(subscriber);
+		subscribers[T::typeName].push_back(subscriber);
 	}
-	unordered_map<string, vector<Subscriber>> subscribers;
 };
 
 #endif

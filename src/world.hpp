@@ -6,13 +6,12 @@
 #include "entity_manager.hpp"
 #include "Systems/tile_map_system.hpp"
 #include "EntityFactories/map_entity_factory.hpp"
+#include "Systems/event_system.hpp"
 #include "Systems/sprite_system.hpp"
 #include "Systems/movement_system.hpp"
 #include "Systems/player_system.hpp"
 #include "Systems/collision_system.hpp"
 #include "EntityFactories/player_factory.hpp"
-
-
 
 // TO-DO: Look into replacing Keys array with direct callback.
 // TO-DO: Look into replacing processInput with direct callback.
@@ -31,6 +30,7 @@ public:
 	GLboolean keysProcessed[1024];
 private:
 	EntityManager entityManager;
+	EventSystem eventSystem;
 	SpriteSystem spriteSystem;
 	glm::mat4 projection;
 	TileMapSystem tileMapSystem;

@@ -41,7 +41,7 @@ set(SOURCE_FILES_AUTOGEN
    	src/project_path.hpp
 )
 set(SOURCE_FILES_CORE
-    src/EntityFactories/base_factory.cpp
+  src/EntityFactories/base_factory.cpp
 	src/EntityFactories/base_factory.hpp
 	src/EntityFactories/tower_entity_factory.cpp
 	src/EntityFactories/tower_entity_factory.hpp
@@ -54,6 +54,9 @@ set(SOURCE_FILES_CORE
 	src/EntityFactories/tile_factory.cpp
 	src/EntityFactories/tile_factory.hpp
 	src/Components/base_component.hpp
+	src/subscriber.hpp
+	src/Events/event.hpp
+	src/Events/collision_event.hpp
 	src/Components/collision_component.cpp
 	src/Components/collision_component.hpp
 	src/Components/color_component.cpp
@@ -68,6 +71,8 @@ set(SOURCE_FILES_CORE
 	src/Components/player_component.hpp
 	src/Components/map_component.cpp
 	src/Components/map_component.hpp
+	src/Systems/event_system.cpp
+	src/Systems/event_system.hpp
 	src/Systems/sprite_system.cpp
 	src/Systems/sprite_system.hpp
 	src/Systems/collision_system.cpp
