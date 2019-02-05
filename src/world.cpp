@@ -9,6 +9,7 @@ World::World()
 	enemy = Enemy();
 	movementSystem = MovementSystem();
 	playerSystem = PlayerSystem();
+  collisionSystem = CollisionSystem();
 }
 
 World::~World()
@@ -38,6 +39,7 @@ void World::update(float dt)
 	enemy.move();
 	std::vector<Entity> &entities = entityManager.getEntities();
 	playerSystem.interpInput(entities, keys);
+  collisionSystem.checkCollisions(entities);
 	movementSystem.moveEntities(entities);
 }
 

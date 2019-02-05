@@ -4,12 +4,14 @@
 #include "Enemies/enemy.hpp"
 #include "utility.hpp"
 #include "entity_manager.hpp"
-#include "sprite_system.hpp"
-#include "movement_system.hpp"
 #include "TileMapping/tile_map_system.hpp"
 #include "TileMapping/map_entity_factory.hpp"
-#include "player_system.hpp"
-#include "player_factory.hpp"
+#include "Systems/sprite_system.hpp"
+#include "Systems/movement_system.hpp"
+#include "Systems/player_system.hpp"
+#include "Systems/collision_system.hpp"
+#include "EntityFactories/player_factory.hpp"
+
 
 
 // TO-DO: Look into replacing Keys array with direct callback.
@@ -36,6 +38,7 @@ private:
 	Enemy enemy;
 	MovementSystem movementSystem;
 	PlayerSystem playerSystem;
+  CollisionSystem collisionSystem;
 };
 
 #endif

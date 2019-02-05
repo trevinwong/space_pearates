@@ -41,29 +41,45 @@ set(SOURCE_FILES_AUTOGEN
    	src/project_path.hpp
 )
 set(SOURCE_FILES_CORE
-    src/Base/base_factory.cpp
-	src/Base/base_factory.hpp
-  src/Enemies/enemy.cpp
-  src/Enemies/enemy.hpp
-  src/Enemies/enemy_factory.cpp
-  src/Enemies/enemy_factory.hpp
-	src/color_component.cpp
-	src/color_component.hpp
-	src/component.hpp
+    src/EntityFactories/base_factory.cpp
+	src/EntityFactories/base_factory.hpp
+	src/EntityFactories/tower_entity_factory.cpp
+	src/EntityFactories/tower_entity_factory.hpp
+	src/EntityFactories/player_factory.cpp
+	src/EntityFactories/player_factory.hpp
+	src/EntityFactories/enemy_factory.cpp
+	src/EntityFactories/enemy_factory.hpp
+	src/Components/component.hpp
+	src/Components/collision_component.cpp
+	src/Components/collision_component.hpp
+	src/Components/color_component.cpp
+	src/Components/color_component.hpp
+	src/Components/sprite_component.cpp
+	src/Components/sprite_component.hpp
+	src/Components/transform_component.cpp
+	src/Components/transform_component.hpp
+	src/Components/movement_component.cpp
+	src/Components/movement_component.hpp
+	src/Components/player_component.cpp
+	src/Components/player_component.hpp
+	src/Systems/sprite_system.cpp
+	src/Systems/sprite_system.hpp
+	src/Systems/collision_system.cpp
+	src/Systems/collision_system.hpp
+	src/Systems/movement_system.cpp
+	src/Systems/movement_system.hpp
+	src/Systems/player_system.cpp
+	src/Systems/player_system.hpp
+	src/Enemies/enemy.cpp
+	src/Enemies/enemy.hpp
 	src/entity.cpp
 	src/entity.hpp
 	src/entity_manager.cpp
 	src/entity_manager.hpp
 	src/program.cpp
 	src/program.hpp
-	src/sprite_component.cpp
-	src/sprite_component.hpp
-	src/sprite_system.cpp
-	src/sprite_system.hpp
 	src/texture.cpp
 	src/texture.hpp
-	src/transform_component.cpp
-	src/transform_component.hpp
 	src/utility.cpp
 	src/utility.hpp
 	src/world.cpp
@@ -76,18 +92,6 @@ set(SOURCE_FILES_CORE
 	src/TileMapping/map_component.hpp
 	src/TileMapping/map_entity_factory.cpp
 	src/TileMapping/map_entity_factory.hpp
-	src/Tower/tower_entity_factory.cpp
-	src/Tower/tower_entity_factory.hpp
-	src/movement_system.cpp
-	src/movement_system.hpp
-	src/movement_component.cpp
-	src/movement_component.hpp
-	src/player_system.cpp
-	src/player_system.hpp
-	src/player_component.cpp
-	src/player_component.hpp
-	src/player_factory.cpp
-	src/player_factory.hpp
 )
 
 set(SOURCE_FILES

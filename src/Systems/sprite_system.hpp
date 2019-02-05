@@ -5,9 +5,10 @@
 #include "texture.hpp"
 #include "program.hpp"
 #include "entity.hpp"
-#include "sprite_component.hpp"
-#include "transform_component.hpp"
-#include "color_component.hpp"
+#include "Components/sprite_component.hpp"
+#include "Components/transform_component.hpp"
+#include "Components/color_component.hpp"
+#include "Components/collision_component.hpp"
 
 class SpriteSystem
 {

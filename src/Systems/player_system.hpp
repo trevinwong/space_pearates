@@ -6,8 +6,8 @@
 #include "texture.hpp"
 #include "program.hpp"
 #include "entity.hpp"
-#include "player_component.hpp"
-#include "movement_component.hpp"
+#include "Components/player_component.hpp"
+#include "Components/movement_component.hpp"
 
 class PlayerSystem
 {

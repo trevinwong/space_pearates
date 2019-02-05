@@ -5,7 +5,7 @@
 #include "utility.hpp"
 #include "entity.hpp"
 #include "entity_manager.hpp"
-#include "sprite_system.hpp"
+#include "Systems/sprite_system.hpp"
 
 class BaseFactory
 {

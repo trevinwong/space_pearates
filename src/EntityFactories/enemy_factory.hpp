@@ -3,10 +3,10 @@
 
 #include "entity.hpp"
 #include "program.hpp"
-#include "sprite_component.hpp"
-#include "transform_component.hpp"
-#include "color_component.hpp"
-#include "movement_component.hpp"
+#include "Components/sprite_component.hpp"
+#include "Components/transform_component.hpp"
+#include "Components/color_component.hpp"
+#include "Components/movement_component.hpp"
 
 class EnemyFactory
 {
