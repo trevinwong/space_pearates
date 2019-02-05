@@ -1,0 +1,7 @@
+class Event
+{
+	Event();
+	~Event();
+
+	
+};
