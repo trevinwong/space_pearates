@@ -1,5 +1,4 @@
 #include "movement_system.hpp"
-#include "movement_component.hpp"
 
 MovementSystem::MovementSystem()
 {

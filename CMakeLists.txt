@@ -47,25 +47,29 @@ set(SOURCE_FILES_CORE
 	src/Enemies/enemy.hpp
 	src/Enemies/enemy_factory.cpp
 	src/Enemies/enemy_factory.hpp
-	src/collision_component.cpp
-	src/collision_component.hpp
-	src/color_component.cpp
-	src/color_component.hpp
-	src/component.hpp
+	src/Components/component.hpp
+	src/Components/collision_component.cpp
+	src/Components/collision_component.hpp
+	src/Components/color_component.cpp
+	src/Components/color_component.hpp
+	src/Components/sprite_component.cpp
+	src/Components/sprite_component.hpp
+	src/Components/transform_component.cpp
+	src/Components/transform_component.hpp
+	src/Components/movement_component.cpp
+	src/Components/movement_component.hpp
+	src/Components/player_component.cpp
+	src/Components/player_component.hpp
 	src/entity.cpp
 	src/entity.hpp
 	src/entity_manager.cpp
 	src/entity_manager.hpp
 	src/program.cpp
 	src/program.hpp
-	src/sprite_component.cpp
-	src/sprite_component.hpp
 	src/sprite_system.cpp
 	src/sprite_system.hpp
 	src/texture.cpp
 	src/texture.hpp
-	src/transform_component.cpp
-	src/transform_component.hpp
 	src/utility.cpp
 	src/utility.hpp
 	src/world.cpp
@@ -84,12 +88,8 @@ set(SOURCE_FILES_CORE
 	src/Systems/collision_system.hpp
 	src/movement_system.cpp
 	src/movement_system.hpp
-	src/movement_component.cpp
-	src/movement_component.hpp
 	src/player_system.cpp
 	src/player_system.hpp
-	src/player_component.cpp
-	src/player_component.hpp
 	src/player_factory.cpp
 	src/player_factory.hpp
 )
