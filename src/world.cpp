@@ -3,13 +3,7 @@
 // World class constructor is to set up data structures that will persist through multiple restarts.
 World::World()
 {
-  eventSystem = EventSystem();
-  spriteSystem = SpriteSystem();
-  tileMapSystem = TileMapSystem();
-  enemy = Enemy();
-  movementSystem = MovementSystem();
-  playerSystem = PlayerSystem();
-  collisionSystem = CollisionSystem();
+  eventSystem.subscribe<CollisionEvent>(&movementSystem);
 }
 
 World::~World()

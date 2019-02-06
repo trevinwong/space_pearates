@@ -16,22 +16,18 @@ void CollisionSystem::checkCollisions(EventSystem &eventSystem, vector<Entity> &
       if (e1 == e2) continue;
 
       if (isCollision(e1, e2)) {
-        cout << "COLLIDED" << endl;
-        eventSystem.propagateEvent(new CollisionEvent());
+        //cout << "COLLIDED" << endl;
+        eventSystem.propagateEvent(new CollisionEvent(e1, e2));
       }
     }
   }
 }
 
-void CollisionSystem::processEvent(Event *event)
+// AABB - AABB collision detection
+bool CollisionSystem::isCollision(Entity &e1, Entity &two)
 {
-
-}
-
-bool CollisionSystem::isCollision(Entity &one, Entity &two) // AABB - AABB collision
-{
-  TransformComponent *one_p = one.getComponent<TransformComponent>();
-  MovementComponent *one_v = one.getComponent<MovementComponent>();
+  TransformComponent *one_p = e1.getComponent<TransformComponent>();
+  MovementComponent *one_v = e1.getComponent<MovementComponent>();
   TransformComponent *two_p = two.getComponent<TransformComponent>();
   MovementComponent *two_v = two.getComponent<MovementComponent>();
 

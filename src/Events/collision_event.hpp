@@ -3,11 +3,12 @@
 
 #include "utility.hpp"
 #include "event.hpp"
+#include "entity.hpp"
 
 class CollisionEvent : public Event
 {
 public:
-  CollisionEvent();
+  CollisionEvent(Entity &e1, Entity &e2);
   ~CollisionEvent();
   static const int typeId = EventType::collision;
   inline virtual int getTypeId() const { return typeId; };
