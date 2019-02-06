@@ -2,12 +2,15 @@
 #define COLLISION_EVENT_H
 
 #include "utility.hpp"
+#include "event.hpp"
 
 class CollisionEvent : public Event
 {
 public:
-	static const string typeName = "CollisionEvent";	
-	inline virtual string getTypeName() const { return typeName; };
+  CollisionEvent();
+  ~CollisionEvent();
+  static const int typeId = EventType::collision;
+  inline virtual int getTypeId() const { return typeId; };
 };
 
 #endif

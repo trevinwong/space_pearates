@@ -2,8 +2,8 @@
 
 void EventSystem::propagateEvent(Event *event)
 {
-	for (Subscriber &subscriber : subscribers[event->getTypeName()]) {
-		subscriber.processEvent(event);
-	}		
-	delete event;
+  for (Subscriber &subscriber : subscribers[event->getTypeId()]) {
+    subscriber.processEvent(event);
+  }
+  delete event;
 }

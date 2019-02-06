@@ -1,6 +1,6 @@
 #include "collision_system.hpp"
 
-void CollisionSystem::checkCollisions(std::vector<Entity> &entities)
+void CollisionSystem::checkCollisions(EventSystem &eventSystem, vector<Entity> &entities)
 {
   std::vector<Entity> collisionEntities;
 
@@ -16,8 +16,8 @@ void CollisionSystem::checkCollisions(std::vector<Entity> &entities)
       if (e1 == e2) continue;
 
       if (isCollision(e1, e2)) {
-        std::cout<< "COLLIDED" <<std::endl;
-        // TODO send CollisionEvent to ..?
+        cout << "COLLIDED" << endl;
+        eventSystem.propagateEvent(new CollisionEvent());
       }
     }
   }

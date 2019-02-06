@@ -4,7 +4,6 @@
 #include "utility.hpp"
 #include "base_component.hpp"
 #include "entity.hpp"
-#include <vector>
 
 class CollisionComponent : public BaseComponent
 {

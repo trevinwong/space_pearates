@@ -1,12 +1,17 @@
 #ifndef EVENT_H
 #define EVENT_H
 
-#include "utility.hpp"
+namespace EventType {
+  enum EventType {
+    collision,
+    max_count
+  };
+}
 
-class Event 
+class Event
 {
 public:
-	virtual string getTypeName() const = 0;
+  virtual int getTypeId() const = 0;
 };
 
 #endif

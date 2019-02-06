@@ -21,14 +21,14 @@
 class EventSystem
 {
 public:
-	void propagateEvent(Event *event);
-	unordered_map<string, vector<Subscriber>> subscribers;
+  void propagateEvent(Event *event);
+  unordered_map<int, vector<Subscriber>> subscribers;
 
-	template <typename T>
-	void subscribe(Subscriber &subscriber)
-	{
-		subscribers[T::typeName].push_back(subscriber);
-	}
+  template <typename T>
+  void subscribe(Subscriber &subscriber)
+  {
+    subscribers[T::typeName].push_back(subscriber);
+  }
 };
 
 #endif

@@ -56,6 +56,7 @@ set(SOURCE_FILES_CORE
 	src/Components/base_component.hpp
 	src/subscriber.hpp
 	src/Events/event.hpp
+	src/Events/collision_event.cpp
 	src/Events/collision_event.hpp
 	src/Components/collision_component.cpp
 	src/Components/collision_component.hpp
