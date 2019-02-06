@@ -2,8 +2,8 @@
 #define TILE_MAP_SYSTEM_H
 
 #include "entity_manager.hpp"
-#include "tile_factory.hpp"
-#include "map_component.hpp"
+#include "../EntityFactories/tile_factory.hpp"
+#include "../Components/map_component.hpp"
 #include "../EntityFactories/tower_entity_factory.hpp"
 #include "../EntityFactories/base_factory.hpp"
 

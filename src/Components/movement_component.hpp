@@ -2,7 +2,7 @@
 #define MOVEMENT_COMPONENT_H
 
 #include "utility.hpp"
-#include "component.hpp"
+#include "base_component.hpp"
 
 // Contains information on how an entity should move.
 class MovementComponent : public BaseComponent
@@ -18,7 +18,7 @@ public:
 	glm::vec2 m_minVelocity;
 
 	bool m_offScreenOK; // Whether or not the entity can go off screen.
-	static const int typeID = MOVEMENT_COMPONENT_TYPEID;
+	static const int typeID = ComponentType::movement;
 	inline virtual int getTypeID() const { return typeID; };
 
 

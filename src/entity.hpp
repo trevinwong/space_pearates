@@ -2,7 +2,7 @@
 #define ENTITY_H
 
 #include "utility.hpp"
-#include "Components/component.hpp"
+#include "Components/base_component.hpp"
 
 class Entity {
 public:

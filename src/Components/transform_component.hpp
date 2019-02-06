@@ -2,7 +2,7 @@
 #define TRANSFORM_COMPONENT_H
 
 #include "utility.hpp"
-#include "component.hpp"
+#include "base_component.hpp"
 
 class TransformComponent : public BaseComponent
 {
@@ -12,7 +12,7 @@ public:
 	glm::vec2 position;
 	glm::vec2 size;
 	GLfloat   rotate;
-	static const int typeID = TRANSFORM_COMPONENT_TYPEID;
+	static const int typeID = ComponentType::transform;
 	inline virtual int getTypeID() const { return typeID; };
 };
 
