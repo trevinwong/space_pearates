@@ -1,6 +1,7 @@
 #ifndef TILE_MAP_SYSTEM_H
 #define TILE_MAP_SYSTEM_H
 
+#include "utility.hpp"
 #include "entity_manager.hpp"
 #include "../EntityFactories/tile_factory.hpp"
 #include "../Components/map_component.hpp"
@@ -13,7 +14,7 @@ public:
   TileMapSystem();
   ~TileMapSystem();
 
-  void loadTileMap(EntityManager& entities);
+  void loadTileMap(EntityManager &entityManager);
 
 private:
   TileFactory factory;

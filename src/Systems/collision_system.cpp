@@ -1,19 +1,19 @@
 #include "collision_system.hpp"
 
-void CollisionSystem::checkCollisions(EventSystem &eventSystem, vector<Entity> &entities)
+void CollisionSystem::checkCollisions(EventSystem &eventSystem, vector<shared_ptr<Entity>> entities)
 {
-  std::vector<Entity> collisionEntities;
+  vector<shared_ptr<Entity>> collisionEntities;
 
-  for (Entity &e : entities) {
-    CollisionComponent *collision = e.getComponent<CollisionComponent>();
+  for (shared_ptr<Entity> e : entities) {
+    CollisionComponent *collision = e->getComponent<CollisionComponent>();
     if (collision != nullptr) {
       collisionEntities.push_back(e);
     }
   }
 
-  for (Entity &e1 : collisionEntities) {
-    for (Entity &e2 : collisionEntities) {
-      if (e1 == e2) continue;
+  for (shared_ptr<Entity> e1 : collisionEntities) {
+    for (shared_ptr<Entity> e2 : collisionEntities) {
+      if (*e1 == *e2) continue;
 
       if (isCollision(e1, e2)) {
         //cout << "COLLIDED" << endl;
@@ -24,12 +24,12 @@ void CollisionSystem::checkCollisions(EventSystem &eventSystem, vector<Entity> &
 }
 
 // AABB - AABB collision detection
-bool CollisionSystem::isCollision(Entity &e1, Entity &two)
+bool CollisionSystem::isCollision(shared_ptr<Entity> e1, shared_ptr<Entity> two)
 {
-  TransformComponent *one_p = e1.getComponent<TransformComponent>();
-  MovementComponent *one_v = e1.getComponent<MovementComponent>();
-  TransformComponent *two_p = two.getComponent<TransformComponent>();
-  MovementComponent *two_v = two.getComponent<MovementComponent>();
+  TransformComponent *one_p = e1->getComponent<TransformComponent>();
+  MovementComponent *one_v = e1->getComponent<MovementComponent>();
+  TransformComponent *two_p = two->getComponent<TransformComponent>();
+  MovementComponent *two_v = two->getComponent<MovementComponent>();
 
   // Collision x-axis?
   bool collisionX = one_p->position.x + one_p->size.x > two_p->position.x &&

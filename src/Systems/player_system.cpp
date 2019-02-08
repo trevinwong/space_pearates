@@ -9,11 +9,11 @@ PlayerSystem::~PlayerSystem()
 }
 
 // Perform actions on the player entity based on the user's inputs.
-void PlayerSystem::interpInput(std::vector<Entity> &entities, GLboolean keys[])
+void PlayerSystem::interpInput(vector<shared_ptr<Entity>> entities, GLboolean keys[])
 {
-	for (Entity &e : entities) {
-		MovementComponent *movementComponent = e.getComponent<MovementComponent>();
-		PlayerComponent * playerComponent = e.getComponent<PlayerComponent>();
+	for (shared_ptr<Entity> e : entities) {
+		MovementComponent *movementComponent = e->getComponent<MovementComponent>();
+		PlayerComponent * playerComponent = e->getComponent<PlayerComponent>();
 
 
 		if (movementComponent != nullptr && playerComponent != nullptr) 

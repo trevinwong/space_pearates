@@ -16,7 +16,7 @@ public:
 	SpriteSystem();
 	~SpriteSystem();
 	// Iterates through all entities. If they have a Sprite, Transform and Color component, they are rendered.
-	void drawSprites(std::vector<Entity> &entities, glm::mat4 projection);
+	void drawSprites(vector<shared_ptr<Entity>> entities, glm::mat4 projection);
 };
 
 #endif

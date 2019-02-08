@@ -1,6 +1,6 @@
 #include "collision_event.hpp"
 
-CollisionEvent::CollisionEvent(Entity &e1, Entity &e2)
+CollisionEvent::CollisionEvent(shared_ptr<Entity> e1, shared_ptr<Entity> e2)
 {
   cout << "COLLIDED" << endl;
 }

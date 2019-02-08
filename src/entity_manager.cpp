@@ -11,10 +11,10 @@ EntityManager::~EntityManager()
 
 void EntityManager::addEntity(Entity e)
 {
-	entities.push_back(e);
+	entities.push_back(make_shared<Entity>(e));
 }
 
-std::vector<Entity>& EntityManager::getEntities()
+std::vector<shared_ptr<Entity>> EntityManager::getEntities()
 {
 	return entities;
 }

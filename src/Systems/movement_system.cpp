@@ -8,12 +8,12 @@ MovementSystem::~MovementSystem()
 {
 }
 
-void MovementSystem::moveEntities(std::vector<Entity> &entities) {
+void MovementSystem::moveEntities(vector<shared_ptr<Entity>> entities) {
 
-	for (Entity &e : entities) {
+	for (shared_ptr<Entity> e : entities) {
 		//SpriteComponent *spriteComponent = e.getComponent<SpriteComponent>();
-		TransformComponent *transformComponent = e.getComponent<TransformComponent>();
-		MovementComponent *movementComponent = e.getComponent<MovementComponent>();
+		TransformComponent *transformComponent = e->getComponent<TransformComponent>();
+		MovementComponent *movementComponent = e->getComponent<MovementComponent>();
 
 		if (transformComponent != nullptr && movementComponent != nullptr) {
 			// Update velocity

@@ -8,13 +8,13 @@ SpriteSystem::~SpriteSystem()
 {
 }
 
-void SpriteSystem::drawSprites(std::vector<Entity> &entities, glm::mat4 projection)
+void SpriteSystem::drawSprites(vector<shared_ptr<Entity>> entities, glm::mat4 projection)
 {
 
-	for (Entity &e : entities) {
-		SpriteComponent *spriteComponent = e.getComponent<SpriteComponent>();
-		TransformComponent *transformComponent = e.getComponent<TransformComponent>();
-		ColorComponent *colorComponent = e.getComponent<ColorComponent>();
+	for (shared_ptr<Entity> e : entities) {
+		SpriteComponent *spriteComponent = e->getComponent<SpriteComponent>();
+		TransformComponent *transformComponent = e->getComponent<TransformComponent>();
+		ColorComponent *colorComponent = e->getComponent<ColorComponent>();
 
 		if (spriteComponent != nullptr && transformComponent != nullptr && colorComponent != nullptr) {
 			// Use the program attached with the spriteComponent.
