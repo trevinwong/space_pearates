@@ -6,6 +6,25 @@ PlayerSystem::PlayerSystem()
 
 PlayerSystem::~PlayerSystem()
 {
+
+}
+
+glm::vec2 PlayerSystem::getCurrentAccel(MovementComponent *movementComponent)
+{
+	if (movementComponent != nullptr)
+	{
+		return movementComponent->m_accel;
+	}
+	//TODO: Handle case where movementComponent is not found.
+}
+
+glm::vec2 PlayerSystem::getCurrentVelocity(MovementComponent *movementComponent)
+{
+	if (movementComponent != nullptr)
+	{
+		return movementComponent->m_velocity;
+	}
+	//TODO: Handle case where movementComponent is not found.
 }
 
 // Perform actions on the player entity based on the user's inputs.
@@ -52,17 +71,28 @@ void PlayerSystem::interpInput(std::vector<Entity> &entities, GLboolean keys[])
 
 void PlayerSystem::walkRight(MovementComponent * mvComp)
 {
-	mvComp->setAcceleration(glm::vec2(walkAccelSpeed, 0));
+	glm::vec2 accel = getCurrentAccel(mvComp);
+	glm::vec2 velo = getCurrentVelocity(mvComp);
+	mvComp->setAcceleration(glm::vec2(walkAccelSpeed, accel.y));
+	mvComp->applyVelocity(glm::vec2(initWalkVelocity, 0));
 }
 
 void PlayerSystem::walkLeft(MovementComponent* mvComp)
 {
-	mvComp->setAcceleration(glm::vec2(-walkAccelSpeed, 0));
+	glm::vec2 accel = getCurrentAccel(mvComp);
+	glm::vec2 velo = getCurrentVelocity(mvComp);
+	mvComp->setAcceleration(glm::vec2(-walkAccelSpeed, accel.y));
+	mvComp->applyVelocity(glm::vec2(-initWalkVelocity, 0));
+
 }
 
+// TODO: Turn this into jump.
 void PlayerSystem::moveUp(MovementComponent* mvComp)
 {
-	mvComp->setAcceleration(glm::vec2(0, -walkAccelSpeed));
+	glm::vec2 accel = getCurrentAccel(mvComp);
+	glm::vec2 velo = getCurrentVelocity(mvComp);
+	mvComp->setAcceleration(glm::vec2(accel.x, 580));
+	mvComp->setVelocity(glm::vec2(velo.x, -450));
 }
 
 void PlayerSystem::moveDown(MovementComponent* mvComp)
@@ -78,6 +108,6 @@ void PlayerSystem::stopMovingX(MovementComponent * mvComp)
 
 void PlayerSystem::stopMovingY(MovementComponent * mvComp)
 {
-	mvComp->setVelocity(glm::vec2(mvComp->m_velocity.x, 0));
-	mvComp->setAcceleration(glm::vec2(mvComp->m_accel.x, 0));
+	//mvComp->setVelocity(glm::vec2(mvComp->m_velocity.x, 0));
+	//mvComp->setAcceleration(glm::vec2(mvComp->m_accel.x, 0));
 }

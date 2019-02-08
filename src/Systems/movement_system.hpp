@@ -17,7 +17,13 @@ public:
 	~MovementSystem();
 	// Iterates through all entities. If they have a Movement component, they are translated based on the
 	// information in the component.
-	void moveEntities(std::vector<Entity> &entities);
+	void moveEntities(std::vector<Entity> &entities, float dt);
+	void setScreenInfo(glm::vec2 info);
+	glm::vec2 getEntitySize(TransformComponent * transformComponent);
+
+private:
+	glm::vec2 screenInfo;
+	//glm::vec2 entitySize = glm::vec2(0,0);
 };
 
 #endif

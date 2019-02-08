@@ -27,9 +27,8 @@ public:
 	void setMaxVelocity(glm::vec2 velocity);
 	void setMinVelocity(glm::vec2 velocity);
 
-	void updateVelocity();
+	void updateVelocity(float dt);
 	void applyVelocity(glm::vec2 velocity);
-
 
 };
 

@@ -16,6 +16,7 @@ public:
 	PlayerFactory();
 	~PlayerFactory();
 	Entity build();
+private:
 };
 
 #endif

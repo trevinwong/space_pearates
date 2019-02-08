@@ -14,6 +14,10 @@ class PlayerSystem
 public:
 	PlayerSystem();
 	~PlayerSystem();
+
+	glm::vec2 getCurrentAccel(MovementComponent *movementComponent);
+
+	glm::vec2 getCurrentVelocity(MovementComponent *movementComponent);
 	
 	void interpInput(std::vector<Entity> &entities, GLboolean keys[]);
 
@@ -27,10 +31,10 @@ public:
 
 private:
 	// Local vars
-	double walkAccelSpeed = 0.3;
+	double walkAccelSpeed = 30;
+	double initWalkVelocity = 100;
+	double maxWalkVelocity = 8;
 
 };
 
 #endif
-
-
