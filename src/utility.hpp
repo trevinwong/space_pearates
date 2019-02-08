@@ -13,6 +13,13 @@
 #include <fstream>
 #include <iostream>
 #include <vector>
+#include <unordered_map>
+
+using std::string; 
+using std::vector;
+using std::unordered_map;
+using std::cout;
+using std::endl;
 
 // libraries
 // gl3w-single-file: https://github.com/gingerBill/gl3w-Single-File

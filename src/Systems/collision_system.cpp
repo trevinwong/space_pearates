@@ -1,14 +1,6 @@
 #include "collision_system.hpp"
 
-CollisionSystem::CollisionSystem()
-{
-}
-
-CollisionSystem::~CollisionSystem()
-{
-}
-
-void CollisionSystem::checkCollisions(std::vector<Entity> &entities)
+void CollisionSystem::checkCollisions(EventSystem &eventSystem, vector<Entity> &entities)
 {
   std::vector<Entity> collisionEntities;
 
@@ -24,17 +16,18 @@ void CollisionSystem::checkCollisions(std::vector<Entity> &entities)
       if (e1 == e2) continue;
 
       if (isCollision(e1, e2)) {
-        std::cout<< "COLLIDED" <<std::endl;
-        // TODO send CollisionEvent to ..?
+        //cout << "COLLIDED" << endl;
+        eventSystem.propagateEvent(new CollisionEvent(e1, e2));
       }
     }
   }
 }
 
-bool CollisionSystem::isCollision(Entity &one, Entity &two) // AABB - AABB collision
+// AABB - AABB collision detection
+bool CollisionSystem::isCollision(Entity &e1, Entity &two)
 {
-  TransformComponent *one_p = one.getComponent<TransformComponent>();
-  MovementComponent *one_v = one.getComponent<MovementComponent>();
+  TransformComponent *one_p = e1.getComponent<TransformComponent>();
+  MovementComponent *one_v = e1.getComponent<MovementComponent>();
   TransformComponent *two_p = two.getComponent<TransformComponent>();
   MovementComponent *two_v = two.getComponent<MovementComponent>();
 

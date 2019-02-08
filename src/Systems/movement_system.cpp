@@ -27,3 +27,8 @@ void MovementSystem::moveEntities(std::vector<Entity> &entities) {
 	}
 }
 
+void MovementSystem::processEvent(Event * event)
+{
+  cout << "PROCESS MEEee " << event->getTypeId() << endl;
+}
+
