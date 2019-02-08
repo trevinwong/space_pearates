@@ -28,7 +28,8 @@ public:
   template <typename T>
   void subscribe(Subscriber *subscriber)
   {
-    subscribers[T::typeId].push_back(subscriber);
+		int typeId = T::typeId;
+    subscribers[typeId].push_back(subscriber);
   }
 };
 
