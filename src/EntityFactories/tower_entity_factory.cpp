@@ -14,7 +14,7 @@ Entity TowerEntityFactory::createTower(glm::vec2 towerCenterBottomPosition, glm:
 
   SpriteComponent *spriteComponent = new SpriteComponent(program, towerSampletexture);
   TransformComponent *transformComponent = new TransformComponent(position, _size, 0.0f);
-  ColorComponent *colorComponent = new ColorComponent(glm::vec4(1.0f, 0.325f, 0.051f, 1.0f)); // diff tower can have diff color
+  ColorComponent *colorComponent = new ColorComponent(glm::vec4(1.0f, 1.0f, 1.0f, 1.0f)); // diff tower can have diff color
   towerEntity.setComponent<SpriteComponent>(spriteComponent);
   towerEntity.setComponent<TransformComponent>(transformComponent);
   towerEntity.setComponent<ColorComponent>(colorComponent);
