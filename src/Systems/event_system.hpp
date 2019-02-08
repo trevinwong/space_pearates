@@ -3,6 +3,7 @@
 
 #include "utility.hpp"
 #include "Events/event.hpp"
+#include "Events/collision_event.hpp"
 #include "subscriber.hpp"
 
 /*

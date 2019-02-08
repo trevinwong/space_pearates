@@ -14,12 +14,17 @@
 #include <iostream>
 #include <vector>
 #include <unordered_map>
+#include <memory>
 
 using std::string; 
 using std::vector;
 using std::unordered_map;
 using std::cout;
 using std::endl;
+using std::make_unique;
+using std::make_shared;
+using std::unique_ptr;
+using std::shared_ptr;
 
 // libraries
 // gl3w-single-file: https://github.com/gingerBill/gl3w-Single-File

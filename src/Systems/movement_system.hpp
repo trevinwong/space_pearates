@@ -18,7 +18,7 @@ public:
 	~MovementSystem();
 	// Iterates through all entities. If they have a Movement component, they are translated based on the
 	// information in the component.
-	void moveEntities(vector<Entity> &entities);
+	void moveEntities(vector<shared_ptr<Entity>> entities);
   virtual void processEvent(Event * event);
 };
 

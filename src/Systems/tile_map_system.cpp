@@ -13,10 +13,10 @@ TileMapSystem::~TileMapSystem()
 void TileMapSystem::loadTileMap(EntityManager& entities)
 {
     // find the mapEntity from the entity list
-    std::vector<Entity> entityList = entities.getEntities();
-    for (Entity &e : entityList)
+    vector<shared_ptr<Entity>> entityList = entities.getEntities();
+    for (shared_ptr<Entity> e : entityList)
     {
-        MapComponent *mapComponent = e.getComponent<MapComponent>();
+        MapComponent *mapComponent = e->getComponent<MapComponent>();
         if (mapComponent == nullptr) continue;
 
         auto tileMap = mapComponent->mapData2DArray;

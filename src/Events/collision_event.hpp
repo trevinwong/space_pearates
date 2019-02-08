@@ -8,7 +8,7 @@
 class CollisionEvent : public Event
 {
 public:
-  CollisionEvent(Entity &e1, Entity &e2);
+  CollisionEvent(shared_ptr<Entity> e1, shared_ptr<Entity> e2);
   ~CollisionEvent();
   static const int typeId = EventType::collision;
   inline virtual int getTypeId() const { return typeId; };

@@ -15,7 +15,7 @@ public:
 	PlayerSystem();
 	~PlayerSystem();
 	
-	void interpInput(std::vector<Entity> &entities, GLboolean keys[]);
+	void interpInput(vector<shared_ptr<Entity>> entities, GLboolean keys[]);
 
 	// Movement functions
 	void walkRight(MovementComponent* mvComp);
