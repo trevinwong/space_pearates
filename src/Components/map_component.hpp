@@ -8,7 +8,7 @@
 class MapComponent : public BaseComponent
 {
 public:
-  MapComponent(std::vector<std::vector<int>> _mapData2DArray);
+  MapComponent(std::vector<std::vector<char>> _mapData2DArray);
   ~MapComponent();
 
   static const int typeID = ComponentType::map;
@@ -18,7 +18,7 @@ public:
   int num_x_tiles;
   float width_tile;
   float height_tile;
-  std::vector<std::vector<int>> mapData2DArray;
+  std::vector<std::vector<char>> mapData2DArray;
 
 private:
 };

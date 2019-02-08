@@ -27,8 +27,8 @@ void TileMapSystem::loadTileMap(EntityManager& entities)
         // Is there some better way to get the indices..?
         int row_i = 0;
         int col_i = 0;
-        vector<vector<int>>::iterator row;
-        vector<int>::iterator col;
+        vector<vector<char>>::iterator row;
+        vector<char>::iterator col;
         for (row = tileMap.begin(); row != tileMap.end(); row++) {
             for (col = row->begin(); col != row->end(); col++) {
                 // here build some test towers if position is 2
