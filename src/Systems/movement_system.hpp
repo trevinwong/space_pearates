@@ -18,8 +18,13 @@ public:
 	~MovementSystem();
 	// Iterates through all entities. If they have a Movement component, they are translated based on the
 	// information in the component.
-	void moveEntities(vector<shared_ptr<Entity>> entities);
-  virtual void processEvent(Event * event);
+	void moveEntities(vector<shared_ptr<Entity>> entities, float dt);
+	virtual void processEvent(Event * event);
+	void setScreenInfo(glm::vec2 info);
+	glm::vec2 getEntitySize(TransformComponent * transformComponent);
+
+private:
+	glm::vec2 screenInfo;
 };
 
 #endif

@@ -28,9 +28,9 @@ void MovementComponent::setMinVelocity(glm::vec2 velocity)
 	m_minVelocity = velocity;
 }
 
-void MovementComponent::updateVelocity()
+void MovementComponent::updateVelocity(float dt)
 {
-	m_velocity += m_accel;
+	m_velocity += m_accel * (dt);
 
 	// If the updated velocity exceeds the max velocity...
 	if (abs(m_velocity.x) > m_maxVelocity.x)

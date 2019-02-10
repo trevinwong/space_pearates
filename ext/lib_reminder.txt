@@ -1,0 +1,4 @@
+Remember to include these lib folders from A1 if they are missing from your directory:
+
+glfw/lib/
+sdl/lib/
