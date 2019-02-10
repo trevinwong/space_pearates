@@ -2,6 +2,7 @@
 #define ENTITY_MANAGER_H
 
 #include "utility.hpp"
+#include "Components/base_component.hpp"
 #include "entity.hpp"
 
 /*
@@ -9,10 +10,10 @@
  */
 class EntityManager {
 public:
-	EntityManager();
-	~EntityManager();
 	void addEntity(Entity e);
+	bitset<ComponentType::max_count> getComponentChecker(vector<int> components);
 	vector<shared_ptr<Entity>> getEntities();
+	vector<shared_ptr<Entity>> getEntities(bitset<ComponentType::max_count> component_checker);
 private:
 	vector<shared_ptr<Entity>> entities;
 };
