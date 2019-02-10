@@ -1,0 +1,8 @@
+TEAM 6 COMMENTS; GRADE: 97.5
+
+Grader: Chenxi
+
+LOGIC            -2.5
+Given the AI part is important to tower defense games, we expect to see more details on this part (a list of behaviors that you expect to implement apart from A*). For instance, how the enemies are going to help other enemies.
+
+Comments: For a better final score, maybe consider adding more to the rendering part. The current sprite rendering is only minimum-level. You may consider finish the flashy particle effect as mentioned in the advanced part. Also, you mentioned animation in the plan, which should be listed in the rendering part.
