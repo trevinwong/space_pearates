@@ -24,6 +24,7 @@ void World::init(glm::vec2 screen)
 	entityManager = EntityManager();
 
 	enemy.loadEnemy(screen, entityManager);
+	enemy.getMap(entityManager);
 	Entity mapDataEntity = MapEntityFactory::createMapEntityFromFile(map_path("map0.txt"));
 	entityManager.addEntity(mapDataEntity);
 	tileMapSystem.loadTileMap(entityManager); // Add platform tiles
@@ -38,7 +39,8 @@ void World::init(glm::vec2 screen)
 // dt is known as delta time, how much time has passed since update was last called
 void World::update(float dt)
 {
-	enemy.move();
+	enemy.getMap(entityManager);
+	enemy.move(dt);
 	vector<shared_ptr<Entity>> entities = entityManager.getEntities();
 	playerSystem.interpInput(entities, keys);
 	collisionSystem.checkCollisions(eventSystem, entities);
