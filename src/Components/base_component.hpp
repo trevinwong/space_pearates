@@ -5,12 +5,12 @@ namespace ComponentType {
   enum ComponentType {
     transform,
     sprite,
-    color, // what are we, Amurican?
+    color,
     collision,
     map,
     movement,
     player,
-    max_count // not sure if there's a better way to get enum count
+    max_count 
   };
 }
 

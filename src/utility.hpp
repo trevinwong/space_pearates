@@ -15,6 +15,7 @@
 #include <vector>
 #include <unordered_map>
 #include <memory>
+#include <bitset>
 
 using std::string; 
 using std::vector;
@@ -25,6 +26,7 @@ using std::make_unique;
 using std::make_shared;
 using std::unique_ptr;
 using std::shared_ptr;
+using std::bitset;
 
 // libraries
 // gl3w-single-file: https://github.com/gingerBill/gl3w-Single-File

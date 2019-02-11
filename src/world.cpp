@@ -52,8 +52,7 @@ void World::processInput(float dt)
 
 void World::draw()
 {
-  vector<shared_ptr<Entity>> entities = entityManager.getEntities();
-  spriteSystem.drawSprites(entities, projection);
+  spriteSystem.drawSprites(entityManager, projection);
 }
 
 // Possibly redundant - destructor can serve the same purpose.
