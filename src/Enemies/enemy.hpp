@@ -11,9 +11,15 @@ public:
   Enemy();
   ~Enemy();
   void loadEnemy(glm::vec2 screen, EntityManager& entities);
-  void move();
+  void move(float dt);
+  void getMap(EntityManager& entities);
 private:
   EnemyFactory factory;
+  float speed;
+  //maps to the indices of the tile map matrix
+  glm::vec2 pos;
+  std::vector<std::vector<int>> map;
+
 };
 
 #endif
