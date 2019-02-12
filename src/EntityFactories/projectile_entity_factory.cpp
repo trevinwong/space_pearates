@@ -29,3 +29,22 @@ Entity ProjectileEntityFactory::createAimProjectile(glm::vec2 size, glm::vec4 fi
   return projectileEntity;
 }
 
+vector<Entity> ProjectileEntityFactory::createSpreadProjectiles(int projectileNumberPerShoot, glm::vec2 size, glm::vec4 filterColor, glm::vec2 startPostion, float speed, int attackPower)
+{
+  std::vector<Entity> spreadProjectileEntities;
+
+  // e.g. if projectileNumberPerShoot = 4, then 4 projectiles will have 0, 90, 90*2, 90*3 degree direction
+  float angleSize = 360.0f / (float)projectileNumberPerShoot;
+  glm::vec2 direction = glm::vec2(0.0, 0.0);
+  // base on projectileNumberPerShoot compute directions
+  for (int i = 0; i < projectileNumberPerShoot; i++) {
+    float radians = glm::pi<float>() * angleSize * (float)i / 180.0f;
+    glm::vec2 velocityDirection = glm::vec2(cos(radians), sin(radians));
+
+    Entity entity = createAimProjectile(size, filterColor, startPostion, speed, velocityDirection, attackPower);
+    spreadProjectileEntities.push_back(entity);
+  }
+
+  return spreadProjectileEntities;
+}
+

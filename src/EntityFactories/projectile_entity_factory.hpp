@@ -19,8 +19,20 @@ public:
     glm::vec2 size,
     glm::vec4 filterColor,
     glm::vec2 startPostion,
-    float velocity,
+    float speed,
     glm::vec2 velocityDirection,
+    int attackPower
+  );
+
+  /*
+    e.g. if projectileNumberPerShoot = 4, then create 4 projects which spread to four directions
+  */
+  static vector<Entity> createSpreadProjectiles(
+    int projectileNumberPerShoot,
+    glm::vec2 size,
+    glm::vec4 filterColor,
+    glm::vec2 startPostion,
+    float speed,
     int attackPower
   );
   ~ProjectileEntityFactory();

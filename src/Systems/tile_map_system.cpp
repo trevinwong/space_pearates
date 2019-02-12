@@ -36,7 +36,7 @@ void TileMapSystem::loadTileMap(EntityManager& entities)
                 // Or to avoid to add too many entities, check the map 2d array data directly
                 if (*col == MAP_TOWER_POSITION)
                 {
-                    Entity tower = TowerEntityFactory::createTower(glm::vec2(col_i*width_tile + width_tile / 2.0, row_i*height_tile + height_tile), glm::vec2(40.0f, 65.0f));
+                    Entity tower = TowerEntityFactory::createLightTower(glm::vec2(col_i*width_tile + width_tile / 2.0, row_i*height_tile + height_tile), glm::vec2(40.0f, 65.0f));
                     entities.addEntity(tower);
                 }
                     // end tower build

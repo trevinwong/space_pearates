@@ -15,7 +15,7 @@ void TowerRangeDisplaySystem::drawRanges(EntityManager & entityManager, glm::mat
   vector<shared_ptr<Entity>> map_entities =
     entityManager.getEntities(entityManager.getComponentChecker(vector<int> {ComponentType::map}));
   vector<shared_ptr<Entity>> tower_entities =
-    entityManager.getEntities(entityManager.getComponentChecker(vector<int> {ComponentType::fire_tower_range_sprite}));
+    entityManager.getEntitiesHasOneOf(entityManager.getComponentChecker(vector<int> {ComponentType::fire_tower_range_sprite, ComponentType::light_tower_range_sprite}));
 
   // cannot find map or player
   // or there is no tower in the world now
@@ -37,35 +37,46 @@ void TowerRangeDisplaySystem::drawRanges(EntityManager & entityManager, glm::mat
   {
 
     TransformComponent *transformComponent = e->getComponent<TransformComponent>();
-    FireTowerAttackComponent *towerComponent = e->getComponent<FireTowerAttackComponent>(); // TODO: make general
+    if (transformComponent == nullptr) continue;
 
-    // check null here
-    if (transformComponent == nullptr || towerComponent == nullptr) continue;
+    // a tower may contain multi attack component
+    FireTowerAttackComponent *fireTowerAttackComponent = e->getComponent<FireTowerAttackComponent>();
+    LightTowerAttackComponent *lightTowerAttackComponent = e->getComponent<LightTowerAttackComponent>();
+    
+    vector<TowerAttackComponent*> towerAttackComponents;
+    if (fireTowerAttackComponent != nullptr)  towerAttackComponents.push_back(fireTowerAttackComponent);
+    if (lightTowerAttackComponent != nullptr)  towerAttackComponents.push_back(lightTowerAttackComponent);
 
-    // calculate the positon of the range circle
-    glm::vec2 towerLeftTopPosition = transformComponent->position;
-    glm::vec2 towerSize = transformComponent->size;
-    glm::vec2 towerCenterPosition = towerLeftTopPosition + towerSize * 0.5f;
+    for (TowerAttackComponent* towerAttackComponent : towerAttackComponents) {
+      // calculate the positon of the range circle
+      glm::vec2 towerLeftTopPosition = transformComponent->position;
+      glm::vec2 towerSize = transformComponent->size;
+      glm::vec2 towerCenterPosition = towerLeftTopPosition + towerSize * 0.5f;
 
-    // check if player and a tower in the same tile
-    // display range circle if they are in the same tile
-    if (((int)(towerCenterPosition.x / mapTileWidth) == (int)(playerCenterPosition.x / mapTileWidth)) &&
-      ((int)(towerCenterPosition.y / mapTileHeight) == (int)(playerCenterPosition.y / mapTileHeight))) {
+      // check if player and a tower in the same tile
+      // display range circle if they are in the same tile
+      if (((int)(towerCenterPosition.x / mapTileWidth) == (int)(playerCenterPosition.x / mapTileWidth)) &&
+        ((int)(towerCenterPosition.y / mapTileHeight) == (int)(playerCenterPosition.y / mapTileHeight))) {
 
-      // towerRadius -> drawRangesHelper function
-      float towerRadius = towerComponent->getAttackRange();
+        // towerRadius -> drawRangesHelper function
+        float towerRadius = towerAttackComponent->getAttackRange();
 
-      // shootRangeCircleCenterPosition -> drawRangesHelper function
-      glm::vec2 relativeFirePosition = towerComponent->getRelativeFirePosition();
-      glm::vec2 shootRangeCircleCenterPosition(towerCenterPosition + towerSize * relativeFirePosition);
+        // shootRangeCircleCenterPosition -> drawRangesHelper function
+        glm::vec2 relativeFirePosition = towerAttackComponent->getRelativeFirePosition();
+        glm::vec2 shootRangeCircleCenterPosition(towerCenterPosition + towerSize * relativeFirePosition);
 
-      // fireTowerRangeSpriteComponent -> drawRangesHelper function
-      FireTowerRangeSpriteComponent *fireTowerRangeSpriteComponent = e->getComponent<FireTowerRangeSpriteComponent>();
+        // fireTowerRangeSpriteComponent -> drawRangesHelper function
+        FireTowerRangeSpriteComponent *fireTowerRangeSpriteComponent = e->getComponent<FireTowerRangeSpriteComponent>();
+        // draw range
+        drawRangesHelper(fireTowerRangeSpriteComponent, shootRangeCircleCenterPosition, towerRadius, projection);
 
-      // draw range
-      drawRangesHelper(fireTowerRangeSpriteComponent, shootRangeCircleCenterPosition, towerRadius, projection);
+        // lightTowerRangeSpriteComponent -> drawRangesHelper function
+        LightTowerRangeSpriteComponent *lightTowerRangeSpriteComponent = e->getComponent<LightTowerRangeSpriteComponent>();
+        // draw range
+        drawRangesHelper(lightTowerRangeSpriteComponent, shootRangeCircleCenterPosition, towerRadius, projection);
+      }
     }
-
+    
   }
 }
 

@@ -16,6 +16,8 @@ namespace ComponentType {
     tower_meta,
     fire_tower,
     fire_tower_range_sprite,
+    light_tower,              // Light tower
+    light_tower_range_sprite, // Light tower
     projectile,
 		tile,
     resource,

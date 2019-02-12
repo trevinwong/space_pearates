@@ -85,6 +85,9 @@ set(SOURCE_FILES_CORE
 	src/Components/TowerComponents/fire_tower_attack_component.cpp
 	src/Components/TowerComponents/fire_tower_attack_component.hpp
 	src/Components/TowerComponents/fire_tower_range_sprite_component.hpp
+  src/Components/TowerComponents/light_tower_attack_component.cpp
+	src/Components/TowerComponents/light_tower_attack_component.hpp
+	src/Components/TowerComponents/light_tower_range_sprite_component.hpp
 	src/Components/projectile_component.cpp
 	src/Components/projectile_component.hpp
   src/Components/enemy_component.cpp

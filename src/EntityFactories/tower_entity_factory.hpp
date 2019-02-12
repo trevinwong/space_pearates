@@ -10,6 +10,8 @@
 #include "Components/TowerComponents/tower_meta_component.hpp"
 #include "Components/TowerComponents/fire_tower_attack_component.hpp"
 #include "Components/TowerComponents/fire_tower_range_sprite_component.hpp"
+#include "Components/TowerComponents/light_tower_attack_component.hpp"
+#include "Components/TowerComponents/light_tower_range_sprite_component.hpp"
 
 class TowerEntityFactory
 {
@@ -17,7 +19,8 @@ class TowerEntityFactory
     // platformerGroundPosition is the center bottom position of a tower
     // Create a tower base on the given plaformer position
     // Tower should not be rotated, _rotate is always zero
-    static Entity createTower(glm::vec2 towerCenterBottomPosition, glm::vec2 _size);
+    static Entity createFireTower(glm::vec2 towerCenterBottomPosition, glm::vec2 _size);
+    static Entity createLightTower(glm::vec2 towerCenterBottomPosition, glm::vec2 _size);
   private:
     // factory class does not need instantiation
     TowerEntityFactory();

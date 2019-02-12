@@ -11,6 +11,8 @@
 #include "../Components/map_component.hpp"
 #include "../Components/TowerComponents/fire_tower_attack_component.hpp"
 #include "../Components/TowerComponents/fire_tower_range_sprite_component.hpp"
+#include "../Components/TowerComponents/light_tower_attack_component.hpp"
+#include "../Components/TowerComponents/light_tower_range_sprite_component.hpp"
 
 class TowerRangeDisplaySystem
 {
