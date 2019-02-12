@@ -59,9 +59,9 @@ using std::bitset;
 #define SCREEN_WIDTH 1280
 #define SCREEN_HEIGHT 800
 
-#define MAP_EMPTY_BLOCK 0
-#define MAP_PLATFORM_TILE 1
-#define MAP_TOWER_POSITION 2
-#define MAP_BASE_POSITION 3
+#define MAP_EMPTY_BLOCK '0'
+#define MAP_PLATFORM_TILE 'B'   // B -> Block
+#define MAP_TOWER_POSITION 'T'  // T -> Tower
+#define MAP_BASE_POSITION 'H'   // H -> Home
 
 #endif

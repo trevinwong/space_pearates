@@ -15,13 +15,7 @@ Entity TileFactory::build(int type, glm::vec2 position, glm::vec2 scale)
   TransformComponent *transform = new TransformComponent(position, scale, 0.0f);
   CollisionComponent *collision = new CollisionComponent(position, scale, 0.0f);
 
-  ColorComponent *colour;
-  if (type == 0) {
-    colour = new ColorComponent(glm::vec4(0.0f, 0.0f, 0.0f, 1.0f));
-  }
-  else if (type == 1) {
-    colour = new ColorComponent(glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
-  }
+  ColorComponent *colour = new ColorComponent(glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
 
   Entity e;
   e.setComponent<SpriteComponent>(sprite);
