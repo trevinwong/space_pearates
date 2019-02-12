@@ -11,6 +11,9 @@
 #include "Systems/movement_system.hpp"
 #include "Systems/player_system.hpp"
 #include "Systems/collision_system.hpp"
+#include "Systems/tower_range_display_system.hpp"
+#include "Systems/tower_attack_system.hpp"
+#include "Systems/offscreen_garbage_system.hpp"
 #include "EntityFactories/map_entity_factory.hpp"
 #include "EntityFactories/player_factory.hpp"
 
@@ -41,6 +44,9 @@ private:
   MovementSystem movementSystem;
   PlayerSystem playerSystem;
   CollisionSystem collisionSystem;
+  TowerRangeDisplaySystem towerRangeDisplaySystem;
+  TowerAttackSystem towerAttackSystem;
+  OffscreenGarbageSystem projectileGarbageSystem;
 };
 
 #endif

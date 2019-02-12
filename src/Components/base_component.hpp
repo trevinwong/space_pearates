@@ -11,7 +11,11 @@ namespace ComponentType {
     movement,
     player,
     health,
-    max_count 
+    tower_meta,
+    fire_tower,               // Fire tower
+    fire_tower_range_sprite,  // Fire tower
+    projectile,
+    max_count
   };
 }
 

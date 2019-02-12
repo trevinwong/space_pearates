@@ -7,6 +7,9 @@
 #include "entity_manager.hpp"
 #include "Systems/sprite_system.hpp"
 #include "Components/health_component.hpp"
+#include "Components/TowerComponents/tower_meta_component.hpp"
+#include "Components/TowerComponents/fire_tower_attack_component.hpp"
+#include "Components/TowerComponents/fire_tower_range_sprite_component.hpp"
 
 class TowerEntityFactory
 {

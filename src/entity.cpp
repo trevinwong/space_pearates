@@ -13,3 +13,8 @@ bool Entity::hasComponents(std::bitset<ComponentType::max_count> component_check
 	return ((component_checker & has_components) == component_checker);
 }
 
+bool Entity::hasOneOfComponents(std::bitset<ComponentType::max_count> component_checker)
+{
+  return ((component_checker & has_components).any());
+}
+

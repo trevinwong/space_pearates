@@ -54,6 +54,8 @@ set(SOURCE_FILES_CORE
 	src/EntityFactories/tile_factory.cpp
 	src/EntityFactories/tile_factory.hpp
 	src/Components/base_component.hpp
+	src/EntityFactories/projectile_entity_factory.cpp
+	src/EntityFactories/projectile_entity_factory.hpp
 	src/subscriber.hpp
 	src/Events/event.hpp
 	src/Events/collision_event.cpp
@@ -72,6 +74,15 @@ set(SOURCE_FILES_CORE
 	src/Components/movement_component.hpp
 	src/Components/player_component.cpp
 	src/Components/player_component.hpp
+	src/Components/TowerComponents/tower_meta_component.cpp
+	src/Components/TowerComponents/tower_meta_component.hpp
+	src/Components/TowerComponents/tower_attack_component.cpp
+	src/Components/TowerComponents/tower_attack_component.hpp
+	src/Components/TowerComponents/fire_tower_attack_component.cpp
+	src/Components/TowerComponents/fire_tower_attack_component.hpp
+	src/Components/TowerComponents/fire_tower_range_sprite_component.hpp
+	src/Components/projectile_component.cpp
+	src/Components/projectile_component.hpp
 	src/Components/map_component.cpp
 	src/Components/map_component.hpp
 	src/Systems/event_system.cpp
@@ -88,6 +99,12 @@ set(SOURCE_FILES_CORE
 	src/Systems/player_system.hpp
 	src/Systems/tile_map_system.cpp
 	src/Systems/tile_map_system.hpp
+	src/Systems/tower_range_display_system.cpp
+	src/Systems/tower_range_display_system.hpp
+	src/Systems/tower_attack_system.cpp
+	src/Systems/tower_attack_system.hpp
+	src/Systems/offscreen_garbage_system.cpp
+	src/Systems/offscreen_garbage_system.hpp
 	src/Enemies/enemy.cpp
 	src/Enemies/enemy.hpp
 	src/entity.cpp
