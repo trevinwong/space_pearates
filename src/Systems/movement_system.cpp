@@ -44,7 +44,7 @@ void MovementSystem::moveEntities(vector<shared_ptr<Entity>> entities, float dt)
 			if (!movementComponent->m_offScreenOK)
 			{
 				//Right side of screen
-				std::cout << transformComponent->position.x << std::endl;
+				//std::cout << transformComponent->position.x << std::endl;
 				if (transformComponent->position.x + entitySize.x > screenInfo.x)
 				{
 					transformComponent->position.x = screenInfo.x - entitySize.x;

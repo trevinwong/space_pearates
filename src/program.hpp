@@ -30,7 +30,7 @@ public:
 	void    setMat3(const std::string &name, const glm::mat3 &matrix) const;
 	void    setMat4(const std::string &name, const glm::mat4 &matrix) const;
 private:
-	void    checkCompileOrLinkErrors(GLuint object, std::string type);
+	void    checkCompileOrLinkErrors(unsigned int shader, std::string type);
 };
 
 #endif
