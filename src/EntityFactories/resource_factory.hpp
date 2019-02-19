@@ -7,6 +7,8 @@
 #include "Components/transform_component.hpp"
 #include "Components/color_component.hpp"
 #include "Components/resource_component.hpp"
+#include "Components/movement_component.hpp"
+#include "Components/collision_component.hpp"
 
 class ResourceFactory
 {

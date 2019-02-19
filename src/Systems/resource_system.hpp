@@ -19,6 +19,8 @@ public:
 	~ResourceSystem();
 	void updateCountdown(EntityManager& entityManager, float dt); // Decrement countdown timer for all resources on screen
     void removeResource(EntityManager& entityManager, shared_ptr<Entity> resource);
+    void checkEnemyDeath(EntityManager& entityManager); // check if any enemies have died
+    void spawnResource(glm::vec2 position); // resources spawn at loc where an enemy has died
 private:
 };
 
