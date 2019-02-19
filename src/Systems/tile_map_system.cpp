@@ -31,17 +31,7 @@ void TileMapSystem::loadTileMap(EntityManager& entities)
         vector<char>::iterator col;
         for (row = tileMap.begin(); row != tileMap.end(); row++) {
             for (col = row->begin(); col != row->end(); col++) {
-                // here build some test towers if position is 2
-                // TODO: if the block is 2, then put an invisible building area block
-                // Or to avoid to add too many entities, check the map 2d array data directly
-                if (*col == MAP_TOWER_POSITION)
-                {
-                    Entity tower = TowerEntityFactory::createLightTower(glm::vec2(col_i*width_tile + width_tile / 2.0, row_i*height_tile + height_tile), glm::vec2(40.0f, 65.0f));
-                    entities.addEntity(tower);
-                }
-                    // end tower build
-                    // Add a tile entity if not empty tile
-                else if (*col == MAP_PLATFORM_TILE)
+                if (*col == MAP_PLATFORM_TILE)
                 {
                     entities.addEntity(factory.build(*col,
                                                      glm::vec2(col_i*width_tile, row_i*height_tile),

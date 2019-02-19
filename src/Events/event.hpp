@@ -4,6 +4,8 @@
 namespace EventType {
   enum EventType {
     collision,
+    operate_tower,
+    build_tower,
     max_count
   };
 }

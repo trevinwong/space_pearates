@@ -6,6 +6,7 @@
 #include "Systems/enemy_system.hpp"
 #include "Systems/enemy_spawn_system.hpp"
 #include "entity_manager.hpp"
+#include "Events/operate_tower_event.hpp"
 #include "Systems/tile_map_system.hpp"
 #include "Systems/event_system.hpp"
 #include "Systems/sprite_system.hpp"
@@ -14,6 +15,7 @@
 #include "Systems/player_system.hpp"
 #include "Systems/resource_system.hpp"
 #include "Systems/collision_system.hpp"
+#include "Systems/tower_ui_system.hpp"
 #include "Systems/tower_range_display_system.hpp"
 #include "Systems/tower_attack_system.hpp"
 #include "Systems/offscreen_garbage_system.hpp"
@@ -21,6 +23,7 @@
 #include "EntityFactories/player_factory.hpp"
 #include "EntityFactories/resource_factory.hpp"
 #include "EntityFactories/enemy_spawn_factory.hpp"
+#include "EntityFactories/tower_ui_entity_factory.hpp"
 
 // TO-DO: Look into replacing Keys array with direct callback.
 // TO-DO: Look into replacing processInput with direct callback.
@@ -37,6 +40,7 @@ public:
   void destroy();
   GLboolean keys[1024];
   GLboolean keysProcessed[1024];
+
 private:
   HUD hud;
   EntityManager entityManager;
@@ -55,6 +59,7 @@ private:
   TowerAttackSystem towerAttackSystem;
   OffscreenGarbageSystem projectileGarbageSystem;
   ResourceSystem resourceSystem;
+  TowerUiSystem towerUiSystem;
 };
 
 #endif
