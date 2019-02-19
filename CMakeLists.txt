@@ -53,6 +53,8 @@ set(SOURCE_FILES_CORE
 	src/EntityFactories/map_entity_factory.hpp
 	src/EntityFactories/tile_factory.cpp
 	src/EntityFactories/tile_factory.hpp
+	src/EntityFactories/resource_factory.cpp
+	src/EntityFactories/resource_factory.hpp
 	src/Components/base_component.hpp
 	src/EntityFactories/projectile_entity_factory.cpp
 	src/EntityFactories/projectile_entity_factory.hpp
@@ -85,6 +87,8 @@ set(SOURCE_FILES_CORE
 	src/Components/projectile_component.hpp
 	src/Components/map_component.cpp
 	src/Components/map_component.hpp
+	src/Components/resource_component.cpp
+	src/Components/resource_component.hpp
 	src/Systems/event_system.cpp
 	src/Systems/event_system.hpp
 	src/Systems/sprite_system.cpp
@@ -109,6 +113,10 @@ set(SOURCE_FILES_CORE
 	src/Enemies/enemy.hpp
 	src/line.hpp
 	src/line.cpp
+	src/Systems/resource_system.cpp
+	src/Systems/resource_system.hpp
+	src/Resources/resource.cpp
+	src/Resources/resource.hpp
 	src/entity.cpp
 	src/entity.hpp
 	src/entity_manager.cpp

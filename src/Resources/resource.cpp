@@ -10,5 +10,5 @@ Resource::~Resource()
 }
 
 void Resource::loadResource(glm::vec2 screen, EntityManager& entities) {
-  entities.addEntity(factory.build(glm::vec2(screen.x / 2, 50), glm::vec2(20,25)));
+  entities.addEntity(factory.build(glm::vec2(screen.x / 2, 50), glm::vec2(22,25)));
 }
