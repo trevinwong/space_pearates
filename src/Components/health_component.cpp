@@ -12,14 +12,14 @@ HealthComponent::HealthComponent(Program * _program) : program(_program)
   // Hence we define our vertices in clockwise order so that they get flipped to front-facing triangles.
   // TO-DO: Find out why the template can define in counter-clockwise order and not get culled.
   GLfloat vertices[] = {
-    // Pos      // Tex
-    0.0f, 1.0f, 0.0f, 1.0f,
-    1.0f, 0.0f, 1.0f, 0.0f,
-    0.0f, 0.0f, 0.0f, 0.0f,
+    // Pos
+    0.0f, 1.0f,
+    1.0f, 0.0f,
+    0.0f, 0.0f,
 
-    0.0f, 1.0f, 0.0f, 1.0f,
-    1.0f, 1.0f, 1.0f, 1.0f,
-    1.0f, 0.0f, 1.0f, 0.0f
+    0.0f, 1.0f,
+    1.0f, 1.0f,
+    1.0f, 0.0f,
   };
 
   // Generate a VAO.
@@ -34,8 +34,10 @@ HealthComponent::HealthComponent(Program * _program) : program(_program)
   // Bind our current VAO, which will remember any vertex attribute related calls.
   glBindVertexArray(this->quadVAO);
   // Enable the first "in" variable in our vertex shader - make sure that this corresponds to the right variable!
+  // i.e. layout (location = 0) in shaders
   glEnableVertexAttribArray(0);
-  glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 4 * sizeof(GLfloat), (GLvoid*)0);
+  //                   (index, size, type, isNormalized, stride, pointer to offset)
+  glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(GLfloat), (GLvoid*)0);
 
   // Re-bind the current VBO and VAO to 0 to avoid accidentally modifying the ones we just configured here.
   glBindVertexArray(0);
