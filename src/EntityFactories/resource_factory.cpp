@@ -15,7 +15,7 @@ Entity ResourceFactory::build(glm::vec2 position, glm::vec2 scale)
     SpriteComponent *sprite = new SpriteComponent(program, texture);
     TransformComponent *transform = new TransformComponent(position, scale, 0.0f);
     ColorComponent *colour = new ColorComponent(glm::vec4(1.0f, 1.0f, 0.0f, 1.0f));
-    ResourceComponent *resource = new ResourceComponent(10.0);
+    ResourceComponent *resource = new ResourceComponent(20.0); // resource stays on screen for 20s
     MovementComponent *movement = new MovementComponent(glm::vec2(0.0f,9.8f),glm::vec2(0.0f,0.0f)); // start with velocity 0 since resource is being "dropped" by enemy
     CollisionComponent *collision = new CollisionComponent(position, scale, 0.0f);
 

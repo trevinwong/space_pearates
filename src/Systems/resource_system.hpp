@@ -11,8 +11,9 @@
 #include "Components/transform_component.hpp"
 #include "Components/movement_component.hpp"
 #include "Components/resource_component.hpp"
+#include "subscriber.hpp"
 
-class ResourceSystem 
+class ResourceSystem : public Subscriber
 {
 public:
 	ResourceSystem();

@@ -15,6 +15,10 @@ void World::init(glm::vec2 screen)
 	entityManager = EntityManager();
 
 	enemy.loadEnemy(screen, entityManager);
+
+
+	resource.loadResource(screen, entityManager);
+
 	Entity mapDataEntity = MapEntityFactory::createMapEntityFromFile(map_path("map0.txt"));
 	entityManager.addEntity(mapDataEntity);
 	tileMapSystem.loadTileMap(entityManager); 
@@ -38,6 +42,7 @@ void World::update(float dt)
 
   // OffScreen garbage check
   projectileGarbageSystem.destroyOffScreenEntities(entityManager);
+	resourceSystem.updateCountdown(entityManager, dt);
 }
 
 void World::processInput(float dt)
