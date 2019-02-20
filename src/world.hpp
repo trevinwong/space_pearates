@@ -7,6 +7,7 @@
 #include "Systems/tile_map_system.hpp"
 #include "Systems/event_system.hpp"
 #include "Systems/sprite_system.hpp"
+#include "Systems/billboard_system.hpp"
 #include "Systems/movement_system.hpp"
 #include "Systems/player_system.hpp"
 #include "Systems/collision_system.hpp"
@@ -32,6 +33,7 @@ private:
   EntityManager entityManager;
   EventSystem eventSystem;
   SpriteSystem spriteSystem;
+  BillboardSystem billboardSystem;
   glm::mat4 projection;
   TileMapSystem tileMapSystem;
   //Change later after figuring out how to read multiple enemies

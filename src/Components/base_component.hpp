@@ -10,6 +10,7 @@ namespace ComponentType {
     map,
     movement,
     player,
+    health,
     max_count 
   };
 }

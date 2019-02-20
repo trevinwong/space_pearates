@@ -6,6 +6,7 @@
 #include "entity.hpp"
 #include "entity_manager.hpp"
 #include "Systems/sprite_system.hpp"
+#include "Components/health_component.hpp"
 
 class BaseFactory
 {

@@ -12,12 +12,17 @@ Entity TowerEntityFactory::createTower(glm::vec2 towerCenterBottomPosition, glm:
   Program *program = new Program(shader_path("sprite.vert"), shader_path("sprite.frag"));
   Texture *towerSampletexture = new Texture(texture_path("tower0.png"), true);
 
+  Program *billboardProgram = new Program(shader_path("billboard.vert"), shader_path("billboard.frag"));
+  HealthComponent *health = new HealthComponent(billboardProgram);
+
   SpriteComponent *spriteComponent = new SpriteComponent(program, towerSampletexture);
   TransformComponent *transformComponent = new TransformComponent(position, _size, 0.0f);
   ColorComponent *colorComponent = new ColorComponent(glm::vec4(1.0f, 1.0f, 1.0f, 1.0f)); // diff tower can have diff color
+  
   towerEntity.setComponent<SpriteComponent>(spriteComponent);
   towerEntity.setComponent<TransformComponent>(transformComponent);
   towerEntity.setComponent<ColorComponent>(colorComponent);
+  towerEntity.setComponent<HealthComponent>(health);
 
   return towerEntity;
 }

@@ -53,6 +53,7 @@ void World::processInput(float dt)
 void World::draw()
 {
   spriteSystem.drawSprites(entityManager, projection);
+  billboardSystem.drawBillboards(entityManager, projection);
 }
 
 // Possibly redundant - destructor can serve the same purpose.

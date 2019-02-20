@@ -62,6 +62,8 @@ set(SOURCE_FILES_CORE
 	src/Components/collision_component.hpp
 	src/Components/color_component.cpp
 	src/Components/color_component.hpp
+	src/Components/health_component.cpp
+	src/Components/health_component.hpp
 	src/Components/sprite_component.cpp
 	src/Components/sprite_component.hpp
 	src/Components/transform_component.cpp
@@ -76,6 +78,8 @@ set(SOURCE_FILES_CORE
 	src/Systems/event_system.hpp
 	src/Systems/sprite_system.cpp
 	src/Systems/sprite_system.hpp
+	src/Systems/billboard_system.cpp
+	src/Systems/billboard_system.hpp
 	src/Systems/collision_system.cpp
 	src/Systems/collision_system.hpp
 	src/Systems/movement_system.cpp

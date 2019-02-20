@@ -35,8 +35,13 @@ SpriteComponent::SpriteComponent(Program *_program, Texture *_texture) :
 	// Bind our current VAO, which will remember any vertex attribute related calls.
 	glBindVertexArray(this->quadVAO);
 	// Enable the first "in" variable in our vertex shader - make sure that this corresponds to the right variable!
-	glEnableVertexAttribArray(0);
-	glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 4 * sizeof(GLfloat), (GLvoid*)0);
+  // i.e. layout (location = 0) in shaders
+  glEnableVertexAttribArray(0);
+  //                   (index, size, type, isNormalized, stride, pointer to offset)
+	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(GLfloat), (GLvoid*)0);
+  // layout (location = 1)
+  glEnableVertexAttribArray(1);
+  glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(GLfloat), (GLvoid*)(2*sizeof(GLfloat)));
 
 	// Re-bind the current VBO and VAO to 0 to avoid accidentally modifying the ones we just configured here.
 	glBindVertexArray(0);
