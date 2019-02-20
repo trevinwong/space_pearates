@@ -17,6 +17,9 @@
 #include "EntityFactories/map_entity_factory.hpp"
 #include "EntityFactories/player_factory.hpp"
 
+#include "Resources/resource.hpp"
+#include "Systems/resource_system.hpp"
+
 // TO-DO: Look into replacing Keys array with direct callback.
 // TO-DO: Look into replacing processInput with direct callback.
 // TO-DO: Look into not having to include every component file.
@@ -47,6 +50,8 @@ private:
   TowerRangeDisplaySystem towerRangeDisplaySystem;
   TowerAttackSystem towerAttackSystem;
   OffscreenGarbageSystem projectileGarbageSystem;
+  Resource resource;
+  ResourceSystem resourceSystem;
 };
 
 #endif
