@@ -65,7 +65,11 @@ void printVec3(string name, vec3 vec);
 #define SDL_MAIN_HANDLED // otherwise windows system cannot find entry point
 #include <SDL.h>
 #include <SDL_mixer.h> // audio
-#include <stb_image.h> // loading images 
+#include <stb_image.h> // loading images
+
+// For text rendering
+#include <ft2build.h>
+#include FT_FREETYPE_H
 
 // To avoid conflicts with Windows.
 #define NOMINMAX
@@ -79,6 +83,7 @@ void printVec3(string name, vec3 vec);
 #define audio_path(name) data_path  "/audio/" name
 #define mesh_path(name) data_path  "/meshes/" name
 #define map_path(name) data_path  "/map/" name
+#define font_path(name) data_path  "/fonts/" name
 
 #define SCREEN_WIDTH 1280
 #define SCREEN_HEIGHT 800
