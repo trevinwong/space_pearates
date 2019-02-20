@@ -9,7 +9,9 @@ World::World()
 	enemy = Enemy();
 	movementSystem = MovementSystem();
 	playerSystem = PlayerSystem();
-	collisionSystem = CollisionSystem();
+  collisionSystem = CollisionSystem();
+  towerRangeDisplaySystem = TowerRangeDisplaySystem();
+  towerAttackSystem = TowerAttackSystem();
 }
 
 World::~World()
@@ -43,6 +45,13 @@ void World::update(float dt)
 	playerSystem.interpInput(entities, keys);
 	collisionSystem.checkCollisions(eventSystem, entities);
 	movementSystem.moveEntities(entities, dt);
+
+  // Towers
+  towerAttackSystem.checkRangeAndShootAimProjectiles(entityManager);
+  towerAttackSystem.reduceElapsedTimeToNextFire(entityManager, dt);
+
+  // OffScreen garbage check
+  projectileGarbageSystem.destroyOffScreenEntities(entityManager);
 }
 
 void World::processInput(float dt)
@@ -54,6 +63,7 @@ void World::draw()
 {
   spriteSystem.drawSprites(entityManager, projection);
   billboardSystem.drawBillboards(entityManager, projection);
+  towerRangeDisplaySystem.drawRanges(entityManager, projection);
 }
 
 // Possibly redundant - destructor can serve the same purpose.

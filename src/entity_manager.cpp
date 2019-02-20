@@ -34,4 +34,25 @@ vector<shared_ptr<Entity>> EntityManager::getEntities(bitset<ComponentType::max_
 	return filtered_entities;
 }
 
+vector<shared_ptr<Entity>> EntityManager::getEntitiesHasOneOf(bitset<ComponentType::max_count> component_checker)
+{
+  std::vector<shared_ptr<Entity>> filtered_entities;
+  for (shared_ptr<Entity> e : entities) {
+    if (e->hasOneOfComponents(component_checker)) {
+      filtered_entities.push_back(e);
+    }
+  }
+  return filtered_entities;
+}
 
+// Try remove an entity from entities
+// return true if successfully removed, otherwise false
+bool EntityManager::removeEntity(shared_ptr<Entity> entity) {
+  auto position = std::find(entities.begin(), entities.end(), entity);
+  // if position == entityList.end(), then not found
+  if (position != entities.end()) {
+    entities.erase(position);
+    return true;
+  }
+  return false;
+}

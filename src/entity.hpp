@@ -43,7 +43,10 @@ public:
 		has_components.set(T::typeID, 0);	
 	}
 
-	bool hasComponents(std::bitset<ComponentType::max_count> component_checker);
+  bool hasComponents(std::bitset<ComponentType::max_count> component_checker);
+
+  // check if an entity has any one of required components in component_checker
+  bool hasOneOfComponents(std::bitset<ComponentType::max_count> component_checker);
 
 	static int next() { return next_id++; };
 	static int next_id;

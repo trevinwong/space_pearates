@@ -9,20 +9,41 @@ Entity TowerEntityFactory::createTower(glm::vec2 towerCenterBottomPosition, glm:
   float y = towerCenterBottomPosition.y - _size.y;
   glm::vec2 position = {x, y};
 
-  Program *program = new Program(shader_path("sprite.vert"), shader_path("sprite.frag"));
-  Texture *towerSampletexture = new Texture(texture_path("tower0.png"), true);
-
   Program *billboardProgram = new Program(shader_path("billboard.vert"), shader_path("billboard.frag"));
   HealthComponent *health = new HealthComponent(billboardProgram);
 
-  SpriteComponent *spriteComponent = new SpriteComponent(program, towerSampletexture);
   TransformComponent *transformComponent = new TransformComponent(position, _size, 0.0f);
   ColorComponent *colorComponent = new ColorComponent(glm::vec4(1.0f, 1.0f, 1.0f, 1.0f)); // diff tower can have diff color
-  
+
+  // SpriteComponent
+  Program *towerProgram = new Program(shader_path("sprite.vert"), shader_path("sprite.frag"));
+  Texture *towerTexture = new Texture(texture_path("fire_tower.png"), true);
+  SpriteComponent *spriteComponent = new SpriteComponent(towerProgram, towerTexture);
+
+  // TowerRangeSpriteComponent
+  Program *towerRangeProgram = new Program(shader_path("sprite.vert"), shader_path("sprite.frag"));
+  Texture *towerRangeTexture = new Texture(texture_path("fire_tower_range.png"), true);
+  FireTowerRangeSpriteComponent *fireTowerRangeSpriteComponent = new FireTowerRangeSpriteComponent(towerRangeProgram, towerRangeTexture);
+
+  // Fire Tower Attack Component
+  glm::vec2 relativeFirePosition(0.0, -0.3);
+  float attackRange = 120.0f;
+  float fireRate = 2.0f;
+  int projectileAttackPower = 10;
+  int maxLevel = 3;
+  FireTowerAttackComponent *fireTowerAttackComponent = 
+    new FireTowerAttackComponent(relativeFirePosition, attackRange, maxLevel, fireRate, projectileAttackPower);
+
+  // Tower Meta Component
+  TowerMetaComponent *towerMetaComponent = new TowerMetaComponent();
+
   towerEntity.setComponent<SpriteComponent>(spriteComponent);
   towerEntity.setComponent<TransformComponent>(transformComponent);
   towerEntity.setComponent<ColorComponent>(colorComponent);
+  towerEntity.setComponent<TowerMetaComponent>(towerMetaComponent);
   towerEntity.setComponent<HealthComponent>(health);
+  towerEntity.setComponent<FireTowerAttackComponent>(fireTowerAttackComponent);
+  towerEntity.setComponent<FireTowerRangeSpriteComponent>(fireTowerRangeSpriteComponent);
 
   return towerEntity;
 }
