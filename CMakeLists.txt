@@ -128,6 +128,8 @@ set(SOURCE_FILES_CORE
 	src/texture.hpp
 	src/utility.cpp
 	src/utility.hpp
+	src/text.cpp
+	src/text.hpp
 	src/world.cpp
 	src/world.hpp
 )

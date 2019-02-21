@@ -13,6 +13,7 @@
 #include <fstream>
 #include <iostream>
 #include <vector>
+#include <map>
 #include <unordered_map>
 #include <memory>
 #include <bitset>
@@ -22,6 +23,7 @@
 
 using std::string; 
 using std::vector;
+using std::map;
 using std::unordered_map;
 using std::cout;
 using std::endl;
@@ -66,10 +68,6 @@ void printVec3(string name, vec3 vec);
 #include <SDL.h>
 #include <SDL_mixer.h> // audio
 #include <stb_image.h> // loading images
-
-// For text rendering
-#include <ft2build.h>
-#include FT_FREETYPE_H
 
 // To avoid conflicts with Windows.
 #define NOMINMAX

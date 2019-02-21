@@ -10,6 +10,10 @@ World::~World()
 
 void World::init(glm::vec2 screen)
 {
+  // Pre-load fonts to be used
+  text.setProjectionSize(static_cast<GLfloat>(screen.x), static_cast<GLfloat>(screen.y));
+  text.preprocessGlyphs();
+
 	vector<shared_ptr<Entity>> entities = entityManager.getEntities();
 	projection = glm::ortho(0.0f, static_cast<GLfloat>(screen.x), static_cast<GLfloat>(screen.y), 0.0f, -1.0f, 1.0f);
 	entityManager = EntityManager();
@@ -56,6 +60,8 @@ void World::draw()
   spriteSystem.drawSprites(entityManager, projection);
   billboardSystem.drawBillboards(entityManager, projection);
   towerRangeDisplaySystem.drawRanges(entityManager, projection);
+
+  text.render("Hg", glm::vec2(20.0f, 60.0f), 1.0f, glm::vec3(1.0f, 1.0f, 1.0f));
 }
 
 void World::destroy()
