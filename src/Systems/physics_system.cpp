@@ -71,10 +71,10 @@ void PhysicsSystem::adjustPositionAroundTiles(EntityManager &entityManager, shar
 			vec2 right_intersect = player_to_tile.getLineSegsIntersection(right_edge);
 
 			float epsilon = 6.0f;
-			bool top_intersect_valid = (distance(center, top_intersect) <= radius + epsilon) ? true : false;
-			bool bottom_intersect_valid = (distance(center, bottom_intersect) <= radius + epsilon) ? true : false;
-			bool left_intersect_valid = (distance(center, left_intersect) <= radius + epsilon) ? true : false;
-			bool right_intersect_valid = (distance(center, right_intersect) <= radius + epsilon) ? true : false;
+			bool top_intersect_valid = (distance(center, top_intersect) <= radius + epsilon);
+			bool bottom_intersect_valid = (distance(center, bottom_intersect) <= radius + epsilon);
+			bool left_intersect_valid = (distance(center, left_intersect) <= radius + epsilon);
+			bool right_intersect_valid = (distance(center, right_intersect) <= radius + epsilon);
 
 			vec2 newVelocity = movement->velocity;
 			vec2 newAccel = movement->accel;
