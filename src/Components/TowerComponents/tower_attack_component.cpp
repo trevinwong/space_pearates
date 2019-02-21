@@ -8,10 +8,6 @@ TowerAttackComponent::TowerAttackComponent(glm::vec2 _relativeFirePosition, floa
 {
 }
 
-TowerAttackComponent::~TowerAttackComponent()
-{
-}
-
 glm::vec2 TowerAttackComponent::getRelativeFirePosition()
 {
   return this->relativeFirePosition;

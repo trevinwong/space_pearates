@@ -15,9 +15,6 @@
 class SpriteSystem
 {
 public:
-	SpriteSystem();
-	~SpriteSystem();
-	// Iterates through all entities. If they have a Sprite, Transform and Color component, they are rendered.
 	void drawSprites(EntityManager &entityManager, glm::mat4 projection);
 };
 

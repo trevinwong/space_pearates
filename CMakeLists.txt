@@ -93,8 +93,8 @@ set(SOURCE_FILES_CORE
 	src/Systems/billboard_system.hpp
 	src/Systems/collision_system.cpp
 	src/Systems/collision_system.hpp
-	src/Systems/movement_system.cpp
-	src/Systems/movement_system.hpp
+	src/Systems/physics_system.hpp
+	src/Systems/physics_system.cpp
 	src/Systems/player_system.cpp
 	src/Systems/player_system.hpp
 	src/Systems/tile_map_system.cpp
@@ -107,6 +107,8 @@ set(SOURCE_FILES_CORE
 	src/Systems/offscreen_garbage_system.hpp
 	src/Enemies/enemy.cpp
 	src/Enemies/enemy.hpp
+	src/line.hpp
+	src/line.cpp
 	src/entity.cpp
 	src/entity.hpp
 	src/entity_manager.cpp

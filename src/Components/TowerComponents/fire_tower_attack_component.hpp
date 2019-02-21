@@ -9,7 +9,6 @@ class FireTowerAttackComponent : public TowerAttackComponent {
 public:
   // Note: _shootRate (unit: s)
   FireTowerAttackComponent(glm::vec2 _relativeFirePosition, float _attackRange, int _maxLevel, float _fireRate, int projectileAttackPower);
-  ~FireTowerAttackComponent();
 
   // Fire Rate:
   // fire rate will be initial to 0, which means the tower is ready to fire

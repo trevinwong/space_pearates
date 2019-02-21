@@ -1,13 +1,5 @@
 #include "sprite_system.hpp"
 
-SpriteSystem::SpriteSystem()
-{
-}
-
-SpriteSystem::~SpriteSystem()
-{
-}
-
 void SpriteSystem::drawSprites(EntityManager &entityManager, glm::mat4 projection)
 {
 	vector<shared_ptr<Entity>> filtered_entities = entityManager.getEntities(entityManager.getComponentChecker(vector<int> {ComponentType::sprite, ComponentType::transform, ComponentType::color}));
@@ -29,7 +21,7 @@ void SpriteSystem::drawSprites(EntityManager &entityManager, glm::mat4 projectio
 
 		// We want to move the origin of rotation to the center of the quad, rotate, then move the origin back.
 		model = glm::translate(model, glm::vec3(0.5f * transformComponent->size.x, 0.5f * transformComponent->size.y, 0.0f));
-		model = glm::rotate(model, transformComponent->rotate, glm::vec3(0.0f, 0.0f, 1.0f));
+		model = glm::rotate(model, transformComponent->rotation, glm::vec3(0.0f, 0.0f, 1.0f));
 		model = glm::translate(model, glm::vec3(-0.5f * transformComponent->size.x, -0.5f * transformComponent->size.y, 0.0f));
 
 		model = glm::scale(model, glm::vec3(transformComponent->size, 1.0f));

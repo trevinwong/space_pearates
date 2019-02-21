@@ -15,11 +15,6 @@ FireTowerAttackComponent::FireTowerAttackComponent(
 {
 }
 
-FireTowerAttackComponent::~FireTowerAttackComponent()
-{
-  TowerAttackComponent::~TowerAttackComponent();
-}
-
 float FireTowerAttackComponent::getElapsedTimeToNextFire()
 {
   return this->elapsedTimeToNextFire;
