@@ -114,10 +114,10 @@ set(SOURCE_FILES_CORE
 	src/Components/TowerUI/TowerUIState/tower_ui_shift_right_state.hpp
 	src/Components/projectile_component.cpp
 	src/Components/projectile_component.hpp
-  src/Components/enemy_component.cpp
-  src/Components/enemy_component.hpp
-  src/Components/enemy_spawn_component.cpp
-  src/Components/enemy_spawn_component.hpp
+	src/Components/enemy_component.cpp
+	src/Components/enemy_component.hpp
+	src/Components/enemy_spawn_component.cpp
+	src/Components/enemy_spawn_component.hpp
 	src/Components/map_component.cpp
 	src/Components/map_component.hpp
   src/Components/home_component.cpp
@@ -126,6 +126,8 @@ set(SOURCE_FILES_CORE
 	src/Components/resource_component.hpp
 	src/Components/animated_component.cpp
 	src/Components/animated_component.hpp
+	src/Components/wave_phase_component.cpp
+	src/Components/wave_phase_component.hpp
 	src/Systems/event_system.cpp
 	src/Systems/event_system.hpp
 	src/Systems/sprite_system.cpp
@@ -154,8 +156,12 @@ set(SOURCE_FILES_CORE
 	src/Utility/timer.cpp
 	src/Systems/enemy_system.cpp
 	src/Systems/enemy_system.hpp
-  src/Systems/enemy_spawn_system.cpp
-  src/Systems/enemy_spawn_system.hpp
+	src/Systems/enemy_spawn_system.cpp
+	src/Systems/enemy_spawn_system.hpp
+	src/Systems/wave_phase_system.cpp
+	src/Systems/wave_phase_system.hpp
+	src/Enemies/enemy.cpp
+	src/Enemies/enemy.hpp
 	src/line.hpp
 	src/line.cpp
 	src/Systems/resource_system.cpp

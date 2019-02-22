@@ -82,6 +82,9 @@ void printVec3(string name, vec3 vec);
 #define mesh_path(name) data_path  "/meshes/" name
 #define map_path(name) data_path  "/map/" name
 #define font_path(name) data_path  "/fonts/" name
+#define cluster_path(name) data_path  "/wave/indivWave/cluster/" name
+#define wave_path(name) data_path  "/wave/indivWave/" name
+#define level_path(name) data_path  "/wave/" name
 
 #define SCREEN_WIDTH 1280
 #define SCREEN_HEIGHT 800

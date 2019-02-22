@@ -39,6 +39,9 @@ void World::init(vec2 screen)
   vector<Entity> towerUiEntities = TowerUiEntityFactory::createTowerUiButtons();
   for (Entity towerUiEntity : towerUiEntities)
     entityManager.addEntity(towerUiEntity);
+	WavePhaseSystem wpsys = WavePhaseSystem();
+	//cluster item = wpsys.readClusterDataFile(cluster_path("test.txt"));
+	int a = 0; //Test code
 }
 
 void World::update(float dt)

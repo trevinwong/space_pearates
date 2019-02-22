@@ -3,7 +3,7 @@
 void PlayerSystem::interpInput(EntityManager &entityManager, float dt, GLboolean keys[], GLboolean keysProcessed[])
 {
 	vector<shared_ptr<Entity>> entities = entityManager.getEntities(entityManager.getComponentChecker(vector<int>{ComponentType::player, ComponentType::movement}));
-	
+
 	for (shared_ptr<Entity> e : entities) {
 		PlayerComponent *player = e->getComponent<PlayerComponent>();
 		MovementComponent *movement = e->getComponent<MovementComponent>();
@@ -21,7 +21,7 @@ void PlayerSystem::interpInput(EntityManager &entityManager, float dt, GLboolean
 			if (newAcceleration.x < 0) newAcceleration.x = 0;
 			newAcceleration.x += movement->maxAccel.x * 0.8;
 			if (newVelocity.x < 0) newVelocity.x += movement->maxVelocity.x * 0.1;
-		}	
+		}
 
 		if (keys[GLFW_KEY_UP] && !keysProcessed[GLFW_KEY_UP] && player->jumps > 0)
 		{
@@ -38,4 +38,3 @@ void PlayerSystem::interpInput(EntityManager &entityManager, float dt, GLboolean
 		movement->velocity = newVelocity;
 	}
 }
-
