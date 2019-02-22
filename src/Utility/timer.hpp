@@ -4,7 +4,7 @@
 class Timer {
 public:
 	Timer(float _maxTime, float _elapsedTime = 0.0f);
-	float update(float dt);
+	void update(float dt);
 	float getTimeLeft();
 	float elapsedTime;
 	float maxTime;

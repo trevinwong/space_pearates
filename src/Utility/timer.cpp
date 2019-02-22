@@ -5,7 +5,7 @@ Timer::Timer(float _maxTime, float _elapsedTime) :
 {
 }
 
-float Timer::update(float dt)
+void Timer::update(float dt)
 {
 	elapsedTime += dt;
 }
