@@ -7,10 +7,10 @@ Line::Line(vec2 Pt1, vec2 Pt2) :
 
 bool Line::isPointWithinSegment(vec2 pt)
 {
-  float minX = std::min(pt1.x, pt2.x);
-  float maxX = std::max(pt1.x, pt2.x);
-  float minY = std::min(pt1.y, pt2.y);
-  float maxY = std::max(pt1.y, pt2.y);
+  float minX = glm::min(pt1.x, pt2.x);
+  float maxX = glm::max(pt1.x, pt2.x);
+  float minY = glm::min(pt1.y, pt2.y);
+  float maxY = glm::max(pt1.y, pt2.y);
 
   float epsilon = 1e-1;
   return pt.x >= minX - epsilon && pt.x <= maxX + epsilon && pt.y >= minY - epsilon && pt.y <= maxY + epsilon;
