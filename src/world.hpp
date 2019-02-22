@@ -2,7 +2,7 @@
 #define WORLD_H
 
 #include "utility.hpp"
-#include "Enemies/enemy.hpp"
+#include "Systems/enemy_system.hpp"
 #include "entity_manager.hpp"
 #include "Systems/tile_map_system.hpp"
 #include "Systems/event_system.hpp"

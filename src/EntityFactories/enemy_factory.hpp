@@ -8,13 +8,14 @@
 #include "Components/color_component.hpp"
 #include "Components/movement_component.hpp"
 #include "Components/health_component.hpp"
+#include "Components/enemy_component.hpp"
 
 class EnemyFactory
 {
 public:
   EnemyFactory();
   ~EnemyFactory();
-  Entity build(glm::vec2 position, glm::vec2 scale);
+  Entity build(vec2 position, vec2 scale, vec2 velocity);
 private:
 
 };

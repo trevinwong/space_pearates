@@ -29,7 +29,7 @@ void World::init(glm::vec2 screen)
 void World::update(float dt)
 {
   enemy.getMap(entityManager);
-  enemy.move(dt);
+  enemy.move(dt, entityManager);
   vector<shared_ptr<Entity>> entities = entityManager.getEntities();
 	playerSystem.interpInput(entityManager, dt, keys, keysProcessed);
   physicsSystem.moveEntities(entityManager, dt);
