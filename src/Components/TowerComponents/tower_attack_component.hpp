@@ -16,7 +16,6 @@ class TowerAttackComponent : public BaseComponent {
   protected:
     // this class is an abstract class, the constructor should not be invoked as a public function
     TowerAttackComponent(glm::vec2 _relativeFirePosition, float _attackRange, int _maxLevel);
-    ~TowerAttackComponent();
 
   private:
     // gun fire point relative position

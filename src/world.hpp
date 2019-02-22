@@ -7,8 +7,8 @@
 #include "Systems/tile_map_system.hpp"
 #include "Systems/event_system.hpp"
 #include "Systems/sprite_system.hpp"
+#include "Systems/physics_system.hpp"
 #include "Systems/billboard_system.hpp"
-#include "Systems/movement_system.hpp"
 #include "Systems/player_system.hpp"
 #include "Systems/collision_system.hpp"
 #include "Systems/tower_range_display_system.hpp"
@@ -41,8 +41,8 @@ private:
   TileMapSystem tileMapSystem;
   //Change later after figuring out how to read multiple enemies
   Enemy enemy;
-  MovementSystem movementSystem;
   PlayerSystem playerSystem;
+	PhysicsSystem physicsSystem;
   CollisionSystem collisionSystem;
   TowerRangeDisplaySystem towerRangeDisplaySystem;
   TowerAttackSystem towerAttackSystem;

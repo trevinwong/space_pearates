@@ -1,113 +1,41 @@
 #include "player_system.hpp"
 
-PlayerSystem::PlayerSystem()
+void PlayerSystem::interpInput(EntityManager &entityManager, float dt, GLboolean keys[], GLboolean keysProcessed[])
 {
-}
-
-PlayerSystem::~PlayerSystem()
-{
-
-}
-
-glm::vec2 PlayerSystem::getCurrentAccel(MovementComponent *movementComponent)
-{
-	if (movementComponent != nullptr)
-	{
-		return movementComponent->m_accel;
-	}
-	//TODO: Handle case where movementComponent is not found.
-}
-
-glm::vec2 PlayerSystem::getCurrentVelocity(MovementComponent *movementComponent)
-{
-	if (movementComponent != nullptr)
-	{
-		return movementComponent->m_velocity;
-	}
-	//TODO: Handle case where movementComponent is not found.
-}
-
-// Perform actions on the player entity based on the user's inputs.
-void PlayerSystem::interpInput(vector<shared_ptr<Entity>> entities, GLboolean keys[])
-{
+	vector<shared_ptr<Entity>> entities = entityManager.getEntities(entityManager.getComponentChecker(vector<int>{ComponentType::player, ComponentType::movement}));
+	
 	for (shared_ptr<Entity> e : entities) {
-		MovementComponent *movementComponent = e->getComponent<MovementComponent>();
-		PlayerComponent * playerComponent = e->getComponent<PlayerComponent>();
+		PlayerComponent *player = e->getComponent<PlayerComponent>();
+		MovementComponent *movement = e->getComponent<MovementComponent>();
+		vec2 newAcceleration = movement->accel;
+		vec2 newVelocity = movement->velocity;
 
-
-		if (movementComponent != nullptr && playerComponent != nullptr) 
+		if (keys[GLFW_KEY_LEFT])
 		{
-			// Check for keys being pressed.
-			if (keys[GLFW_KEY_LEFT])
-			{
-				walkLeft(movementComponent);
-			}
-			else if (keys[GLFW_KEY_RIGHT])
-			{
-				walkRight(movementComponent);
-			}
-			else if (!keys[GLFW_KEY_RIGHT] && !keys[GLFW_KEY_LEFT])
-			{
-				stopMovingX(movementComponent);
-			}
-
-			//Check for vertical movement.
-			if (keys[GLFW_KEY_UP])
-			{
-				moveUp(movementComponent);
-			}
-			else if (keys[GLFW_KEY_DOWN])
-			{
-				moveDown(movementComponent);
-			}
-			else if (!keys[GLFW_KEY_UP] && !keys[GLFW_KEY_DOWN])
-			{
-				stopMovingY(movementComponent);
-			}
-
+			if (newAcceleration.x > 0) newAcceleration.x = 0;
+			if (newVelocity.x > 0) newVelocity.x -= movement->maxVelocity.x * 0.1;
+			newAcceleration.x -= movement->maxAccel.x * 0.8;
 		}
+		else if (keys[GLFW_KEY_RIGHT])
+		{
+			if (newAcceleration.x < 0) newAcceleration.x = 0;
+			newAcceleration.x += movement->maxAccel.x * 0.8;
+			if (newVelocity.x < 0) newVelocity.x += movement->maxVelocity.x * 0.1;
+		}	
+
+		if (keys[GLFW_KEY_UP] && !keysProcessed[GLFW_KEY_UP] && player->jumps > 0)
+		{
+			keysProcessed[GLFW_KEY_UP] = true;
+			player->jumps--;
+			if (movement->velocity.y > 0) movement->velocity.y = 0;
+			newVelocity.y += player->jumpVelocity;
+		}
+		else if (keys[GLFW_KEY_DOWN])
+		{
+		}
+
+		movement->accel = newAcceleration;
+		movement->velocity = newVelocity;
 	}
 }
 
-void PlayerSystem::walkRight(MovementComponent * mvComp)
-{
-	glm::vec2 accel = getCurrentAccel(mvComp);
-	glm::vec2 velo = getCurrentVelocity(mvComp);
-	mvComp->setAcceleration(glm::vec2(walkAccelSpeed, accel.y));
-	mvComp->applyVelocity(glm::vec2(initWalkVelocity, 0));
-}
-
-void PlayerSystem::walkLeft(MovementComponent* mvComp)
-{
-	glm::vec2 accel = getCurrentAccel(mvComp);
-	glm::vec2 velo = getCurrentVelocity(mvComp);
-	mvComp->setAcceleration(glm::vec2(-walkAccelSpeed, accel.y));
-	mvComp->applyVelocity(glm::vec2(-initWalkVelocity, 0));
-
-}
-
-// TODO: Turn this into jump.
-void PlayerSystem::moveUp(MovementComponent* mvComp)
-{
-	glm::vec2 accel = getCurrentAccel(mvComp);
-	glm::vec2 velo = getCurrentVelocity(mvComp);
-	mvComp->setAcceleration(glm::vec2(accel.x, 580));
-	mvComp->setVelocity(glm::vec2(velo.x, -450));
-}
-
-void PlayerSystem::moveDown(MovementComponent* mvComp)
-{
-	mvComp->setAcceleration(glm::vec2(0, walkAccelSpeed));
-}
-
-void PlayerSystem::stopMovingX(MovementComponent * mvComp)
-{
-	mvComp->setVelocity(glm::vec2(0, mvComp->m_velocity.y));
-	mvComp->setAcceleration(glm::vec2(0, mvComp->m_accel.y));
-}
-
-void PlayerSystem::stopMovingY(MovementComponent * mvComp)
-{
-	//mvComp->setVelocity(glm::vec2(mvComp->m_velocity.x, 0));
-	//mvComp->setAcceleration(glm::vec2(mvComp->m_accel.x, 0));
-}

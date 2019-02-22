@@ -16,6 +16,9 @@
 #include <unordered_map>
 #include <memory>
 #include <bitset>
+#include <utility>
+#include <climits>
+#include <iomanip>
 
 using std::string; 
 using std::vector;
@@ -27,6 +30,8 @@ using std::make_shared;
 using std::unique_ptr;
 using std::shared_ptr;
 using std::bitset;
+using std::pair;
+using std::make_pair;
 
 // libraries
 // gl3w-single-file: https://github.com/gingerBill/gl3w-Single-File
@@ -37,6 +42,25 @@ using std::bitset;
 #include <glm/gtc/matrix_transform.hpp>                                     
 #define GLM_ENABLE_EXPERIMENTAL // allow printing out of glm
 #include "glm/gtx/string_cast.hpp" // use glm::to_string() to print out vectors/matrices
+
+using glm::vec2;
+using glm::vec3;
+using glm::to_string;
+using glm::distance;
+using glm::sqrt;
+using glm::exp;
+using glm::abs;
+using glm::pow;
+
+// printing functions
+template <typename T>
+void printScalar(string name, T scalar) 
+{
+	cout << name << ": " << scalar << endl;
+}
+
+void printVec2(string name, vec2 vec);
+void printVec3(string name, vec3 vec);
 
 #define SDL_MAIN_HANDLED // otherwise windows system cannot find entry point
 #include <SDL.h>

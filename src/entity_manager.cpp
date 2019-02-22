@@ -45,14 +45,14 @@ vector<shared_ptr<Entity>> EntityManager::getEntitiesHasOneOf(bitset<ComponentTy
   return filtered_entities;
 }
 
-// Try remove an entity from entities
-// return true if successfully removed, otherwise false
 bool EntityManager::removeEntity(shared_ptr<Entity> entity) {
-  auto position = std::find(entities.begin(), entities.end(), entity);
-  // if position == entityList.end(), then not found
-  if (position != entities.end()) {
-    entities.erase(position);
-    return true;
-  }
+	for (int i = 0; i < entities.size(); i++) {	
+		shared_ptr<Entity> e = entities[i];
+		if (e == entity) {
+			entities[i] = entities[entities.size() - 1];
+			entities.pop_back();
+			return true;
+		}	
+	}
   return false;
 }

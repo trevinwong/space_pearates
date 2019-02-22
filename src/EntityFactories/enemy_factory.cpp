@@ -14,9 +14,8 @@ Entity EnemyFactory::build(glm::vec2 position, glm::vec2 scale)
   SpriteComponent *sprite = new SpriteComponent(program, new Texture());
 
   TransformComponent *transform = new TransformComponent(position, scale, 0.0f);
-  MovementComponent *move = new MovementComponent(glm::vec2(0.0, 0.0), glm::vec2(0.0, 1.0));
+  MovementComponent *move = new MovementComponent(glm::vec2(0.0, 1.0), glm::vec2(0.0, 0.0), vec2(100.0f, 100.0f), vec2(50.0f, 50.0f));
   ColorComponent *colour = new ColorComponent(glm::vec4(0.0f, 1.0f, 0.6f, 1.0f));
-
   Program *billboardProgram = new Program(shader_path("billboard.vert"), shader_path("billboard.frag"));
   HealthComponent *health = new HealthComponent(billboardProgram);
 

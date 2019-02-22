@@ -7,11 +7,12 @@
 class TransformComponent : public BaseComponent
 {
 public:
-	TransformComponent(glm::vec2 _position, glm::vec2 _size, GLfloat _rotate);
-	~TransformComponent();
+	TransformComponent(glm::vec2 _position, glm::vec2 _size, GLfloat _rotation);
 	glm::vec2 position;
 	glm::vec2 size;
-	GLfloat   rotate;
+	GLfloat rotation;
+
+	bool isCollidingWith(TransformComponent other);
 	static const int typeID = ComponentType::transform;
 	inline virtual int getTypeID() const { return typeID; };
 };

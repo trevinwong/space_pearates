@@ -40,7 +40,7 @@ void BillboardSystem::drawBillboards(EntityManager & entityManager, glm::mat4 pr
 
     // We want to move the origin of rotation to the center of the quad, rotate, then move the origin back.
     model = glm::translate(model, glm::vec3(0.5f * transform->size.x, 0.5f * transform->size.y, 0.0f));
-    model = glm::rotate(model, transform->rotate, glm::vec3(0.0f, 0.0f, 1.0f));
+    model = glm::rotate(model, transform->rotation, glm::vec3(0.0f, 0.0f, 1.0f));
     model = glm::translate(model, glm::vec3(-0.5f * transform->size.x, -0.5f * transform->size.y, 0.0f));
 
     model = glm::scale(model, glm::vec3(barWidth, barHeight, 1.0f));

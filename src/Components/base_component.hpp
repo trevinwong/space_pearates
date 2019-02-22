@@ -12,10 +12,11 @@ namespace ComponentType {
     player,
     health,
     tower_meta,
-    fire_tower,               // Fire tower
-    fire_tower_range_sprite,  // Fire tower
+    fire_tower,               
+    fire_tower_range_sprite,  
     projectile,
-    max_count
+		tile,
+    max_count 
   };
 }
 

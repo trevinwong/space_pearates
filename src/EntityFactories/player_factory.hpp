@@ -13,8 +13,6 @@
 class PlayerFactory
 {
 public:
-	PlayerFactory();
-	~PlayerFactory();
 	Entity build();
 private:
 };

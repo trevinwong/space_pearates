@@ -8,9 +8,10 @@ Entity ProjectileEntityFactory::createAimProjectile(glm::vec2 size, glm::vec4 fi
   ColorComponent *colorComponent = new ColorComponent(filterColor);
 
   glm::vec2 acc(0.0f, 0.0f);
-  glm::vec2 velocity = glm::normalize(velocityDirection) * speed;
-  MovementComponent *movementComponent = new MovementComponent(acc, velocity);
-  movementComponent->m_offScreenOK = true;  // a projectile can be off screen and then be destroyed by projectile_destroy_system
+  glm::vec2 velocity = velocityDirection * speed;
+
+  MovementComponent *movementComponent = new MovementComponent(velocity, acc, vec2(100.0f, 100.0f), vec2(0.0f, 0.0f));
+  movementComponent->offScreenOK = true;  // a projectile can be off screen and then be destroyed by projectile_destroy_system
 
   ProjectileComponent *projectileComponent = new ProjectileComponent(attackPower);
 
