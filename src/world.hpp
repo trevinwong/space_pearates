@@ -21,7 +21,6 @@
 #include "EntityFactories/resource_factory.hpp"
 #include "EntityFactories/enemy_spawn_factory.hpp"
 
-
 // TO-DO: Look into replacing Keys array with direct callback.
 // TO-DO: Look into replacing processInput with direct callback.
 // TO-DO: Look into not having to include every component file.
