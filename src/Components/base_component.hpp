@@ -16,6 +16,7 @@ namespace ComponentType {
     fire_tower_range_sprite,  
     projectile,
 		tile,
+    resource,
     max_count 
   };
 }

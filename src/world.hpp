@@ -10,12 +10,14 @@
 #include "Systems/physics_system.hpp"
 #include "Systems/billboard_system.hpp"
 #include "Systems/player_system.hpp"
+#include "Systems/resource_system.hpp"
 #include "Systems/collision_system.hpp"
 #include "Systems/tower_range_display_system.hpp"
 #include "Systems/tower_attack_system.hpp"
 #include "Systems/offscreen_garbage_system.hpp"
 #include "EntityFactories/map_entity_factory.hpp"
 #include "EntityFactories/player_factory.hpp"
+#include "EntityFactories/resource_factory.hpp"
 
 // TO-DO: Look into replacing Keys array with direct callback.
 // TO-DO: Look into replacing processInput with direct callback.
@@ -47,6 +49,7 @@ private:
   TowerRangeDisplaySystem towerRangeDisplaySystem;
   TowerAttackSystem towerAttackSystem;
   OffscreenGarbageSystem projectileGarbageSystem;
+  ResourceSystem resourceSystem;
 };
 
 #endif

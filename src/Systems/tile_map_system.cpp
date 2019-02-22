@@ -48,7 +48,7 @@ void TileMapSystem::loadTileMap(EntityManager& entities)
                                                      glm::vec2(width_tile, height_tile)));
                 }
                 else if (*col == MAP_BASE_POSITION) {
-                    Entity base = BaseFactory::createBase(glm::vec2(col_i*width_tile, row_i*height_tile));
+                    Entity base = BaseFactory::createBase(glm::vec2(col_i*width_tile, row_i*height_tile-41.0));
                     entities.addEntity(base);
                 }
                 col_i++;
