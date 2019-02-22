@@ -31,7 +31,12 @@ void World::init(glm::vec2 screen)
 void World::update(float dt)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
   enemy.move();
+=======
+  enemy.getMap(entityManager);
+  enemy.move(dt, entityManager);
+>>>>>>> added basic movement
   vector<shared_ptr<Entity>> entities = entityManager.getEntities();
 	playerSystem.interpInput(entityManager, dt, keys, keysProcessed);
   physicsSystem.moveEntities(entityManager, dt);

@@ -1,5 +1,5 @@
-#ifndef ENEMY_FACTORY_H
-#define ENEMY_FACTORY_H
+#ifndef ENEMY_SPAWN_FACTORY_H
+#define ENEMY_SPAWN_FACTORY_H
 
 #include "entity.hpp"
 #include "program.hpp"
@@ -9,13 +9,15 @@
 #include "Components/movement_component.hpp"
 #include "Components/health_component.hpp"
 #include "Components/enemy_component.hpp"
+#include "Components/enemy_spawn_component.hpp"
 
-class EnemyFactory
+
+class EnemySpawnFactory
 {
 public:
-  EnemyFactory();
-  ~EnemyFactory();
-  Entity build(vec2 position, vec2 scale, vec2 velocity);
+  EnemySpawnFactory();
+  ~EnemySpawnFactory();
+  Entity build(float spawnRate);
 private:
 
 };

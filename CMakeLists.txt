@@ -85,6 +85,8 @@ set(SOURCE_FILES_CORE
 	src/Components/TowerComponents/fire_tower_range_sprite_component.hpp
 	src/Components/projectile_component.cpp
 	src/Components/projectile_component.hpp
+  src/Components/enemy_component.cpp
+  src/Components/enemy_component.hpp
 	src/Components/map_component.cpp
 	src/Components/map_component.hpp
 	src/Components/resource_component.cpp
@@ -111,8 +113,8 @@ set(SOURCE_FILES_CORE
 	src/Systems/offscreen_garbage_system.hpp
 	src/Utility/timer.hpp
 	src/Utility/timer.cpp
-	src/Enemies/enemy.cpp
-	src/Enemies/enemy.hpp
+		src/Systems/enemy_system.cpp
+		src/Systems/enemy_system.hpp
 	src/line.hpp
 	src/line.cpp
 	src/Systems/resource_system.cpp
