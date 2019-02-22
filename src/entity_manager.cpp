@@ -50,6 +50,7 @@ bool EntityManager::removeEntity(shared_ptr<Entity> entity) {
 		shared_ptr<Entity> e = entities[i];
 		if (e == entity) {
 			entities[i] = entities[entities.size() - 1];
+			entities.pop_back();
 			return true;
 		}	
 	}

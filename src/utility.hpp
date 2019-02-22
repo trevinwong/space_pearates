@@ -52,6 +52,16 @@ using glm::exp;
 using glm::abs;
 using glm::pow;
 
+// printing functions
+template <typename T>
+void printScalar(string name, T scalar) 
+{
+	cout << name << ": " << scalar << endl;
+}
+
+void printVec2(string name, vec2 vec);
+void printVec3(string name, vec3 vec);
+
 #define SDL_MAIN_HANDLED // otherwise windows system cannot find entry point
 #include <SDL.h>
 #include <SDL_mixer.h> // audio

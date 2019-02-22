@@ -3,6 +3,7 @@
 
 #include "utility.hpp"
 #include "Components/base_component.hpp"
+#include "Components/projectile_component.hpp"
 #include "entity.hpp"
 
 /*

@@ -55,7 +55,7 @@ void TowerAttackSystem::checkRangeAndShootAimProjectiles(EntityManager& entityMa
         auto projectileColor = glm::vec4(1, 1, 1, 1);
         auto projectileLeftTopPosition = firePointPosition - projectileSize * 0.5f;
         auto speed = 100.0f;
-        auto velocityDirection = glm::normalize(enemyCenterPosition - firePointPosition) * 100.0f;
+        auto velocityDirection = glm::normalize(enemyCenterPosition - firePointPosition);
         auto attackPower = 10;
         Entity projectileEntity =
           ProjectileEntityFactory::createAimProjectile(projectileSize, projectileColor, projectileLeftTopPosition, speed, velocityDirection, attackPower);
