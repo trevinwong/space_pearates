@@ -12,10 +12,8 @@
 
 class ResourceFactory
 {
-    public:
-    ResourceFactory();
-    ~ResourceFactory();
-    Entity build(glm::vec2 position, glm::vec2 scale);
+public:
+	Entity build(glm::vec2 position, glm::vec2 scale);
 };
 
 #endif

@@ -1,48 +1,23 @@
 #include "resource_system.hpp"
 
-ResourceSystem::ResourceSystem()
-{
+void ResourceSystem::handleResourceSpawnAndDespawn(EntityManager& entityManager, float dt) {
+	updateSpawn(entityManager);
+	updateDespawn(entityManager, dt);	
 }
 
-ResourceSystem::~ResourceSystem()
-{
+void ResourceSystem::updateSpawn(EntityManager& entityManager) {
+	// TO-DO: Check for EnemyComponent and DeathComponent. Then spawn resources at their location.
 }
 
-
-// Perform movement on all entities with the movement component.
-void ResourceSystem::updateCountdown(EntityManager& entityManager, float dt) {
-      vector<shared_ptr<Entity>> resources = entityManager.getEntities(entityManager.getComponentChecker(vector<int> {ComponentType::resource}));
-
-      if (resources.size() == 0) return; // No resources on screen, nothing to update
+void ResourceSystem::updateDespawn(EntityManager& entityManager, float dt) {
+	vector<shared_ptr<Entity>> resources = entityManager.getEntities(entityManager.getComponentChecker(vector<int> {ComponentType::resource}));
 
 	for (shared_ptr<Entity> resource : resources) {
-        SpriteComponent *spriteComponent = resource->getComponent<SpriteComponent>();
-        TransformComponent *transformComponent = resource->getComponent<TransformComponent>();
-        ResourceComponent *resourceComponent = resource->getComponent<ResourceComponent>();
-		if (resourceComponent == nullptr || spriteComponent == nullptr || transformComponent == nullptr) {
-            continue;
-        }
-        resourceComponent->updateTimer(dt);
-        if (resourceComponent->checkTimer() <= 0) { // No more time left for resource
-            removeResource(entityManager, resource);
-        }
-    }
-}
+		ResourceComponent *resourceComponent = resource->getComponent<ResourceComponent>();
+		resourceComponent->timer.update(dt);
 
-void ResourceSystem::removeResource(EntityManager& entityManager, shared_ptr<Entity> resource) {
-    entityManager.removeEntity(resource);
-}
-
-void ResourceSystem::checkEnemyDeath(EntityManager& entityManager) {
-    // TODO: CHANGE PLAYER COMPONENT TO ENEMY COMPONENT
-    vector<shared_ptr<Entity>> enemies = entityManager.getEntities(entityManager.getComponentChecker(vector<int> {ComponentType::player}));
-    
-    if (enemies.size() == 0) return;
-
-    for (shared_ptr<Entity> enemy : enemies) {
-        // TODO: CHECK IF ENEMY HAS RECENTLY DIED AND CALL spawnResource WITH ENEMY POSN
-    }
-}
-void ResourceSystem::spawnResource(glm::vec2 position){
-    // SPAWN RESOURCE WHERE ENEMY HAS DIED
+		if (resourceComponent->timer.getTimeLeft() <= 0) { 
+    	entityManager.removeEntity(resource);
+		}
+	}
 }

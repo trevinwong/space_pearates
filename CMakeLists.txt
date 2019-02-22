@@ -109,14 +109,14 @@ set(SOURCE_FILES_CORE
 	src/Systems/tower_attack_system.hpp
 	src/Systems/offscreen_garbage_system.cpp
 	src/Systems/offscreen_garbage_system.hpp
+	src/Utility/timer.hpp
+	src/Utility/timer.cpp
 	src/Enemies/enemy.cpp
 	src/Enemies/enemy.hpp
 	src/line.hpp
 	src/line.cpp
 	src/Systems/resource_system.cpp
 	src/Systems/resource_system.hpp
-	src/Resources/resource.cpp
-	src/Resources/resource.hpp
 	src/entity.cpp
 	src/entity.hpp
 	src/entity_manager.cpp

@@ -1,10 +1,7 @@
 #ifndef RESOURCE_SYSTEM_H
 #define RESOURCE_SYSTEM_H
 
-// TODO: Remove unneeded includes
 #include "utility.hpp"
-#include "texture.hpp"
-#include "program.hpp"
 #include "entity.hpp"
 #include "entity_manager.hpp"
 #include "Components/sprite_component.hpp"
@@ -13,16 +10,12 @@
 #include "Components/resource_component.hpp"
 #include "subscriber.hpp"
 
-class ResourceSystem : public Subscriber
+class ResourceSystem 
 {
 public:
-	ResourceSystem();
-	~ResourceSystem();
-	void updateCountdown(EntityManager& entityManager, float dt); // Decrement countdown timer for all resources on screen
-    void removeResource(EntityManager& entityManager, shared_ptr<Entity> resource);
-    void checkEnemyDeath(EntityManager& entityManager); // check if any enemies have died
-    void spawnResource(glm::vec2 position); // resources spawn at loc where an enemy has died
-private:
+	void handleResourceSpawnAndDespawn(EntityManager &entityManager, float dt);
+	void updateSpawn(EntityManager& entityManager);
+	void updateDespawn(EntityManager& entityManager, float dt);
 };
 
 #endif
