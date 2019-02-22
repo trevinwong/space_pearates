@@ -10,7 +10,7 @@ World::~World()
 
 void World::init(glm::vec2 screen)
 {
-  // Pre-load fonts to be used
+  // Pre-load font characters to be used
   text.setProjectionSize(static_cast<GLfloat>(screen.x), static_cast<GLfloat>(screen.y));
   text.preprocessGlyphs();
 
@@ -61,7 +61,9 @@ void World::draw()
   billboardSystem.drawBillboards(entityManager, projection);
   towerRangeDisplaySystem.drawRanges(entityManager, projection);
 
-  text.render("Hg", glm::vec2(20.0f, 60.0f), 1.0f, glm::vec3(1.0f, 1.0f, 1.0f));
+  text.render("Time:", glm::vec2(20.0f, 60.0f), 1.0f, glm::vec3(1.0f, 1.0f, 1.0f));
+  text.render(std::to_string(round(glfwGetTime()* 10.0) / 10.0), 
+    glm::vec2(200.0f, 60.0f), 1.0f, glm::vec3(1.0f, 1.0f, 1.0f));
 }
 
 void World::destroy()
