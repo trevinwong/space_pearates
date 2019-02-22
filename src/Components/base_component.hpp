@@ -9,19 +9,20 @@ namespace ComponentType {
     collision,
     map,
     movement,
+    enemy,
     player,
     health,
     tower_meta,
-    fire_tower,               
-    fire_tower_range_sprite,  
+    fire_tower,
+    fire_tower_range_sprite,
     projectile,
 		tile,
     resource,
-    max_count 
+    max_count
   };
 }
 
-class BaseComponent 
+class BaseComponent
 {
 public:
 	virtual int getTypeID() const = 0;
