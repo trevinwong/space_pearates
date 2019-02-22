@@ -5,8 +5,6 @@ Enemy::Enemy()
   factory = EnemyFactory();
 }
 
-
-/// map is 32x20
 Enemy::~Enemy()
 {
 }
@@ -17,8 +15,11 @@ void Enemy::loadEnemy(glm::vec2 screen, EntityManager& entities) {
 
 
 // Super simple AI; just tries to go down the map until it hits base
-// Keeps trying to go right until it can't, then goes left.
+// If it can't go down anymore, randomly goes right / left till it can go down
 void Enemy::move (float dt, EntityManager& entities) {
+  srand(time(NULL));
+  int arr[2] = {-1, 1};
+
   vector<shared_ptr<Entity>> entityList = entities.getEntities();
   float eps = 0.001;
   for (shared_ptr<Entity> e : entityList) {
@@ -35,21 +36,25 @@ void Enemy::move (float dt, EntityManager& entities) {
       vel.y = abs(vel.y) < eps ? movementComponent->maxVelocity.y : vel.y;
 
       for (int i = 0; i <= ceil(vel.y*dt/40); i++)
-        if (map[yind+i][xind] == 'B')
+        if (map[yind+i][xind] == 'B' || map[yind+i][xind+1] == 'B')
           flag = true;
 
       if (flag) {
-        vel.x = abs(vel.x) < eps ? movementComponent->maxVelocity.x : vel.x;
+        int dir = rand() % 2;
+        vel.x = abs(vel.x) < eps ? arr[dir]*movementComponent->maxVelocity.x : vel.x;
         if (vel.x > 0)
           vel.x = pos.x + vel.x*dt < 1200.0 ? vel.x : -vel.x;
         else vel.x = pos.x + vel.x*dt > 60 ? vel.x : -vel.x;
         vel.y = 0;
-      }
+      } else vel.x = 0;
+
+      // check if directly above base - path straight down if so
       for (int i = 0; i <= ceil(vel.y*dt/40); i++)
         if (map[yind+i][xind] == 'H') {
           vel.y = 2*movementComponent->maxVelocity.y;
           movementComponent->maxVelocity.x = 0.f;
         }
+
       movementComponent->velocity = vel;
     }
   }

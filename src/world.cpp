@@ -25,20 +25,19 @@ void World::init(glm::vec2 screen)
 	PlayerFactory playerFactory;
 	Entity p = playerFactory.build();
 	entityManager.addEntity(p);
+  EnemySpawnFactory esf;
+  Entity es = esf.build(2.0);
+  entityManager.addEntity(es);
 	physicsSystem.setScreenInfo(screen);
 }
 
 void World::update(float dt)
 {
-<<<<<<< HEAD
-<<<<<<< HEAD
-  enemy.move();
-=======
-  enemy.getMap(entityManager);
-  enemy.move(dt, entityManager);
->>>>>>> added basic movement
+  enemySpawnSystem.spawnEnemy(entityManager);
+  enemySpawnSystem.reduceElapsedTime(entityManager, dt);
+
   vector<shared_ptr<Entity>> entities = entityManager.getEntities();
-	playerSystem.interpInput(entityManager, dt, keys, keysProcessed);
+  playerSystem.interpInput(entityManager, dt, keys, keysProcessed);
   physicsSystem.moveEntities(entityManager, dt);
 
   // Towers
@@ -48,14 +47,6 @@ void World::update(float dt)
   // OffScreen garbage check
   projectileGarbageSystem.destroyOffScreenEntities(entityManager);
 	resourceSystem.handleResourceSpawnAndDespawn(entityManager, dt);
-=======
-	enemy.getMap(entityManager);
-	enemy.move(dt);
-	vector<shared_ptr<Entity>> entities = entityManager.getEntities();
-	playerSystem.interpInput(entities, keys);
-	collisionSystem.checkCollisions(eventSystem, entities);
-	movementSystem.moveEntities(entities, dt);
->>>>>>> basic enemy data stuff
 }
 
 void World::processInput(float dt)

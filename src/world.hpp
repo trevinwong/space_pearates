@@ -3,6 +3,7 @@
 
 #include "utility.hpp"
 #include "Systems/enemy_system.hpp"
+#include "Systems/enemy_spawn_system.hpp"
 #include "entity_manager.hpp"
 #include "Systems/tile_map_system.hpp"
 #include "Systems/event_system.hpp"
@@ -18,6 +19,8 @@
 #include "EntityFactories/map_entity_factory.hpp"
 #include "EntityFactories/player_factory.hpp"
 #include "EntityFactories/resource_factory.hpp"
+#include "EntityFactories/enemy_spawn_factory.hpp"
+
 
 // TO-DO: Look into replacing Keys array with direct callback.
 // TO-DO: Look into replacing processInput with direct callback.
@@ -42,7 +45,8 @@ private:
   glm::mat4 projection;
   TileMapSystem tileMapSystem;
   //Change later after figuring out how to read multiple enemies
-  Enemy enemy;
+  Enemy enemySystem;
+  EnemySpawnSystem enemySpawnSystem;
   PlayerSystem playerSystem;
 	PhysicsSystem physicsSystem;
   CollisionSystem collisionSystem;

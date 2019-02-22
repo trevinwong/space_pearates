@@ -10,6 +10,7 @@ namespace ComponentType {
     map,
     movement,
     enemy,
+    enemy_spawn,
     player,
     health,
     tower_meta,

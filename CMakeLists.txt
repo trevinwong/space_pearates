@@ -49,6 +49,8 @@ set(SOURCE_FILES_CORE
 	src/EntityFactories/player_factory.hpp
 	src/EntityFactories/enemy_factory.cpp
 	src/EntityFactories/enemy_factory.hpp
+  src/EntityFactories/enemy_spawn_factory.cpp
+  src/EntityFactories/enemy_spawn_factory.hpp
 	src/EntityFactories/map_entity_factory.cpp
 	src/EntityFactories/map_entity_factory.hpp
 	src/EntityFactories/tile_factory.cpp
@@ -87,6 +89,8 @@ set(SOURCE_FILES_CORE
 	src/Components/projectile_component.hpp
   src/Components/enemy_component.cpp
   src/Components/enemy_component.hpp
+  src/Components/enemy_spawn_component.cpp
+  src/Components/enemy_spawn_component.hpp
 	src/Components/map_component.cpp
 	src/Components/map_component.hpp
 	src/Components/resource_component.cpp
@@ -113,8 +117,10 @@ set(SOURCE_FILES_CORE
 	src/Systems/offscreen_garbage_system.hpp
 	src/Utility/timer.hpp
 	src/Utility/timer.cpp
-		src/Systems/enemy_system.cpp
-		src/Systems/enemy_system.hpp
+	src/Systems/enemy_system.cpp
+	src/Systems/enemy_system.hpp
+  src/Systems/enemy_spawn_system.cpp
+  src/Systems/enemy_spawn_system.hpp
 	src/line.hpp
 	src/line.cpp
 	src/Systems/resource_system.cpp
