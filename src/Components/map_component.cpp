@@ -1,6 +1,6 @@
 #include "map_component.hpp"
 
-MapComponent::MapComponent(std::vector<std::vector<int>> _mapData2DArray) :
+MapComponent::MapComponent(std::vector<std::vector<char>> _mapData2DArray) :
   mapData2DArray(_mapData2DArray)
 {
   this->num_y_tiles = this->mapData2DArray.size();

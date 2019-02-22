@@ -1,0 +1,12 @@
+Team 6
+Grade: 75
+Creative:
++15 Not visible but a good attempt. Many parts of the game are refactorized using the ECS pattern.
+
+Issues:
+-15 The collision system is not working in this version.
+
+Feedback:
+I appreciate your efforts into the code architecture. Though it may be a lot of work at the beginning, it should simplify coding in the future. And it would be good experience for working on larger and more complicated code base.
+
+The progress is slightly slow in terms of implemented game features. Hopefully, the future development would be faster given a cleaner code base.

@@ -7,6 +7,7 @@
 #include "Components/transform_component.hpp"
 #include "Components/color_component.hpp"
 #include "Components/movement_component.hpp"
+#include "Components/health_component.hpp"
 
 class EnemyFactory
 {

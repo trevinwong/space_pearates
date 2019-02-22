@@ -19,11 +19,13 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 		glfwSetWindowShouldClose(window, GL_TRUE);
 	if (key >= 0 && key < 1024)
 	{
-		if (action == GLFW_PRESS)
+		if (action == GLFW_PRESS) {
 			world.keys[key] = GL_TRUE;
-		else if (action == GLFW_RELEASE)
+		}
+		else if (action == GLFW_RELEASE) {
 			world.keys[key] = GL_FALSE;
-		world.keysProcessed[key] = GL_FALSE;
+			world.keysProcessed[key] = GL_FALSE;
+		}
 	}
 }
 

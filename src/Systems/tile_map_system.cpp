@@ -27,8 +27,8 @@ void TileMapSystem::loadTileMap(EntityManager& entities)
         // Is there some better way to get the indices..?
         int row_i = 0;
         int col_i = 0;
-        vector<vector<int>>::iterator row;
-        vector<int>::iterator col;
+        vector<vector<char>>::iterator row;
+        vector<char>::iterator col;
         for (row = tileMap.begin(); row != tileMap.end(); row++) {
             for (col = row->begin(); col != row->end(); col++) {
                 // here build some test towers if position is 2
@@ -36,7 +36,7 @@ void TileMapSystem::loadTileMap(EntityManager& entities)
                 // Or to avoid to add too many entities, check the map 2d array data directly
                 if (*col == MAP_TOWER_POSITION)
                 {
-                    Entity tower = TowerEntityFactory::createTower(glm::vec2(col_i*width_tile + width_tile / 2.0, row_i*height_tile + height_tile), glm::vec2(25.0f, 50.0f));
+                    Entity tower = TowerEntityFactory::createTower(glm::vec2(col_i*width_tile + width_tile / 2.0, row_i*height_tile + height_tile), glm::vec2(40.0f, 65.0f));
                     entities.addEntity(tower);
                 }
                     // end tower build

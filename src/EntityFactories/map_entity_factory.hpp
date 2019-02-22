@@ -15,7 +15,7 @@ public:
 
 private:
   MapEntityFactory();
-  static std::vector<std::vector<int>> readMapDataFile(std::string fileName);
+  static std::vector<std::vector<char>> readMapDataFile(std::string fileName);
 };
 
 #endif

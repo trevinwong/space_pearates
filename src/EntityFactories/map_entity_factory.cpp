@@ -16,7 +16,7 @@ Entity MapEntityFactory::createMapEntityFromFile(char * fileName)
 
 Entity MapEntityFactory::createMapEntityFromFile(std::string fileName)
 {
-  std::vector<std::vector<int>> tileMap2DArray = MapEntityFactory::readMapDataFile(fileName);
+  std::vector<std::vector<char>> tileMap2DArray = MapEntityFactory::readMapDataFile(fileName);
   MapComponent *mapComponent = new MapComponent(tileMap2DArray);
 
   Entity mapEntity;
@@ -25,24 +25,24 @@ Entity MapEntityFactory::createMapEntityFromFile(std::string fileName)
   return mapEntity;
 }
 
-std::vector<std::vector<int>> MapEntityFactory::readMapDataFile(std::string fileName)
+std::vector<std::vector<char>> MapEntityFactory::readMapDataFile(std::string fileName)
 {
   std::ifstream mapDataFile(fileName);
-  std::vector<std::vector<int>> tileMap2DArray;
+  std::vector<std::vector<char>> tileMap2DArray;
   if (mapDataFile.good()) {
     while (!mapDataFile.eof()) {
 
-      std::vector<int> tileMapData_OneRow;
+      std::vector<char> tileMapData_OneRow;
 
       std::string line; // declare a line
       std::getline(mapDataFile, line); // read a line from file
       std::stringstream iss(line); // convert the line string to string stream
 
-      int cellValue = -1;
+      char cellValue = 0;
       while (iss >> cellValue)
       {
         tileMapData_OneRow.push_back(cellValue);
-        if (iss.peek() == ',') iss.ignore();
+        if (iss.peek() == ',' || iss.peek() == ' ') iss.ignore();   // comma for csv file, space for copying from google sheet
       }
 
       // ignore any empty lines

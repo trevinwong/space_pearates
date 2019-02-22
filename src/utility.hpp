@@ -15,6 +15,10 @@
 #include <vector>
 #include <unordered_map>
 #include <memory>
+#include <bitset>
+#include <utility>
+#include <climits>
+#include <iomanip>
 
 using std::string; 
 using std::vector;
@@ -25,6 +29,9 @@ using std::make_unique;
 using std::make_shared;
 using std::unique_ptr;
 using std::shared_ptr;
+using std::bitset;
+using std::pair;
+using std::make_pair;
 
 // libraries
 // gl3w-single-file: https://github.com/gingerBill/gl3w-Single-File
@@ -35,6 +42,25 @@ using std::shared_ptr;
 #include <glm/gtc/matrix_transform.hpp>                                     
 #define GLM_ENABLE_EXPERIMENTAL // allow printing out of glm
 #include "glm/gtx/string_cast.hpp" // use glm::to_string() to print out vectors/matrices
+
+using glm::vec2;
+using glm::vec3;
+using glm::to_string;
+using glm::distance;
+using glm::sqrt;
+using glm::exp;
+using glm::abs;
+using glm::pow;
+
+// printing functions
+template <typename T>
+void printScalar(string name, T scalar) 
+{
+	cout << name << ": " << scalar << endl;
+}
+
+void printVec2(string name, vec2 vec);
+void printVec3(string name, vec3 vec);
 
 #define SDL_MAIN_HANDLED // otherwise windows system cannot find entry point
 #include <SDL.h>
@@ -57,9 +83,9 @@ using std::shared_ptr;
 #define SCREEN_WIDTH 1280
 #define SCREEN_HEIGHT 800
 
-#define MAP_EMPTY_BLOCK 0
-#define MAP_PLATFORM_TILE 1
-#define MAP_TOWER_POSITION 2
-#define MAP_BASE_POSITION 3
+#define MAP_EMPTY_BLOCK '0'
+#define MAP_PLATFORM_TILE 'B'   // B -> Block
+#define MAP_TOWER_POSITION 'T'  // T -> Tower
+#define MAP_BASE_POSITION 'H'   // H -> Home
 
 #endif

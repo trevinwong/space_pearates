@@ -9,9 +9,14 @@ Entity BaseFactory::createBase(glm::vec2 position)
   Program *program = new Program(shader_path("sprite.vert"), shader_path("sprite.frag"));
   SpriteComponent *spriteComponent = new SpriteComponent(program, new Texture());
   TransformComponent *transformComponent = new TransformComponent(position, BASE_SIZE, 0.0f);
-  ColorComponent *colorComponent = new ColorComponent(BASE_COLOUR); 
+  ColorComponent *colorComponent = new ColorComponent(BASE_COLOUR);
+
+  Program *billboardProgram = new Program(shader_path("billboard.vert"), shader_path("billboard.frag"));
+  HealthComponent *health = new HealthComponent(billboardProgram);
+
   baseEntity.setComponent<SpriteComponent>(spriteComponent);
   baseEntity.setComponent<TransformComponent>(transformComponent);
   baseEntity.setComponent<ColorComponent>(colorComponent);
+  baseEntity.setComponent<HealthComponent>(health);
   return baseEntity;
 }
