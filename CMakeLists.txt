@@ -61,6 +61,8 @@ set(SOURCE_FILES_CORE
 	src/EntityFactories/tile_factory.hpp
 	src/EntityFactories/resource_factory.cpp
 	src/EntityFactories/resource_factory.hpp
+	src/EntityFactories/waveset_manager_factory.cpp
+	src/EntityFactories/waveset_manager_factory.hpp
 	src/Components/base_component.hpp
 	src/EntityFactories/projectile_entity_factory.cpp
 	src/EntityFactories/projectile_entity_factory.hpp
@@ -126,8 +128,8 @@ set(SOURCE_FILES_CORE
 	src/Components/resource_component.hpp
 	src/Components/animated_component.cpp
 	src/Components/animated_component.hpp
-	src/Components/wave_phase_component.cpp
-	src/Components/wave_phase_component.hpp
+	src/Components/waveset_component.cpp
+	src/Components/waveset_component.hpp
 	src/Systems/event_system.cpp
 	src/Systems/event_system.hpp
 	src/Systems/sprite_system.cpp
@@ -158,10 +160,9 @@ set(SOURCE_FILES_CORE
 	src/Systems/enemy_system.hpp
 	src/Systems/enemy_spawn_system.cpp
 	src/Systems/enemy_spawn_system.hpp
-	src/Systems/wave_phase_system.cpp
-	src/Systems/wave_phase_system.hpp
-	src/Enemies/enemy.cpp
-	src/Enemies/enemy.hpp
+	src/Utility/waveset_structs.hpp
+	src/Systems/waveset_system.cpp
+	src/Systems/waveset_system.hpp
 	src/line.hpp
 	src/line.cpp
 	src/Systems/resource_system.cpp

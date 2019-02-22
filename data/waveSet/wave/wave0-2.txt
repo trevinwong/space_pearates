@@ -1,0 +1,15 @@
+5
+cluster0.txt 1
+cluster0.txt 2
+cluster0.txt 3
+cluster0.txt 4
+cluster0.txt 5
+cluster1.txt 10
+cluster1.txt 11
+cluster1.txt 12
+cluster1.txt 13
+cluster1.txt 14
+cluster1.txt 15
+cluster3.txt 20
+cluster2.txt 25
+cluster2.txt 26

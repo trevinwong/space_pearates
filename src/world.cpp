@@ -39,15 +39,17 @@ void World::init(vec2 screen)
   vector<Entity> towerUiEntities = TowerUiEntityFactory::createTowerUiButtons();
   for (Entity towerUiEntity : towerUiEntities)
     entityManager.addEntity(towerUiEntity);
-	WavePhaseSystem wpsys = WavePhaseSystem();
-	//cluster item = wpsys.readClusterDataFile(cluster_path("test.txt"));
-	int a = 0; //Test code
+	
+	//WavesetManagerFactory waveFact;
+	Entity w = WavesetManagerFactory::build(waveset_path("waveset0.txt"));
+	entityManager.addEntity(w);
 }
 
 void World::update(float dt)
 {
-  enemySpawnSystem.spawnEnemy(entityManager);
-  enemySpawnSystem.reduceElapsedTime(entityManager, dt);
+  //enemySpawnSystem.spawnEnemy(entityManager);
+  //enemySpawnSystem.reduceElapsedTime(entityManager, dt);
+	wavesetSystem.mainWavesetAction(entityManager, dt);
 
   enemySystem.move(dt, entityManager);
 
@@ -70,18 +72,8 @@ void World::update(float dt)
 
   // OffScreen garbage check
   projectileGarbageSystem.destroyOffScreenEntities(entityManager);
-  resourceSystem.handleResourceSpawnAndDespawn(entityManager, dt);
-
-  /*
-  for (shared_ptr<Entity> e: entities) {
-    CollisionComponent *collision = e->getComponent<CollisionComponent>();
-    TransformComponent *transform = e->getComponent<TransformComponent>();
-    if (collision != nullptr and transform != nullptr) {
-      printVec2("transform", transform->position);
-      printVec2("collision", collision->position);
-    }
-  }
-  */
+	resourceSystem.handleResourceSpawnAndDespawn(entityManager, dt);
+	
 }
 
 void World::processInput(float dt)
