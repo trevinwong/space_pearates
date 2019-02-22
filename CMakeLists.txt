@@ -130,6 +130,8 @@ set(SOURCE_FILES_CORE
 	src/utility.hpp
 	src/text.cpp
 	src/text.hpp
+	src/hud.cpp
+	src/hud.hpp
 	src/world.cpp
 	src/world.hpp
 )

@@ -2,7 +2,7 @@
 #define WORLD_H
 
 #include "utility.hpp"
-#include "text.hpp"
+#include "hud.hpp"
 #include "Enemies/enemy.hpp"
 #include "entity_manager.hpp"
 #include "Systems/tile_map_system.hpp"
@@ -36,7 +36,7 @@ public:
   GLboolean keys[1024];
   GLboolean keysProcessed[1024];
 private:
-  Text text;
+  HUD hud;
   EntityManager entityManager;
   EventSystem eventSystem;
   SpriteSystem spriteSystem;
