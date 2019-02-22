@@ -17,7 +17,8 @@ namespace ComponentType {
     projectile,
 		tile,
     resource,
-    max_count 
+    animated,
+    max_count
   };
 }
 
