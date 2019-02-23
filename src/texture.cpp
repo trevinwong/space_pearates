@@ -3,7 +3,6 @@
 Texture::Texture(const GLchar *file, GLboolean alpha)
   : width(0), height(0), internalFormat(GL_RGB), imageFormat(GL_RGB), wrapS(GL_REPEAT), wrapT(GL_REPEAT), filterMin(GL_LINEAR), filterMax(GL_LINEAR)
 {
-  //cout << "GenTextures in Texture.cpp" << endl;
   glGenTextures(1, &this->ID);
   if (alpha)
   {
@@ -25,7 +24,6 @@ Texture::Texture()
   GLubyte data[] = { 255, 255, 255, 255 };
   glBindTexture(GL_TEXTURE_2D, ID);
   glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 1, 1, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
-  // Not sure if these are even needed
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
