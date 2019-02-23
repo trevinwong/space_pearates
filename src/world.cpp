@@ -37,6 +37,9 @@ void World::update(float dt)
   enemySpawnSystem.spawnEnemy(entityManager);
   enemySpawnSystem.reduceElapsedTime(entityManager, dt);
 
+	enemySystem.getMap(entityManager);
+	enemySystem.move(dt, entityManager);
+
   vector<shared_ptr<Entity>> entities = entityManager.getEntities();
   playerSystem.interpInput(entityManager, dt, keys, keysProcessed);
   physicsSystem.moveEntities(entityManager, dt);
