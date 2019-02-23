@@ -20,8 +20,7 @@ class TowerAttackSystem {
   public:
     TowerAttackSystem();
     ~TowerAttackSystem();
-    void checkRangeAndShootAimProjectiles(EntityManager& entityManager);
-    void checkRangeAndShootSpreadProjectiles(EntityManager& entityManager);
+    void checkRangeAndShootProjectiles(EntityManager& entityManager);
     void reduceElapsedTimeToNextFire(EntityManager& entityManager, float dt);
 };
 

@@ -9,7 +9,7 @@
   Each tower ui button has one of this component
   contains size, position and RGBA
 */
-class TowerUiButtonComponent : public BaseComponent, public SpriteComponent {
+class TowerUiButtonComponent : public SpriteComponent {
   public:
     TowerUiButtonComponent(int _relativeIndex, Program *_program, Texture *_texture);
     ~TowerUiButtonComponent();

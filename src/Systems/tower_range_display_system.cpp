@@ -15,7 +15,7 @@ void TowerRangeDisplaySystem::drawRanges(EntityManager & entityManager, glm::mat
   vector<shared_ptr<Entity>> map_entities =
     entityManager.getEntities(entityManager.getComponentChecker(vector<int> {ComponentType::map}));
   vector<shared_ptr<Entity>> tower_entities =
-    entityManager.getEntitiesHasOneOf(entityManager.getComponentChecker(vector<int> {ComponentType::fire_tower_range_sprite, ComponentType::light_tower_range_sprite}));
+    entityManager.getEntities(entityManager.getComponentChecker(vector<int> {ComponentType::tower_range_sprite}));
 
   // cannot find map or player
   // or there is no tower in the world now
@@ -62,18 +62,13 @@ void TowerRangeDisplaySystem::drawRanges(EntityManager & entityManager, glm::mat
         float towerRadius = towerAttackComponent->getAttackRange();
 
         // shootRangeCircleCenterPosition -> drawRangesHelper function
-        glm::vec2 relativeFirePosition = towerAttackComponent->getRelativeFirePosition();
+        glm::vec2 relativeFirePosition = towerAttackComponent->relativeFirePosition;
         glm::vec2 shootRangeCircleCenterPosition(towerCenterPosition + towerSize * relativeFirePosition);
 
-        // fireTowerRangeSpriteComponent -> drawRangesHelper function
-        FireTowerRangeSpriteComponent *fireTowerRangeSpriteComponent = e->getComponent<FireTowerRangeSpriteComponent>();
-        // draw range
-        drawRangesHelper(fireTowerRangeSpriteComponent, shootRangeCircleCenterPosition, towerRadius, projection);
-
         // lightTowerRangeSpriteComponent -> drawRangesHelper function
-        LightTowerRangeSpriteComponent *lightTowerRangeSpriteComponent = e->getComponent<LightTowerRangeSpriteComponent>();
+        TowerRangeSpriteComponent *towerRangeSpriteComponent = e->getComponent<TowerRangeSpriteComponent>();
         // draw range
-        drawRangesHelper(lightTowerRangeSpriteComponent, shootRangeCircleCenterPosition, towerRadius, projection);
+        drawRangesHelper(towerRangeSpriteComponent, shootRangeCircleCenterPosition, towerRadius, projection);
       }
     }
     

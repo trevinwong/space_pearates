@@ -66,8 +66,6 @@ set(SOURCE_FILES_CORE
 	src/Events/event.hpp
 	src/Events/collision_event.cpp
 	src/Events/collision_event.hpp
-  src/Events/operate_tower_event.cpp
-	src/Events/operate_tower_event.hpp
 	src/Components/collision_component.cpp
 	src/Components/collision_component.hpp
 	src/Components/color_component.cpp
@@ -86,12 +84,11 @@ set(SOURCE_FILES_CORE
 	src/Components/TowerComponents/tower_meta_component.hpp
 	src/Components/TowerComponents/tower_attack_component.cpp
 	src/Components/TowerComponents/tower_attack_component.hpp
+	src/Components/TowerComponents/tower_range_sprite_component.hpp
 	src/Components/TowerComponents/fire_tower_attack_component.cpp
 	src/Components/TowerComponents/fire_tower_attack_component.hpp
-	src/Components/TowerComponents/fire_tower_range_sprite_component.hpp
   src/Components/TowerComponents/light_tower_attack_component.cpp
 	src/Components/TowerComponents/light_tower_attack_component.hpp
-	src/Components/TowerComponents/light_tower_range_sprite_component.hpp
   src/Components/TowerUI/build_tower_ui_component.cpp
   src/Components/TowerUI/build_tower_ui_component.hpp
   src/Components/TowerUI/operate_tower_ui_component.cpp

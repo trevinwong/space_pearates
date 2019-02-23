@@ -6,7 +6,6 @@
 #include "Systems/enemy_system.hpp"
 #include "Systems/enemy_spawn_system.hpp"
 #include "entity_manager.hpp"
-#include "Events/operate_tower_event.hpp"
 #include "Systems/tile_map_system.hpp"
 #include "Systems/event_system.hpp"
 #include "Systems/sprite_system.hpp"

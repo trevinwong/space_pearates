@@ -23,7 +23,7 @@ Entity TowerEntityFactory::createFireTower(glm::vec2 towerCenterBottomPosition, 
   // TowerRangeSpriteComponent
   Program *towerRangeProgram = new Program(shader_path("sprite.vert"), shader_path("sprite.frag"));
   Texture *towerRangeTexture = new Texture(texture_path("fire_tower_range.png"), true);
-  FireTowerRangeSpriteComponent *fireTowerRangeSpriteComponent = new FireTowerRangeSpriteComponent(towerRangeProgram, towerRangeTexture);
+  TowerRangeSpriteComponent *towerRangeSpriteComponent = new TowerRangeSpriteComponent(towerRangeProgram, towerRangeTexture);
 
   // Fire Tower Attack Component
   glm::vec2 relativeFirePosition(0.0, -0.3);
@@ -43,7 +43,7 @@ Entity TowerEntityFactory::createFireTower(glm::vec2 towerCenterBottomPosition, 
   towerEntity.setComponent<TowerMetaComponent>(towerMetaComponent);
   towerEntity.setComponent<HealthComponent>(health);
   towerEntity.setComponent<FireTowerAttackComponent>(fireTowerAttackComponent);
-  towerEntity.setComponent<FireTowerRangeSpriteComponent>(fireTowerRangeSpriteComponent);
+  towerEntity.setComponent<TowerRangeSpriteComponent>(towerRangeSpriteComponent);
 
   return towerEntity;
 }
@@ -71,10 +71,10 @@ Entity TowerEntityFactory::createLightTower(glm::vec2 towerCenterBottomPosition,
   // TowerRangeSpriteComponent
   Program *towerRangeProgram = new Program(shader_path("sprite.vert"), shader_path("sprite.frag"));
   Texture *towerRangeTexture = new Texture(texture_path("light_tower_range.png"), true);
-  LightTowerRangeSpriteComponent *lightTowerRangeSpriteComponent = new LightTowerRangeSpriteComponent(towerRangeProgram, towerRangeTexture);
+  TowerRangeSpriteComponent *towerRangeSpriteComponent = new TowerRangeSpriteComponent(towerRangeProgram, towerRangeTexture);
 
 
-  // Fire Tower Attack Component
+  // Light Tower Attack Component
   glm::vec2 relativeFirePosition(0.0, -0.3);
   float attackRange = 180.0f;
   float fireRate = 4.0f;
@@ -93,7 +93,7 @@ Entity TowerEntityFactory::createLightTower(glm::vec2 towerCenterBottomPosition,
   towerEntity.setComponent<HealthComponent>(health);
   towerEntity.setComponent<TowerMetaComponent>(towerMetaComponent);
   towerEntity.setComponent<LightTowerAttackComponent>(lightTowerAttackComponent);
-  towerEntity.setComponent<LightTowerRangeSpriteComponent>(lightTowerRangeSpriteComponent);
+  towerEntity.setComponent<TowerRangeSpriteComponent>(towerRangeSpriteComponent);
 
   return towerEntity;
 }

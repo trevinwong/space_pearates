@@ -53,8 +53,7 @@ void World::update(float dt)
   towerUiSystem.update(entityManager, dt);
 
   // Towers
-  towerAttackSystem.checkRangeAndShootAimProjectiles(entityManager);
-  towerAttackSystem.checkRangeAndShootSpreadProjectiles(entityManager);
+  towerAttackSystem.checkRangeAndShootProjectiles(entityManager);
   towerAttackSystem.reduceElapsedTimeToNextFire(entityManager, dt);
 
   // OffScreen garbage check

@@ -8,18 +8,13 @@ LightTowerAttackComponent::LightTowerAttackComponent(
   int _projectileAttackPower,
   int _projectileNumberPerShoot
 ) :
-  FireTowerAttackComponent(_relativeFirePosition, _attackRange, _maxLevel, _fireRate, _projectileAttackPower),
+  TowerAttackComponent(_relativeFirePosition, _attackRange, _maxLevel, _fireRate, _projectileAttackPower),
   projectileNumberPerShoot(_projectileNumberPerShoot)
 {
-}
-
-LightTowerAttackComponent::~LightTowerAttackComponent()
-{
-  FireTowerAttackComponent::~FireTowerAttackComponent();
 }
 
 int LightTowerAttackComponent::getProjectileNumberPerShoot()
 {
   // light tower can shoot more in upper levels
-  return this->projectileNumberPerShoot * (this->getCurrentLevel() + 1);
+  return this->projectileNumberPerShoot * (this->currentLevel + 1);
 }

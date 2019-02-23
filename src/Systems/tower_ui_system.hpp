@@ -5,7 +5,6 @@
 #include "../utility.hpp"
 #include "../entity.hpp"
 #include "../entity_manager.hpp"
-#include "../Events/operate_tower_event.hpp"
 #include "event_system.hpp"
 #include "../EntityFactories/tower_entity_factory.hpp"
 #include "../Components/sprite_component.hpp"
