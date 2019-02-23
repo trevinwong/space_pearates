@@ -9,11 +9,12 @@
 #include "Components/resource_component.hpp"
 #include "Components/movement_component.hpp"
 #include "Components/collision_component.hpp"
+#include "Components/animated_component.hpp"
 
 class ResourceFactory
 {
 public:
-	Entity build(glm::vec2 position, glm::vec2 scale);
+  static Entity build(vec2 position, vec2 scale);
 };
 
 #endif

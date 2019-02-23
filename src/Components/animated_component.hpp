@@ -7,8 +7,7 @@
 class AnimatedComponent : public BaseComponent
 {
 public:
-  AnimatedComponent(glm::vec2 _spriteDims, int _numFrames, float _frameRate);
-  ~AnimatedComponent();
+  AnimatedComponent(int _numFrames, float _frameRate);
   static const int typeID = ComponentType::animated;
   inline virtual int getTypeID() const { return typeID; };
 
@@ -18,7 +17,6 @@ public:
   int currFrame = 0;
   int numFrames;
   float frameRate;
-  glm::vec2 spriteDims;
 };
 
 #endif
