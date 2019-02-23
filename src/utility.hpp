@@ -13,6 +13,7 @@
 #include <fstream>
 #include <iostream>
 #include <vector>
+#include <map>
 #include <unordered_map>
 #include <memory>
 #include <bitset>
@@ -22,6 +23,7 @@
 
 using std::string; 
 using std::vector;
+using std::map;
 using std::unordered_map;
 using std::cout;
 using std::endl;
@@ -65,7 +67,7 @@ void printVec3(string name, vec3 vec);
 #define SDL_MAIN_HANDLED // otherwise windows system cannot find entry point
 #include <SDL.h>
 #include <SDL_mixer.h> // audio
-#include <stb_image.h> // loading images 
+#include <stb_image.h> // loading images
 
 // To avoid conflicts with Windows.
 #define NOMINMAX
@@ -79,6 +81,7 @@ void printVec3(string name, vec3 vec);
 #define audio_path(name) data_path  "/audio/" name
 #define mesh_path(name) data_path  "/meshes/" name
 #define map_path(name) data_path  "/map/" name
+#define font_path(name) data_path  "/fonts/" name
 
 #define SCREEN_WIDTH 1280
 #define SCREEN_HEIGHT 800

@@ -2,6 +2,7 @@
 #define WORLD_H
 
 #include "utility.hpp"
+#include "hud.hpp"
 #include "Systems/enemy_system.hpp"
 #include "Systems/enemy_spawn_system.hpp"
 #include "entity_manager.hpp"
@@ -37,6 +38,7 @@ public:
   GLboolean keys[1024];
   GLboolean keysProcessed[1024];
 private:
+  HUD hud;
   EntityManager entityManager;
   EventSystem eventSystem;
   SpriteSystem spriteSystem;
