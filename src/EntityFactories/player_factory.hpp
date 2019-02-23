@@ -14,8 +14,7 @@
 class PlayerFactory
 {
 public:
-	Entity build();
-private:
+  static Entity build(vec2 translation, vec2 scale);
 };
 
 #endif

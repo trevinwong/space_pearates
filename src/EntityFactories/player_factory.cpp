@@ -1,32 +1,30 @@
 #include "player_factory.hpp"
 
-Entity PlayerFactory::build()
+Entity PlayerFactory::build(vec2 translation, vec2 scale)
 {
-	Entity e;
-	Program *program = new Program(shader_path("sprite.vert"), shader_path("sprite.frag"));
-	Texture *texture = new Texture(texture_path("player.png"), true);
+  Program *program = new Program(shader_path("sprite.vert"), shader_path("sprite.frag"));
+  Texture *texture = new Texture(texture_path("player.png"), true);
 
-	AnimatedComponent *animatedComponent = new AnimatedComponent(glm::vec2(0.25,0.0), 4, 0.2);
+  SpriteComponent *sprite = new SpriteComponent(program, texture);
+  ColorComponent *color = new ColorComponent(glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
+  AnimatedComponent *animated = new AnimatedComponent(4, 0.2);
 
-	SpriteComponent *spriteComponent = new SpriteComponent(program, texture);
-	ColorComponent *colorComponent = new ColorComponent(glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
-	MovementComponent *movementComponent = new MovementComponent(glm::vec2(0.0f, 0.0f), glm::vec2(0.0f, 0.0f), vec2(300.0f, 250.0f), vec2(1000.0f, 600.0f));
-	movementComponent->offScreenOK = false;
-	PlayerComponent *playerComponent = new PlayerComponent();
+  PlayerComponent *player = new PlayerComponent();
+  MovementComponent *movement = new MovementComponent(
+    vec2(0.0f, 0.0f), vec2(0.0f, 0.0f), vec2(300.0f, 250.0f), vec2(1000.0f, 600.0f));
+  movement->offScreenOK = false;
 
-	glm::vec2 translate = glm::vec2(200.0f, 200.0f);
-	glm::vec2 scale = glm::vec2(50.0f, 65.0f);
-	GLfloat rotate = 0.0f;
-	TransformComponent *transformComponent = new TransformComponent(translate, scale, rotate);
-	CollisionComponent *collisionComponent = new CollisionComponent(translate, scale, rotate);
+  GLfloat rotation = 0.0f;
+  TransformComponent *transform = new TransformComponent(translation, scale, rotation);
+  CollisionComponent *collision = new CollisionComponent(translation, scale, rotation);
 
-	e.setComponent<SpriteComponent>(spriteComponent);
-	e.setComponent<TransformComponent>(transformComponent);
-	e.setComponent<CollisionComponent>(collisionComponent);
-	e.setComponent<ColorComponent>(colorComponent);
-	e.setComponent<MovementComponent>(movementComponent);
-	e.setComponent<PlayerComponent>(playerComponent);
-
-	e.setComponent<AnimatedComponent>(animatedComponent);
-	return e;
+  Entity e;
+  e.setComponent<SpriteComponent>(sprite);
+  e.setComponent<ColorComponent>(color);
+  e.setComponent<AnimatedComponent>(animated);
+  e.setComponent<PlayerComponent>(player);
+  e.setComponent<MovementComponent>(movement);
+  e.setComponent<TransformComponent>(transform);
+  e.setComponent<CollisionComponent>(collision);
+  return e;
 }
