@@ -8,7 +8,6 @@
 
 World world;
 
-
 void error_callback(int error, const char* desc)
 {
 	fprintf(stderr, "%d: %s", error, desc);

@@ -1,5 +1,5 @@
-#ifndef MOVEMENT_COMPONENT_H
-#define MOVEMENT_COMPONENT_H
+#ifndef TILE_COMPONENT_H
+#define TILE_COMPONENT_H
 
 #include "utility.hpp"
 #include "base_component.hpp"

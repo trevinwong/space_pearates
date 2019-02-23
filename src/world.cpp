@@ -10,7 +10,8 @@ World::~World()
 
 void World::init(glm::vec2 screen)
 {
-	vector<shared_ptr<Entity>> entities = entityManager.getEntities();
+  hud = HUD(screen.x, screen.y);
+  vector<shared_ptr<Entity>> entities = entityManager.getEntities();
 	projection = glm::ortho(0.0f, static_cast<GLfloat>(screen.x), static_cast<GLfloat>(screen.y), 0.0f, -1.0f, 1.0f);
 	entityManager = EntityManager();
 
@@ -56,6 +57,7 @@ void World::draw()
   spriteSystem.drawSprites(entityManager, projection);
   billboardSystem.drawBillboards(entityManager, projection);
   towerRangeDisplaySystem.drawRanges(entityManager, projection);
+  hud.draw();
 }
 
 void World::destroy()

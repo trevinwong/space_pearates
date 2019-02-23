@@ -127,6 +127,10 @@ set(SOURCE_FILES_CORE
 	src/texture.hpp
 	src/utility.cpp
 	src/utility.hpp
+	src/text.cpp
+	src/text.hpp
+	src/hud.cpp
+	src/hud.hpp
 	src/world.cpp
 	src/world.hpp
 )
@@ -166,15 +170,16 @@ if (OPENGL_FOUND)
    target_link_libraries(${PROJECT_NAME} PUBLIC ${OPENGL_gl_LIBRARY})
 endif()
 
-# glfw, sdl could be precompiled (on windows) or installed by a package manager (on OSX and Linux)
+# glfw, sdl and freetype could be precompiled (on windows) or installed by a package manager (on OSX and Linux)
+set(FREETYPE_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/ext/freetype/include")
 
 if (IS_OS_LINUX OR IS_OS_MAC)
     # Try to find packages rather than to use the precompiled ones
     # Since we're on OSX or Linux, we can just use pkgconfig.
     find_package(PkgConfig REQUIRED)
-
+		find_package(Freetype REQUIRED)
+		include_directories($(FREETYPE_INCLUDE_DIRS))
     pkg_search_module(GLFW REQURIED glfw3)
-
     pkg_search_module(SDL2 REQURIED sdl2)
     pkg_search_module(SDL2MIXER REQURIED SDL2_mixer)
 
@@ -188,29 +193,38 @@ elseif (IS_OS_WINDOWS)
 # https://stackoverflow.com/questions/17126860/cmake-link-precompiled-library-depending-on-os-and-architecture
     set(GLFW_FOUND TRUE)
     set(SDL2_FOUND TRUE)
+    set(FREETYPE_FOUND TRUE)
 
     set(GLFW_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/ext/glfw/include")
     set(SDL2_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/ext/sdl/include/SDL")
 
     if (${CMAKE_SIZEOF_VOID_P} MATCHES "8")
+        set(FREETYPE_LIBRARIES "${CMAKE_CURRENT_SOURCE_DIR}/ext/freetype/win64/freetype.lib")
         set(GLFW_LIBRARIES "${CMAKE_CURRENT_SOURCE_DIR}/ext/glfw/lib/glfw3dll-x64.lib")
         set(SDL2_LIBRARIES "${CMAKE_CURRENT_SOURCE_DIR}/ext/sdl/lib/SDL2-x64.lib")
-	set(SDL2MIXER_LIBRARIES "${CMAKE_CURRENT_SOURCE_DIR}/ext/sdl/lib/SDL2_mixer-x64.lib")
+		set(SDL2MIXER_LIBRARIES "${CMAKE_CURRENT_SOURCE_DIR}/ext/sdl/lib/SDL2_mixer-x64.lib")
 
-	set(GLFW_DLL "${CMAKE_CURRENT_SOURCE_DIR}/ext/glfw/lib/glfw3-x64.dll")
-	set(SDL_DLL "${CMAKE_CURRENT_SOURCE_DIR}/ext/sdl/lib/SDL2-x64.dll")
-	set(SDLMIXER_DLL "${CMAKE_CURRENT_SOURCE_DIR}/ext/sdl/lib/SDL2_mixer-x64.dll")
+		set(FREETYPE_DLL "${CMAKE_CURRENT_SOURCE_DIR}/ext/freetype/win64/freetype.dll")
+		set(GLFW_DLL "${CMAKE_CURRENT_SOURCE_DIR}/ext/glfw/lib/glfw3-x64.dll")
+		set(SDL_DLL "${CMAKE_CURRENT_SOURCE_DIR}/ext/sdl/lib/SDL2-x64.dll")
+		set(SDLMIXER_DLL "${CMAKE_CURRENT_SOURCE_DIR}/ext/sdl/lib/SDL2_mixer-x64.dll")
     else()
+        set(FREETYPE_LIBRARIES "${CMAKE_CURRENT_SOURCE_DIR}/ext/freetype/win32/freetype.lib")
         set(GLFW_LIBRARIES "${CMAKE_CURRENT_SOURCE_DIR}/ext/glfw/lib/glfw3dll-x86.lib")
         set(SDL2_LIBRARIES "${CMAKE_CURRENT_SOURCE_DIR}/ext/sdl/lib/SDL2-x86.lib")
-	set(SDL2MIXER_LIBRARIES "${CMAKE_CURRENT_SOURCE_DIR}/ext/sdl/lib/SDL2_mixer-x86.lib")
+		set(SDL2MIXER_LIBRARIES "${CMAKE_CURRENT_SOURCE_DIR}/ext/sdl/lib/SDL2_mixer-x86.lib")
 
-	set(GLFW_DLL "${CMAKE_CURRENT_SOURCE_DIR}/ext/glfw/lib/glfw3-x86.dll")
-	set(SDL_DLL "${CMAKE_CURRENT_SOURCE_DIR}/ext/sdl/lib/SDL2-x86.dll")
-	set(SDLMIXER_DLL "${CMAKE_CURRENT_SOURCE_DIR}/ext/sdl/lib/SDL2_mixer-x86.dll")
+		set(FREETYPE_DLL "${CMAKE_CURRENT_SOURCE_DIR}/ext/freetype/win32/freetype.dll")
+		set(GLFW_DLL "${CMAKE_CURRENT_SOURCE_DIR}/ext/glfw/lib/glfw3-x86.dll")
+		set(SDL_DLL "${CMAKE_CURRENT_SOURCE_DIR}/ext/sdl/lib/SDL2-x86.dll")
+		set(SDLMIXER_DLL "${CMAKE_CURRENT_SOURCE_DIR}/ext/sdl/lib/SDL2_mixer-x86.dll")
     endif()
 
     # Copy and rename dlls
+	add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+        "${FREETYPE_DLL}"
+        "$<TARGET_FILE_DIR:${PROJECT_NAME}>/freetype.dll")
     add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy_if_different
         "${GLFW_DLL}"
@@ -234,18 +248,19 @@ elseif (IS_OS_WINDOWS)
 endif()
 
 # Can't find the include and lib. Quit.
-if (NOT GLFW_FOUND OR NOT SDL2_FOUND)
+if (NOT GLFW_FOUND OR NOT SDL2_FOUND OR NOT FREETYPE_FOUND)
    if (NOT GLFW_FOUND)
       message(FATAL_ERROR "Can't find GLFW." )
-   else ()
+   elseif (NOT SDL2_FOUND)
       message(FATAL_ERROR "Can't find SDL." )
    endif()
 endif()
 
 target_include_directories(${PROJECT_NAME} PUBLIC ${GLFW_INCLUDE_DIRS})
 target_include_directories(${PROJECT_NAME} PUBLIC ${SDL2_INCLUDE_DIRS})
+target_include_directories(${PROJECT_NAME} PUBLIC ${FREETYPE_INCLUDE_DIRS})
 
-target_link_libraries(${PROJECT_NAME} PUBLIC ${GLFW_LIBRARIES} ${SDL2_LIBRARIES} ${SDL2MIXER_LIBRARIES})
+target_link_libraries(${PROJECT_NAME} PUBLIC ${FREETYPE_LIBRARIES} ${GLFW_LIBRARIES} ${SDL2_LIBRARIES} ${SDL2MIXER_LIBRARIES})
 
 # Needed to add this
 if(IS_OS_LINUX)
