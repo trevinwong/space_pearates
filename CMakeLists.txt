@@ -95,6 +95,8 @@ set(SOURCE_FILES_CORE
 	src/Components/map_component.hpp
 	src/Components/resource_component.cpp
 	src/Components/resource_component.hpp
+	src/Components/animated_component.cpp
+	src/Components/animated_component.hpp
 	src/Systems/event_system.cpp
 	src/Systems/event_system.hpp
 	src/Systems/sprite_system.cpp

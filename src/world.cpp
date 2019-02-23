@@ -40,6 +40,7 @@ void World::update(float dt)
   vector<shared_ptr<Entity>> entities = entityManager.getEntities();
   playerSystem.interpInput(entityManager, dt, keys, keysProcessed);
   physicsSystem.moveEntities(entityManager, dt);
+	spriteSystem.updateElapsedTime(dt);
 
   // Towers
   towerAttackSystem.checkRangeAndShootAimProjectiles(entityManager);

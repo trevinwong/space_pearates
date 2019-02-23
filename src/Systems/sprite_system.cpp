@@ -1,5 +1,13 @@
 #include "sprite_system.hpp"
 
+void SpriteSystem::updateElapsedTime(float dt) {
+	elapsedTime += dt;
+}
+
+float SpriteSystem::getElapsedTime() {
+	return elapsedTime;
+}
+
 void SpriteSystem::drawSprites(EntityManager &entityManager, glm::mat4 projection)
 {
 	vector<shared_ptr<Entity>> filtered_entities = entityManager.getEntities(entityManager.getComponentChecker(vector<int> {ComponentType::sprite, ComponentType::transform, ComponentType::color}));
@@ -30,13 +38,51 @@ void SpriteSystem::drawSprites(EntityManager &entityManager, glm::mat4 projectio
 		spriteComponent->program->setMat4("projection", projection);
 		spriteComponent->program->setVec4("spriteColor", colorComponent->RGBA);
 
+		glBindBuffer(GL_ARRAY_BUFFER, spriteComponent->quadVAO);
+
 		// Activate texture unit 0.
 		// We can have multiple texture units to use as uniforms in our shader, but we only need 1.
 		glActiveTexture(GL_TEXTURE0);
+
 		// Bind our texture so we can render it over the quad of our sprite.
 		spriteComponent->texture->bind();
+		
+		// Check if sprite is animated
+		AnimatedComponent *animatedComponent = e->getComponent<AnimatedComponent>();
+		PlayerComponent *playerComponent = e->getComponent<PlayerComponent>();
 
-		// Bind our VAO which contains the quad VBO we defined and our definitions for its coordinates and texture coordinates.
+		if (animatedComponent != nullptr) {
+			
+			if (elapsedTime >= animatedComponent->frameRate) {
+				frame = (animatedComponent->currFrame + 1) % animatedComponent->numFrames;
+				animatedComponent->updateCurrFrame();
+				elapsedTime = 0;
+			} 
+
+			// Modify VBO data for animated sprites 
+			float spriteWidth = animatedComponent->spriteDims.x;
+			float spriteEndX = spriteWidth * frame;
+			float spriteStartX = spriteEndX - spriteWidth;
+	
+			GLfloat vertices[] = {
+			// Pos      // Tex
+			0.0f, 1.0f, spriteStartX, 1.0f,
+			1.0f, 0.0f, spriteEndX, 0.0f,
+			0.0f, 0.0f, spriteStartX, 0.0f,
+
+			0.0f, 1.0f, spriteStartX, 1.0f,
+			1.0f, 1.0f, spriteEndX, 1.0f,
+			1.0f, 0.0f, spriteEndX, 0.0f
+			};
+
+			// get pointer
+			void *ptr = glMapBuffer(GL_ARRAY_BUFFER, GL_WRITE_ONLY);
+			// Copy data into memory
+			memcpy(ptr, vertices, sizeof(vertices));
+			// Tell OpenGL we're done with the pointer
+			glUnmapBuffer(GL_ARRAY_BUFFER);
+		}
+	
 		glBindVertexArray(spriteComponent->quadVAO);
 		// Draw our sprite.
 		glDrawArrays(GL_TRIANGLES, 0, 6);
