@@ -56,7 +56,6 @@ void Enemy::move (float dt, EntityManager& entityManager) {
 			}
 
 		movementComponent->velocity = vel;
-		printVec2("velocity", movementComponent->velocity);
   }
 }
 
