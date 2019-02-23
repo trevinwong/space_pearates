@@ -30,7 +30,6 @@ configure_file("${CMAKE_CURRENT_SOURCE_DIR}/src/project_path.hpp.in" "${CMAKE_CU
 # You can switch to use the file GLOB for simplicity but at your own risk
 # file(GLOB SOURCE_FILES src/*.cpp src/*.hpp)
 
-# FIXME: I wonder why I didn't have to add my billboard shaders here?
 set(SOURCE_FILES_SHADERS
 	shaders/sprite.frag
 	shaders/sprite.vert
@@ -171,16 +170,16 @@ if (OPENGL_FOUND)
    target_link_libraries(${PROJECT_NAME} PUBLIC ${OPENGL_gl_LIBRARY})
 endif()
 
-# glfw, sdl could be precompiled (on windows) or installed by a package manager (on OSX and Linux)
-# freetype too I think...
+# glfw, sdl and freetype could be precompiled (on windows) or installed by a package manager (on OSX and Linux)
+set(FREETYPE_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/ext/freetype/include")
 
 if (IS_OS_LINUX OR IS_OS_MAC)
     # Try to find packages rather than to use the precompiled ones
     # Since we're on OSX or Linux, we can just use pkgconfig.
     find_package(PkgConfig REQUIRED)
-
+		find_package(Freetype REQUIRED)
+		include_directories($(FREETYPE_INCLUDE_DIRS))
     pkg_search_module(GLFW REQURIED glfw3)
-
     pkg_search_module(SDL2 REQURIED sdl2)
     pkg_search_module(SDL2MIXER REQURIED SDL2_mixer)
 
@@ -198,7 +197,6 @@ elseif (IS_OS_WINDOWS)
 
     set(GLFW_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/ext/glfw/include")
     set(SDL2_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/ext/sdl/include/SDL")
-    set(FREETYPE_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/ext/freetype/include")
 
     if (${CMAKE_SIZEOF_VOID_P} MATCHES "8")
         set(FREETYPE_LIBRARIES "${CMAKE_CURRENT_SOURCE_DIR}/ext/freetype/win64/freetype.lib")
@@ -255,8 +253,6 @@ if (NOT GLFW_FOUND OR NOT SDL2_FOUND OR NOT FREETYPE_FOUND)
       message(FATAL_ERROR "Can't find GLFW." )
    elseif (NOT SDL2_FOUND)
       message(FATAL_ERROR "Can't find SDL." )
-   else ()
-      message(FATAL_ERROR "Can't find freetype." )
    endif()
 endif()
 
