@@ -16,7 +16,6 @@
 class BuildTowerUiComponent : public BaseComponent {
   public:
     BuildTowerUiComponent();
-    ~BuildTowerUiComponent();
 
     // Build Tower UI for tower building
     int getCurrentSelectedTowerTypeListIndex();

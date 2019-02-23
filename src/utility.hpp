@@ -106,10 +106,4 @@ void printVec3(string name, vec3 vec);
 #define UPGRADE_TOWER_OPERATION 'U'
 #define FIX_TOWER_OPERATION 'X'
 
-// key press delay (unit: s)
-// a human cannot press and release a key quickly, 
-// but a powerful CPU can refresh many times during the press and release process
-// to avoid reading, or processing, one key press multi-times, we need a delay time
-#define KEY_PRESS_DELAY 0.2f
-
 #endif

@@ -1,10 +1,5 @@
 #include "tower_ui_idle_state.hpp"
 
-TowerUiIdleState::TowerUiIdleState():
-  keyPressTimeDuration(0.0f)
-{
-}
-
 void TowerUiIdleState::input(EntityManager& entityManager, GLboolean keys[])
 {
 
@@ -56,10 +51,8 @@ void TowerUiIdleState::input(EntityManager& entityManager, GLboolean keys[])
 
   // create a new built tower event
   // use "keyPressTimeDuration" to avoid process one key multi-times
-  if ((keys[GLFW_KEY_S] || keys[GLFW_KEY_SPACE]) && keyPressTimeDuration <= 0.0f)
+  if ((keys[GLFW_KEY_S] || keys[GLFW_KEY_SPACE]))
   {
-    keyPressTimeDuration = KEY_PRESS_DELAY;
-
     BUILD_TOWER_UI_BUTTON_TYPE operation;
     // if there is a tower
     if (mapComponent->isTowerAt(playerCenterPosition.x, playerCenterPosition.y))
@@ -81,14 +74,13 @@ void TowerUiIdleState::input(EntityManager& entityManager, GLboolean keys[])
         processBuildNewTower(playerCenterPosition, operation, entityManager);
       }
     }
+    keys[GLFW_KEY_S] = false;
+    keys[GLFW_KEY_SPACE] = false;
   }
 }
 
 void TowerUiIdleState::update(EntityManager& entityManager, float dt)
 {
-  // key press delay time
-  if(keyPressTimeDuration > 0.0f) keyPressTimeDuration -= dt;
-
   // let the ui follow the player
   // increase duration of current state
 

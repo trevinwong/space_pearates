@@ -12,7 +12,6 @@
 class OperateTowerUiComponent : public BaseComponent {
 public:
   OperateTowerUiComponent();
-  ~OperateTowerUiComponent();
     
     // Operate Tower UI
   int getCurrentSelectedTowerOperationListIndex();

@@ -36,19 +36,19 @@ void TowerUiShiftLeftState::update(EntityManager& entityManager, float dt)
     // Update buttons position/size/color
     switch (towerUiButtonComponent->relativeIndex) {
     case LEFT_TOWER_UI_BUTTON_RELATIVE_INDEX:   // left -> right
-      towerUiButtonComponent->position = playerCenterTopPosition + computeInterpulation(towerUiButtonMetaComponent->leftButtonRelativePosition, towerUiButtonMetaComponent->rightButtonRelativePosition);
-      towerUiButtonComponent->size = computeInterpulation(towerUiButtonMetaComponent->leftButtonSize, towerUiButtonMetaComponent->rightButtonSize);
-      towerUiButtonComponent->RGBA = computeInterpulation(towerUiButtonMetaComponent->leftButtonRGBA, towerUiButtonMetaComponent->rightButtonRGBA);
+      towerUiButtonComponent->position = playerCenterTopPosition + computeInterpolation(towerUiButtonMetaComponent->leftButtonRelativePosition, towerUiButtonMetaComponent->rightButtonRelativePosition);
+      towerUiButtonComponent->size = computeInterpolation(towerUiButtonMetaComponent->leftButtonSize, towerUiButtonMetaComponent->rightButtonSize);
+      towerUiButtonComponent->RGBA = computeInterpolation(towerUiButtonMetaComponent->leftButtonRGBA, towerUiButtonMetaComponent->rightButtonRGBA);
       break;
     case MIDDLE_TOWER_UI_BUTTON_RELATIVE_INDEX: // middle -> left
-      towerUiButtonComponent->position = playerCenterTopPosition + computeInterpulation(towerUiButtonMetaComponent->middleButtonRelativePosition, towerUiButtonMetaComponent->leftButtonRelativePosition);
-      towerUiButtonComponent->size = computeInterpulation(towerUiButtonMetaComponent->middleButtonSize, towerUiButtonMetaComponent->leftButtonSize);
-      towerUiButtonComponent->RGBA = computeInterpulation(towerUiButtonMetaComponent->middleButtonRGBA, towerUiButtonMetaComponent->leftButtonRGBA);
+      towerUiButtonComponent->position = playerCenterTopPosition + computeInterpolation(towerUiButtonMetaComponent->middleButtonRelativePosition, towerUiButtonMetaComponent->leftButtonRelativePosition);
+      towerUiButtonComponent->size = computeInterpolation(towerUiButtonMetaComponent->middleButtonSize, towerUiButtonMetaComponent->leftButtonSize);
+      towerUiButtonComponent->RGBA = computeInterpolation(towerUiButtonMetaComponent->middleButtonRGBA, towerUiButtonMetaComponent->leftButtonRGBA);
       break;
     case RIGHT_TOWER_UI_BUTTON_RELATIVE_INDEX: // right -> middle
-      towerUiButtonComponent->position = playerCenterTopPosition + computeInterpulation(towerUiButtonMetaComponent->rightButtonRelativePosition, towerUiButtonMetaComponent->middleButtonRelativePosition);
-      towerUiButtonComponent->size = computeInterpulation(towerUiButtonMetaComponent->rightButtonSize, towerUiButtonMetaComponent->middleButtonSize);
-      towerUiButtonComponent->RGBA = computeInterpulation(towerUiButtonMetaComponent->rightButtonRGBA, towerUiButtonMetaComponent->middleButtonRGBA);
+      towerUiButtonComponent->position = playerCenterTopPosition + computeInterpolation(towerUiButtonMetaComponent->rightButtonRelativePosition, towerUiButtonMetaComponent->middleButtonRelativePosition);
+      towerUiButtonComponent->size = computeInterpolation(towerUiButtonMetaComponent->rightButtonSize, towerUiButtonMetaComponent->middleButtonSize);
+      towerUiButtonComponent->RGBA = computeInterpolation(towerUiButtonMetaComponent->rightButtonRGBA, towerUiButtonMetaComponent->middleButtonRGBA);
       break;
     default:
       break;
@@ -97,7 +97,7 @@ void TowerUiShiftLeftState::update(EntityManager& entityManager, float dt)
 }
 
 template<typename T>
-inline T TowerUiShiftLeftState::computeInterpulation(T start, T end)
+inline T TowerUiShiftLeftState::computeInterpolation(T start, T end)
 {
   if (shiftLeftDuration >= SHIFT_LEFT_TOTAL_TIME) return end;
   if (shiftLeftDuration <= 0) return start;

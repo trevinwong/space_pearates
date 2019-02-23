@@ -18,7 +18,6 @@
 class TowerUiShiftLeftState : public TowerUiStateComponent {
 public:
   TowerUiShiftLeftState();
-  ~TowerUiShiftLeftState() {};
   virtual void input(EntityManager& entities, GLboolean keys[]);
   virtual void update(EntityManager& entities, float dt);
 
@@ -29,7 +28,7 @@ private:
 
   // TODO: make this function reuseable for other animations
   template<typename T>
-  T computeInterpulation(T start, T end);
+  T computeInterpolation(T start, T end);
 };
 
 #endif

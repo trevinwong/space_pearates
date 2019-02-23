@@ -7,9 +7,6 @@
 
 class TowerUiStateComponent : public BaseComponent {
   public:
-    TowerUiStateComponent() {};
-    ~TowerUiStateComponent() {};
-
     // Note:
     // In ECS architecture, components can only contain data, such as position, size, health points etc.
     // Here we use state machine, the function declared here can be considered as variables to indicate current state

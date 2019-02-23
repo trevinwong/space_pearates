@@ -12,7 +12,6 @@
 class TowerUiButtonComponent : public SpriteComponent {
   public:
     TowerUiButtonComponent(int _relativeIndex, Program *_program, Texture *_texture);
-    ~TowerUiButtonComponent();
 
     // those values will be updated during run time
     int relativeIndex;
