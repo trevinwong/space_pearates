@@ -7,9 +7,10 @@
 class TransformComponent : public BaseComponent
 {
 public:
-	TransformComponent(glm::vec2 _position, glm::vec2 _size, GLfloat _rotation);
-	glm::vec2 position;
-	glm::vec2 size;
+	TransformComponent(vec2 _position, vec2 _size, GLfloat _rotation);
+  TransformComponent(vec2 _position, float _scale, GLfloat _rotation);
+	vec2 position;
+	vec2 size;
 	GLfloat rotation;
 
 	bool isCollidingWith(TransformComponent other);

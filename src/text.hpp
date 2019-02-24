@@ -21,8 +21,8 @@ public:
   Text();
   void preprocessGlyphs();
   void setProjectionSize(float width, float height);
-  void render(string text, glm::vec2 position, float scale, glm::vec3 color);
-  void render(string text, GLfloat x, GLfloat y, GLfloat scale, glm::vec3 color);
+  void render(string text, vec2 position, float scale=1.0f, vec3 color=vec3(1.0f, 1.0f, 1.0f));
+  void render(string text, GLfloat x, GLfloat y, GLfloat scale=1.0f, vec3 color=vec3(1.0f, 1.0f, 1.0f));
 
 private:
   void loadGlyphs();

@@ -3,6 +3,7 @@
 
 #include "entity.hpp"
 #include "program.hpp"
+#include "entity_manager.hpp"
 #include "Components/sprite_component.hpp"
 #include "Components/transform_component.hpp"
 #include "Components/color_component.hpp"
@@ -14,7 +15,8 @@
 class ResourceFactory
 {
 public:
-  static Entity build(vec2 position, vec2 scale);
+  static Entity build(vec2 position, float scale=32);
+  static void spawnMany(EntityManager& entities);
 };
 
 #endif

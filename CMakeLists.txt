@@ -165,6 +165,7 @@ set(SOURCE_FILES_CORE
 	src/text.hpp
 	src/hud.cpp
 	src/hud.hpp
+	src/audio_loader.hpp
 	src/world.cpp
 	src/world.hpp
 )

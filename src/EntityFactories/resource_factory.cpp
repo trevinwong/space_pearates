@@ -1,6 +1,6 @@
 #include "resource_factory.hpp"
 
-Entity ResourceFactory::build(vec2 position, vec2 scale)
+Entity ResourceFactory::build(vec2 position, float scale)
 {
   Program *program = new Program(shader_path("sprite.vert"), shader_path("sprite.frag"));
   Texture *texture = new Texture(texture_path("coin_rotating.png"), true);
@@ -25,4 +25,14 @@ Entity ResourceFactory::build(vec2 position, vec2 scale)
   e.setComponent<TransformComponent>(transform);
   e.setComponent<CollisionComponent>(collision);
   return e;
+}
+
+// Just for lazy testing.. spawns some coins along the floor, hardcoded
+void ResourceFactory::spawnMany(EntityManager & entities)
+{
+  vec2 position = vec2(20, 550);
+  for (int i = 0; i < 10; i++) {
+    entities.addEntity(build(position));
+    position.x += SCREEN_WIDTH/10;
+  }
 }
