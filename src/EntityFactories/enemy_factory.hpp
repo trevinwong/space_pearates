@@ -10,6 +10,7 @@
 #include "Components/health_component.hpp"
 #include "Components/enemy_component.hpp"
 #include "Components/enemy_spawn_component.hpp"
+#include "Components/collision_component.hpp"
 
 class EnemyFactory
 {

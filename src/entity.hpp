@@ -55,6 +55,7 @@ public:
     return id == other.id;
   };
 
+	void print();
 private:
 	std::vector<BaseComponent*> components;
 	std::bitset<ComponentType::max_count> has_components;

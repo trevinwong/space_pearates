@@ -18,3 +18,11 @@ bool Entity::hasOneOfComponents(std::bitset<ComponentType::max_count> component_
   return ((component_checker & has_components).any());
 }
 
+void Entity::print()
+{
+	cout << "Entity ID: " << id << endl;
+	for (BaseComponent* component : components) {
+		if (component != nullptr) cout << component->getTypeID() << "  ";
+	}
+	cout << endl;
+}

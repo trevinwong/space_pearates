@@ -62,6 +62,8 @@ set(SOURCE_FILES_CORE
 	src/Components/base_component.hpp
 	src/EntityFactories/projectile_entity_factory.cpp
 	src/EntityFactories/projectile_entity_factory.hpp
+	src/math.hpp
+	src/math.cpp
 	src/subscriber.hpp
 	src/Events/event.hpp
 	src/Events/collision_event.cpp
