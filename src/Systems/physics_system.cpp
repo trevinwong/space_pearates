@@ -30,7 +30,7 @@ void PhysicsSystem::moveEntities(EntityManager &entityManager, float dt) {
 		vec2 newVelocity = {movement->velocity.x + movement->accel.x * dt, movement->velocity.y + movement->accel.y * dt};
 		if (glm::dot(movement->velocity.x, newVelocity.x) < 0) {
 			movement->accel.x = 0;
-			movement->velocity.x = 0;
+			newVelocity.x = 0;
 		}
 		movement->velocity = glm::clamp(newVelocity, -movement->maxVelocity, movement->maxVelocity);
 
@@ -70,7 +70,7 @@ void PhysicsSystem::adjustPositionAroundTiles(EntityManager &entityManager, shar
 			vec2 left_intersect = player_to_tile.getLineSegsIntersection(left_edge);
 			vec2 right_intersect = player_to_tile.getLineSegsIntersection(right_edge);
 
-			float epsilon = 6.0f;
+			float epsilon = radius / 2.5;
 			bool top_intersect_valid = (distance(center, top_intersect) <= radius + epsilon);
 			bool bottom_intersect_valid = (distance(center, bottom_intersect) <= radius + epsilon);
 			bool left_intersect_valid = (distance(center, left_intersect) <= radius + epsilon);
