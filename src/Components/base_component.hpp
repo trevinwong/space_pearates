@@ -25,6 +25,7 @@ namespace ComponentType {
 		tile,
     resource,
     animated,
+		damage,
     max_count
   };
 }
