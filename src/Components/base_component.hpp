@@ -26,6 +26,7 @@ namespace ComponentType {
     resource,
     animated,
 		damage,
+		death,
     max_count
   };
 }
