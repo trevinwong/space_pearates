@@ -20,7 +20,6 @@ void World::init(vec2 screen)
   ResourceFactory::spawnMany(entityManager);
 
   vec2 playerSpawnPt = vec2(screen.x / 8, screen.y / 8);
-  printVec2("playerSpawnPt", playerSpawnPt);
 	Entity p = PlayerFactory::build(playerSpawnPt, vec2(50.0f, 65.0f));
 	entityManager.addEntity(p);
 

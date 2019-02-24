@@ -54,16 +54,8 @@ void CollisionSystem::checkCollisions(EntityManager &entityManager)
 
 void CollisionSystem::handleCollision(shared_ptr<Entity> e1, shared_ptr<Entity> e2, EntityManager &entityManager)
 {
-	PlayerComponent *player = e1->getComponent<PlayerComponent>();	
-	EnemyComponent *enemy = e2->getComponent<EnemyComponent>();
-
-	if (player != nullptr && enemy != nullptr) {
-			cout << "player and enemy collided" << endl;
-	}
-
   ResourceComponent *resource = e2->getComponent<ResourceComponent>();
   if (player != nullptr && resource != nullptr) {
-    cout << "player and resource collided" << endl;
     entityManager.removeEntity(e2);
     HUD::getInstance().resource_count++;
     Mix_PlayChannel(-1, AudioLoader::getInstance().collect_coin_sound, 0);

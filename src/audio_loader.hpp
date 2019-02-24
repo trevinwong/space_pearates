@@ -20,7 +20,6 @@ public:
 private:
   AudioLoader()
   {
-    cout << "loading audio..." << endl;
     collect_coin_sound = Mix_LoadWAV(audio_path("collect_coin.wav"));
   }
 };
