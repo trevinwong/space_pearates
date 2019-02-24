@@ -1,7 +1,7 @@
 #include "tower_attack_system.hpp"
 
 TowerAttackSystem::TowerAttackSystem() {
-  
+
 }
 
 TowerAttackSystem::~TowerAttackSystem() {
@@ -10,9 +10,8 @@ TowerAttackSystem::~TowerAttackSystem() {
 
 void TowerAttackSystem::checkRangeAndShootAimProjectiles(EntityManager& entityManager) {
 
-  // FIXME: so far use player to test shooting system, change to use enemies
   vector<shared_ptr<Entity>> enemyEntities =
-    entityManager.getEntities(entityManager.getComponentChecker(vector<int> {ComponentType::player}));
+    entityManager.getEntities(entityManager.getComponentChecker(vector<int> {ComponentType::enemy}));
   vector<shared_ptr<Entity>> towerEntities =
     entityManager.getEntities(entityManager.getComponentChecker(vector<int> {ComponentType::fire_tower}));
 
@@ -37,8 +36,8 @@ void TowerAttackSystem::checkRangeAndShootAimProjectiles(EntityManager& entityMa
     glm::vec2 firePointPosition(towerCenterPosition + towerSize * relativeFirePosition);
 
     float towerRadius = fireTowerAttackComponent->getAttackRange();
-    
-    // loop all 
+
+    // loop all
     for (shared_ptr<Entity> enemyEntity : enemyEntities) {
       TransformComponent *enemyTransformComponent = enemyEntity->getComponent<TransformComponent>();
       glm::vec2 enemyPosition = enemyTransformComponent->position;

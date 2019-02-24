@@ -1,5 +1,5 @@
-#ifndef ENEMY_FACTORY_H
-#define ENEMY_FACTORY_H
+#ifndef ENEMY_SPAWN_FACTORY_H
+#define ENEMY_SPAWN_FACTORY_H
 
 #include "entity.hpp"
 #include "program.hpp"
@@ -11,10 +11,11 @@
 #include "Components/enemy_component.hpp"
 #include "Components/enemy_spawn_component.hpp"
 
-class EnemyFactory
+
+class EnemySpawnFactory
 {
 public:
-  static Entity build(vec2 position, vec2 scale, vec2 velocity);
+  static Entity build(float spawnRate);
 };
 
 #endif

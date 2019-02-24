@@ -15,8 +15,6 @@ void World::init(vec2 screen)
 	projection = glm::ortho(0.0f, static_cast<GLfloat>(screen.x), static_cast<GLfloat>(screen.y), 0.0f, -1.0f, 1.0f);
 	entityManager = EntityManager();
 
-	enemy.loadEnemy(screen, entityManager);
-
 	Entity r = ResourceFactory::build(vec2(screen.x / 2, 50), vec2(16, 16));
 	entityManager.addEntity(r);
 
@@ -26,14 +24,22 @@ void World::init(vec2 screen)
 	Entity mapDataEntity = MapEntityFactory::createMapEntityFromFile(map_path("map0.txt"));
 	entityManager.addEntity(mapDataEntity);
 	tileMapSystem.loadTileMap(entityManager);
+
+  entityManager.addEntity(EnemySpawnFactory::build(2.0));
+
+	enemySystem.getMap(entityManager);
 	physicsSystem.setScreenInfo(screen);
 }
 
 void World::update(float dt)
 {
-  enemy.move();
+  enemySpawnSystem.spawnEnemy(entityManager);
+  enemySpawnSystem.reduceElapsedTime(entityManager, dt);
+
+	enemySystem.move(dt, entityManager);
+
   vector<shared_ptr<Entity>> entities = entityManager.getEntities();
-	playerSystem.interpInput(entityManager, dt, keys, keysProcessed);
+  playerSystem.interpInput(entityManager, dt, keys, keysProcessed);
   physicsSystem.moveEntities(entityManager, dt);
 	spriteSystem.updateElapsedTime(dt);
 

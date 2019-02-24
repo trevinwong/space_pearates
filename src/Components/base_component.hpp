@@ -9,11 +9,13 @@ namespace ComponentType {
     collision,
     map,
     movement,
+    enemy,
+    enemy_spawn,
     player,
     health,
     tower_meta,
-    fire_tower,               
-    fire_tower_range_sprite,  
+    fire_tower,
+    fire_tower_range_sprite,
     projectile,
 		tile,
     resource,
@@ -22,7 +24,7 @@ namespace ComponentType {
   };
 }
 
-class BaseComponent 
+class BaseComponent
 {
 public:
 	virtual int getTypeID() const = 0;
