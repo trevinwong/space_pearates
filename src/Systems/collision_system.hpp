@@ -19,14 +19,13 @@ using EntityGrid = vector<vector<vector<shared_ptr<Entity>>>>;
 class CollisionSystem
 {
 public:
-	void setScreenInfo(vec2 screen);
-	EntityGrid preprocessEntitiesIntoGrid(vector<shared_ptr<Entity>> entities);
-	void checkCollisions(EntityManager &entityManager);
+  void setScreenInfo(vec2 screen);
+  EntityGrid preprocessEntitiesIntoGrid(vector<shared_ptr<Entity>> entities);
+  void checkCollisions(EntityManager &entityManager);
 private:
-	vec2 screen;
-	int NUM_CELLS_IN_ROW = 10;
-	int NUM_CELLS_IN_COLUMN = 10;
-	void handleCollision(shared_ptr<Entity> e1, shared_ptr<Entity> e2, EntityManager &entityManager);
+  vec2 screen;
+  float MIN_CELL_SIZE = 66.0f; //Player size
+  void handleCollision(shared_ptr<Entity> e1, shared_ptr<Entity> e2, EntityManager &entityManager);
 };
 
 #endif

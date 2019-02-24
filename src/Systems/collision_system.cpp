@@ -7,12 +7,14 @@ void CollisionSystem::setScreenInfo(vec2 _screen)
 
 EntityGrid CollisionSystem::preprocessEntitiesIntoGrid(vector<shared_ptr<Entity>> entities)
 {
-  EntityGrid grid(NUM_CELLS_IN_ROW, vector<vector<shared_ptr<Entity>>>(NUM_CELLS_IN_COLUMN, vector<shared_ptr<Entity>>{}));
-	float cell_width = screen.x / NUM_CELLS_IN_ROW;
-	float cell_height = screen.y / NUM_CELLS_IN_COLUMN;
+  int num_cells_in_row = screen.x / MIN_CELL_SIZE;
+  int num_cells_in_col = screen.y / MIN_CELL_SIZE;
+	float cell_width = screen.x / num_cells_in_row;
+	float cell_height = screen.y / num_cells_in_col;
+  EntityGrid grid(num_cells_in_row, vector<vector<shared_ptr<Entity>>>(num_cells_in_col, vector<shared_ptr<Entity>>{}));
 
-	for (int x = 0; x < NUM_CELLS_IN_ROW; x++) {
-		for (int y = 0; y < NUM_CELLS_IN_COLUMN; y++) {
+	for (int x = 0; x < num_cells_in_row; x++) {
+		for (int y = 0; y < num_cells_in_col; y++) {
 			vec2 cell_pos = {x * cell_width, y * cell_height};
 			vec2 cell_size = {cell_width, cell_height};
 
