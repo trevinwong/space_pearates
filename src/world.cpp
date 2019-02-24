@@ -11,6 +11,7 @@ World::~World()
 void World::init(vec2 screen)
 {
   hud = HUD(screen.x, screen.y);
+	collisionSystem.setScreenInfo(screen);
   vector<shared_ptr<Entity>> entities = entityManager.getEntities();
 	projection = glm::ortho(0.0f, static_cast<GLfloat>(screen.x), static_cast<GLfloat>(screen.y), 0.0f, -1.0f, 1.0f);
 	entityManager = EntityManager();
@@ -46,6 +47,7 @@ void World::update(float dt)
   vector<shared_ptr<Entity>> entities = entityManager.getEntities();
   playerSystem.interpInput(entityManager, dt, keys, keysProcessed);
   physicsSystem.moveEntities(entityManager, dt);
+	collisionSystem.checkCollisions(entityManager);
 	spriteSystem.updateElapsedTime(dt);
   
   // Build Tower UI
@@ -59,6 +61,17 @@ void World::update(float dt)
   // OffScreen garbage check
   projectileGarbageSystem.destroyOffScreenEntities(entityManager);
 	resourceSystem.handleResourceSpawnAndDespawn(entityManager, dt);
+
+	/*
+	for (shared_ptr<Entity> e: entities) {
+		CollisionComponent *collision = e->getComponent<CollisionComponent>();
+		TransformComponent *transform = e->getComponent<TransformComponent>();
+		if (collision != nullptr and transform != nullptr) {
+			printVec2("transform", transform->position);
+			printVec2("collision", collision->position);
+		}
+	}
+	*/
 }
 
 void World::processInput(float dt)
@@ -73,6 +86,7 @@ void World::draw()
   towerRangeDisplaySystem.drawRanges(entityManager, projection);
   towerUiSystem.render(entityManager, projection);
   hud.draw();
+
 }
 
 void World::destroy()

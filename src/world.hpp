@@ -23,6 +23,8 @@
 #include "EntityFactories/resource_factory.hpp"
 #include "EntityFactories/enemy_spawn_factory.hpp"
 #include "EntityFactories/tower_ui_entity_factory.hpp"
+#include "Components/collision_component.hpp"
+#include "Components/transform_component.hpp"
 
 // TO-DO: Look into replacing Keys array with direct callback.
 // TO-DO: Look into replacing processInput with direct callback.
