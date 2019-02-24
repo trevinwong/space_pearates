@@ -5,6 +5,11 @@ CollisionComponent::CollisionComponent(vec2 _position, vec2 _size, GLfloat _rota
 {
 }
 
+CollisionComponent::CollisionComponent(vec2 _position, float _scale, GLfloat _rotation) :
+  position(_position), size(vec2(_scale,_scale)), rotation(_rotation)
+{
+}
+
 
 bool CollisionComponent::isCollidingWith(CollisionComponent other)
 {	

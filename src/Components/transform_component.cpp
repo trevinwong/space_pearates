@@ -5,6 +5,11 @@ TransformComponent::TransformComponent(glm::vec2 _position, glm::vec2 _size, GLf
 {
 }
 
+TransformComponent::TransformComponent(vec2 _position, float _scale, GLfloat _rotation) :
+  position(_position), size(vec2(_scale, _scale)), rotation(_rotation)
+{
+}
+
 bool TransformComponent::isCollidingWith(TransformComponent other)
 {	
 	bool overlapX = position.x + size.x >= other.position.x

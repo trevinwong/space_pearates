@@ -77,7 +77,7 @@ int main(int argc, char * argv[]) {
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-	world.init(glm::vec2(SCREEN_WIDTH, SCREEN_HEIGHT));
+	world.init(vec2(SCREEN_WIDTH, SCREEN_HEIGHT));
 
 	// dT variables.
 	GLfloat deltaTime = 0.0f;

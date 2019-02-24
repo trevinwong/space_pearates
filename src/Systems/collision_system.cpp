@@ -7,12 +7,14 @@ void CollisionSystem::setScreenInfo(vec2 _screen)
 
 EntityGrid CollisionSystem::preprocessEntitiesIntoGrid(vector<shared_ptr<Entity>> entities)
 {
-	EntityGrid grid(NUM_CELLS_IN_ROW, vector<vector<shared_ptr<Entity>>>(NUM_CELLS_IN_COLUMN, vector<shared_ptr<Entity>>{})); ;
-	float cell_width = screen.x / NUM_CELLS_IN_ROW;
-	float cell_height = screen.y / NUM_CELLS_IN_COLUMN;
+  int num_cells_in_row = screen.x / MIN_CELL_SIZE;
+  int num_cells_in_col = screen.y / MIN_CELL_SIZE;
+	float cell_width = screen.x / num_cells_in_row;
+	float cell_height = screen.y / num_cells_in_col;
+  EntityGrid grid(num_cells_in_row, vector<vector<shared_ptr<Entity>>>(num_cells_in_col, vector<shared_ptr<Entity>>{}));
 
-	for (int x = 0; x < NUM_CELLS_IN_ROW; x++) {
-		for (int y = 0; y < NUM_CELLS_IN_COLUMN; y++) {
+	for (int x = 0; x < num_cells_in_row; x++) {
+		for (int y = 0; y < num_cells_in_col; y++) {
 			vec2 cell_pos = {x * cell_width, y * cell_height};
 			vec2 cell_size = {cell_width, cell_height};
 
@@ -30,7 +32,8 @@ EntityGrid CollisionSystem::preprocessEntitiesIntoGrid(vector<shared_ptr<Entity>
 
 void CollisionSystem::checkCollisions(EntityManager &entityManager)
 {
-	vector<shared_ptr<Entity>> collidables = entityManager.getEntities(entityManager.getComponentChecker(vector<int> {ComponentType::collision}));
+	vector<shared_ptr<Entity>> collidables = entityManager.getEntities(
+    entityManager.getComponentChecker(vector<int> {ComponentType::collision}));
 	EntityGrid grid = preprocessEntitiesIntoGrid(collidables);
 	
 	for (vector<vector<shared_ptr<Entity>>> row : grid) {
@@ -40,9 +43,8 @@ void CollisionSystem::checkCollisions(EntityManager &entityManager)
 					CollisionComponent *e1_collision = e1->getComponent<CollisionComponent>();
 					CollisionComponent *e2_collision = e2->getComponent<CollisionComponent>();
 
-
 					if (e1_collision->isCollidingWith(*e2_collision)) {
-						handleCollision(e1, e2);						
+						handleCollision(e1, e2, entityManager);						
 					}	
 				}
 			}	
@@ -50,12 +52,12 @@ void CollisionSystem::checkCollisions(EntityManager &entityManager)
 	}	
 }
 
-void CollisionSystem::handleCollision(shared_ptr<Entity> e1, shared_ptr<Entity> e2)
+void CollisionSystem::handleCollision(shared_ptr<Entity> e1, shared_ptr<Entity> e2, EntityManager &entityManager)
 {
-	PlayerComponent *player = e1->getComponent<PlayerComponent>();	
-	EnemyComponent *enemy = e2->getComponent<EnemyComponent>();
-
-	if (player != nullptr && enemy != nullptr) {
-			cout << "player and enemy collided" << endl;
-	}
+  ResourceComponent *resource = e2->getComponent<ResourceComponent>();
+  if (player != nullptr && resource != nullptr) {
+    entityManager.removeEntity(e2);
+    HUD::getInstance().resource_count++;
+    Mix_PlayChannel(-1, AudioLoader::getInstance().collect_coin_sound, 0);
+  }
 }

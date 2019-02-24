@@ -43,7 +43,6 @@ public:
   GLboolean keysProcessed[1024];
 
 private:
-  HUD hud;
   EntityManager entityManager;
   EventSystem eventSystem;
   SpriteSystem spriteSystem;
