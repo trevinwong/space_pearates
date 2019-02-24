@@ -35,7 +35,9 @@ Entity TowerEntityFactory::createFireTower(glm::vec2 towerCenterBottomPosition, 
     new FireTowerAttackComponent(relativeFirePosition, attackRange, maxLevel, fireRate, projectileAttackPower);
 
   // Tower Meta Component
-  TowerMetaComponent *towerMetaComponent = new TowerMetaComponent();
+  int buildCost = 1;
+  int sellGet = 1;
+  TowerMetaComponent *towerMetaComponent = new TowerMetaComponent(buildCost, sellGet);
 
   towerEntity.setComponent<SpriteComponent>(spriteComponent);
   towerEntity.setComponent<TransformComponent>(transformComponent);
@@ -85,7 +87,9 @@ Entity TowerEntityFactory::createLightTower(glm::vec2 towerCenterBottomPosition,
     new LightTowerAttackComponent(relativeFirePosition, attackRange, maxLevel, fireRate, projectileAttackPower, projectileNumberPerShoot);
 
   // Tower Meta Component
-  TowerMetaComponent *towerMetaComponent = new TowerMetaComponent();
+  int buildCost = 1;
+  int sellGet = 1;
+  TowerMetaComponent *towerMetaComponent = new TowerMetaComponent(buildCost, sellGet);
 
   towerEntity.setComponent<SpriteComponent>(spriteComponent);
   towerEntity.setComponent<TransformComponent>(transformComponent);

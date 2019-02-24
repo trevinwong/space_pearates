@@ -2,8 +2,10 @@
 #define TOWER_UI_IDLE_STATE_H
 
 #include "../../../utility.hpp"
+#include "../../../hud.hpp"
 #include "../../../entity_manager.hpp"
 #include "../../map_component.hpp"
+#include "../../wallet_component.hpp"
 #include "../../../EntityFactories/tower_entity_factory.hpp"
 #include "tower_ui_state_component.hpp"
 #include "tower_ui_shift_left_state.hpp"

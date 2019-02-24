@@ -82,6 +82,8 @@ set(SOURCE_FILES_CORE
 	src/Components/movement_component.hpp
 	src/Components/player_component.cpp
 	src/Components/player_component.hpp
+	src/Components/wallet_component.cpp
+	src/Components/wallet_component.hpp
 	src/Components/TowerComponents/tower_meta_component.cpp
 	src/Components/TowerComponents/tower_meta_component.hpp
 	src/Components/TowerComponents/tower_attack_component.cpp

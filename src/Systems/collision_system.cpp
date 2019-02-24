@@ -57,9 +57,17 @@ void CollisionSystem::handleCollision(shared_ptr<Entity> e1, shared_ptr<Entity> 
   PlayerComponent *player = e1->getComponent<PlayerComponent>();
   ResourceComponent *resource = e2->getComponent<ResourceComponent>();
   if (player != nullptr && resource != nullptr) {
+    // remove the resouce from world
     entityManager.removeEntity(e2);
-    // TODO: should probably have a resource manager and render from there
-    HUD::getInstance().resource_count++;
+    // Add the resource into wallet
+    WalletComponent *wallet = e1->getComponent<WalletComponent>();
+    if (wallet != nullptr) {
+      // TODO: for diff type resources, increase diff amount
+      wallet->earn(1);
+      // update HUD resource counter
+      // TODO: so far only coins, modify this part for diff types of resource
+      HUD::getInstance().resource_count = wallet->coins;
+    }
     Mix_PlayChannel(-1, AudioLoader::getInstance().collect_coin_sound, 0);
   }
 
