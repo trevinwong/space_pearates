@@ -4,7 +4,7 @@
 #include "utility.hpp"
 #include "base_component.hpp"
 
-class DeathComponent : public DeathComponent
+class DeathComponent : public BaseComponent
 {
 public:
 	static const int typeID = ComponentType::death;

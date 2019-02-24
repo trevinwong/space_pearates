@@ -8,7 +8,7 @@ class EnemyComponent : public BaseComponent
 {
 public:
 	int worth;
-  EnemyComponent();
+  EnemyComponent(int _worth);
   ~EnemyComponent();
   static const int typeID = ComponentType::enemy;
   inline virtual int getTypeID() const { return typeID; };
