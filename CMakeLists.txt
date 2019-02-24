@@ -47,6 +47,8 @@ set(SOURCE_FILES_CORE
 	src/EntityFactories/tower_entity_factory.hpp
 	src/EntityFactories/player_factory.cpp
 	src/EntityFactories/player_factory.hpp
+	src/EntityFactories/background_entity_factory.cpp
+	src/EntityFactories/background_entity_factory.hpp
 	src/EntityFactories/enemy_factory.cpp
 	src/EntityFactories/enemy_factory.hpp
   src/EntityFactories/enemy_spawn_factory.cpp
@@ -72,6 +74,7 @@ set(SOURCE_FILES_CORE
 	src/Components/collision_component.hpp
 	src/Components/color_component.cpp
 	src/Components/color_component.hpp
+	src/Components/background_component.hpp
 	src/Components/health_component.cpp
 	src/Components/health_component.hpp
 	src/Components/sprite_component.cpp
@@ -123,6 +126,8 @@ set(SOURCE_FILES_CORE
 	src/Systems/event_system.hpp
 	src/Systems/sprite_system.cpp
 	src/Systems/sprite_system.hpp
+	src/Systems/background_system.cpp
+	src/Systems/background_system.hpp
 	src/Systems/billboard_system.cpp
 	src/Systems/billboard_system.hpp
 	src/Systems/collision_system.cpp

@@ -11,6 +11,7 @@ namespace ComponentType {
     movement,
     enemy,
     enemy_spawn,
+    background_sprite,
     player,
     health,
     tower_meta,

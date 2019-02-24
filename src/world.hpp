@@ -18,6 +18,8 @@
 #include "Systems/tower_range_display_system.hpp"
 #include "Systems/tower_attack_system.hpp"
 #include "Systems/offscreen_garbage_system.hpp"
+#include "Systems/background_system.hpp"
+#include "EntityFactories/background_entity_factory.hpp"
 #include "EntityFactories/map_entity_factory.hpp"
 #include "EntityFactories/player_factory.hpp"
 #include "EntityFactories/resource_factory.hpp"
@@ -46,6 +48,7 @@ private:
   EntityManager entityManager;
   EventSystem eventSystem;
   SpriteSystem spriteSystem;
+  BackgroundSystem backgroundSystem;
   BillboardSystem billboardSystem;
   glm::mat4 projection;
   TileMapSystem tileMapSystem;

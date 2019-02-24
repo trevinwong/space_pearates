@@ -32,6 +32,10 @@ void World::init(vec2 screen)
 	enemySystem.getMap(entityManager);
 	physicsSystem.setScreenInfo(screen);
 
+  // create background entity
+  Entity backgroundEntity = BackgroundEntityFactory::createBackgroundEntity();
+  entityManager.addEntity(backgroundEntity);
+
   // Generate the build tower ui entity
   vector<Entity> towerUiEntities = TowerUiEntityFactory::createTowerUiButtons();
   for(Entity towerUiEntity : towerUiEntities)
@@ -50,6 +54,9 @@ void World::update(float dt)
   physicsSystem.moveEntities(entityManager, dt);
 	collisionSystem.checkCollisions(entityManager);
 	spriteSystem.updateElapsedTime(dt);
+
+  // Background Update
+  backgroundSystem.update(entityManager);
 
   // Build Tower UI
   towerUiSystem.interpInput(entityManager, keys);
@@ -82,6 +89,8 @@ void World::processInput(float dt)
 
 void World::draw()
 {
+  // Background will render first
+  backgroundSystem.render(entityManager, projection);
   spriteSystem.drawSprites(entityManager, projection);
   billboardSystem.drawBillboards(entityManager, projection);
   towerRangeDisplaySystem.drawRanges(entityManager, projection);
