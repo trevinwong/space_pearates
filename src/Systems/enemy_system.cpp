@@ -1,22 +1,8 @@
 #include "enemy_system.hpp"
 
-Enemy::Enemy()
-{
-  factory = EnemyFactory();
-}
-
-Enemy::~Enemy()
-{
-}
-
-void Enemy::loadEnemy(glm::vec2 screen, EntityManager& entityManager) {
-  entityManager.addEntity(factory.build(vec2(screen.x / 2, 5), vec2(16,16), vec2(0.f, 40.f)));
-}
-
-
 // Super simple AI; just tries to go down the map until it hits base
 // If it can't go down anymore, randomly goes right / left till it can go down
-void Enemy::move (float dt, EntityManager& entityManager) {
+void EnemySystem::move (float dt, EntityManager& entityManager) {
   srand(time(NULL));
   int arr[2] = {-1, 1};
 
@@ -60,7 +46,7 @@ void Enemy::move (float dt, EntityManager& entityManager) {
 }
 
 
-void Enemy::getMap (EntityManager& entityManager) {
+void EnemySystem::getMap (EntityManager& entityManager) {
   vector<shared_ptr<Entity>> entityList = entityManager.getEntities();
   for (shared_ptr<Entity> e: entityList) {
     MapComponent *mapComponent = e->getComponent<MapComponent>();

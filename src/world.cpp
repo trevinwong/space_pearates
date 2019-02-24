@@ -25,10 +25,9 @@ void World::init(vec2 screen)
 	entityManager.addEntity(mapDataEntity);
 	tileMapSystem.loadTileMap(entityManager);
 
-  EnemySpawnFactory esf;
-  Entity es = esf.build(2.0);
-  entityManager.addEntity(es);
+  entityManager.addEntity(EnemySpawnFactory::build(2.0));
 
+	enemySystem.getMap(entityManager);
 	physicsSystem.setScreenInfo(screen);
 }
 
@@ -37,7 +36,6 @@ void World::update(float dt)
   enemySpawnSystem.spawnEnemy(entityManager);
   enemySpawnSystem.reduceElapsedTime(entityManager, dt);
 
-	enemySystem.getMap(entityManager);
 	enemySystem.move(dt, entityManager);
 
   vector<shared_ptr<Entity>> entities = entityManager.getEntities();

@@ -5,14 +5,11 @@
 #include "EntityFactories/enemy_factory.hpp"
 
 class EnemySpawnSystem {
-  public:
-    EnemySpawnSystem();
-    ~EnemySpawnSystem();
-    void spawnEnemy(EntityManager& entityManager);
-    void reduceElapsedTime(EntityManager& entityManager, float dt);
-  private:
-    EnemyFactory factory;
-    int enemyCount;
+public:
+	void spawnEnemy(EntityManager& entityManager);
+	void reduceElapsedTime(EntityManager& entityManager, float dt);
+private:
+	int enemyCount;
 };
 
 #endif

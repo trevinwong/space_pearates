@@ -14,11 +14,7 @@
 class EnemyFactory
 {
 public:
-  EnemyFactory();
-  ~EnemyFactory();
-  Entity build(vec2 position, vec2 scale, vec2 velocity);
-private:
-
+  static Entity build(vec2 position, vec2 scale, vec2 velocity);
 };
 
 #endif

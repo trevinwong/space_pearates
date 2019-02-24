@@ -15,11 +15,7 @@
 class EnemySpawnFactory
 {
 public:
-  EnemySpawnFactory();
-  ~EnemySpawnFactory();
-  Entity build(float spawnRate);
-private:
-
+  static Entity build(float spawnRate);
 };
 
 #endif

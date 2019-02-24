@@ -46,7 +46,7 @@ private:
   glm::mat4 projection;
   TileMapSystem tileMapSystem;
   //Change later after figuring out how to read multiple enemies
-  Enemy enemySystem;
+  EnemySystem enemySystem;
   EnemySpawnSystem enemySpawnSystem;
   PlayerSystem playerSystem;
 	PhysicsSystem physicsSystem;

@@ -1,13 +1,5 @@
 #include "enemy_factory.hpp"
 
-EnemyFactory::EnemyFactory()
-{
-}
-
-EnemyFactory::~EnemyFactory()
-{
-}
-
 Entity EnemyFactory::build(vec2 position, vec2 scale, vec2 velocity)
 {
   Program *program = new Program(shader_path("sprite.vert"), shader_path("sprite.frag"));
