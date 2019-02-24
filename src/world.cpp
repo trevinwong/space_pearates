@@ -40,7 +40,6 @@ void World::init(vec2 screen)
 
 void World::update(float dt)
 {
-  projectileGarbageSystem.destroyOffScreenEntities(entityManager);
   enemySpawnSystem.spawnEnemy(entityManager);
   enemySpawnSystem.reduceElapsedTime(entityManager, dt);
 
