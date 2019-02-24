@@ -8,10 +8,11 @@
 class CollisionComponent : public BaseComponent
 {
 public:
-  CollisionComponent(glm::vec2 _position, glm::vec2 _size, GLfloat _rotate);
-	glm::vec2 position;
-	glm::vec2 size;
-	GLfloat   rotate;
+	vec2 position;
+	vec2 size;
+	GLfloat rotation;
+  CollisionComponent(vec2 _position, vec2 _size, GLfloat _rotation);
+	bool isCollidingWith(CollisionComponent other);
 	static const int typeID = ComponentType::collision;
 	inline virtual int getTypeID() const { return typeID; };
 };
