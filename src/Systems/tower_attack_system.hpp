@@ -8,6 +8,7 @@
 #include "Components/collision_component.hpp"
 #include "Components/transform_component.hpp"
 #include "Components/TowerComponents/fire_tower_attack_component.hpp"
+#include "Components/TowerComponents/light_tower_attack_component.hpp"
 #include "../entity_manager.hpp"
 #include "../EntityFactories/projectile_entity_factory.hpp"
 
@@ -19,7 +20,7 @@ class TowerAttackSystem {
   public:
     TowerAttackSystem();
     ~TowerAttackSystem();
-    void checkRangeAndShootAimProjectiles(EntityManager& entityManager);
+    void checkRangeAndShootProjectiles(EntityManager& entityManager);
     void reduceElapsedTimeToNextFire(EntityManager& entityManager, float dt);
 };
 

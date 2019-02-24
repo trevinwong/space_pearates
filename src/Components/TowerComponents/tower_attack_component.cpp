@@ -1,29 +1,45 @@
 #include "tower_attack_component.hpp"
 
-TowerAttackComponent::TowerAttackComponent(glm::vec2 _relativeFirePosition, float _attackRange, int _maxLevel) :
+TowerAttackComponent::TowerAttackComponent(glm::vec2 _relativeFirePosition, float _attackRange, int _maxLevel, float _fireRate, int _projectileAttackPower) :
   relativeFirePosition(_relativeFirePosition),
   attackRange(_attackRange),
   maxLevel(_maxLevel),
-  currentLevel(0) // initial to level 0
+  currentLevel(0), // initial to level 0
+  fireRate(_fireRate),
+  elapsedTimeToNextFire(_fireRate),
+  projectileAttackPower(_projectileAttackPower)
 {
 }
 
-glm::vec2 TowerAttackComponent::getRelativeFirePosition()
+void TowerAttackComponent::resetElapsedTimeToNextFire()
 {
-  return this->relativeFirePosition;
+  elapsedTimeToNextFire = getFireRate();
 }
 
-int TowerAttackComponent::getAttackRange()
+void TowerAttackComponent::reduceElapsedTimeToNextFire(float dt)
 {
-  return this->attackRange;
+  // If the tower is already ready, then no need to reduce elapsed time
+  if (isReadyForNextFire()) return;
+
+  elapsedTimeToNextFire -= dt;
 }
 
-int TowerAttackComponent::getCurrentLevel()
+bool TowerAttackComponent::isReadyForNextFire()
 {
-  return this->currentLevel;
+  return elapsedTimeToNextFire <= 0.0;
 }
 
-int TowerAttackComponent::getMaxLevel()
+float TowerAttackComponent::getAttackRange()
 {
-  return this->maxLevel;
+  return attackRange + currentLevel * 0.01;
+}
+
+float TowerAttackComponent::getFireRate()
+{
+  return this->fireRate - currentLevel * 0.01;
+}
+
+int TowerAttackComponent::getProjectileAttackPower()
+{
+  return this->projectileAttackPower + currentLevel * 0.01;
 }

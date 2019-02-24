@@ -53,6 +53,8 @@ set(SOURCE_FILES_CORE
   src/EntityFactories/enemy_spawn_factory.hpp
 	src/EntityFactories/map_entity_factory.cpp
 	src/EntityFactories/map_entity_factory.hpp
+	src/EntityFactories/tower_ui_entity_factory.cpp
+	src/EntityFactories/tower_ui_entity_factory.hpp
 	src/EntityFactories/tile_factory.cpp
 	src/EntityFactories/tile_factory.hpp
 	src/EntityFactories/resource_factory.cpp
@@ -82,9 +84,27 @@ set(SOURCE_FILES_CORE
 	src/Components/TowerComponents/tower_meta_component.hpp
 	src/Components/TowerComponents/tower_attack_component.cpp
 	src/Components/TowerComponents/tower_attack_component.hpp
+	src/Components/TowerComponents/tower_range_sprite_component.hpp
 	src/Components/TowerComponents/fire_tower_attack_component.cpp
 	src/Components/TowerComponents/fire_tower_attack_component.hpp
-	src/Components/TowerComponents/fire_tower_range_sprite_component.hpp
+  src/Components/TowerComponents/light_tower_attack_component.cpp
+	src/Components/TowerComponents/light_tower_attack_component.hpp
+  src/Components/TowerUI/build_tower_ui_component.cpp
+  src/Components/TowerUI/build_tower_ui_component.hpp
+  src/Components/TowerUI/operate_tower_ui_component.cpp
+  src/Components/TowerUI/operate_tower_ui_component.hpp
+  src/Components/TowerUI/tower_ui_button_component.cpp
+  src/Components/TowerUI/tower_ui_button_component.hpp
+  src/Components/TowerUI/tower_ui_button_meta_component.cpp
+  src/Components/TowerUI/tower_ui_button_meta_component.hpp
+	src/Components/TowerUI/TowerUIState/tower_ui_state_component.cpp
+	src/Components/TowerUI/TowerUIState/tower_ui_state_component.hpp
+	src/Components/TowerUI/TowerUIState/tower_ui_idle_state.cpp
+	src/Components/TowerUI/TowerUIState/tower_ui_idle_state.hpp
+	src/Components/TowerUI/TowerUIState/tower_ui_shift_left_state.cpp
+	src/Components/TowerUI/TowerUIState/tower_ui_shift_left_state.hpp
+	src/Components/TowerUI/TowerUIState/tower_ui_shift_right_state.cpp
+	src/Components/TowerUI/TowerUIState/tower_ui_shift_right_state.hpp
 	src/Components/projectile_component.cpp
 	src/Components/projectile_component.hpp
   src/Components/enemy_component.cpp
@@ -117,6 +137,8 @@ set(SOURCE_FILES_CORE
 	src/Systems/tower_attack_system.hpp
 	src/Systems/offscreen_garbage_system.cpp
 	src/Systems/offscreen_garbage_system.hpp
+	src/Systems/tower_ui_system.cpp
+	src/Systems/tower_ui_system.hpp
 	src/Utility/timer.hpp
 	src/Utility/timer.cpp
 	src/Systems/enemy_system.cpp

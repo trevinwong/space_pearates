@@ -29,6 +29,11 @@ void World::init(vec2 screen)
 
 	enemySystem.getMap(entityManager);
 	physicsSystem.setScreenInfo(screen);
+
+  // Generate the build tower ui entity
+  vector<Entity> towerUiEntities = TowerUiEntityFactory::createTowerUiButtons();
+  for(Entity towerUiEntity : towerUiEntities)
+    entityManager.addEntity(towerUiEntity);
 }
 
 void World::update(float dt)
@@ -42,9 +47,13 @@ void World::update(float dt)
   playerSystem.interpInput(entityManager, dt, keys, keysProcessed);
   physicsSystem.moveEntities(entityManager, dt);
 	spriteSystem.updateElapsedTime(dt);
+  
+  // Build Tower UI
+  towerUiSystem.interpInput(entityManager, keys);
+  towerUiSystem.update(entityManager, dt);
 
   // Towers
-  towerAttackSystem.checkRangeAndShootAimProjectiles(entityManager);
+  towerAttackSystem.checkRangeAndShootProjectiles(entityManager);
   towerAttackSystem.reduceElapsedTimeToNextFire(entityManager, dt);
 
   // OffScreen garbage check
@@ -62,6 +71,7 @@ void World::draw()
   spriteSystem.drawSprites(entityManager, projection);
   billboardSystem.drawBillboards(entityManager, projection);
   towerRangeDisplaySystem.drawRanges(entityManager, projection);
+  towerUiSystem.render(entityManager, projection);
   hud.draw();
 }
 

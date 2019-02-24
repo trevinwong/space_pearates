@@ -88,7 +88,22 @@ void printVec3(string name, vec3 vec);
 
 #define MAP_EMPTY_BLOCK '0'
 #define MAP_PLATFORM_TILE 'B'   // B -> Block
-#define MAP_TOWER_POSITION 'T'  // T -> Tower
+#define MAP_TOWER_POSITION 'T'  // T -> Tower build position
 #define MAP_BASE_POSITION 'H'   // H -> Home
+
+
+// tower types
+#define TOWER_ID int
+#define NO_TOWER_BUILD_HERE -1
+#define FIRE_TOWER 'F'
+#define LIGHT_TOWER 'L'
+
+// build tower ui interface types
+#define BUILD_TOWER_UI_BUTTON_TYPE char
+#define BUILD_FIRE_TOWER 'F'
+#define BUILD_LIGHT_TOWER 'L'
+#define SELL_TOWER_OPERATION 'S'
+#define UPGRADE_TOWER_OPERATION 'U'
+#define FIX_TOWER_OPERATION 'X'
 
 #endif
