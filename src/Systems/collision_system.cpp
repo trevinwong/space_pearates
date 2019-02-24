@@ -2,62 +2,78 @@
 
 void CollisionSystem::setScreenInfo(vec2 _screen)
 {
-	screen = _screen;
+  screen = _screen;
 }
 
 EntityGrid CollisionSystem::preprocessEntitiesIntoGrid(vector<shared_ptr<Entity>> entities)
 {
   int num_cells_in_row = screen.x / MIN_CELL_SIZE;
   int num_cells_in_col = screen.y / MIN_CELL_SIZE;
-	float cell_width = screen.x / num_cells_in_row;
-	float cell_height = screen.y / num_cells_in_col;
+  float cell_width = screen.x / num_cells_in_row;
+  float cell_height = screen.y / num_cells_in_col;
   EntityGrid grid(num_cells_in_row, vector<vector<shared_ptr<Entity>>>(num_cells_in_col, vector<shared_ptr<Entity>>{}));
 
-	for (int x = 0; x < num_cells_in_row; x++) {
-		for (int y = 0; y < num_cells_in_col; y++) {
-			vec2 cell_pos = {x * cell_width, y * cell_height};
-			vec2 cell_size = {cell_width, cell_height};
+  for (int x = 0; x < num_cells_in_row; x++) {
+    for (int y = 0; y < num_cells_in_col; y++) {
+      vec2 cell_pos = { x * cell_width, y * cell_height };
+      vec2 cell_size = { cell_width, cell_height };
 
-			for (shared_ptr<Entity> e : entities) {
-				CollisionComponent *collision = e->getComponent<CollisionComponent>();
-				if (Math::isCollidingWith(cell_pos, cell_size, collision->position, collision->size)) {
-					grid[x][y].push_back(e);
-				}	
-			}	
-		}
-	}
+      for (shared_ptr<Entity> e : entities) {
+        CollisionComponent *collision = e->getComponent<CollisionComponent>();
+        if (Math::isCollidingWith(cell_pos, cell_size, collision->position, collision->size)) {
+          grid[x][y].push_back(e);
+        }
+      }
+    }
+  }
 
-	return grid;
+  return grid;
 }
 
 void CollisionSystem::checkCollisions(EntityManager &entityManager)
 {
-	vector<shared_ptr<Entity>> collidables = entityManager.getEntities(
+  vector<shared_ptr<Entity>> collidables = entityManager.getEntities(
     entityManager.getComponentChecker(vector<int> {ComponentType::collision}));
-	EntityGrid grid = preprocessEntitiesIntoGrid(collidables);
-	
-	for (vector<vector<shared_ptr<Entity>>> row : grid) {
-		for (vector<shared_ptr<Entity>> cell : row) {
-			for (shared_ptr<Entity> e1 : cell) {
-				for (shared_ptr<Entity> e2 : cell) {
-					CollisionComponent *e1_collision = e1->getComponent<CollisionComponent>();
-					CollisionComponent *e2_collision = e2->getComponent<CollisionComponent>();
+  EntityGrid grid = preprocessEntitiesIntoGrid(collidables);
 
-					if (e1_collision->isCollidingWith(*e2_collision)) {
-						handleCollision(e1, e2, entityManager);						
-					}	
-				}
-			}	
-		}
-	}	
+  for (vector<vector<shared_ptr<Entity>>> row : grid) {
+    for (vector<shared_ptr<Entity>> cell : row) {
+      for (shared_ptr<Entity> e1 : cell) {
+        for (shared_ptr<Entity> e2 : cell) {
+          CollisionComponent *e1_collision = e1->getComponent<CollisionComponent>();
+          CollisionComponent *e2_collision = e2->getComponent<CollisionComponent>();
+
+          if (e1_collision->isCollidingWith(*e2_collision)) {
+            handleCollision(e1, e2, entityManager);
+          }
+        }
+      }
+    }
+  }
 }
 
 void CollisionSystem::handleCollision(shared_ptr<Entity> e1, shared_ptr<Entity> e2, EntityManager &entityManager)
 {
+  PlayerComponent *player = e1->getComponent<PlayerComponent>();
   ResourceComponent *resource = e2->getComponent<ResourceComponent>();
   if (player != nullptr && resource != nullptr) {
     entityManager.removeEntity(e2);
+    // TODO: should probably have a resource manager and render from there
     HUD::getInstance().resource_count++;
     Mix_PlayChannel(-1, AudioLoader::getInstance().collect_coin_sound, 0);
+  }
+
+  ProjectileComponent *projectile = e1->getComponent<ProjectileComponent>();
+  EnemyComponent *enemy = e2->getComponent<EnemyComponent>();
+
+  // TODO(subi): this is super slow and inefficient, refactor later.
+  shared_ptr<Entity> spawnEntity =
+    entityManager.getEntities(entityManager.getComponentChecker(vector<int> {ComponentType::enemy_spawn}))[0];
+
+  if (projectile != nullptr && enemy != nullptr) {
+    entityManager.removeEntity(e2);
+    entityManager.removeEntity(e1);
+    EnemySpawnComponent *sc = spawnEntity->getComponent<EnemySpawnComponent>();
+    if (sc) sc->count--;
   }
 }

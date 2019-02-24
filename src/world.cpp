@@ -50,7 +50,7 @@ void World::update(float dt)
   physicsSystem.moveEntities(entityManager, dt);
 	collisionSystem.checkCollisions(entityManager);
 	spriteSystem.updateElapsedTime(dt);
-  
+
   // Build Tower UI
   towerUiSystem.interpInput(entityManager, keys);
   towerUiSystem.update(entityManager, dt);

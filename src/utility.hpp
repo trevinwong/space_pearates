@@ -21,7 +21,7 @@
 #include <climits>
 #include <iomanip>
 
-using std::string; 
+using std::string;
 using std::vector;
 using std::map;
 using std::unordered_map;
@@ -40,8 +40,8 @@ using std::make_pair;
 #include <gl3w.h> // function pointers
 #include <GLFW/glfw3.h> // windowing and input
 #include <glm/glm.hpp> // math
-#include <glm/gtc/type_ptr.hpp>	// get addresses from glm vectors or matrices	
-#include <glm/gtc/matrix_transform.hpp>                                     
+#include <glm/gtc/type_ptr.hpp>	// get addresses from glm vectors or matrices
+#include <glm/gtc/matrix_transform.hpp>
 #define GLM_ENABLE_EXPERIMENTAL // allow printing out of glm
 #include "glm/gtx/string_cast.hpp" // use glm::to_string() to print out vectors/matrices
 
@@ -56,7 +56,7 @@ using glm::pow;
 
 // printing functions
 template <typename T>
-void printScalar(string name, T scalar) 
+void printScalar(string name, T scalar)
 {
 	cout << name << ": " << scalar << endl;
 }

@@ -18,6 +18,7 @@ public:
 
   void draw();
   int resource_count = 0;
+  int enemy_count = 0;
 
 private:
   HUD();

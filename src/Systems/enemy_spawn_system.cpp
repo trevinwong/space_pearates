@@ -10,6 +10,7 @@ void EnemySpawnSystem::spawnEnemy(EntityManager& entityManager) {
     if (sc->timeToSpawn <= 0) {
       entityManager.addEntity(EnemyFactory::build(vec2(600, 5), vec2(16,16), vec2(0.f, 40.f)));
       sc->timeToSpawn = sc->spawnRate;
+      sc->count++;
     }
   }
 }

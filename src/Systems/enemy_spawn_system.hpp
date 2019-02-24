@@ -9,7 +9,6 @@ public:
 	void spawnEnemy(EntityManager& entityManager);
 	void reduceElapsedTime(EntityManager& entityManager, float dt);
 private:
-	int enemyCount;
 };
 
 #endif

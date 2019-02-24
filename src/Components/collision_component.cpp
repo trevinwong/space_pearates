@@ -12,7 +12,7 @@ CollisionComponent::CollisionComponent(vec2 _position, float _scale, GLfloat _ro
 
 
 bool CollisionComponent::isCollidingWith(CollisionComponent other)
-{	
+{
 	bool overlapX = position.x + size.x >= other.position.x
 		&& other.position.x + other.size.x >= position.x;
 
