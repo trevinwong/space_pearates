@@ -7,6 +7,7 @@
 class EnemyComponent : public BaseComponent
 {
 public:
+	int worth;
   EnemyComponent();
   ~EnemyComponent();
   static const int typeID = ComponentType::enemy;

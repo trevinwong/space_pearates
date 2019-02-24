@@ -10,6 +10,7 @@ class HealthComponent : public BaseComponent
 public:
   HealthComponent(Program *_program, float maxHP);
   ~HealthComponent();
+	float health = 100.0f;
   static const int typeID = ComponentType::health;
   inline virtual int getTypeID() const { return typeID; };
   Program *program;

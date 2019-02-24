@@ -22,6 +22,7 @@
 #include "Systems/offscreen_garbage_system.hpp"
 #include "Systems/background_system.hpp"
 #include "Systems/waveset_system.hpp"
+#include "Systems/death_system.hpp"
 #include "EntityFactories/map_entity_factory.hpp"
 #include "EntityFactories/background_entity_factory.hpp"
 #include "EntityFactories/player_factory.hpp"
@@ -36,22 +37,28 @@
 class World
 {
 public:
-  vec2 player_spawn = vec2(0.0f, 0.0f);
+  World();
+  ~World();
   void init(vec2 screen);
   void processInput(float dt, GLboolean keys[], GLboolean keysProcessed[]);
   void update(float dt); // dt = delta time, how much time has passed since update was last called
   void draw();
   void destroy();
+  vec2 player_spawn = vec2(0.0f, 0.0f);
 
 private:
   glm::mat4 projection;
+  HUD hud;
   EntityManager entityManager;
   PhysicsSystem physicsSystem;
   CollisionSystem collisionSystem;
-
+  EntityManager entityManager;
+  EventSystem eventSystem;
+	DeathSystem deathSystem;
   SpriteSystem spriteSystem;
   BackgroundSystem backgroundSystem;
   BillboardSystem billboardSystem;
+  TileMapSystem tileMapSystem;
   EnemySystem enemySystem;
   PlayerSystem playerSystem;
   ResourceSystem resourceSystem;

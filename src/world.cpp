@@ -60,6 +60,7 @@ void World::update(float dt)
   // OffScreen garbage check
   offscreenGarbageSystem.destroyOffScreenEntities(entityManager, ComponentType::projectile);
   resourceSystem.handleResourceSpawnAndDespawn(entityManager, dt);
+	deathSystem.handleDeaths(entityManager);
 }
 
 void World::processInput(float dt, GLboolean keys[], GLboolean keysProcessed[])
