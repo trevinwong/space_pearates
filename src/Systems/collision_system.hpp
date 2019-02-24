@@ -12,9 +12,7 @@
 class CollisionSystem
 {
 public:
-  void checkCollisions(EventSystem &eventSystem, vector<shared_ptr<Entity>> entities);
 private:
-  bool isCollision(shared_ptr<Entity> one, shared_ptr<Entity> two);
 };
 
 #endif
