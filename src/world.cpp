@@ -40,6 +40,7 @@ void World::init(vec2 screen)
 
 void World::update(float dt)
 {
+  projectileGarbageSystem.destroyOffScreenEntities(entityManager);
   enemySpawnSystem.spawnEnemy(entityManager);
   enemySpawnSystem.reduceElapsedTime(entityManager, dt);
 
@@ -50,7 +51,7 @@ void World::update(float dt)
   physicsSystem.moveEntities(entityManager, dt);
 	collisionSystem.checkCollisions(entityManager);
 	spriteSystem.updateElapsedTime(dt);
-  
+
   // Build Tower UI
   towerUiSystem.interpInput(entityManager, keys);
   towerUiSystem.update(entityManager, dt);

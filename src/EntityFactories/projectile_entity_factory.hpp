@@ -10,6 +10,7 @@
 #include "../Components/color_component.hpp"
 #include "../Components/sprite_component.hpp"
 #include "../Components/projectile_component.hpp"
+#include "../Components/collision_component.hpp"
 #include "../texture.hpp"
 #include "../program.hpp"
 
