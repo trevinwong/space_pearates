@@ -127,9 +127,11 @@ void TowerUiIdleState::update(EntityManager& entityManager, float dt)
 void TowerUiIdleState::processBuildNewTower(glm::vec2 playerCenterPosition, BUILD_TOWER_UI_BUTTON_TYPE operationType, EntityManager& entityManager)
 {
   vector<shared_ptr<Entity>> mapEntities = entityManager.getEntities(entityManager.getComponentChecker(vector<int> {ComponentType::map}));
-  if (mapEntities.size() == 0) return;
+  vector<shared_ptr<Entity>> playerEntities = entityManager.getEntities(entityManager.getComponentChecker(vector<int>{ComponentType::player, ComponentType::movement}));
+  if (mapEntities.size() == 0 || playerEntities.size() == 0) return;
   MapComponent *mapComponent = mapEntities[0]->getComponent<MapComponent>();
-  if (mapComponent == nullptr) return;
+  WalletComponent *walletComponent = playerEntities[0]->getComponent<WalletComponent>();
+  if (mapComponent == nullptr || walletComponent == nullptr) return;
 
   float width_tile = mapComponent->width_tile;
   float height_tile = mapComponent->height_tile;
@@ -151,8 +153,17 @@ void TowerUiIdleState::processBuildNewTower(glm::vec2 playerCenterPosition, BUIL
     default:
       return; // unknown type of tower
     }
-    entityManager.addEntity(towerEntity);
-    mapComponent->buildTowerAt(towerEntity.id, col, row);
+
+    TowerMetaComponent *towerMetaComponent = towerEntity.getComponent<TowerMetaComponent>();
+    if (walletComponent->spend(towerMetaComponent->buildCost)) {
+      entityManager.addEntity(towerEntity);
+      mapComponent->buildTowerAt(towerEntity.id, col, row);     
+    }
+    else {
+      // TODO: tell player not enough money
+    }
+    // update HUD
+    HUD::getInstance().resource_count = walletComponent->coins;
   }
 }
 
@@ -160,9 +171,11 @@ void TowerUiIdleState::processBuildNewTower(glm::vec2 playerCenterPosition, BUIL
 void TowerUiIdleState::processOperateNewTower(glm::vec2 playerCenterPosition, BUILD_TOWER_UI_BUTTON_TYPE operationType, EntityManager& entityManager)
 {
   vector<shared_ptr<Entity>> mapEntities = entityManager.getEntities(entityManager.getComponentChecker(vector<int> {ComponentType::map}));
-  if (mapEntities.size() == 0) return;
+  vector<shared_ptr<Entity>> playerEntities = entityManager.getEntities(entityManager.getComponentChecker(vector<int>{ComponentType::player, ComponentType::movement}));
+  if (mapEntities.size() == 0 || playerEntities.size() == 0) return;
   MapComponent *mapComponent = mapEntities[0]->getComponent<MapComponent>();
-  if (mapComponent == nullptr) return;
+  WalletComponent *walletComponent = playerEntities[0]->getComponent<WalletComponent>();
+  if (mapComponent == nullptr || walletComponent == nullptr) return;
 
   float width_tile = mapComponent->width_tile;
   float height_tile = mapComponent->height_tile;
@@ -186,9 +199,11 @@ void TowerUiIdleState::processOperateNewTower(glm::vec2 playerCenterPosition, BU
     }
     // if can not find the tower by id
     if (targetTower == nullptr) return;
+    TowerMetaComponent *towerMetaComponent = targetTower->getComponent<TowerMetaComponent>();
 
     switch (operationType) {
     case SELL_TOWER_OPERATION:
+      walletComponent->earn(towerMetaComponent->sellGet);
       entityManager.removeEntity(targetTower);
       mapComponent->removeTowerAt(col, row);
       break;
@@ -199,5 +214,7 @@ void TowerUiIdleState::processOperateNewTower(glm::vec2 playerCenterPosition, BU
     default:
       return; // unknown operation
     }
+    // update HUD
+    HUD::getInstance().resource_count = walletComponent->coins;
   }
 }

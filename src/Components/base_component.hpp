@@ -13,6 +13,7 @@ namespace ComponentType {
     enemy_spawn,
     background_sprite,
     player,
+    wallet,
     health,
     tower_meta,
     attack_tower,

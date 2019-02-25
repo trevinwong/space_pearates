@@ -14,6 +14,7 @@
 #include "Components/enemy_component.hpp"
 #include "Components/resource_component.hpp"
 #include "Components/enemy_spawn_component.hpp"
+#include "Components/wallet_component.hpp"
 
 using EntityGrid = vector<vector<vector<shared_ptr<Entity>>>>;
 

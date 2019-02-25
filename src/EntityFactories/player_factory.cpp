@@ -18,6 +18,8 @@ Entity PlayerFactory::build(vec2 translation, vec2 scale)
   TransformComponent *transform = new TransformComponent(translation, scale, rotation);
   CollisionComponent *collision = new CollisionComponent(translation, scale, rotation);
 
+  WalletComponent *wallet = new WalletComponent();
+
   Entity e;
   e.setComponent<SpriteComponent>(sprite);
   e.setComponent<ColorComponent>(color);
@@ -26,5 +28,6 @@ Entity PlayerFactory::build(vec2 translation, vec2 scale)
   e.setComponent<MovementComponent>(movement);
   e.setComponent<TransformComponent>(transform);
   e.setComponent<CollisionComponent>(collision);
+  e.setComponent<WalletComponent>(wallet);
   return e;
 }
