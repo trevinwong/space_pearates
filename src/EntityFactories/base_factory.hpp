@@ -10,9 +10,9 @@
 
 class BaseFactory
 {
-  public:
-    static Entity createBase(glm::vec2 position);
-  private:
-    BaseFactory();
+public:
+  static Entity createBase(vec2 position);
+private:
+  BaseFactory();
 };
 #endif

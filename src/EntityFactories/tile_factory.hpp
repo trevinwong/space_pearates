@@ -12,10 +12,8 @@
 class TileFactory
 {
 public:
-  TileFactory();
-  ~TileFactory();
   // Build either empty tile (0) or platform tile (1)
-  Entity build(int type, glm::vec2 position, glm::vec2 scale);
+  static Entity build(int type, glm::vec2 position, glm::vec2 scale);
 };
 
 #endif

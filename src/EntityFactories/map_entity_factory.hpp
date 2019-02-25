@@ -4,18 +4,16 @@
 #include "utility.hpp"
 #include "entity_manager.hpp"
 #include "../Components/map_component.hpp"
-#include "utility.hpp"
 
 class MapEntityFactory
 {
 public:
-  ~MapEntityFactory();
   static Entity createMapEntityFromFile(char* fileName);
-  static Entity createMapEntityFromFile(std::string fileName);
+  static Entity createMapEntityFromFile(string fileName);
 
 private:
   MapEntityFactory();
-  static std::vector<std::vector<char>> readMapDataFile(std::string fileName);
+  static vector<vector<char>> readMapDataFile(string fileName);
 };
 
 #endif

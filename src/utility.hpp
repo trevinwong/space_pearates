@@ -90,6 +90,7 @@ void printVec3(string name, vec3 vec);
 #define MAP_PLATFORM_TILE 'B'   // B -> Block
 #define MAP_TOWER_POSITION 'T'  // T -> Tower build position
 #define MAP_BASE_POSITION 'H'   // H -> Home
+#define MAP_PLAYER_SPAWN 'P'   // P -> Player (should only have 1)
 
 
 // tower types
