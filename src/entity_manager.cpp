@@ -5,11 +5,6 @@ void EntityManager::addEntity(Entity e)
 	entities.push_back(make_shared<Entity>(e));
 }
 
-/* How to use:
- * - Pass in a vector of the components that you want the component_checker to check for.
- * - This can be constructed like so: vector<int> {transform, sprite, color}, if you want to check for transform, sprite, color. Be careful to qualify it with ComponentType::transform if you have a local variable with the same name...
- * - Pass the component_checker to getEntities() to get a list of entity references all with the components that you want.
- */
 bitset<ComponentType::max_count> EntityManager::getComponentChecker(vector<int> components)
 {
   bitset<ComponentType::max_count> component_checker;
