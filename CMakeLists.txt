@@ -156,11 +156,12 @@ set(SOURCE_FILES_CORE
 	src/Systems/tower_ui_system.hpp
 	src/Utility/timer.hpp
 	src/Utility/timer.cpp
+	src/Utility/waveset_structs.hpp
+	src/Utility/waveset_structs.cpp
 	src/Systems/enemy_system.cpp
 	src/Systems/enemy_system.hpp
 	src/Systems/enemy_spawn_system.cpp
 	src/Systems/enemy_spawn_system.hpp
-	src/Utility/waveset_structs.hpp
 	src/Systems/waveset_system.cpp
 	src/Systems/waveset_system.hpp
 	src/line.hpp

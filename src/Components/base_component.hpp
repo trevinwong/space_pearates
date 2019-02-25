@@ -31,7 +31,7 @@ namespace ComponentType {
 		damage,
 		death,
 		waveset,
-    max_count // Add above.
+		max_count // Add above.
   };
 }
 

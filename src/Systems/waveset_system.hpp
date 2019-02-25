@@ -1,59 +1,41 @@
 #ifndef WAVESET_SYSTEM_H
 #define WAVESET_SYSTEM_H
 
-// TODO: Remove unneeded includes
 #include "utility.hpp"
 #include "entity.hpp"
 #include "entity_manager.hpp"
 #include "Utility/waveset_structs.hpp"
 #include "Components/waveset_component.hpp"
 #include "Components/map_component.hpp"
-#include "entityFactories/enemy_factory.hpp"
-#include <time.h>       /* time */ //Only for the purposes of spawning at random locations.
+#include "EntityFactories/enemy_factory.hpp"
+#include "hud.hpp"
+#include <time.h> 
 
 class WavesetSystem
 {
 public:
 	WavesetSystem();
-	~WavesetSystem();
 
-	waveset WavesetSystem::readWavesetFile(std::string fileName);
-	wave WavesetSystem::readWaveDataFile(std::string fileName);
-	cluster WavesetSystem::readClusterDataFile(std::string fileName);
+	void handleBuildAndDefensePhase(EntityManager &entityManager, float dt);
+	void startBuildPhase();
+	void startDefensePhase(int totalEnemies);
+	bool timeToSpawnNextCluster(Wave wave);
+	bool isWaveOver(Wave wave);
+	bool isWavesetOver(Waveset waveset);
+	void spawnCluster(EntityManager &entityManager, Cluster cluster);
 
-	void mainWavesetAction(EntityManager &entityManager, float dt);
-
-	void tickMainTimer(float dt);
-	bool checkBuildPhaseEnd(wave w);
-	void spawnCluster(EntityManager &entityManager, WavesetComponent* wp);
-	bool enemyPhaseEnd(WavesetComponent* wp);
-	bool advanceToNextWave(WavesetComponent* wp);
-	int  getMaxClusters(WavesetComponent* wp);
-	void enemyPhaseAction(EntityManager &entityManager, WavesetComponent* wp, float dt);
-	void startEnemyPhase();
-	void resetMainTimer();
-
-
-	int getMaxWaves(WavesetComponent* wp);
-	int resetWaveEnemies(WavesetComponent* wp);
-	bool allClustersSpawned(WavesetComponent* wp);
-	bool allWavesDone(WavesetComponent* wp);
-
-	EnemyFactory enFactory;
-
-	int totalWaveEnemies = 0;
-	int waveEnemiesRemaining = 0;
-
+	int currentEnemies = 0;
 	int waveNo = 0;
 	int clusterNo = 0;
-	enum phaseStateType {
-		buildPhase,
-		enemyPhase
+
+	enum PhaseType {
+		BuildPhase,
+		DefensePhase
 	};
-	phaseStateType phaseState = buildPhase; //TODO: Turn this into an enum
 
-	float mainTimer; // Should be same type as world's dt.
-
+	PhaseType phase = BuildPhase; 
+	float buildTimer;
+	float defenseTimer;
 };
 
 #endif

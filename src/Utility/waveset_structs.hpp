@@ -3,16 +3,24 @@
 
 #include "utility.hpp"
 
-struct cluster {
-	std::vector<glm::vec2> enemyData; //x is the enemy ID while y is the enemy amount.
+class Cluster {
+public:
+	vector<vec2> enemyData; //x is the enemy ID while y is the enemy amount.
+	Cluster(vector<vec2> _enemyData);
 };
 
-struct wave {
+class Wave {
+public:
 	int buildPhaseTime;
-	std::vector<int> spawnTimes;
-	std::vector<cluster> clusters;
+	vector<int> spawnTimes;
+	vector<Cluster> clusters;
+	int totalEnemies = 0;
+	Wave(int _buildPhaseTime, vector<int> _spawnTimes, vector<Cluster> _clusters);
 };
-struct waveset {
-	std::vector<wave> waves;
+
+class Waveset {
+public:
+	vector<Wave> waves;
+	Waveset(vector<Wave> _waves);
 };
 #endif

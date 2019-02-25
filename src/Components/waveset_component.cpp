@@ -1,6 +1,6 @@
 #include "waveset_component.hpp"
 
-WavesetComponent::WavesetComponent(waveset wavese)
+WavesetComponent::WavesetComponent(Waveset _waveset)
+	: waveset(_waveset)
 {
-	m_waveset = wavese;
 }

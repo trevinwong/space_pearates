@@ -40,16 +40,13 @@ void World::init(vec2 screen)
   for (Entity towerUiEntity : towerUiEntities)
     entityManager.addEntity(towerUiEntity);
 	
-	//WavesetManagerFactory waveFact;
 	Entity w = WavesetManagerFactory::build(waveset_path("waveset0.txt"));
 	entityManager.addEntity(w);
 }
 
 void World::update(float dt)
 {
-  //enemySpawnSystem.spawnEnemy(entityManager);
-  //enemySpawnSystem.reduceElapsedTime(entityManager, dt);
-	wavesetSystem.mainWavesetAction(entityManager, dt);
+	wavesetSystem.handleBuildAndDefensePhase(entityManager, dt);
 
   enemySystem.move(dt, entityManager);
 
@@ -72,8 +69,7 @@ void World::update(float dt)
 
   // OffScreen garbage check
   projectileGarbageSystem.destroyOffScreenEntities(entityManager);
-	resourceSystem.handleResourceSpawnAndDespawn(entityManager, dt);
-	
+	resourceSystem.handleResourceSpawnAndDespawn(entityManager, dt);	
 }
 
 void World::processInput(float dt)

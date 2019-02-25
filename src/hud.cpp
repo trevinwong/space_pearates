@@ -27,4 +27,8 @@ void HUD::draw()
   text.render("Press arrow keys to move",           vec2(190.0f, 240.0f), 0.6f, vec3(0.5f, 0.5f, 0.5f));
   text.render("Press A or D to select tower type",  vec2(190.0f, 280.0f), 0.6f, vec3(0.5f, 0.5f, 0.5f));
   text.render("Press S or Space to build towers",   vec2(190.0f, 320.0f), 0.6f, vec3(0.5f, 0.5f, 0.5f));
+
+	if (you_win) text.render("YOU WIN!", vec2(500.0f, 500.0f));
 }
+
+

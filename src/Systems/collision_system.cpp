@@ -77,10 +77,6 @@ void CollisionSystem::handleCollision(shared_ptr<Entity> e1, shared_ptr<Entity> 
   EnemyComponent *enemy = e2->getComponent<EnemyComponent>();
   TransformComponent *pos = e2->getComponent<TransformComponent>();
 
-  // TODO(subi): this is super slow and inefficient, refactor later.
-  shared_ptr<Entity> spawnEntity =
-    entityManager.getEntities(entityManager.getComponentChecker(vector<int> {ComponentType::enemy_spawn}))[0];
-
   if (projectile != nullptr && enemy != nullptr) {
     entityManager.removeEntity(e2);
     entityManager.removeEntity(e1);

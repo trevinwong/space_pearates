@@ -9,12 +9,24 @@
 class WavesetManagerFactory
 {
 public:
-	static Entity build(std::string fileName);
+	static Entity build(string fileName);
+	static Waveset readWavesetFile(string fileName);
+	static Wave readWaveDataFile(string fileName);
+	static Cluster readClusterDataFile(string fileName);
 
-	static waveset WavesetManagerFactory::readWavesetFile(std::string fileName);
-	static wave WavesetManagerFactory::readWaveDataFile(std::string fileName);
-	static cluster WavesetManagerFactory::readClusterDataFile(std::string fileName);
-private:
+	template <typename T>
+	static void fillVariable(std::stringstream &iss, T &var, string name) 
+	{
+		if (!(iss >> var)) {
+			cout << "Unable to fill variable: " << name << endl;
+			exit(1);
+		}
+	}
+
+	static int getPreviouslyReadIndex(vector<string> prevReadFileNames, string fileName);	
+	static void checkValidFilename(std::ifstream &ifs, string fileName);
+	static void checkExtraText(std::stringstream &iss, string type);
+	static void checkValidSeparatorAndMove(std::stringstream &iss, string type);
 };
 
 #endif
