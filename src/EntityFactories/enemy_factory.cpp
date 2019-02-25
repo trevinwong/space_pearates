@@ -1,6 +1,6 @@
 #include "enemy_factory.hpp"
 
-Entity EnemyFactory::build(vec2 position, vec2 scale, vec2 velocity)
+Entity EnemyFactory::build(vec2 position, vec2 velocity, vec2 scale)
 {
   Program *program = new Program(shader_path("sprite.vert"), shader_path("sprite.frag"));
   Texture *texture = new Texture(texture_path("enemy0.png"), true);

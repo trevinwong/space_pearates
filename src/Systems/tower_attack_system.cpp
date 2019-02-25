@@ -29,18 +29,18 @@ void TowerAttackSystem::checkRangeAndShootProjectiles(EntityManager& entityManag
     if (spriteComponent == nullptr || transformComponent == nullptr || towerAttackComponent == nullptr) continue;
 
     // calculate the fire point position
-    glm::vec2 towerLeftTopPosition = transformComponent->position;
-    glm::vec2 towerSize = transformComponent->size;
-    glm::vec2 towerCenterPosition = towerLeftTopPosition + towerSize * 0.5f;
-    glm::vec2 relativeFirePosition = towerAttackComponent->relativeFirePosition;
-    glm::vec2 firePointPosition(towerCenterPosition + towerSize * relativeFirePosition);
+    vec2 towerLeftTopPosition = transformComponent->position;
+    vec2 towerSize = transformComponent->size;
+    vec2 towerCenterPosition = towerLeftTopPosition + towerSize * 0.5f;
+    vec2 relativeFirePosition = towerAttackComponent->relativeFirePosition;
+    vec2 firePointPosition(towerCenterPosition + towerSize * relativeFirePosition);
 
     // loop all
     float towerRadius = towerAttackComponent->getAttackRange();
     for (shared_ptr<Entity> enemyEntity : enemyEntities) {
       TransformComponent *enemyTransformComponent = enemyEntity->getComponent<TransformComponent>();
-      glm::vec2 enemyPosition = enemyTransformComponent->position;
-      glm::vec2 enemyCenterPosition = enemyPosition + enemyTransformComponent->size * 0.5f;
+      vec2 enemyPosition = enemyTransformComponent->position;
+      vec2 enemyCenterPosition = enemyPosition + enemyTransformComponent->size * 0.5f;
       float enemyHitboxRadius = glm::max(enemyTransformComponent->size.x, enemyTransformComponent->size.y);
 
       // calcule distance
@@ -51,7 +51,7 @@ void TowerAttackSystem::checkRangeAndShootProjectiles(EntityManager& entityManag
 
         if (towerAttackComponent->getTowerType() == TowerTypeID::fire_tower) {
           // in the range, FIRE!
-          auto projectileSize = glm::vec2(15.0, 15.0);
+          auto projectileSize = vec2(15.0, 15.0);
           auto projectileColor = glm::vec4(1, 1, 1, 1);
           auto projectileLeftTopPosition = firePointPosition - projectileSize * 0.5f;
           auto speed = 100.0f;
@@ -67,10 +67,10 @@ void TowerAttackSystem::checkRangeAndShootProjectiles(EntityManager& entityManag
         else if (towerAttackComponent->getTowerType() == TowerTypeID::light_tower) {
           // in the range, FIRE!
           auto projectileNumberPerShoot = dynamic_cast<LightTowerAttackComponent*>(towerAttackComponent)->getProjectileNumberPerShoot();
-          auto projectileSize = glm::vec2(15.0, 15.0);
+          auto projectileSize = vec2(15.0, 15.0);
           auto projectileColor = glm::vec4(1, 1, 1, 1);
           auto projectileLeftTopPosition = firePointPosition - projectileSize * 0.5f;
-          auto speed = 100.0f;
+          auto speed = 240.0f;
           auto attackPower = 10;
           vector<Entity> projectileEntities =
             ProjectileEntityFactory::createSpreadProjectiles(projectileNumberPerShoot, projectileSize, projectileColor, projectileLeftTopPosition, speed, attackPower);

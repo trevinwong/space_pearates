@@ -15,13 +15,14 @@ void World::init(vec2 screen)
 	projection = glm::ortho(0.0f, static_cast<GLfloat>(screen.x), static_cast<GLfloat>(screen.y), 0.0f, -1.0f, 1.0f);
 	entityManager = EntityManager();
 
-	Entity r = ResourceFactory::build(vec2(screen.x / 2, 50));
+	Entity r = ResourceFactory::build(vec2(screen.x / 2, 40));
 	entityManager.addEntity(r);
   ResourceFactory::spawnMany(entityManager);
 
-  vec2 playerSpawnPt = vec2(screen.x / 8, screen.y / 8);
-	Entity p = PlayerFactory::build(playerSpawnPt, vec2(50.0f, 65.0f));
+  vec2 player_spawn = vec2(200, screen.y / 8);
+	Entity p = PlayerFactory::build(player_spawn, vec2(50.0f, 65.0f));
 	entityManager.addEntity(p);
+  //printVec2("(world)player spawn:", player_spawn);
 
 	Entity mapDataEntity = MapEntityFactory::createMapEntityFromFile(map_path("map0.txt"));
 	entityManager.addEntity(mapDataEntity);
@@ -31,6 +32,10 @@ void World::init(vec2 screen)
 
 	enemySystem.getMap(entityManager);
 	physicsSystem.setScreenInfo(screen);
+
+  // create background entity
+  Entity backgroundEntity = BackgroundEntityFactory::createBackgroundEntity();
+  entityManager.addEntity(backgroundEntity);
 
   // Generate the build tower ui entity
   vector<Entity> towerUiEntities = TowerUiEntityFactory::createTowerUiButtons();
@@ -50,6 +55,9 @@ void World::update(float dt)
   physicsSystem.moveEntities(entityManager, dt);
 	collisionSystem.checkCollisions(entityManager);
 	spriteSystem.updateElapsedTime(dt);
+
+  // Background Update
+  backgroundSystem.update(entityManager);
 
   // Build Tower UI
   towerUiSystem.interpInput(entityManager, keys);
@@ -82,6 +90,8 @@ void World::processInput(float dt)
 
 void World::draw()
 {
+  // Background will render first
+  backgroundSystem.render(entityManager, projection);
   spriteSystem.drawSprites(entityManager, projection);
   billboardSystem.drawBillboards(entityManager, projection);
   towerRangeDisplaySystem.drawRanges(entityManager, projection);
