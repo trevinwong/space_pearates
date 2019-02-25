@@ -16,5 +16,5 @@ LightTowerAttackComponent::LightTowerAttackComponent(
 int LightTowerAttackComponent::getProjectileNumberPerShoot()
 {
   // light tower can shoot more in upper levels
-  return this->projectileNumberPerShoot * (this->currentLevel + 1);
+  return this->projectileNumberPerShoot * (currentLevel + 1);
 }
