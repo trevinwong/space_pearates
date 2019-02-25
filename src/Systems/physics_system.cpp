@@ -39,6 +39,7 @@ void PhysicsSystem::moveEntities(EntityManager &entityManager, float dt) {
 		transform->position = transform->position + movement->velocity * dt;
 		if (projectile == nullptr) adjustPositionAroundTiles(entityManager, e);
 		if (collision != nullptr) collision->position = transform->position;
+		if (!movement->offScreenOK) adjustPositionOntoScreen(entityManager, e);
 	}
 }
 
@@ -110,5 +111,21 @@ void PhysicsSystem::adjustPositionAroundTiles(EntityManager &entityManager, shar
 
 			transform->position = newPosition;	
 		}
+	}
+}
+
+void PhysicsSystem::adjustPositionOntoScreen(EntityManager &entityManager, shared_ptr<Entity> &e)
+{
+	TransformComponent *transform = e->getComponent<TransformComponent>();
+	MovementComponent *movement = e->getComponent<MovementComponent>();
+	if (transform->position.x < 0.0f) {
+		transform->position.x = 0.0f;
+		movement->velocity.x = 0.0f;
+		movement->accel.x = 0.0f;
+	}
+	if (transform->position.x + transform->size.x > screenInfo.x) {
+		transform->position.x = screenInfo.x - transform->size.x;
+		movement->velocity.x = 0.0f;
+		movement->accel.x = 0.0f;
 	}
 }

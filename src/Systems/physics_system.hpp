@@ -27,6 +27,7 @@ private:
 	float getGravity(float dt);
 	float getFriction(vec2 velocity, float dt);
   void adjustPositionAroundTiles(EntityManager &entityManager, shared_ptr<Entity> &e);
+	void adjustPositionOntoScreen(EntityManager &entityManager, shared_ptr<Entity> &e);
 	vec2 screenInfo;
 };
 
