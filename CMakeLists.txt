@@ -41,8 +41,8 @@ set(SOURCE_FILES_AUTOGEN
    	src/project_path.hpp
 )
 set(SOURCE_FILES_CORE
-  src/EntityFactories/base_factory.cpp
-	src/EntityFactories/base_factory.hpp
+	src/EntityFactories/home_factory.cpp
+	src/EntityFactories/home_factory.hpp
 	src/EntityFactories/tower_entity_factory.cpp
 	src/EntityFactories/tower_entity_factory.hpp
 	src/EntityFactories/player_factory.cpp
@@ -120,6 +120,8 @@ set(SOURCE_FILES_CORE
   src/Components/enemy_spawn_component.hpp
 	src/Components/map_component.cpp
 	src/Components/map_component.hpp
+  src/Components/home_component.cpp
+  src/Components/home_component.hpp
 	src/Components/resource_component.cpp
 	src/Components/resource_component.hpp
 	src/Components/animated_component.cpp

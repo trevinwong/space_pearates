@@ -11,36 +11,35 @@ World::~World()
 void World::init(vec2 screen)
 {
 	collisionSystem.setScreenInfo(screen);
-  vector<shared_ptr<Entity>> entities = entityManager.getEntities();
+    vector<shared_ptr<Entity>> entities = entityManager.getEntities();
 	projection = glm::ortho(0.0f, static_cast<GLfloat>(screen.x), static_cast<GLfloat>(screen.y), 0.0f, -1.0f, 1.0f);
 	entityManager = EntityManager();
 
 	Entity r = ResourceFactory::build(vec2(screen.x / 2, 40));
 	entityManager.addEntity(r);
-  ResourceFactory::spawnMany(entityManager);
+    ResourceFactory::spawnMany(entityManager);
 
-  vec2 player_spawn = vec2(200, screen.y / 8);
+    vec2 player_spawn = vec2(200, screen.y / 8);
 	Entity p = PlayerFactory::build(player_spawn, vec2(50.0f, 65.0f));
 	entityManager.addEntity(p);
-  //printVec2("(world)player spawn:", player_spawn);
 
 	Entity mapDataEntity = MapEntityFactory::createMapEntityFromFile(map_path("map0.txt"));
 	entityManager.addEntity(mapDataEntity);
 	tileMapSystem.loadTileMap(entityManager);
 
-  entityManager.addEntity(EnemySpawnFactory::build(2.0));
+    entityManager.addEntity(EnemySpawnFactory::build(2.0));
 
 	enemySystem.getMap(entityManager);
 	physicsSystem.setScreenInfo(screen);
 
-  // create background entity
-  Entity backgroundEntity = BackgroundEntityFactory::createBackgroundEntity();
-  entityManager.addEntity(backgroundEntity);
+    // create background entity
+    Entity backgroundEntity = BackgroundEntityFactory::createBackgroundEntity();
+    entityManager.addEntity(backgroundEntity);
 
-  // Generate the build tower ui entity
-  vector<Entity> towerUiEntities = TowerUiEntityFactory::createTowerUiButtons();
-  for(Entity towerUiEntity : towerUiEntities)
-    entityManager.addEntity(towerUiEntity);
+    // Generate the build tower ui entity
+    vector<Entity> towerUiEntities = TowerUiEntityFactory::createTowerUiButtons();
+    for(Entity towerUiEntity : towerUiEntities)
+        entityManager.addEntity(towerUiEntity);
 }
 
 void World::update(float dt)

@@ -26,7 +26,6 @@ EntityGrid CollisionSystem::preprocessEntitiesIntoGrid(vector<shared_ptr<Entity>
       }
     }
   }
-
   return grid;
 }
 
@@ -52,8 +51,7 @@ void CollisionSystem::checkCollisions(EntityManager &entityManager)
   }
 }
 
-void CollisionSystem::handleCollision(shared_ptr<Entity> e1, shared_ptr<Entity> e2, EntityManager &entityManager)
-{
+void CollisionSystem::handleCollision(shared_ptr<Entity> e1, shared_ptr<Entity> e2, EntityManager &entityManager) {
   PlayerComponent *player = e1->getComponent<PlayerComponent>();
   ResourceComponent *resource = e2->getComponent<ResourceComponent>();
   if (player != nullptr && resource != nullptr) {

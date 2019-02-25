@@ -1,5 +1,5 @@
-#ifndef BASE_H
-#define BASE_H
+#ifndef HOME_FACTORY_H
+#define HOME_FACTORY_H
 
 #include <vector>
 #include "utility.hpp"
@@ -7,12 +7,13 @@
 #include "entity_manager.hpp"
 #include "Systems/sprite_system.hpp"
 #include "Components/health_component.hpp"
+#include "Components/home_component.hpp"
 
-class BaseFactory
+class HomeFactory
 {
 public:
   static Entity createBase(vec2 position);
 private:
-  BaseFactory();
+  HomeFactory();
 };
 #endif

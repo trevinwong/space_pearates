@@ -6,7 +6,7 @@
 #include "../Components/map_component.hpp"
 #include "../EntityFactories/tile_factory.hpp"
 #include "../EntityFactories/tower_entity_factory.hpp"
-#include "../EntityFactories/base_factory.hpp"
+#include "EntityFactories/home_factory.hpp"
 #include "../EntityFactories/player_factory.hpp"
 
 class TileMapSystem

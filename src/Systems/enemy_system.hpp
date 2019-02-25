@@ -4,6 +4,7 @@
 #include "entity_manager.hpp"
 #include "EntityFactories/enemy_factory.hpp"
 #include "tile_map_system.hpp"
+#include "hud.hpp"
 
 class EnemySystem
 {

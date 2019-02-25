@@ -2,7 +2,7 @@
 
 Entity TowerEntityFactory::createFireTower(glm::vec2 towerCenterBottomPosition, glm::vec2 _size)
 {
-  
+
   Entity towerEntity;
   // calculate left top x,y coord
   float x = towerCenterBottomPosition.x - _size.x / 2.0;
@@ -10,7 +10,7 @@ Entity TowerEntityFactory::createFireTower(glm::vec2 towerCenterBottomPosition, 
   glm::vec2 position = {x, y};
 
   Program *billboardProgram = new Program(shader_path("billboard.vert"), shader_path("billboard.frag"));
-  HealthComponent *health = new HealthComponent(billboardProgram);
+  HealthComponent *health = new HealthComponent(billboardProgram, 100);
 
   TransformComponent *transformComponent = new TransformComponent(position, _size, 0.0f);
   ColorComponent *colorComponent = new ColorComponent(glm::vec4(1.0f, 1.0f, 1.0f, 1.0f)); // diff tower can have diff color
@@ -31,7 +31,7 @@ Entity TowerEntityFactory::createFireTower(glm::vec2 towerCenterBottomPosition, 
   float fireRate = 2.0f;
   int projectileAttackPower = 10;
   int maxLevel = 3;
-  FireTowerAttackComponent *fireTowerAttackComponent = 
+  FireTowerAttackComponent *fireTowerAttackComponent =
     new FireTowerAttackComponent(relativeFirePosition, attackRange, maxLevel, fireRate, projectileAttackPower);
 
   // Tower Meta Component
@@ -60,7 +60,7 @@ Entity TowerEntityFactory::createLightTower(glm::vec2 towerCenterBottomPosition,
   glm::vec2 position = { x, y };
 
   Program *billboardProgram = new Program(shader_path("billboard.vert"), shader_path("billboard.frag"));
-  HealthComponent *health = new HealthComponent(billboardProgram);
+  HealthComponent *health = new HealthComponent(billboardProgram, 100);
 
   TransformComponent *transformComponent = new TransformComponent(position, _size, 0.0f);
   ColorComponent *colorComponent = new ColorComponent(glm::vec4(1.0f, 1.0f, 1.0f, 1.0f)); // diff tower can have diff color

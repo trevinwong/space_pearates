@@ -7,12 +7,14 @@ void EnemySystem::move (float dt, EntityManager& entityManager) {
   int arr[2] = {-1, 1};
 
   vector<shared_ptr<Entity>> entityList = entityManager.getEntities(entityManager.getComponentChecker(vector<int> {ComponentType::transform, ComponentType::enemy, ComponentType::movement}));
+  shared_ptr<Entity> home = entityManager.getEntities(entityManager.getComponentChecker(vector<int> {ComponentType::home}))[0];
 
   float eps = 0.001;
   for (shared_ptr<Entity> e : entityList) {
     MovementComponent *movementComponent = e->getComponent<MovementComponent>();
     EnemyComponent *enemyComponent = e->getComponent<EnemyComponent>();
     TransformComponent *transformComponent = e->getComponent<TransformComponent>();
+    HealthComponent *healthComponent = home->getComponent<HealthComponent>();
 
 		vec2 vel = movementComponent->velocity;
 		vec2 pos = transformComponent->position;
@@ -21,8 +23,19 @@ void EnemySystem::move (float dt, EntityManager& entityManager) {
 		bool flag = false;
 		vel.y = abs(vel.y) < eps ? movementComponent->maxVelocity.y : vel.y;
 
+    if (map[yind][xind] == MAP_BASE_POSITION) {
+      entityManager.removeEntity(e);
+      if (healthComponent) {
+        healthComponent->curHP = healthComponent->curHP - 20 < 0 ? 0 : healthComponent->curHP - 20;
+         if (healthComponent->curHP < 0) {
+            // GAME OVER LOGIC HERE
+         }
+      }
+
+    }
+
 		for (int i = 0; i <= ceil(vel.y*dt/40); i++)
-			if (map[yind+i][xind] == 'B' || map[yind+i][xind+1] == 'B')
+			if (map[yind+i][xind] == MAP_PLATFORM_TILE || map[yind+i][xind+1] == MAP_PLATFORM_TILE)
 				flag = true;
 
 		if (flag) {
@@ -36,11 +49,10 @@ void EnemySystem::move (float dt, EntityManager& entityManager) {
 
 		// check if directly above base - path straight down if so
 		for (int i = 0; i <= ceil(vel.y*dt/40); i++)
-			if (map[yind+i][xind] == 'H') {
-				vel.y = 2*movementComponent->maxVelocity.y;
+			if (map[yind+i][xind] == MAP_BASE_POSITION) {
+				vel.y = movementComponent->maxVelocity.y;
 				movementComponent->maxVelocity.x = 0.f;
 			}
-
 		movementComponent->velocity = vel;
   }
 }
