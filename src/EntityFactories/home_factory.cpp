@@ -13,7 +13,7 @@ Entity BaseFactory::createBase(vec2 position)
   ColorComponent *color = new ColorComponent(BASE_COLOUR);
 
   Program *billboardProgram = new Program(shader_path("billboard.vert"), shader_path("billboard.frag"));
-  HealthComponent *health = new HealthComponent(billboardProgram);
+  HealthComponent *health = new HealthComponent(billboardProgram, 100);
 
   baseEntity.setComponent<SpriteComponent>(sprite);
   baseEntity.setComponent<TransformComponent>(transform);
