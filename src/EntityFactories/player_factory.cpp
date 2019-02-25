@@ -11,7 +11,7 @@ Entity PlayerFactory::build(vec2 translation, vec2 scale)
 
   PlayerComponent *player = new PlayerComponent();
   MovementComponent *movement = new MovementComponent(
-    vec2(0.0f, 0.0f), vec2(0.0f, 0.0f), vec2(300.0f, 250.0f), vec2(1000.0f, 600.0f));
+    vec2(0.0f, 0.0f), vec2(0.0f, 0.0f), vec2(300.0f, 350.0f), vec2(1000.0f, 600.0f));
   movement->offScreenOK = false;
 
   GLfloat rotation = 0.0f;
