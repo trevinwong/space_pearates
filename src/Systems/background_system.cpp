@@ -2,16 +2,16 @@
 
 void BackgroundSystem::update(EntityManager & entityManager)
 {
-  vector<shared_ptr<Entity>> playerEntities = 
-    entityManager.getEntities(entityManager.getComponentChecker(vector<int>{ComponentType::player}));
-  vector<shared_ptr<Entity>> bgEntities =
-    entityManager.getEntities(entityManager.getComponentChecker(vector<int>{ComponentType::background_sprite}));
-  if(playerEntities.size() == 0 || bgEntities.size() == 0) return;
+  vector<shared_ptr<Entity>> playerEntities = entityManager.getEntities(
+    entityManager.getComponentChecker(vector<int>{ComponentType::player}));
+  vector<shared_ptr<Entity>> bgEntities = entityManager.getEntities(
+    entityManager.getComponentChecker(vector<int>{ComponentType::background_sprite}));
+  if (playerEntities.size() == 0 || bgEntities.size() == 0) return;
 
   TransformComponent* playerTransformComponent = playerEntities[0]->getComponent<TransformComponent>();
   TransformComponent* bgTransformComponent = bgEntities[0]->getComponent<TransformComponent>();
   BackgroundSpriteComponent* bgSpriteComponent = bgEntities[0]->getComponent<BackgroundSpriteComponent>();
-  if(playerTransformComponent == nullptr || bgTransformComponent == nullptr || bgSpriteComponent == nullptr) return;
+  if (playerTransformComponent == nullptr || bgTransformComponent == nullptr || bgSpriteComponent == nullptr) return;
 
   vec2 positionOffset = bgSpriteComponent->positionOffset;
   vec2 playerPosition = playerTransformComponent->position;
@@ -22,14 +22,14 @@ void BackgroundSystem::update(EntityManager & entityManager)
 
 void BackgroundSystem::render(EntityManager & entityManager, glm::mat4 projection)
 {
-  vector<shared_ptr<Entity>> entities = 
-    entityManager.getEntities(entityManager.getComponentChecker(vector<int> {ComponentType::background_sprite}));
+  vector<shared_ptr<Entity>> entities = entityManager.getEntities(
+    entityManager.getComponentChecker(vector<int> {ComponentType::background_sprite}));
 
   for (shared_ptr<Entity> e : entities) {
     BackgroundSpriteComponent *spriteComponent = e->getComponent<BackgroundSpriteComponent>();
     TransformComponent *transformComponent = e->getComponent<TransformComponent>();
     ColorComponent *colorComponent = e->getComponent<ColorComponent>();
-    if(spriteComponent == nullptr || transformComponent == nullptr || colorComponent == nullptr) continue;
+    if (spriteComponent == nullptr || transformComponent == nullptr || colorComponent == nullptr) continue;
 
     // Use the program attached with the spriteComponent.
     spriteComponent->program->use();
@@ -40,12 +40,7 @@ void BackgroundSystem::render(EntityManager & entityManager, glm::mat4 projectio
     // We want to scale, rotate, then translate.
     // But since matrix operations happen from right to left, we want to code these operations in reverse order.
     model = glm::translate(model, vec3(transformComponent->position, 0.0f));
-
-    // We want to move the origin of rotation to the center of the quad, rotate, then move the origin back.
-    //model = glm::translate(model, vec3(0.5f * transformComponent->size.x, 0.5f * transformComponent->size.y, 0.0f));
-    //model = glm::rotate(model, transformComponent->rotation, vec3(0.0f, 0.0f, 1.0f));
-    //model = glm::translate(model, vec3(-0.5f * transformComponent->size.x, -0.5f * transformComponent->size.y, 0.0f));
-
+    // No rotation
     model = glm::scale(model, vec3(transformComponent->size, 1.0f));
 
     spriteComponent->program->setMat4("model", model);
