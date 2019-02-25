@@ -8,7 +8,7 @@ void EnemySpawnSystem::spawnEnemy(EntityManager& entityManager) {
   for (shared_ptr<Entity> spawnEntity : spawnEntities) {
     EnemySpawnComponent *sc = spawnEntity->getComponent<EnemySpawnComponent>();
     if (sc->timeToSpawn <= 0) {
-      entityManager.addEntity(EnemyFactory::build(vec2(600, 5), vec2(16,16), vec2(0.f, 40.f)));
+      entityManager.addEntity(EnemyFactory::build(vec2(600, 5), vec2(0.f, 40.f)));
       sc->timeToSpawn = sc->spawnRate;
       sc->count++;
     }
