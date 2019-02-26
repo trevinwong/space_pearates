@@ -7,7 +7,7 @@ Entity PlayerFactory::build(vec2 translation, vec2 scale)
 
   SpriteComponent *sprite = new SpriteComponent(program, texture);
   ColorComponent *color = new ColorComponent(glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
-  AnimatedComponent *animated = new AnimatedComponent(4, 0.2);
+  AnimatedComponent *animated = new AnimatedComponent(5, 0.2);
 
   PlayerComponent *player = new PlayerComponent();
   MovementComponent *movement = new MovementComponent(
