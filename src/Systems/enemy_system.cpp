@@ -27,8 +27,8 @@ void EnemySystem::move (float dt, EntityManager& entityManager) {
       entityManager.removeEntity(e);
       if (healthComponent) {
         healthComponent->curHP = healthComponent->curHP - 20 < 0 ? 0 : healthComponent->curHP - 20;
-         if (healthComponent->curHP < 0) {
-            // GAME OVER LOGIC HERE
+         if (healthComponent->curHP <= 0) {
+            HUD::getInstance().game_over = true;
          }
       }
 

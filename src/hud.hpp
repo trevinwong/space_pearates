@@ -20,6 +20,7 @@ public:
   int resource_count = 0;
   int enemy_count = 0;
 	bool you_win = false; // TODO: Change this later.
+  bool game_over = false;
 	bool build_phase = true;
 
 private:
