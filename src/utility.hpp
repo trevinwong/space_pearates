@@ -75,13 +75,16 @@ void printVec3(string name, vec3 vec);
 // Utility macro, allows us to write "audiopath("audio.ogg")" instead of "data/audio/audio.ogg" for example
 // This allows code to compile cleanly on all machines because each machine will have their own project directory structure.
 #include "project_path.hpp" // defines PROJECT_SOURCE_DIR
-#define shader_path(name) PROJECT_SOURCE_DIR "./shaders/" name
-#define data_path PROJECT_SOURCE_DIR "./data"
-#define texture_path(name)  data_path "/textures/" name
-#define audio_path(name) data_path  "/audio/" name
-#define mesh_path(name) data_path  "/meshes/" name
-#define map_path(name) data_path  "/map/" name
-#define font_path(name) data_path  "/fonts/" name
+#define shader_path(name) PROJECT_SOURCE_DIR "shaders/" name
+#define data_path PROJECT_SOURCE_DIR "data/"
+#define texture_path(name)  data_path "textures/" name
+#define audio_path(name) data_path  "audio/" name
+#define mesh_path(name) data_path  "meshes/" name
+#define map_path(name) data_path  "map/" name
+#define font_path(name) data_path  "fonts/" name
+#define waveset_path(name) data_path  "waveSet/" name
+#define wave_path(name) data_path  "waveSet/wave/" name
+#define cluster_path(name) data_path  "waveSet/wave/cluster/" name
 
 #define SCREEN_WIDTH 1280
 #define SCREEN_HEIGHT 800
