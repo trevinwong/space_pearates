@@ -200,6 +200,7 @@ void TowerUiIdleState::processOperateNewTower(glm::vec2 playerCenterPosition, BU
     // if can not find the tower by id
     if (targetTower == nullptr) return;
     TowerMetaComponent *towerMetaComponent = targetTower->getComponent<TowerMetaComponent>();
+    TowerAttackComponent *towerAttackComponent = targetTower->getComponent<TowerAttackComponent>();
 
     switch (operationType) {
     case SELL_TOWER_OPERATION:
@@ -208,6 +209,11 @@ void TowerUiIdleState::processOperateNewTower(glm::vec2 playerCenterPosition, BU
       mapComponent->removeTowerAt(col, row);
       break;
     case UPGRADE_TOWER_OPERATION:
+      if (towerAttackComponent->currentLevel < towerAttackComponent->maxLevel) {
+        if (walletComponent->spend(towerMetaComponent->upgradeCost)) {
+          towerAttackComponent->currentLevel++;
+        }
+      }
       break;
     case FIX_TOWER_OPERATION:
       break;

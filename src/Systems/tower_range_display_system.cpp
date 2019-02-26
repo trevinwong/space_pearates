@@ -1,13 +1,5 @@
 #include "tower_range_display_system.hpp"
 
-TowerRangeDisplaySystem::TowerRangeDisplaySystem()
-{
-}
-
-TowerRangeDisplaySystem::~TowerRangeDisplaySystem()
-{
-}
-
 void TowerRangeDisplaySystem::drawRanges(EntityManager & entityManager, glm::mat4 projection)
 {
   vector<shared_ptr<Entity>> player_entities =
@@ -25,8 +17,8 @@ void TowerRangeDisplaySystem::drawRanges(EntityManager & entityManager, glm::mat
   auto map_entity = map_entities[0];
 
   TransformComponent *playerTransformComponent = player_entity->getComponent<TransformComponent>();
-  glm::vec2 playerPosition = playerTransformComponent->position;
-  glm::vec2 playerCenterPosition = playerPosition + playerTransformComponent->size * 0.5f;
+  vec2 playerPosition = playerTransformComponent->position;
+  vec2 playerCenterPosition = playerPosition + playerTransformComponent->size * 0.5f;
 
   MapComponent *mapComponent = map_entity->getComponent<MapComponent>();
   float mapTileWidth = mapComponent->width_tile;
@@ -42,16 +34,16 @@ void TowerRangeDisplaySystem::drawRanges(EntityManager & entityManager, glm::mat
     // a tower may contain multi attack component
     FireTowerAttackComponent *fireTowerAttackComponent = e->getComponent<FireTowerAttackComponent>();
     LightTowerAttackComponent *lightTowerAttackComponent = e->getComponent<LightTowerAttackComponent>();
-    
+
     vector<TowerAttackComponent*> towerAttackComponents;
     if (fireTowerAttackComponent != nullptr)  towerAttackComponents.push_back(fireTowerAttackComponent);
     if (lightTowerAttackComponent != nullptr)  towerAttackComponents.push_back(lightTowerAttackComponent);
 
     for (TowerAttackComponent* towerAttackComponent : towerAttackComponents) {
       // calculate the positon of the range circle
-      glm::vec2 towerLeftTopPosition = transformComponent->position;
-      glm::vec2 towerSize = transformComponent->size;
-      glm::vec2 towerCenterPosition = towerLeftTopPosition + towerSize * 0.5f;
+      vec2 towerLeftTopPosition = transformComponent->position;
+      vec2 towerSize = transformComponent->size;
+      vec2 towerCenterPosition = towerLeftTopPosition + towerSize * 0.5f;
 
       // check if player and a tower in the same tile
       // display range circle if they are in the same tile
@@ -62,8 +54,8 @@ void TowerRangeDisplaySystem::drawRanges(EntityManager & entityManager, glm::mat
         float towerRadius = towerAttackComponent->getAttackRange();
 
         // shootRangeCircleCenterPosition -> drawRangesHelper function
-        glm::vec2 relativeFirePosition = towerAttackComponent->relativeFirePosition;
-        glm::vec2 shootRangeCircleCenterPosition(towerCenterPosition + towerSize * relativeFirePosition);
+        vec2 relativeFirePosition = towerAttackComponent->relativeFirePosition;
+        vec2 shootRangeCircleCenterPosition(towerCenterPosition + towerSize * relativeFirePosition);
 
         // lightTowerRangeSpriteComponent -> drawRangesHelper function
         TowerRangeSpriteComponent *towerRangeSpriteComponent = e->getComponent<TowerRangeSpriteComponent>();
@@ -71,11 +63,11 @@ void TowerRangeDisplaySystem::drawRanges(EntityManager & entityManager, glm::mat
         drawRangesHelper(towerRangeSpriteComponent, shootRangeCircleCenterPosition, towerRadius, projection);
       }
     }
-    
+
   }
 }
 
-void TowerRangeDisplaySystem::drawRangesHelper(SpriteComponent *towerRangeSpriteComponent, glm::vec2 shootRangeCircleCenterPosition, float towerRadius, glm::mat4 projection)
+void TowerRangeDisplaySystem::drawRangesHelper(SpriteComponent *towerRangeSpriteComponent, vec2 shootRangeCircleCenterPosition, float towerRadius, glm::mat4 projection)
 {
   if (towerRangeSpriteComponent == nullptr) return;
 
@@ -87,14 +79,9 @@ void TowerRangeDisplaySystem::drawRangesHelper(SpriteComponent *towerRangeSprite
 
   // We want to scale, rotate, then translate.
   // But since matrix operations happen from right to left, we want to code these operations in reverse order.
-  model = glm::translate(model, glm::vec3(shootRangeCircleCenterPosition - towerRadius, 0.0f));
-
-  // Rotation
-  // model = glm::translate(model, glm::vec3(0.5f * towerSize, 0.0f));
-  // model = glm::rotate(model, transformComponent->rotate, glm::vec3(0.0f, 0.0f, 1.0f));
-  // model = glm::translate(model, glm::vec3(-0.5f * transformComponent->size.x, -0.5f * transformComponent->size.y, 0.0f));
-
-  model = glm::scale(model, glm::vec3(glm::vec2(towerRadius*2.0, towerRadius*2.0), 1.0f));
+  model = glm::translate(model, vec3(shootRangeCircleCenterPosition - towerRadius, 0.0f));
+  // No rotation (its a circle)
+  model = glm::scale(model, vec3(vec2(towerRadius*2.0, towerRadius*2.0), 1.0f));
 
   towerRangeSpriteComponent->program->setMat4("model", model);
   towerRangeSpriteComponent->program->setMat4("projection", projection);

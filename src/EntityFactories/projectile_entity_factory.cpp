@@ -36,7 +36,7 @@ vector<Entity> ProjectileEntityFactory::createSpreadProjectiles(int projectileNu
   std::vector<Entity> spreadProjectileEntities;
 
   // e.g. if projectileNumberPerShoot = 4, then 4 projectiles will have 0, 90, 90*2, 90*3 degree direction
-  float angleSize = 360.0f / (float)projectileNumberPerShoot;
+  float angleSize = 360.0f / (float)(projectileNumberPerShoot);
   vec2 direction = vec2(0.0, 0.0);
   // base on projectileNumberPerShoot compute directions
   for (int i = 0; i < projectileNumberPerShoot; i++) {
