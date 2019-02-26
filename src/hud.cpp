@@ -9,8 +9,12 @@ HUD::HUD()
 
 void HUD::draw()
 {
+  if (game_over) {
+    text.render("GAME OVER", vec2(0.f, 500.f), 4.5, vec3(1.f, 1.f, 0.f));
+    return;
+  }
   text.render("Time:", vec2(20.0f, 60.0f));
-	if (build_phase) {
+  if (build_phase) {
 		text.render("Build Phase", vec2(20.0f, 120.0f));
 	} else {
 		text.render("Defense Phase", vec2(20.0f, 120.0f));
