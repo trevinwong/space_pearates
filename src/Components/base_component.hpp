@@ -24,13 +24,14 @@ namespace ComponentType {
     operate_tower_ui,
     build_tower_ui,
     projectile,
-	tile,
+		tile,
     resource,
     animated,
     home,
-	damage,
-	death,
-    max_count
+		damage,
+		death,
+		waveset,
+		max_count // Add above.
   };
 }
 

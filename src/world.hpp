@@ -5,6 +5,7 @@
 #include "hud.hpp"
 #include "Systems/enemy_system.hpp"
 #include "Systems/enemy_spawn_system.hpp"
+#include "Utility/waveset_structs.hpp"
 #include "entity_manager.hpp"
 #include "Systems/tile_map_system.hpp"
 #include "Systems/event_system.hpp"
@@ -19,14 +20,14 @@
 #include "Systems/tower_attack_system.hpp"
 #include "Systems/offscreen_garbage_system.hpp"
 #include "Systems/background_system.hpp"
-#include "EntityFactories/background_entity_factory.hpp"
+#include "Systems/waveset_system.hpp"
 #include "EntityFactories/map_entity_factory.hpp"
+#include "EntityFactories/background_entity_factory.hpp"
 #include "EntityFactories/player_factory.hpp"
 #include "EntityFactories/resource_factory.hpp"
 #include "EntityFactories/enemy_spawn_factory.hpp"
 #include "EntityFactories/tower_ui_entity_factory.hpp"
-#include "Components/collision_component.hpp"
-#include "Components/transform_component.hpp"
+#include "EntityFactories/waveset_manager_factory.hpp"
 
 // TO-DO: Look into replacing Keys array with direct callback.
 // TO-DO: Look into replacing processInput with direct callback.
@@ -63,6 +64,7 @@ private:
   OffscreenGarbageSystem projectileGarbageSystem;
   ResourceSystem resourceSystem;
   TowerUiSystem towerUiSystem;
+  WavesetSystem wavesetSystem;
 };
 
 #endif

@@ -29,7 +29,7 @@ EntityGrid CollisionSystem::preprocessEntitiesIntoGrid(vector<shared_ptr<Entity>
   return grid;
 }
 
-void CollisionSystem::checkCollisions(EntityManager &entityManager)
+void CollisionSystem::checkCollisions(EntityManager &entityManager, WavesetSystem &wavesetSystem)
 {
   vector<shared_ptr<Entity>> collidables = entityManager.getEntities(
     entityManager.getComponentChecker(vector<int> {ComponentType::collision}));
@@ -43,7 +43,7 @@ void CollisionSystem::checkCollisions(EntityManager &entityManager)
           CollisionComponent *e2_collision = e2->getComponent<CollisionComponent>();
 
           if (e1_collision->isCollidingWith(*e2_collision)) {
-            handleCollision(e1, e2, entityManager);
+            handleCollision(e1, e2, entityManager, wavesetSystem);
           }
         }
       }
@@ -51,7 +51,7 @@ void CollisionSystem::checkCollisions(EntityManager &entityManager)
   }
 }
 
-void CollisionSystem::handleCollision(shared_ptr<Entity> e1, shared_ptr<Entity> e2, EntityManager &entityManager)
+void CollisionSystem::handleCollision(shared_ptr<Entity> e1, shared_ptr<Entity> e2, EntityManager &entityManager, WavesetSystem &wavesetSystem)
 {
 
   srand(time(NULL));
@@ -77,17 +77,12 @@ void CollisionSystem::handleCollision(shared_ptr<Entity> e1, shared_ptr<Entity> 
   EnemyComponent *enemy = e2->getComponent<EnemyComponent>();
   TransformComponent *pos = e2->getComponent<TransformComponent>();
 
-  // TODO(subi): this is super slow and inefficient, refactor later.
-  shared_ptr<Entity> spawnEntity =
-    entityManager.getEntities(entityManager.getComponentChecker(vector<int> {ComponentType::enemy_spawn}))[0];
-
   if (projectile != nullptr && enemy != nullptr) {
     entityManager.removeEntity(e2);
     entityManager.removeEntity(e1);
-    EnemySpawnComponent *sc = spawnEntity->getComponent<EnemySpawnComponent>();
     if (pos && (rand() % 3 == 0)) {
       entityManager.addEntity(ResourceFactory::build(pos->position, 40));
     }
-    if (sc) sc->count--;
+		wavesetSystem.currentEnemies--;
   }
 }
