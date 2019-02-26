@@ -1,0 +1,25 @@
+# Milestone Write-Up (Minimal Playability)
+
+* Sustains progressive, non-repetitive gameplay for 2 minutes.
+We load a "Waveset", or a level, from a .txt file which basically indicates the number of enemies for each wave, and contains a few waves. You win the game when you beat all the waves, and of course, it takes longer than 2 minutes to beat all the waves - even more if we just modify the data.
+
+* Basic decision tree added in the form of the enemy AI. They attempt to move down to the base whenever they can, otherwise picking a random direction between left and right.
+
+* Extended sprite and background assets added in the form of the player (animations added too) and the moon, also coin/tower/projectile/enemy sprites.
+
+* We have a basic user tutorial just being displayed in the background.
+
+* Game code is of course stable, executes and terminates fine.
+
+## Creative Components
+* Tons of bonus sprite and background assets (like a moon that moves)
+* Beautifully smooth tower UI.
+* Ability to upgrade towers.
+* Two different types of towers.
+* Hotloading waves from data.
+* And tons of beautifully refactored code.
+
+## Discrepancies
+* We don't have particle systems, (all) advanced player interactions, advanced tiling/platform and advanced AI done.
+* We're about a week behind when it comes to these but I (Trevin) think I paced these goals very aggressively so I think we're actually at a very good spot.
+* I think the reason behind our delay is of course building the engine and getting used to the systems - but I think the advantage that we have now is that it's very easy to add and modify our engine, so we should experience an increase in speed and hopefully catch up to our aggressively proposed goals.  
