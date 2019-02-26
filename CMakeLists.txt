@@ -51,8 +51,8 @@ set(SOURCE_FILES_CORE
 	src/EntityFactories/background_entity_factory.hpp
 	src/EntityFactories/enemy_factory.cpp
 	src/EntityFactories/enemy_factory.hpp
-  src/EntityFactories/enemy_spawn_factory.cpp
-  src/EntityFactories/enemy_spawn_factory.hpp
+	src/EntityFactories/enemy_spawn_factory.cpp
+	src/EntityFactories/enemy_spawn_factory.hpp
 	src/EntityFactories/map_entity_factory.cpp
 	src/EntityFactories/map_entity_factory.hpp
 	src/EntityFactories/tower_ui_entity_factory.cpp
@@ -96,16 +96,16 @@ set(SOURCE_FILES_CORE
 	src/Components/TowerComponents/tower_range_sprite_component.hpp
 	src/Components/TowerComponents/fire_tower_attack_component.cpp
 	src/Components/TowerComponents/fire_tower_attack_component.hpp
-  src/Components/TowerComponents/light_tower_attack_component.cpp
+	src/Components/TowerComponents/light_tower_attack_component.cpp
 	src/Components/TowerComponents/light_tower_attack_component.hpp
-  src/Components/TowerUI/build_tower_ui_component.cpp
-  src/Components/TowerUI/build_tower_ui_component.hpp
-  src/Components/TowerUI/operate_tower_ui_component.cpp
-  src/Components/TowerUI/operate_tower_ui_component.hpp
-  src/Components/TowerUI/tower_ui_button_component.cpp
-  src/Components/TowerUI/tower_ui_button_component.hpp
-  src/Components/TowerUI/tower_ui_button_meta_component.cpp
-  src/Components/TowerUI/tower_ui_button_meta_component.hpp
+	src/Components/TowerUI/build_tower_ui_component.cpp
+	src/Components/TowerUI/build_tower_ui_component.hpp
+	src/Components/TowerUI/operate_tower_ui_component.cpp
+	src/Components/TowerUI/operate_tower_ui_component.hpp
+	src/Components/TowerUI/tower_ui_button_component.cpp
+	src/Components/TowerUI/tower_ui_button_component.hpp
+	src/Components/TowerUI/tower_ui_button_meta_component.cpp
+	src/Components/TowerUI/tower_ui_button_meta_component.hpp
 	src/Components/TowerUI/TowerUIState/tower_ui_state_component.cpp
 	src/Components/TowerUI/TowerUIState/tower_ui_state_component.hpp
 	src/Components/TowerUI/TowerUIState/tower_ui_idle_state.cpp
@@ -122,8 +122,8 @@ set(SOURCE_FILES_CORE
 	src/Components/enemy_spawn_component.hpp
 	src/Components/map_component.cpp
 	src/Components/map_component.hpp
-  src/Components/home_component.cpp
-  src/Components/home_component.hpp
+	src/Components/home_component.cpp
+	src/Components/home_component.hpp
 	src/Components/resource_component.cpp
 	src/Components/resource_component.hpp
 	src/Components/animated_component.cpp
@@ -182,6 +182,7 @@ set(SOURCE_FILES_CORE
 	src/text.hpp
 	src/hud.cpp
 	src/hud.hpp
+	src/audio_loader.cpp
 	src/audio_loader.hpp
 	src/world.cpp
 	src/world.hpp
