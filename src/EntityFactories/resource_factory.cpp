@@ -30,9 +30,9 @@ Entity ResourceFactory::build(vec2 position, float scale)
 // Just for lazy testing.. spawns some coins along the floor, hardcoded
 void ResourceFactory::spawnMany(EntityManager & entities)
 {
-  vec2 position = vec2(20, 550);
-  for (int i = 0; i < 10; i++) {
+  vec2 position = vec2(SCREEN_WIDTH/4, 550);
+  for (int i = 0; i < 6; i++) {
     entities.addEntity(build(position));
-    position.x += SCREEN_WIDTH/10;
+    position.x += SCREEN_WIDTH/12;
   }
 }

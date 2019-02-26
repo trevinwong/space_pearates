@@ -15,7 +15,7 @@
 class ResourceFactory
 {
 public:
-  static Entity build(vec2 position, float scale=32);
+  static Entity build(vec2 position, float scale=20.0f);
   static void spawnMany(EntityManager& entities);
 };
 

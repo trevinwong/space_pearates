@@ -80,8 +80,8 @@ void CollisionSystem::handleCollision(shared_ptr<Entity> e1, shared_ptr<Entity> 
   if (projectile != nullptr && enemy != nullptr) {
     entityManager.removeEntity(e2);
     entityManager.removeEntity(e1);
-    if (pos && (rand() % 3 == 0)) {
-      entityManager.addEntity(ResourceFactory::build(pos->position, 40));
+    if (pos && (rand() % 2 == 0)) {
+      entityManager.addEntity(ResourceFactory::build(pos->position));
     }
 		wavesetSystem.currentEnemies--;
   }
