@@ -2,7 +2,7 @@
 
 void ResourceSystem::handleResourceSpawnAndDespawn(EntityManager& entityManager, float dt) {
 	updateSpawn(entityManager);
-	updateDespawn(entityManager, dt);	
+	updateDespawn(entityManager, dt);
 }
 
 void ResourceSystem::updateSpawn(EntityManager& entityManager) {
@@ -16,7 +16,7 @@ void ResourceSystem::updateDespawn(EntityManager& entityManager, float dt) {
 		ResourceComponent *resourceComponent = resource->getComponent<ResourceComponent>();
 		resourceComponent->timer.update(dt);
 
-		if (resourceComponent->timer.getTimeLeft() <= 0) { 
+		if (resourceComponent->timer.getTimeLeft() <= 0) {
     	entityManager.removeEntity(resource);
 		}
 	}

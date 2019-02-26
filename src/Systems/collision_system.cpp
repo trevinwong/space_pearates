@@ -51,7 +51,11 @@ void CollisionSystem::checkCollisions(EntityManager &entityManager)
   }
 }
 
-void CollisionSystem::handleCollision(shared_ptr<Entity> e1, shared_ptr<Entity> e2, EntityManager &entityManager) {
+void CollisionSystem::handleCollision(shared_ptr<Entity> e1, shared_ptr<Entity> e2, EntityManager &entityManager)
+{
+
+  srand(time(NULL));
+
   PlayerComponent *player = e1->getComponent<PlayerComponent>();
   ResourceComponent *resource = e2->getComponent<ResourceComponent>();
   if (player != nullptr && resource != nullptr) {
@@ -71,6 +75,7 @@ void CollisionSystem::handleCollision(shared_ptr<Entity> e1, shared_ptr<Entity> 
 
   ProjectileComponent *projectile = e1->getComponent<ProjectileComponent>();
   EnemyComponent *enemy = e2->getComponent<EnemyComponent>();
+  TransformComponent *pos = e2->getComponent<TransformComponent>();
 
   // TODO(subi): this is super slow and inefficient, refactor later.
   shared_ptr<Entity> spawnEntity =
@@ -80,6 +85,9 @@ void CollisionSystem::handleCollision(shared_ptr<Entity> e1, shared_ptr<Entity> 
     entityManager.removeEntity(e2);
     entityManager.removeEntity(e1);
     EnemySpawnComponent *sc = spawnEntity->getComponent<EnemySpawnComponent>();
+    if (pos && (rand() % 3 == 0)) {
+      entityManager.addEntity(ResourceFactory::build(pos->position, 40));
+    }
     if (sc) sc->count--;
   }
 }
