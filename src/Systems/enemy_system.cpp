@@ -2,7 +2,7 @@
 
 // Super simple AI; just tries to go down the map until it hits base
 // If it can't go down anymore, randomly goes right / left till it can go down
-void EnemySystem::move (float dt, EntityManager& entityManager) {
+void EnemySystem::move (float dt, EntityManager& entityManager, WavesetSystem &wavesetSystem) {
   srand(time(NULL));
   int arr[2] = {-1, 1};
 
@@ -25,6 +25,7 @@ void EnemySystem::move (float dt, EntityManager& entityManager) {
 
     if (map[yind][xind] == MAP_BASE_POSITION) {
       entityManager.removeEntity(e);
+      wavesetSystem.currentEnemies--;
       if (healthComponent) {
         healthComponent->curHP = healthComponent->curHP - 20 < 0 ? 0 : healthComponent->curHP - 20;
          if (healthComponent->curHP <= 0) {

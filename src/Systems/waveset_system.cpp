@@ -64,7 +64,7 @@ bool WavesetSystem::timeToSpawnNextCluster(Wave wave)
 
 bool WavesetSystem::isWaveOver(Wave wave)
 {
-	return clusterNo >= wave.clusters.size() && currentEnemies == 0;
+	return clusterNo >= wave.clusters.size() && currentEnemies <= 0;
 }
 
 bool WavesetSystem::isWavesetOver(Waveset waveset)
