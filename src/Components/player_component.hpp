@@ -3,6 +3,7 @@
 
 #include "utility.hpp"
 #include "base_component.hpp"
+#include "texture.hpp"
 
 class PlayerComponent : public BaseComponent
 {
