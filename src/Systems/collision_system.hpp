@@ -28,7 +28,6 @@ public:
 private:
   vec2 screen;
   float MIN_CELL_SIZE = 66.0f; //Player size
-  // ResourceFactory resourceFac;
   void handleCollision(shared_ptr<Entity> e1, shared_ptr<Entity> e2, EntityManager &entityManager);
 };
 
