@@ -15,6 +15,7 @@
 #include "Components/resource_component.hpp"
 #include "Components/enemy_spawn_component.hpp"
 #include "Components/wallet_component.hpp"
+#include "EntityFactories/resource_factory.hpp"
 
 using EntityGrid = vector<vector<vector<shared_ptr<Entity>>>>;
 
@@ -27,6 +28,7 @@ public:
 private:
   vec2 screen;
   float MIN_CELL_SIZE = 66.0f; //Player size
+  // ResourceFactory resourceFac;
   void handleCollision(shared_ptr<Entity> e1, shared_ptr<Entity> e2, EntityManager &entityManager);
 };
 
