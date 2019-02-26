@@ -16,12 +16,15 @@ public:
   }
 
   Mix_Chunk *collect_coin_sound;
+  //Mix_Chunk *battle_theme1;
+  Mix_Music *eurobeat_full;
+  Mix_Music *hip_shop;
+
+  void changeBgm();
+  //TODO: destroy method, leaking pointers for now...
 
 private:
-  AudioLoader()
-  {
-    collect_coin_sound = Mix_LoadWAV(audio_path("collect_coin.wav"));
-  }
+  AudioLoader();
 };
 
 #endif

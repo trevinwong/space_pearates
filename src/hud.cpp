@@ -33,9 +33,10 @@ void HUD::draw()
   text.render(std::to_string(enemy_count), vec2(1200.0f, 120.0f));
 
   //Tutorial
-  text.render("Press arrow keys to move",           vec2(190.0f, 240.0f), 0.6f, vec3(0.5f, 0.5f, 0.5f));
-  text.render("Press A or D to select tower type",  vec2(190.0f, 280.0f), 0.6f, vec3(0.5f, 0.5f, 0.5f));
-  text.render("Press S or Space to build towers",   vec2(190.0f, 320.0f), 0.6f, vec3(0.5f, 0.5f, 0.5f));
+  text.render("Press arrow keys to move",           vec2(190.0f, 240.0f), 0.5f, vec3(0.5f, 0.5f, 0.5f));
+  text.render("Press A or D to select tower type",  vec2(190.0f, 270.0f), 0.5f, vec3(0.5f, 0.5f, 0.5f));
+  text.render("Press S or Space to build towers",   vec2(190.0f, 300.0f), 0.5f, vec3(0.5f, 0.5f, 0.5f));
+  text.render("Press H for some hip-per music",     vec2(190.0f, 330.0f), 0.5f, vec3(0.5f, 0.5f, 0.5f));
 
 	if (you_win) text.render("YOU WIN!", vec2(400.0f, 400.0f), 2.0f);
 }

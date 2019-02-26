@@ -10,6 +10,9 @@ World::~World()
 
 void World::init(vec2 screen)
 {
+  // Playing background music indefinitely
+  AudioLoader::getInstance();
+
   collisionSystem.setScreenInfo(screen);
   vector<shared_ptr<Entity>> entities = entityManager.getEntities();
   projection = glm::ortho(0.0f, static_cast<GLfloat>(screen.x), static_cast<GLfloat>(screen.y), 0.0f, -1.0f, 1.0f);
@@ -74,7 +77,11 @@ void World::update(float dt)
 
 void World::processInput(float dt)
 {
-
+  // TODO: Fix key process on-release only and music should alternate
+  if (keys[GLFW_KEY_H] && !keysProcessed[GLFW_KEY_H])
+  {
+    AudioLoader::getInstance().changeBgm();
+  }
 }
 
 void World::draw()
