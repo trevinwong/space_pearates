@@ -12,22 +12,27 @@ void WavesetSystem::handleBuildAndDefensePhase(EntityManager &entityManager, flo
 	for (shared_ptr<Entity> e : entities) {
 		WavesetComponent *waveset_manager = e->getComponent<WavesetComponent>();
 		Waveset waveset = waveset_manager->waveset;
-		Wave wave = waveset.waves[waveNo];
+
+		if (isWavesetOver(waveset)) {
+			HUD::getInstance().you_win = true;	
+			return;
+		}
 		
+		Wave wave = waveset.waves[waveNo];
+
 		if (phase == BuildPhase) {				
 			buildTimer += dt;
+			HUD::getInstance().build_phase = true;
 			if (buildTimer > wave.buildPhaseTime) startDefensePhase(wave.totalEnemies);
 		}
 
 		if (phase == DefensePhase) {
 			defenseTimer += dt;
+			HUD::getInstance().build_phase = false;
+			HUD::getInstance().enemy_count = currentEnemies;
 			if (isWaveOver(wave)) {
-				if (isWavesetOver(waveset)) {
-					HUD::getInstance().you_win = true;
-				} else {
-					waveNo++;
-					startBuildPhase();
-				}	
+				waveNo++;
+				startBuildPhase();
 			} else {
 				if (timeToSpawnNextCluster(wave)) {
 					spawnCluster(entityManager, wave.clusters[clusterNo]);

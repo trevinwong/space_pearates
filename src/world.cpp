@@ -53,8 +53,8 @@ void World::update(float dt)
   vector<shared_ptr<Entity>> entities = entityManager.getEntities();
   playerSystem.interpInput(entityManager, dt, keys, keysProcessed);
   physicsSystem.moveEntities(entityManager, dt);
-  collisionSystem.checkCollisions(entityManager);
-  spriteSystem.updateElapsedTime(dt);
+	collisionSystem.checkCollisions(entityManager, wavesetSystem);
+	spriteSystem.updateElapsedTime(dt);
 
   // Background Update
   backgroundSystem.update(entityManager);
