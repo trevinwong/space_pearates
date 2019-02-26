@@ -1,6 +1,6 @@
 #include "health_component.hpp"
 
-HealthComponent::HealthComponent(Program * _program) : program(_program)
+HealthComponent::HealthComponent(Program * _program, float _maxHP) : program(_program), maxHP(_maxHP), curHP(_maxHP)
 {
   // We want to create a square in which we can overlay our texture on.
   GLuint VBO;

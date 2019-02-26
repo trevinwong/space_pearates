@@ -10,7 +10,7 @@ Entity EnemyFactory::build(vec2 position, vec2 velocity, vec2 scale)
   MovementComponent *move = new MovementComponent(velocity, vec2(0.0, 0.0), vec2(40.0f, 40.0f), vec2(0.f, 0.f));
   ColorComponent *colour = new ColorComponent(glm::vec4(0.0f, 1.0f, 0.6f, 1.0f));
   Program *billboardProgram = new Program(shader_path("billboard.vert"), shader_path("billboard.frag"));
-  HealthComponent *health = new HealthComponent(billboardProgram);
+  HealthComponent *health = new HealthComponent(billboardProgram, 30);
   EnemyComponent *enemy = new EnemyComponent();
 
   Entity e;
