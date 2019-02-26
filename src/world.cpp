@@ -51,7 +51,7 @@ void World::update(float dt)
 {
 	wavesetSystem.handleBuildAndDefensePhase(entityManager, dt);
 
-  enemySystem.move(dt, entityManager);
+  enemySystem.move(dt, entityManager, wavesetSystem);
 
   vector<shared_ptr<Entity>> entities = entityManager.getEntities();
   playerSystem.interpInput(entityManager, dt, keys, keysProcessed);
