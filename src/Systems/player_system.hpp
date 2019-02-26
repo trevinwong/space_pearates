@@ -7,6 +7,8 @@
 #include "Components/player_component.hpp"
 #include "Components/movement_component.hpp"
 
+#include "Components/sprite_component.hpp"
+
 class PlayerSystem
 {
 public:	

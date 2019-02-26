@@ -7,17 +7,23 @@ void PlayerSystem::interpInput(EntityManager &entityManager, float dt, GLboolean
 	for (shared_ptr<Entity> e : entities) {
 		PlayerComponent *player = e->getComponent<PlayerComponent>();
 		MovementComponent *movement = e->getComponent<MovementComponent>();
+		SpriteComponent *sprite = e->getComponent<SpriteComponent>();
+
 		vec2 newAcceleration = movement->accel;
 		vec2 newVelocity = movement->velocity;
 
 		if (keys[GLFW_KEY_LEFT])
 		{
+			sprite->texture = player->texture_left;
+
 			if (newAcceleration.x > 0) newAcceleration.x = 0;
 			if (newVelocity.x > 0) newVelocity.x -= movement->maxVelocity.x * 0.1;
 			newAcceleration.x -= movement->maxAccel.x * 0.8;
 		}
 		else if (keys[GLFW_KEY_RIGHT])
 		{
+			sprite->texture = player->texture_right;
+
 			if (newAcceleration.x < 0) newAcceleration.x = 0;
 			newAcceleration.x += movement->maxAccel.x * 0.8;
 			if (newVelocity.x < 0) newVelocity.x += movement->maxVelocity.x * 0.1;
@@ -32,6 +38,12 @@ void PlayerSystem::interpInput(EntityManager &entityManager, float dt, GLboolean
 		}
 		else if (keys[GLFW_KEY_DOWN])
 		{
+		}
+
+		else {
+			if (movement->velocity.x == 0) {
+				sprite->texture = player->texture_idle;
+			}
 		}
 
 		movement->accel = newAcceleration;
