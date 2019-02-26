@@ -9,4 +9,5 @@ PlayerComponent::PlayerComponent()
 	texture_left = new Texture(texture_path("player-left0.png"), true);
 	texture_right = new Texture(texture_path("player-right0.png"), true);
 	texture_idle = new Texture(texture_path("player-idle0.png"), true);
+	texture_jump = new Texture(texture_path("jump.png"), true);
 }

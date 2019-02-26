@@ -18,6 +18,7 @@ public:
   Texture * texture_left;	
   Texture * texture_right;
   Texture * texture_idle;
+  Texture * texture_jump;
 
 private:
   int INIT_MAX_JUMPS = 2;
