@@ -31,7 +31,7 @@ bool TowerAttackComponent::isReadyForNextFire()
 
 float TowerAttackComponent::getAttackRange()
 {
-  return attackRange + currentLevel * 0.1f;
+  return attackRange + currentLevel * 20.0f;
 }
 
 float TowerAttackComponent::getFireRate()

@@ -16,9 +16,6 @@
 class TowerRangeDisplaySystem
 {
 public:
-  TowerRangeDisplaySystem();
-  ~TowerRangeDisplaySystem();
-
   void drawRanges(EntityManager &entityManager, glm::mat4 projection);
 
 private:

@@ -7,15 +7,15 @@
 class PlayerComponent : public BaseComponent
 {
 public:
-	int jumps;
-	int maxJumps;
-	float jumpVelocity;
-	PlayerComponent();
-	static const int typeID = ComponentType::player;
-	inline virtual int getTypeID() const { return typeID; };
+  PlayerComponent();
+  int jumps;
+  int maxJumps;
+  float jumpVelocity;
+  static const int typeID = ComponentType::player;
+  inline virtual int getTypeID() const { return typeID; };
 private:
-	int INIT_MAX_JUMPS = 2;
-	float INIT_JUMP_VELOCITY = -600.0f;
+  int INIT_MAX_JUMPS = 2;
+  float INIT_JUMP_VELOCITY = -600.0f;
 };
 
 #endif

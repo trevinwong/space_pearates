@@ -19,9 +19,10 @@ void World::init(vec2 screen)
 	entityManager.addEntity(r);
     ResourceFactory::spawnMany(entityManager);
 
-    vec2 player_spawn = vec2(200, screen.y / 8);
-	Entity p = PlayerFactory::build(player_spawn, vec2(50.0f, 65.0f));
+  vec2 player_spawn = vec2(200, -40.0f);
+	Entity p = PlayerFactory::build(player_spawn);
 	entityManager.addEntity(p);
+  //printVec2("(world)player spawn:", player_spawn);
 
 	Entity mapDataEntity = MapEntityFactory::createMapEntityFromFile(map_path("map0.txt"));
 	entityManager.addEntity(mapDataEntity);
