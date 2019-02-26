@@ -78,7 +78,7 @@ Entity TowerEntityFactory::createLightTower(glm::vec2 towerCenterBottomPosition,
 
 
   // Light Tower Attack Component
-  glm::vec2 relativeFirePosition(0.0, -0.3);
+  glm::vec2 relativeFirePosition(0.0, 0.0);
   float attackRange = 180.0f;
   float fireRate = 4.0f;
   int projectileAttackPower = 10;
