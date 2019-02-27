@@ -5,6 +5,16 @@ HUD::HUD()
   // Pre-load font characters to be used
   text.setProjectionSize(SCREEN_WIDTH, SCREEN_HEIGHT);
   text.preprocessGlyphs();
+  reset();
+}
+
+void HUD::reset()
+{
+  resource_count = 0;
+  enemy_count = 0;
+  you_win = false; // TODO: Change this later.
+  game_over = false;
+  build_phase = true;
 }
 
 void HUD::draw()

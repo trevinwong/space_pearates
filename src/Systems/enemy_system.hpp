@@ -11,9 +11,9 @@ class EnemySystem
 {
 public:
   void move(float dt, EntityManager& entities, WavesetSystem &wavesetSystem);
-  void getMap(EntityManager& entities);
+  void setMap(EntityManager& entities);
 private:
-  std::vector<std::vector<char>> map;
+  vector<vector<char>> map;
 };
 
 #endif

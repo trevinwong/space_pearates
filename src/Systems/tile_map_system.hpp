@@ -13,10 +13,7 @@
 class TileMapSystem
 {
 public:
-  void loadTileMap(EntityManager &entityManager);
-
-private:
-  TileFactory factory;
+  static void loadTileMap(EntityManager &entityManager);
 };
 
 #endif

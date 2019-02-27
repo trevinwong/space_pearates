@@ -1,33 +1,21 @@
 #include "world.hpp"
 
-World::World()
-{
-}
-
-World::~World()
-{
-}
-
 void World::init(vec2 screen)
 {
-  // Playing background music indefinitely
-  AudioLoader::getInstance();
-
-  collisionSystem.setScreenInfo(screen);
-  vector<shared_ptr<Entity>> entities = entityManager.getEntities();
   projection = glm::ortho(0.0f, static_cast<GLfloat>(screen.x), static_cast<GLfloat>(screen.y), 0.0f, -1.0f, 1.0f);
+  physicsSystem.setScreenInfo(screen);
+  collisionSystem.setScreenInfo(screen);
+  HUD::getInstance();
   entityManager = EntityManager();
+
+  Entity mapData = MapEntityFactory::createMapEntityFromFile(map_path("map0.txt"));
+  entityManager.addEntity(mapData);
+  TileMapSystem::loadTileMap(entityManager);
 
   ResourceFactory::spawnMany(entityManager); // TODO: maybe remove
 
-  Entity mapDataEntity = MapEntityFactory::createMapEntityFromFile(map_path("map0.txt"));
-  entityManager.addEntity(mapDataEntity);
-  tileMapSystem.loadTileMap(entityManager);
-
   entityManager.addEntity(EnemySpawnFactory::build(2.0));
-
-  enemySystem.getMap(entityManager);
-  physicsSystem.setScreenInfo(screen);
+  enemySystem.setMap(entityManager);
 
   // create background entity
   Entity backgroundEntity = BackgroundEntityFactory::createBackgroundEntity();
@@ -44,12 +32,10 @@ void World::init(vec2 screen)
 
 void World::update(float dt)
 {
+  // Note: Be careful, order may matter in some cases for systems
 	wavesetSystem.handleBuildAndDefensePhase(entityManager, dt);
 
   enemySystem.move(dt, entityManager, wavesetSystem);
-
-  vector<shared_ptr<Entity>> entities = entityManager.getEntities();
-  playerSystem.interpInput(entityManager, dt, keys, keysProcessed);
   physicsSystem.moveEntities(entityManager, dt);
 	collisionSystem.checkCollisions(entityManager, wavesetSystem);
 	spriteSystem.updateElapsedTime(dt);
@@ -58,7 +44,6 @@ void World::update(float dt)
   backgroundSystem.update(entityManager);
 
   // Build Tower UI
-  towerUiSystem.interpInput(entityManager, keys);
   towerUiSystem.update(entityManager, dt);
 
   // Towers
@@ -66,17 +51,29 @@ void World::update(float dt)
   towerAttackSystem.reduceElapsedTimeToNextFire(entityManager, dt);
 
   // OffScreen garbage check
-  projectileGarbageSystem.destroyOffScreenEntities(entityManager);
-	resourceSystem.handleResourceSpawnAndDespawn(entityManager, dt);	
+  offscreenGarbageSystem.destroyOffScreenEntities(entityManager, ComponentType::projectile);
+	resourceSystem.handleResourceSpawnAndDespawn(entityManager, dt);
 }
 
-void World::processInput(float dt)
+void World::processInput(float dt, GLboolean keys[], GLboolean keysProcessed[])
 {
-  // TODO: Fix key process on-release only and music should alternate
+  // Reset
+  if (keys[GLFW_KEY_R] && !keysProcessed[GLFW_KEY_R])
+  {
+    HUD::getInstance().reset();
+    AudioLoader::getInstance().reset();
+    cout << "RESET PROCESSED" << endl;
+    keysProcessed[GLFW_KEY_R] = true;
+  }
+  // TODO: music should alternate
   if (keys[GLFW_KEY_H] && !keysProcessed[GLFW_KEY_H])
   {
     AudioLoader::getInstance().changeBgm();
+    keysProcessed[GLFW_KEY_H] = true;
   }
+
+  playerSystem.interpInput(entityManager, dt, keys, keysProcessed);
+  towerUiSystem.interpInput(entityManager, keys);
 }
 
 void World::draw()

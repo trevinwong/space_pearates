@@ -20,7 +20,7 @@ vector<shared_ptr<Entity>> EntityManager::getEntities() {
 
 vector<shared_ptr<Entity>> EntityManager::getEntities(bitset<ComponentType::max_count> component_checker)
 {
-	std::vector<shared_ptr<Entity>> filtered_entities;
+	vector<shared_ptr<Entity>> filtered_entities;
 	for (shared_ptr<Entity> e : entities) {
 		if (e->hasComponents(component_checker)) {
 			filtered_entities.push_back(e);
@@ -31,7 +31,7 @@ vector<shared_ptr<Entity>> EntityManager::getEntities(bitset<ComponentType::max_
 
 vector<shared_ptr<Entity>> EntityManager::getEntitiesHasOneOf(bitset<ComponentType::max_count> component_checker)
 {
-  std::vector<shared_ptr<Entity>> filtered_entities;
+  vector<shared_ptr<Entity>> filtered_entities;
   for (shared_ptr<Entity> e : entities) {
     if (e->hasOneOfComponents(component_checker)) {
       filtered_entities.push_back(e);
