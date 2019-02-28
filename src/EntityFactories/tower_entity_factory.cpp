@@ -78,7 +78,7 @@ Entity TowerEntityFactory::createLightTower(glm::vec2 towerCenterBottomPosition,
 
 
   // Light Tower Attack Component
-  glm::vec2 relativeFirePosition(0.0, 0.0);
+  glm::vec2 relativeFirePosition(0.0, -0.3);
   float attackRange = 180.0f;
   float fireRate = 4.0f;
   int projectileAttackPower = 10;
@@ -99,6 +99,59 @@ Entity TowerEntityFactory::createLightTower(glm::vec2 towerCenterBottomPosition,
   towerEntity.setComponent<HealthComponent>(health);
   towerEntity.setComponent<TowerMetaComponent>(towerMetaComponent);
   towerEntity.setComponent<LightTowerAttackComponent>(lightTowerAttackComponent);
+  towerEntity.setComponent<TowerRangeSpriteComponent>(towerRangeSpriteComponent);
+
+  return towerEntity;
+}
+
+Entity TowerEntityFactory::createStarTower(glm::vec2 towerCenterBottomPosition, glm::vec2 _size)
+{
+
+  Entity towerEntity;
+  // calculate left top x,y coord
+  float x = towerCenterBottomPosition.x - _size.x / 2.0;
+  float y = towerCenterBottomPosition.y - _size.y;
+  glm::vec2 position = { x, y };
+
+  Program *billboardProgram = new Program(shader_path("billboard.vert"), shader_path("billboard.frag"));
+  HealthComponent *health = new HealthComponent(billboardProgram, 100);
+
+  TransformComponent *transformComponent = new TransformComponent(position, _size, 0.0f);
+  ColorComponent *colorComponent = new ColorComponent(glm::vec4(1.0f, 1.0f, 1.0f, 1.0f)); // diff tower can have diff color
+
+  // SpriteComponent
+  Program *towerProgram = new Program(shader_path("sprite.vert"), shader_path("sprite.frag"));
+  Texture *towerTexture = new Texture(texture_path("star_tower.png"), true);
+  SpriteComponent *spriteComponent = new SpriteComponent(towerProgram, towerTexture);
+
+  // TowerRangeSpriteComponent
+  Program *towerRangeProgram = new Program(shader_path("sprite.vert"), shader_path("sprite.frag"));
+  Texture *towerRangeTexture = new Texture(texture_path("star_tower_range.png"), true);
+  TowerRangeSpriteComponent *towerRangeSpriteComponent = new TowerRangeSpriteComponent(towerRangeProgram, towerRangeTexture);
+
+
+  // Star Tower Attack Component
+  glm::vec2 relativeFirePosition(0.0, -0.3);
+  float attackRange = 180.0f;
+  float fireRate = 4.0f;
+  int projectileAttackPower = 50;
+  int maxLevel = 1;
+  vec2 projectileSize = vec2(10, 10);
+  StarTowerAttackComponent *starTowerAttackComponent =
+    new StarTowerAttackComponent(relativeFirePosition, attackRange, maxLevel, fireRate, projectileAttackPower, projectileSize);
+
+  // Tower Meta Component
+  int buildCost = 1;
+  int sellGet = 1;
+  int upgradeCost = 2;
+  TowerMetaComponent *towerMetaComponent = new TowerMetaComponent(buildCost, sellGet, upgradeCost);
+
+  towerEntity.setComponent<SpriteComponent>(spriteComponent);
+  towerEntity.setComponent<TransformComponent>(transformComponent);
+  towerEntity.setComponent<ColorComponent>(colorComponent);
+  towerEntity.setComponent<HealthComponent>(health);
+  towerEntity.setComponent<TowerMetaComponent>(towerMetaComponent);
+  towerEntity.setComponent<StarTowerAttackComponent>(starTowerAttackComponent);
   towerEntity.setComponent<TowerRangeSpriteComponent>(towerRangeSpriteComponent);
 
   return towerEntity;
