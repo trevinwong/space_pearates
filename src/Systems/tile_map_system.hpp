@@ -8,6 +8,7 @@
 #include "../EntityFactories/tower_entity_factory.hpp"
 #include "EntityFactories/home_factory.hpp"
 #include "../EntityFactories/player_factory.hpp"
+#include "../EntityFactories/build_area_indicator_entity_factory.hpp"
 
 class TileMapSystem
 {

@@ -28,6 +28,12 @@ void TileMapSystem::loadTileMap(EntityManager& entities)
         Entity base = HomeFactory::createBase(vec2(col_i*width_tile, row_i*height_tile - 41.0));
         entities.addEntity(base);
       }
+      else if (*col == MAP_TOWER_POSITION) {
+        Entity towerBuildAreaIndicator = BuildAreaIndicatorFactory::build(
+          vec2(col_i*width_tile, row_i*height_tile),
+          vec2(width_tile, height_tile));
+        entities.addEntity(towerBuildAreaIndicator);
+      }
       /*else if (*col == MAP_PLAYER_SPAWN) {
         vec2 player_spawn = vec2(col_i*width_tile, row_i*height_tile);
         Entity player = PlayerFactory::build(player_spawn, vec2(50.0f, 65.0f));
