@@ -23,7 +23,8 @@ void PhysicsSystem::moveEntities(EntityManager &entityManager, float dt) {
     TransformComponent *transform = e->getComponent<TransformComponent>();
     MovementComponent *movement = e->getComponent<MovementComponent>();
 		CollisionComponent *collision = e->getComponent<CollisionComponent>();
-		ProjectileComponent *projectile = e->getComponent<ProjectileComponent>();
+    ProjectileComponent *projectile = e->getComponent<ProjectileComponent>();
+    WaterTowerFactorComponent *waterTowerFactor = e->getComponent<WaterTowerFactorComponent>();
 	
 		movement->accel.y += getGravity(dt);
 		movement->accel.x += getFriction(movement->velocity, dt);
@@ -36,7 +37,10 @@ void PhysicsSystem::moveEntities(EntityManager &entityManager, float dt) {
 		}
 		movement->velocity = glm::clamp(newVelocity, -movement->maxVelocity, movement->maxVelocity);
 
-		transform->position = transform->position + movement->velocity * dt;
+    if(waterTowerFactor)
+      transform->position = transform->position + movement->velocity * waterTowerFactor->speedFactor * dt;
+		else
+      transform->position = transform->position + movement->velocity * dt;
 		if (projectile == nullptr) adjustPositionAroundTiles(entityManager, e);
 		if (collision != nullptr) collision->position = transform->position;
 		if (!movement->offScreenOK) adjustPositionOntoScreen(entityManager, e);

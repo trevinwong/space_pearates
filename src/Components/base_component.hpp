@@ -9,6 +9,7 @@ namespace ComponentType {
     collision,
     map,
     movement,
+    water_tower_factor,
     enemy,
     enemy_spawn,
     background_sprite,

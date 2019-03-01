@@ -7,6 +7,7 @@
 namespace TowerTypeID {
   enum TowerTypeID {
     fire_tower,
+    water_tower,
     light_tower,
     star_tower,
     max_count

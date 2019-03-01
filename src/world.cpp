@@ -37,7 +37,7 @@ void World::init(vec2 screen)
   Entity w = WavesetManagerFactory::build(waveset_path("waveset0.txt"));
   entityManager.addEntity(w);
 
-
+  renderToTextureSystem.initWaterEffect();
 }
 
 void World::update(float dt)
@@ -110,9 +110,15 @@ void World::processInput(float dt, GLboolean keys[], GLboolean keysProcessed[])
 
 void World::draw()
 {
+  // get ready to render to texture
+  renderToTextureSystem.beforeRenderWaterEffect();
   // Background will render first
   backgroundSystem.render(entityManager, projection);
   spriteSystem.drawSprites(entityManager, projection);
+  // so far everything rendered into buffer
+  // add effects to the buffer and render this buffer to screen
+  renderToTextureSystem.drawWaterEffect(entityManager, projection);
+
   billboardSystem.drawBillboards(entityManager, projection);
   towerRangeDisplaySystem.drawRanges(entityManager, projection);
   towerUiSystem.render(entityManager, projection);

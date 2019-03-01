@@ -91,6 +91,12 @@ void Program::setVec3(const std::string &name, const glm::vec3 &value) const
 	GLint uloc = glGetUniformLocation(ID, name.c_str());
 	glUniform3fv(glGetUniformLocation(ID, name.c_str()), 1, &value[0]);
 }
+void Program::setVec3Array(const std::string &name, const vector<glm::vec3> &value) const
+{
+  GLint uloc = glGetUniformLocation(ID, name.c_str());
+  if(!value.empty())
+    glUniform3fv(uloc, value.size(), reinterpret_cast<const GLfloat *>(&value[0]));
+}
 void Program::setVec4(const std::string &name, const glm::vec4 &value) const
 {
 	glUniform4fv(glGetUniformLocation(ID, name.c_str()), 1, &value[0]);

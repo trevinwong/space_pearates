@@ -20,6 +20,7 @@
 #include "Systems/tower_range_display_system.hpp"
 #include "Systems/tower_attack_system.hpp"
 #include "Systems/offscreen_garbage_system.hpp"
+#include "Systems/render_to_texture_system.hpp"
 #include "Systems/background_system.hpp"
 #include "Systems/waveset_system.hpp"
 #include "Systems/death_system.hpp"
@@ -31,6 +32,8 @@
 #include "EntityFactories/enemy_spawn_factory.hpp"
 #include "EntityFactories/tower_ui_entity_factory.hpp"
 #include "EntityFactories/waveset_manager_factory.hpp"
+#include "Components/collision_component.hpp"
+#include "Components/transform_component.hpp"
 
 // TO-DO: Look into replacing Keys array with direct callback.
 // TO-DO: Look into replacing processInput with direct callback.
@@ -64,8 +67,8 @@ private:
 
   WavesetSystem wavesetSystem;
   OffscreenGarbageSystem offscreenGarbageSystem;
-
   ParticleSystem particleSystem;
+  RenderToTextureSystem renderToTextureSystem;
 };
 
 #endif
