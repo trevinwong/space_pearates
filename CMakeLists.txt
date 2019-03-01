@@ -57,6 +57,8 @@ set(SOURCE_FILES_CORE
 	src/EntityFactories/map_entity_factory.hpp
 	src/EntityFactories/tower_ui_entity_factory.cpp
 	src/EntityFactories/tower_ui_entity_factory.hpp
+  src/EntityFactories/build_area_indicator_entity_factory.cpp
+	src/EntityFactories/build_area_indicator_entity_factory.hpp
 	src/EntityFactories/tile_factory.cpp
 	src/EntityFactories/tile_factory.hpp
 	src/EntityFactories/resource_factory.cpp
