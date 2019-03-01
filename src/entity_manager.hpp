@@ -11,12 +11,19 @@
  */
 class EntityManager {
 public:
-	void addEntity(Entity e);
-	bitset<ComponentType::max_count> getComponentChecker(vector<int> components);
+  bitset<ComponentType::max_count> getComponentChecker(ComponentType::ComponentType type);
+  bitset<ComponentType::max_count> getComponentChecker(vector<int> components);
 	vector<shared_ptr<Entity>> getEntities();
   vector<shared_ptr<Entity>> getEntities(bitset<ComponentType::max_count> component_checker);
   vector<shared_ptr<Entity>> getEntitiesHasOneOf(bitset<ComponentType::max_count> component_checker);
+	void addEntity(Entity e);
   bool removeEntity(shared_ptr<Entity> entity);
+
+  // Remove entities that do NOT contain one of these component types
+  void filterRemoveByComponentType(ComponentType::ComponentType type);
+  void filterRemoveByComponentType(vector<int> components);
+
+  void destroyAll();
 private:
 	vector<shared_ptr<Entity>> entities;
 };

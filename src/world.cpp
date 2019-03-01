@@ -1,5 +1,10 @@
 #include "world.hpp"
 
+const vec2 player_spawn = vec2(200, 100.0f);
+// Entities that we do not want to erase on resetting
+const vector<int> non_recyclable_components = { 
+  ComponentType::tile, ComponentType::map, ComponentType::home, ComponentType::background_sprite, ComponentType::player };
+
 void World::init(vec2 screen)
 {
   projection = glm::ortho(0.0f, static_cast<GLfloat>(screen.x), static_cast<GLfloat>(screen.y), 0.0f, -1.0f, 1.0f);
@@ -25,20 +30,22 @@ void World::init(vec2 screen)
   vector<Entity> towerUiEntities = TowerUiEntityFactory::createTowerUiButtons();
   for (Entity towerUiEntity : towerUiEntities)
     entityManager.addEntity(towerUiEntity);
-	
-	Entity w = WavesetManagerFactory::build(waveset_path("waveset0.txt"));
-	entityManager.addEntity(w);
+
+  Entity w = WavesetManagerFactory::build(waveset_path("waveset0.txt"));
+  entityManager.addEntity(w);
 }
 
 void World::update(float dt)
 {
+  HUD::getInstance().update(dt);
+
   // Note: Be careful, order may matter in some cases for systems
-	wavesetSystem.handleBuildAndDefensePhase(entityManager, dt);
+  wavesetSystem.handleBuildAndDefensePhase(entityManager, dt);
 
   enemySystem.move(dt, entityManager, wavesetSystem);
   physicsSystem.moveEntities(entityManager, dt);
-	collisionSystem.checkCollisions(entityManager, wavesetSystem);
-	spriteSystem.updateElapsedTime(dt);
+  collisionSystem.checkCollisions(entityManager, wavesetSystem);
+  spriteSystem.updateElapsedTime(dt);
 
   // Background Update
   backgroundSystem.update(entityManager);
@@ -52,7 +59,7 @@ void World::update(float dt)
 
   // OffScreen garbage check
   offscreenGarbageSystem.destroyOffScreenEntities(entityManager, ComponentType::projectile);
-	resourceSystem.handleResourceSpawnAndDespawn(entityManager, dt);
+  resourceSystem.handleResourceSpawnAndDespawn(entityManager, dt);
 }
 
 void World::processInput(float dt, GLboolean keys[], GLboolean keysProcessed[])
@@ -60,9 +67,26 @@ void World::processInput(float dt, GLboolean keys[], GLboolean keysProcessed[])
   // Reset
   if (keys[GLFW_KEY_R] && !keysProcessed[GLFW_KEY_R])
   {
+    // Remove all recyclable entities
+    entityManager.filterRemoveByComponentType(non_recyclable_components);
+    
+    // Reset HUD and music
     HUD::getInstance().reset();
     AudioLoader::getInstance().reset();
-    cout << "RESET PROCESSED" << endl;
+    // Reset player position
+    shared_ptr<Entity> player = entityManager.getEntitiesHasOneOf(entityManager.getComponentChecker(ComponentType::player))[0];
+    player->getComponent<TransformComponent>()->position=player_spawn;
+    // Spawn starting resources
+    ResourceFactory::spawnMany(entityManager); // TODO: maybe remove
+
+    entityManager.addEntity(EnemySpawnFactory::build(2.0));
+    enemySystem.setMap(entityManager);
+
+    for (Entity towerUiEntity : TowerUiEntityFactory::createTowerUiButtons())
+      entityManager.addEntity(towerUiEntity);
+
+    entityManager.addEntity(WavesetManagerFactory::build(waveset_path("waveset0.txt")));
+
     keysProcessed[GLFW_KEY_R] = true;
   }
   // TODO: music should alternate
@@ -89,5 +113,5 @@ void World::draw()
 
 void World::destroy()
 {
-
+  entityManager.destroyAll();
 }

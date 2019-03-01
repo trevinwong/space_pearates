@@ -16,6 +16,7 @@ public:
     return instance;
   }
 
+  double play_time;
   int resource_count;
   int enemy_count;
 	bool you_win;
@@ -23,6 +24,7 @@ public:
 	bool build_phase;
 
   void reset();
+  void update(float dt);
   void draw();
 
 private:

@@ -10,11 +10,17 @@ HUD::HUD()
 
 void HUD::reset()
 {
+  play_time = 0.0;
   resource_count = 0;
   enemy_count = 0;
   you_win = false; // TODO: Change this later.
   game_over = false;
   build_phase = true;
+}
+
+void HUD::update(float dt)
+{
+  play_time += dt;
 }
 
 void HUD::draw()
@@ -30,7 +36,7 @@ void HUD::draw()
 		text.render("Defense Phase", vec2(20.0f, 120.0f));
 	}
 
-  double time = round(glfwGetTime()* 10.0) / 10.0;
+  double time = round(play_time* 10.0) / 10.0;
   std::stringstream stream;
   stream << std::fixed << std::setprecision(2) << time;
   string strTime = stream.str();
