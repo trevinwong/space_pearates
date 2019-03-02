@@ -38,7 +38,6 @@ void TileMapSystem::loadTileMap(EntityManager& entities)
         vec2 player_spawn = vec2(col_i*width_tile, row_i*height_tile);
         Entity player = PlayerFactory::build(player_spawn);
         entities.addEntity(player);
-        //printVec2("(tile_map_system)player spawn:", player_spawn);
       }
       col_i++;
     }

@@ -22,7 +22,7 @@ void World::init(vec2 screen)
 
   Entity mapDataEntity = MapEntityFactory::createMapEntityFromFile(map_path("map0.txt"));
   entityManager.addEntity(mapDataEntity);
-  tileMapSystem.loadTileMap(entityManager); // player spawn pos is defined in the map data
+  tileMapSystem.loadTileMap(entityManager);
 
   entityManager.addEntity(EnemySpawnFactory::build(2.0));
 
