@@ -77,12 +77,6 @@ int main(int argc, char * argv[]) {
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-	world.init(vec2(SCREEN_WIDTH, SCREEN_HEIGHT));
-
-	// dT variables.
-	GLfloat deltaTime = 0.0f;
-	GLfloat lastFrame = 0.0f;
-
 	// Audio.
 	if (SDL_Init(SDL_INIT_AUDIO) < 0)
 	{
@@ -95,6 +89,12 @@ int main(int argc, char * argv[]) {
 		fprintf(stderr, "Failed to open audio device");
 		return false;
 	}
+
+	world.init(vec2(SCREEN_WIDTH, SCREEN_HEIGHT));
+
+	// dT variables.
+	GLfloat deltaTime = 0.0f;
+	GLfloat lastFrame = glfwGetTime();
 
 	// Rendering loop.
 	while (!glfwWindowShouldClose(mWindow)) {
