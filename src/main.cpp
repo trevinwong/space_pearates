@@ -96,6 +96,8 @@ int main(int argc, char * argv[]) {
 		return false;
 	}
 
+  lastFrame = glfwGetTime();  // reset lastFrame becasue init() time should not be included
+
 	// Rendering loop.
 	while (!glfwWindowShouldClose(mWindow)) {
 		// Clear our screen for the upcoming render call.

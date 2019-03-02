@@ -34,12 +34,12 @@ void TileMapSystem::loadTileMap(EntityManager& entities)
           vec2(width_tile, height_tile));
         entities.addEntity(towerBuildAreaIndicator);
       }
-      /*else if (*col == MAP_PLAYER_SPAWN) {
+      else if (*col == MAP_PLAYER_SPAWN) {
         vec2 player_spawn = vec2(col_i*width_tile, row_i*height_tile);
-        Entity player = PlayerFactory::build(player_spawn, vec2(50.0f, 65.0f));
+        Entity player = PlayerFactory::build(player_spawn);
         entities.addEntity(player);
-        printVec2("(tile_map_system)player spawn:", player_spawn);
-      }*/
+        //printVec2("(tile_map_system)player spawn:", player_spawn);
+      }
       col_i++;
     }
     col_i = 0;

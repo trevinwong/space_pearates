@@ -20,14 +20,9 @@ void World::init(vec2 screen)
 
   ResourceFactory::spawnMany(entityManager); // TODO: maybe remove
 
-  vec2 player_spawn = vec2(200, -100.0f);
-  Entity p = PlayerFactory::build(player_spawn);
-  entityManager.addEntity(p);
-  //printVec2("(world)player spawn:", player_spawn);
-
   Entity mapDataEntity = MapEntityFactory::createMapEntityFromFile(map_path("map0.txt"));
   entityManager.addEntity(mapDataEntity);
-  tileMapSystem.loadTileMap(entityManager);
+  tileMapSystem.loadTileMap(entityManager); // player spawn pos is defined in the map data
 
   entityManager.addEntity(EnemySpawnFactory::build(2.0));
 
