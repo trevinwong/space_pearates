@@ -65,7 +65,7 @@ void World::update(float dt)
 void World::processInput(float dt, GLboolean keys[], GLboolean keysProcessed[])
 {
   // Reset
-  if (keys[GLFW_KEY_R] && !keysProcessed[GLFW_KEY_R])
+  if (keys[GLFW_KEY_R] && !keysProcessed[GLFW_KEY_R] && false)
   {
     // Remove all recyclable entities
     entityManager.filterRemoveByComponentType(non_recyclable_components);
