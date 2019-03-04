@@ -14,6 +14,21 @@ Text::Text()
   projection = glm::ortho(0.0f, 800.0f, 600.0f, 0.0f, -1.0f, 1.0f); // top-left, but flipped
 }
 
+Text::Text(string fontName)
+{
+  if (FT_Init_FreeType(&ft))
+    cout << "ERROR::FREETYPE: Could not init FreeType Library" << endl;
+
+  string fontPath = string(font_path()) + fontName;
+  if (FT_New_Face(ft, fontPath.c_str(), 0, &face))
+    cout << "ERROR::FREETYPE: Failed to load font" << endl;
+
+  // Arbitrary size init. Note: set width to 0 to autoscale according to height.
+  FT_Set_Pixel_Sizes(face, 0, 48);
+  // Arbitrary screen size for rendering the font glyphs, not sure if changing it helps much..
+  projection = glm::ortho(0.0f, 800.0f, 600.0f, 0.0f, -1.0f, 1.0f); // top-left, but flipped
+}
+
 void Text::preprocessGlyphs()
 {
   loadGlyphs();         // load 128 ASCII chars

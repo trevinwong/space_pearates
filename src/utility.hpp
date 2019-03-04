@@ -104,14 +104,19 @@ void printVec3(string name, vec3 vec);
 #define LIGHT_TOWER 'L'
 
 // build tower ui interface types
-#define BUILD_TOWER_UI_BUTTON_TYPE char
+#define TOWER_UI_OPT_TYPE char
+#define NO_OPT '0'
 #define BUILD_FIRE_TOWER 'F'
 #define BUILD_WATER_TOWER 'W'
 #define BUILD_LIGHT_TOWER 'L'
 #define BUILD_STAR_TOWER 'R'
 #define BUILD_BOOMERANG_TOWER 'B'
-#define SELL_TOWER_OPERATION 'S'
 #define UPGRADE_TOWER_OPERATION 'U'
 #define FIX_TOWER_OPERATION 'X'
+#define SELL_TOWER_OPERATION 'S'
+
+#define LEFT_TOWER_UI_BUTTON_RELATIVE_INDEX -1
+#define MIDDLE_TOWER_UI_BUTTON_RELATIVE_INDEX 0
+#define RIGHT_TOWER_UI_BUTTON_RELATIVE_INDEX 1
 
 #endif

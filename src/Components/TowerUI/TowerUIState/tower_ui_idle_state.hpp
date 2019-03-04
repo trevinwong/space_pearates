@@ -13,15 +13,16 @@
 
 class TowerUiIdleState : public TowerUiStateComponent {
 public:
-  virtual void input(EntityManager& entities, GLboolean keys[]);
+  virtual void input(EntityManager& entities, GLboolean keys[], GLboolean keysProcessed[]);
   virtual void update(EntityManager& entities, float dt);
 
   static const int typeID = ComponentType::tower_ui_state; // use same type id as parent
   inline virtual int getTypeID() const { return typeID; };
 private:
   // TODO: is here the right place to put these two functions?
-  void processBuildNewTower(glm::vec2 playerCenterPosition, BUILD_TOWER_UI_BUTTON_TYPE towerType, EntityManager& entityManager);
-  void processOperateNewTower(glm::vec2 playerCenterPosition, BUILD_TOWER_UI_BUTTON_TYPE operationType, EntityManager& entityManager);
+  void processBuildNewTower(glm::vec2 playerCenterPosition, TOWER_UI_OPT_TYPE towerType, EntityManager& entityManager);
+  void processOperateNewTower(glm::vec2 playerCenterPosition, TOWER_UI_OPT_TYPE operationType, EntityManager& entityManager);
+  void processOperate(glm::vec2 playerCenterPosition, TOWER_UI_OPT_TYPE operationType, EntityManager& entityManager);
 };
 
 #endif // !TOWER_UI_IDLE_STATE

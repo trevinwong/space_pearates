@@ -19,6 +19,7 @@ class Text
 {
 public:
   Text();
+  Text(string fontName);
   void preprocessGlyphs();
   void setProjectionSize(float width, float height);
   void render(string text, vec2 position, float scale=1.0f, vec3 color=vec3(1.0f, 1.0f, 1.0f));

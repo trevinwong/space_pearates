@@ -111,10 +111,6 @@ set(SOURCE_FILES_CORE
 	src/Components/TowerComponents/star_tower_attack_component.hpp
 	src/Components/TowerComponents/boomerang_tower_attack_component.cpp
 	src/Components/TowerComponents/boomerang_tower_attack_component.hpp
-	src/Components/TowerUI/build_tower_ui_component.cpp
-	src/Components/TowerUI/build_tower_ui_component.hpp
-	src/Components/TowerUI/operate_tower_ui_component.cpp
-	src/Components/TowerUI/operate_tower_ui_component.hpp
 	src/Components/TowerUI/tower_ui_button_component.cpp
 	src/Components/TowerUI/tower_ui_button_component.hpp
 	src/Components/TowerUI/tower_ui_button_meta_component.cpp
