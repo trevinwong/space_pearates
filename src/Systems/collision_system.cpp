@@ -36,32 +36,32 @@ void CollisionSystem::checkCollisions(EntityManager &entityManager)
   EntityGrid grid = preprocessEntitiesIntoGrid(collidables);
 	unordered_map<string, bool> collision_cache;
 
-		for (vector<vector<shared_ptr<Entity>>> row : grid) {
-			for (vector<shared_ptr<Entity>> cell : row) {
-				for (shared_ptr<Entity> e1 : cell) {
-					for (shared_ptr<Entity> e2 : cell) {
-						if (e1 != e2) {
-							CollisionComponent *e1_collision = e1->getComponent<CollisionComponent>();
-							CollisionComponent *e2_collision = e2->getComponent<CollisionComponent>();
-							string hash1 = std::to_string(e1->id) + ":" + std::to_string(e2->id);
-							string hash2 = std::to_string(e2->id) + ":" + std::to_string(e1->id);
+  for (vector<vector<shared_ptr<Entity>>> row : grid) {
+    for (vector<shared_ptr<Entity>> cell : row) {
+      for (shared_ptr<Entity> e1 : cell) {
+        for (shared_ptr<Entity> e2 : cell) {
+					if (e1 != e2) {
+						CollisionComponent *e1_collision = e1->getComponent<CollisionComponent>();
+						CollisionComponent *e2_collision = e2->getComponent<CollisionComponent>();
+						string hash1 = std::to_string(e1->id) + ":" + std::to_string(e2->id);
+						string hash2 = std::to_string(e2->id) + ":" + std::to_string(e1->id);
 
 						if (e1_collision->isCollidingWith(*e2_collision) && !collision_cache[hash1] && !collision_cache[hash2]) {
 							collision_cache[hash1] = true;
 							collision_cache[hash2] = true;
 							handleCollision(e1, e2, entityManager);
 						}
-					}
-				}
-			}
-		}
-	}
+          }
+        }
+      }
+    }
+  }
 }
 
 void CollisionSystem::handleCollisionOfType(bitset<ComponentType::max_count> components1, bitset<ComponentType::max_count> components2, shared_ptr<Entity> e1, shared_ptr<Entity> e2, EntityManager &entityManager, void(*handleCollisionFn)(shared_ptr<Entity>, shared_ptr<Entity>, EntityManager&))
 {
 	bool pair1 = e1->hasComponents(components1) && e2->hasComponents(components2);
-	bool pair2 = e1->hasComponents(components2) && e2->hasComponents(components1);
+	bool pair2 = e1->hasComponents(components2) && e2->hasComponents(components1);	
 	if (pair1) handleCollisionFn(e1, e2, entityManager);
 	if (pair2) handleCollisionFn(e2, e1, entityManager);
 }
