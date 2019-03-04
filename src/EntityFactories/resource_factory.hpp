@@ -11,11 +11,13 @@
 #include "Components/movement_component.hpp"
 #include "Components/collision_component.hpp"
 #include "Components/animated_component.hpp"
+#include <random>
 
 class ResourceFactory
 {
 public:
   static Entity build(vec2 position, float scale=20.0f);
+	static vector<Entity> buildCluster(int amount, vec2 position, vec2 size, float scale=20.0f);
   static void spawnMany(EntityManager& entities);
 };
 

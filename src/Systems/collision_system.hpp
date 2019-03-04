@@ -15,6 +15,7 @@
 #include "Components/resource_component.hpp"
 #include "Components/enemy_spawn_component.hpp"
 #include "Components/wallet_component.hpp"
+#include "Components/death_component.hpp"
 #include "EntityFactories/resource_factory.hpp"
 #include "Systems/waveset_system.hpp"
 
