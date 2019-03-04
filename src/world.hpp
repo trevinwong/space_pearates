@@ -37,8 +37,6 @@
 class World
 {
 public:
-  World();
-  ~World();
   void init(vec2 screen);
   void processInput(float dt, GLboolean keys[], GLboolean keysProcessed[]);
   void update(float dt); // dt = delta time, how much time has passed since update was last called
@@ -48,12 +46,9 @@ public:
 
 private:
   glm::mat4 projection;
-  HUD hud;
   EntityManager entityManager;
   PhysicsSystem physicsSystem;
   CollisionSystem collisionSystem;
-  EntityManager entityManager;
-  EventSystem eventSystem;
 	DeathSystem deathSystem;
   SpriteSystem spriteSystem;
   BackgroundSystem backgroundSystem;
