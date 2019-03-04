@@ -20,6 +20,7 @@
 #include <utility>
 #include <climits>
 #include <iomanip>
+#include <random>
 
 using std::string;
 using std::vector;

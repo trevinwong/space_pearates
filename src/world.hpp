@@ -53,7 +53,6 @@ private:
   SpriteSystem spriteSystem;
   BackgroundSystem backgroundSystem;
   BillboardSystem billboardSystem;
-  TileMapSystem tileMapSystem;
   EnemySystem enemySystem;
   PlayerSystem playerSystem;
   ResourceSystem resourceSystem;

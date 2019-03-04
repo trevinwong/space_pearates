@@ -33,7 +33,7 @@ vector<Entity> ResourceFactory::buildCluster(int amount, vec2 position, vec2 siz
 	float CLUSTER_OFFSET_Y = size.y / 2;
 	vector<Entity> cluster;
 	std::random_device rd; 
-  std::mt19937 gen(rd());
+	std::mt19937 gen(rd());
 	for (int i = 0; i < amount; i++) {
 		float minY = position.y; 
 		float maxY = position.y + CLUSTER_OFFSET_Y;
