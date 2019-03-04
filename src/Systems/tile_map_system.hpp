@@ -13,7 +13,7 @@
 class TileMapSystem
 {
 public:
-  static void loadTileMap(EntityManager &entityManager);
+  static void loadTileMap(EntityManager &entityManager, vec2 &player_spawn);
 };
 
 #endif

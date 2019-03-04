@@ -1,6 +1,5 @@
 #include "world.hpp"
 
-const vec2 player_spawn = vec2(200, 100.0f);
 // Entities that we do not want to erase on resetting
 const vector<int> non_recyclable_components = { 
   ComponentType::tile, ComponentType::map, ComponentType::home, ComponentType::background_sprite, ComponentType::player };
@@ -15,7 +14,8 @@ void World::init(vec2 screen)
 
   Entity mapData = MapEntityFactory::createMapEntityFromFile(map_path("map0.txt"));
   entityManager.addEntity(mapData);
-  TileMapSystem::loadTileMap(entityManager);
+  TileMapSystem::loadTileMap(entityManager, player_spawn);
+  entityManager.addEntity(PlayerFactory::build(player_spawn));
 
   ResourceFactory::spawnMany(entityManager); // TODO: maybe remove
 
@@ -75,7 +75,7 @@ void World::processInput(float dt, GLboolean keys[], GLboolean keysProcessed[])
     AudioLoader::getInstance().reset();
     // Reset player position
     shared_ptr<Entity> player = entityManager.getEntitiesHasOneOf(entityManager.getComponentChecker(ComponentType::player))[0];
-    player->getComponent<TransformComponent>()->position=player_spawn;
+    player->getComponent<TransformComponent>()->position = player_spawn;
     // Spawn starting resources
     ResourceFactory::spawnMany(entityManager); // TODO: maybe remove
 

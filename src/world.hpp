@@ -12,6 +12,7 @@
 #include "Systems/sprite_system.hpp"
 #include "Systems/physics_system.hpp"
 #include "Systems/billboard_system.hpp"
+#include "Systems/enemy_system.hpp"
 #include "Systems/player_system.hpp"
 #include "Systems/resource_system.hpp"
 #include "Systems/collision_system.hpp"
@@ -35,6 +36,7 @@
 class World
 {
 public:
+  vec2 player_spawn = vec2(0.0f, 0.0f);
   void init(vec2 screen);
   void processInput(float dt, GLboolean keys[], GLboolean keysProcessed[]);
   void update(float dt); // dt = delta time, how much time has passed since update was last called
