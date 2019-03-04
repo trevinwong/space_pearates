@@ -10,6 +10,7 @@
 #include "Components/movement_component.hpp"
 #include "Components/collision_component.hpp"
 #include "Components/transform_component.hpp"
+#include "Components/spline_component.hpp"
 #include "Components/player_component.hpp"
 #include "Components/enemy_component.hpp"
 #include "Components/resource_component.hpp"

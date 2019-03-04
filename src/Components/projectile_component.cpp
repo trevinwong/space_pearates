@@ -1,13 +1,9 @@
 #include "projectile_component.hpp"
 
-ProjectileComponent::ProjectileComponent(int _attackPower):
-  attactPower(_attackPower)
+ProjectileComponent::ProjectileComponent(int _attackPower, bool _rotateOn) :
+  attactPower(_attackPower), rotateOn(_rotateOn)
 {
-  
-}
-
-ProjectileComponent::~ProjectileComponent()
-{
+  cout << rotateOn << endl;
 }
 
 int ProjectileComponent::getAttackPower()

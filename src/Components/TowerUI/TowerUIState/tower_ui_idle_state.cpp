@@ -16,8 +16,8 @@ void TowerUiIdleState::input(EntityManager& entityManager, GLboolean keys[])
   MapComponent *mapComponent = mapEntities[0]->getComponent<MapComponent>();
   if (playerTransformComponent == nullptr || mapComponent == nullptr) return;
 
-  glm::vec2 playerPosition = playerTransformComponent->position;
-  glm::vec2 playerCenterPosition = playerPosition + playerTransformComponent->size * 0.5f;
+  vec2 playerPosition = playerTransformComponent->position;
+  vec2 playerCenterPosition = playerPosition + playerTransformComponent->size * 0.5f;
 
   // if the player is not at a block which can be used to build a tower, then
   // no response to key press
@@ -95,7 +95,7 @@ void TowerUiIdleState::update(EntityManager& entityManager, float dt)
   TransformComponent *playerTransformComponent = playerEntities[0]->getComponent<TransformComponent>();
 
   if (towerUiButtonMetaComponent == nullptr || playerTransformComponent == nullptr) return;
-  glm::vec2 playerCenterTopPosition = glm::vec2(playerTransformComponent->position.x + playerTransformComponent->size.x * 0.5, playerTransformComponent->position.y);
+  vec2 playerCenterTopPosition = vec2(playerTransformComponent->position.x + playerTransformComponent->size.x * 0.5, playerTransformComponent->position.y);
 
   for (shared_ptr<Entity> towerUiEntity : towerUiEntities) {
     TowerUiButtonComponent *towerUiButtonComponent = towerUiEntity->getComponent<TowerUiButtonComponent>();
@@ -124,7 +124,7 @@ void TowerUiIdleState::update(EntityManager& entityManager, float dt)
   }
 }
 
-void TowerUiIdleState::processBuildNewTower(glm::vec2 playerCenterPosition, BUILD_TOWER_UI_BUTTON_TYPE operationType, EntityManager& entityManager)
+void TowerUiIdleState::processBuildNewTower(vec2 playerCenterPosition, BUILD_TOWER_UI_BUTTON_TYPE operationType, EntityManager& entityManager)
 {
   vector<shared_ptr<Entity>> mapEntities = entityManager.getEntities(entityManager.getComponentChecker(vector<int> {ComponentType::map}));
   vector<shared_ptr<Entity>> playerEntities = entityManager.getEntities(entityManager.getComponentChecker(vector<int>{ComponentType::player, ComponentType::movement}));
@@ -140,21 +140,24 @@ void TowerUiIdleState::processBuildNewTower(glm::vec2 playerCenterPosition, BUIL
 
   // build a new tower
   if (mapComponent->canBuildTowerAt(col, row) && !mapComponent->isTowerAt(col, row)) {
-    glm::vec2 towerCenterBottomPosition = glm::vec2(col*width_tile + width_tile / 2.0, row*height_tile + height_tile);
-    glm::vec2 towerSize = glm::vec2(40.0f, 65.0f);
+    vec2 towerCenterBottomPosition = vec2(col*width_tile + width_tile / 2.0, row*height_tile + height_tile);
     Entity towerEntity;
     switch (operationType) {
     case BUILD_FIRE_TOWER:
-      towerEntity = TowerEntityFactory::createFireTower(towerCenterBottomPosition, towerSize);
+      towerEntity = TowerEntityFactory::createFireTower(towerCenterBottomPosition);
       break;
     case BUILD_WATER_TOWER:
-      towerEntity = TowerEntityFactory::createWaterTower(towerCenterBottomPosition, towerSize);
+      towerEntity = TowerEntityFactory::createWaterTower(towerCenterBottomPosition);
       break;
     case BUILD_LIGHT_TOWER:
-      towerEntity = TowerEntityFactory::createLightTower(towerCenterBottomPosition, towerSize);
+      towerEntity = TowerEntityFactory::createLightTower(towerCenterBottomPosition);
       break;
     case BUILD_STAR_TOWER:
-      towerEntity = TowerEntityFactory::createStarTower(towerCenterBottomPosition, towerSize);
+      towerEntity = TowerEntityFactory::createStarTower(towerCenterBottomPosition);
+      break;
+    case BUILD_BOOMERANG_TOWER:
+      cout << "BOOM" << endl;
+      towerEntity = TowerEntityFactory::createBoomerangTower(towerCenterBottomPosition);
       break;
     default:
       return; // unknown type of tower
@@ -163,7 +166,7 @@ void TowerUiIdleState::processBuildNewTower(glm::vec2 playerCenterPosition, BUIL
     TowerMetaComponent *towerMetaComponent = towerEntity.getComponent<TowerMetaComponent>();
     if (walletComponent->spend(towerMetaComponent->buildCost)) {
       entityManager.addEntity(towerEntity);
-      mapComponent->buildTowerAt(towerEntity.id, col, row);     
+      mapComponent->buildTowerAt(towerEntity.id, col, row);
     }
     else {
       // TODO: tell player not enough money
@@ -175,7 +178,7 @@ void TowerUiIdleState::processBuildNewTower(glm::vec2 playerCenterPosition, BUIL
 }
 
 
-void TowerUiIdleState::processOperateNewTower(glm::vec2 playerCenterPosition, BUILD_TOWER_UI_BUTTON_TYPE operationType, EntityManager& entityManager)
+void TowerUiIdleState::processOperateNewTower(vec2 playerCenterPosition, BUILD_TOWER_UI_BUTTON_TYPE operationType, EntityManager& entityManager)
 {
   vector<shared_ptr<Entity>> mapEntities = entityManager.getEntities(entityManager.getComponentChecker(vector<int> {ComponentType::map}));
   vector<shared_ptr<Entity>> playerEntities = entityManager.getEntities(entityManager.getComponentChecker(vector<int>{ComponentType::player, ComponentType::movement}));

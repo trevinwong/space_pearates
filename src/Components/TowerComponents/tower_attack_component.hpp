@@ -10,6 +10,7 @@ namespace TowerTypeID {
     water_tower,
     light_tower,
     star_tower,
+    boomerang_tower,
     max_count
   };
 }
@@ -21,16 +22,13 @@ class TowerAttackComponent : public BaseComponent {
     // e.g. if (-0.2, 0.3), then globale fire point postion = (centerX + (-0.2) * sizeWidth, centerY + (0.3) * sizeHeight)
     // Benefit: if the tower moves, then no need to update this field and the fire point position remains same
     // Note: global position
-    glm::vec2 relativeFirePosition;
+    vec2 relativeFirePosition;
 
     // current level
     int currentLevel;
 
     // max level
     int maxLevel;
-
-    // time to fire again
-    float elapsedTimeToNextFire;
 
     // circle radius
     float getAttackRange();
@@ -56,7 +54,7 @@ class TowerAttackComponent : public BaseComponent {
 
   protected:
     // this class is an abstract class, the constructor should not be invoked as a public function
-    TowerAttackComponent(glm::vec2 _relativeFirePosition, float _attackRange, int _maxLevel, float _fireRate, int projectileAttackPower);
+    TowerAttackComponent(vec2 _relativeFirePosition, float _attackRange, int _maxLevel, float _fireRate, int projectileAttackPower);
 
   private:
     // circle radius
@@ -67,6 +65,9 @@ class TowerAttackComponent : public BaseComponent {
 
     // projectile attack power
     int projectileAttackPower;
+
+    // time to fire again
+    float elapsedTimeToNextFire;
 };
 
 #endif

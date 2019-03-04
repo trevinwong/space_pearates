@@ -12,6 +12,7 @@
 #include "Components/TowerComponents/water_tower_attack_component.hpp"
 #include "Components/TowerComponents/light_tower_attack_component.hpp"
 #include "Components/TowerComponents/star_tower_attack_component.hpp"
+#include "Components/TowerComponents/boomerang_tower_attack_component.hpp"
 #include "Components/TowerComponents/tower_range_sprite_component.hpp"
 
 class TowerEntityFactory
@@ -20,12 +21,14 @@ class TowerEntityFactory
     // platformerGroundPosition is the center bottom position of a tower
     // Create a tower base on the given plaformer position
     // Tower should not be rotated, _rotate is always zero
-    static Entity createFireTower(glm::vec2 towerCenterBottomPosition, glm::vec2 _size);
-    static Entity createWaterTower(glm::vec2 towerCenterBottomPosition, glm::vec2 _size);
-    static Entity createLightTower(glm::vec2 towerCenterBottomPosition, glm::vec2 _size);
-    static Entity createStarTower(glm::vec2 towerCenterBottomPosition, glm::vec2 _size);
+    static Entity createFireTower(vec2 towerCenterBottomPosition, vec2 _size=vec2(40.0f, 65.0f));
+    static Entity createWaterTower(vec2 towerCenterBottomPosition, vec2 _size=vec2(40.0f, 65.0f));
+    static Entity createLightTower(vec2 towerCenterBottomPosition, vec2 _size=vec2(40.0f, 65.0f));
+    static Entity createStarTower(vec2 towerCenterBottomPosition, vec2 _size=vec2(40.0f, 65.0f));
+    static Entity createBoomerangTower(vec2 towerCenterBottomPosition, vec2 _size=vec2(40.0f, 65.0f));
   private:
     // factory class does not need instantiation
     TowerEntityFactory();
+    static vec2 getTopLeftPosition(vec2 centerBottom, vec2 size);
 };
 #endif

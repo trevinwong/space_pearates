@@ -5,16 +5,16 @@
 #include "base_component.hpp"
 
 class ProjectileComponent : public BaseComponent {
-  public:
-    ProjectileComponent(int _attackPower);
-    ~ProjectileComponent();
-    int getAttackPower();
+public:
+  ProjectileComponent(int _attackPower, bool _rotateOn=false);
+  int getAttackPower();
+  bool rotateOn;
 
-    static const int typeID = ComponentType::projectile;
-    inline virtual int getTypeID() const { return typeID; };
+  inline virtual int getTypeID() const { return typeID; };
+  static const int typeID = ComponentType::projectile;
 
-  private:
-    int attactPower;
+private:
+  int attactPower;
 };
 
 #endif // !PROJECTILE_COMPONENT_H

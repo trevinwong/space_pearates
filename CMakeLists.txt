@@ -57,7 +57,7 @@ set(SOURCE_FILES_CORE
 	src/EntityFactories/map_entity_factory.hpp
 	src/EntityFactories/tower_ui_entity_factory.cpp
 	src/EntityFactories/tower_ui_entity_factory.hpp
-  src/EntityFactories/build_area_indicator_entity_factory.cpp
+	src/EntityFactories/build_area_indicator_entity_factory.cpp
 	src/EntityFactories/build_area_indicator_entity_factory.hpp
 	src/EntityFactories/tile_factory.cpp
 	src/EntityFactories/tile_factory.hpp
@@ -89,6 +89,8 @@ set(SOURCE_FILES_CORE
 	src/Components/transform_component.hpp
 	src/Components/movement_component.cpp
 	src/Components/movement_component.hpp
+	src/Components/spline_component.cpp
+	src/Components/spline_component.hpp
 	src/Components/player_component.cpp
 	src/Components/player_component.hpp
 	src/Components/wallet_component.cpp
@@ -105,8 +107,10 @@ set(SOURCE_FILES_CORE
 	src/Components/TowerComponents/fire_tower_attack_component.hpp
 	src/Components/TowerComponents/light_tower_attack_component.cpp
 	src/Components/TowerComponents/light_tower_attack_component.hpp
-  src/Components/TowerComponents/star_tower_attack_component.cpp
+	src/Components/TowerComponents/star_tower_attack_component.cpp
 	src/Components/TowerComponents/star_tower_attack_component.hpp
+	src/Components/TowerComponents/boomerang_tower_attack_component.cpp
+	src/Components/TowerComponents/boomerang_tower_attack_component.hpp
 	src/Components/TowerUI/build_tower_ui_component.cpp
 	src/Components/TowerUI/build_tower_ui_component.hpp
 	src/Components/TowerUI/operate_tower_ui_component.cpp
@@ -154,6 +158,8 @@ set(SOURCE_FILES_CORE
 	src/Systems/death_system.cpp
 	src/Systems/physics_system.hpp
 	src/Systems/physics_system.cpp
+	src/Systems/interpolation_system.cpp
+	src/Systems/interpolation_system.hpp
 	src/Systems/player_system.cpp
 	src/Systems/player_system.hpp
 	src/Systems/tile_map_system.cpp

@@ -7,8 +7,13 @@
 
 class StarTowerAttackComponent : public TowerAttackComponent {
 public:
-  // Note: _shootRate (unit: s)
-  StarTowerAttackComponent(glm::vec2 _relativeFirePosition, float _attackRange, int _maxLevel, float _fireRate, int projectileAttackPower, vec2 projectileSize);
+  // Note: _fireRate (unit: s)
+  StarTowerAttackComponent(vec2 _relativeFirePosition,
+    float _attackRange,
+    int _maxLevel,
+    float _fireRate,
+    int projectileAttackPower,
+    vec2 projectileSize);
 
   virtual int getTowerType() { return towerTypeID; };
 

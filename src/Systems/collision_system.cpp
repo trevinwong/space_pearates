@@ -53,7 +53,6 @@ void CollisionSystem::checkCollisions(EntityManager &entityManager, WavesetSyste
 
 void CollisionSystem::handleCollision(shared_ptr<Entity> e1, shared_ptr<Entity> e2, EntityManager &entityManager, WavesetSystem &wavesetSystem)
 {
-
   srand(time(NULL));
 
   PlayerComponent *player = e1->getComponent<PlayerComponent>();
@@ -78,8 +77,14 @@ void CollisionSystem::handleCollision(shared_ptr<Entity> e1, shared_ptr<Entity> 
   TransformComponent *pos = e2->getComponent<TransformComponent>();
 
   if (projectile != nullptr && enemy != nullptr) {
+    // Hit
     ParticleSystem::emitParticleCluster(entityManager, pos->position);
-		e1->setComponent<DeathComponent>(new DeathComponent());
+
+    SplineComponent *spline = e1->getComponent<SplineComponent>();
+    if (spline == nullptr) {
+      // Not a boomerang projectile, remove it
+      e1->setComponent<DeathComponent>(new DeathComponent());
+    }
 		e2->setComponent<DeathComponent>(new DeathComponent());
 		wavesetSystem.currentEnemies--;
   }

@@ -11,17 +11,18 @@
 #include "../Components/sprite_component.hpp"
 #include "../Components/projectile_component.hpp"
 #include "../Components/collision_component.hpp"
+#include "../Components/spline_component.hpp"
 #include "../texture.hpp"
 #include "../program.hpp"
 
 class ProjectileEntityFactory {
 public:
   static Entity createAimProjectile(
-    glm::vec2 size,
+    vec2 size,
     glm::vec4 filterColor,
-    glm::vec2 startPostion,
+    vec2 startPosition,
     float speed,
-    glm::vec2 velocityDirection,
+    vec2 velocityDirection,
     int attackPower
   );
 
@@ -30,23 +31,32 @@ public:
   */
   static vector<Entity> createSpreadProjectiles(
     int projectileNumberPerShoot,
-    glm::vec2 size,
+    vec2 size,
     glm::vec4 filterColor,
-    glm::vec2 startPostion,
+    vec2 startPosition,
     float speed,
     int attackPower
   );
 
-  static Entity createStarProjectiles(
-    glm::vec2 size,
+  static Entity createStarProjectile(
+    vec2 size,
     glm::vec4 filterColor,
-    glm::vec2 startPostion,
-    glm::vec2 Velocity,
-    glm::vec2 Accel,
-    glm::vec2 MaxVelocity,
-    glm::vec2 MaxAccel,
+    vec2 startPosition,
+    vec2 Velocity,
+    vec2 Accel,
+    vec2 MaxVelocity,
+    vec2 MaxAccel,
     int attackPower
   );
+
+  static Entity createBoomerang(
+    vec2 startPosition,
+    vec2 enemyPosition,
+    int attackPower,
+    vec2 size = vec2(25.0, 25.0),
+    glm::vec4 filterColor = glm::vec4(1, 1, 1, 1)
+  );
+
 private:
   ProjectileEntityFactory();
 };

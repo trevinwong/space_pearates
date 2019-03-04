@@ -19,7 +19,8 @@ public:
   void drawRanges(EntityManager &entityManager, glm::mat4 projection);
 
 private:
-  void drawRangesHelper(SpriteComponent *towerRangeSpriteComponent, glm::vec2 shootRangeCircleCenterPosition, float towerRadius, glm::mat4 projection);
+  bool isPlayerNear(float mapTileWidth, float mapTileHeight, vec2 &towerCenterPosition, vec2 &playerCenterPosition);
+  void drawRangesHelper(SpriteComponent *towerRangeSpriteComponent, vec2 shootRangeCircleCenterPosition, float towerRadius, glm::mat4 projection);
 };
 
 #endif

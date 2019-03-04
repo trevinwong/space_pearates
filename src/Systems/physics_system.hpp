@@ -19,8 +19,9 @@
 class PhysicsSystem
 {
 public:
-	void moveEntities(EntityManager &entityManager, float dt);
 	void setScreenInfo(vec2 info);
+	void moveEntities(EntityManager &entityManager, float dt);
+  void rotateEntities(EntityManager &entityManager, float dt);
 
 private:
 	float FRICTION = 10000.0f;

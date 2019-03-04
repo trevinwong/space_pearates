@@ -25,6 +25,7 @@ namespace ComponentType {
     operate_tower_ui,
     build_tower_ui,
     projectile,
+    spline,
 		tile,
     resource,
     animated,

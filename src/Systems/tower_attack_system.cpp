@@ -2,10 +2,10 @@
 
 void TowerAttackSystem::checkRangeAndShootProjectiles(EntityManager& entityManager) {
 
-  vector<shared_ptr<Entity>> enemyEntities =
-    entityManager.getEntities(entityManager.getComponentChecker(vector<int> {ComponentType::enemy}));
-  vector<shared_ptr<Entity>> towerEntities =
-    entityManager.getEntities(entityManager.getComponentChecker(vector<int> {ComponentType::attack_tower}));
+  vector<shared_ptr<Entity>> enemyEntities = entityManager.getEntities(entityManager.getComponentChecker(
+    vector<int> {ComponentType::enemy, ComponentType::transform}));
+  vector<shared_ptr<Entity>> towerEntities = entityManager.getEntities(entityManager.getComponentChecker(
+    vector<int> {ComponentType::attack_tower, ComponentType::sprite, ComponentType::transform}));
 
   // no enemies or no towers in the world now
   if (enemyEntities.size() == 0 || towerEntities.size() == 0) return;
@@ -48,22 +48,21 @@ void TowerAttackSystem::checkRangeAndShootProjectiles(EntityManager& entityManag
 
       float towerRadius = towerAttackComponent->getAttackRange();
 
-      // calcule distance
+      // calculate distance
       float centerOfCircleDist = glm::distance(enemyCenterPosition, firePointPosition);
       float radiusSum = enemyHitboxRadius + towerRadius;
 
       if (centerOfCircleDist < radiusSum && towerAttackComponent->isReadyForNextFire()) {
-
+        // in the range, FIRE!
         if (towerAttackComponent->getTowerType() == TowerTypeID::fire_tower) {
-          // in the range, FIRE!
           auto projectileSize = vec2(15.0, 15.0);
           auto projectileColor = glm::vec4(1, 1, 1, 1);
           auto projectileLeftTopPosition = firePointPosition - projectileSize * 0.5f;
           auto speed = 100.0f;
           auto velocityDirection = glm::normalize(enemyCenterPosition - firePointPosition);
           auto attackPower = towerAttackComponent->getProjectileAttackPower();
-          Entity projectileEntity =
-            ProjectileEntityFactory::createAimProjectile(projectileSize, projectileColor, projectileLeftTopPosition, speed, velocityDirection, attackPower);
+          Entity projectileEntity = ProjectileEntityFactory::createAimProjectile(
+            projectileSize, projectileColor, projectileLeftTopPosition, speed, velocityDirection, attackPower);
 
           entityManager.addEntity(projectileEntity);
           // fired, wait until next time to fire
@@ -73,22 +72,20 @@ void TowerAttackSystem::checkRangeAndShootProjectiles(EntityManager& entityManag
           // in the range, slow it down!
           float slowDownFactor = dynamic_cast<WaterTowerAttackComponent*>(towerAttackComponent)->getSlowDownFactor();
           if (waterTowerFactorComponent != nullptr) {
-            // if an enemy is in the overlap of two water towers, 
-            // then we pickup the smallest factor
+            // if an enemy is in the overlap of two water towers, then we pickup the smallest factor
             waterTowerFactorComponent->speedFactor = glm::min(waterTowerFactorComponent->speedFactor, slowDownFactor);
           }
           // Note: water tower does not have fire rate
         }
         else if (towerAttackComponent->getTowerType() == TowerTypeID::light_tower) {
-          // in the range, FIRE!
           auto projectileNumberPerShoot = dynamic_cast<LightTowerAttackComponent*>(towerAttackComponent)->getProjectileNumberPerShoot();
           auto projectileSize = vec2(15.0, 15.0);
           auto projectileColor = glm::vec4(1, 1, 1, 1);
           auto projectileLeftTopPosition = firePointPosition - projectileSize * 0.5f;
           auto speed = 240.0f;
           auto attackPower = towerAttackComponent->getProjectileAttackPower();
-          vector<Entity> projectileEntities =
-            ProjectileEntityFactory::createSpreadProjectiles(projectileNumberPerShoot, projectileSize, projectileColor, projectileLeftTopPosition, speed, attackPower);
+          vector<Entity> projectileEntities = ProjectileEntityFactory::createSpreadProjectiles(
+            projectileNumberPerShoot, projectileSize, projectileColor, projectileLeftTopPosition, speed, attackPower);
 
           for (Entity projectile : projectileEntities)
             entityManager.addEntity(projectile);
@@ -96,7 +93,6 @@ void TowerAttackSystem::checkRangeAndShootProjectiles(EntityManager& entityManag
           towerAttackComponent->resetElapsedTimeToNextFire();
         }
         else if (towerAttackComponent->getTowerType() == TowerTypeID::star_tower) {
-          // in the range, FIRE!
           auto projectileSize = dynamic_cast<StarTowerAttackComponent*>(towerAttackComponent)->getProjectileSize();
           auto projectileColor = glm::vec4(1, 1, 1, 1);
           auto projectileLeftTopPosition = firePointPosition - projectileSize * 0.5f;
@@ -105,8 +101,17 @@ void TowerAttackSystem::checkRangeAndShootProjectiles(EntityManager& entityManag
           vec2 maxVelocity = vec2(1000.0f, 1000.0f);
           vec2 maxAcc = vec2(0.0f, 1000.0f);
           auto attackPower = towerAttackComponent->getProjectileAttackPower();
-          Entity projectileEntity =
-            ProjectileEntityFactory::createStarProjectiles(projectileSize, projectileColor, projectileLeftTopPosition, velocity, acc, maxVelocity, maxAcc, attackPower);
+          Entity projectileEntity = ProjectileEntityFactory::createStarProjectile(
+            projectileSize, projectileColor, projectileLeftTopPosition, velocity, acc, maxVelocity, maxAcc, attackPower);
+
+          entityManager.addEntity(projectileEntity);
+          // fired, wait until next time to fire
+          towerAttackComponent->resetElapsedTimeToNextFire();
+        }
+        else if (towerAttackComponent->getTowerType() == TowerTypeID::boomerang_tower) {
+          auto attackPower = towerAttackComponent->getProjectileAttackPower();
+          Entity projectileEntity = ProjectileEntityFactory::createBoomerang(
+            firePointPosition, enemyCenterPosition, attackPower);
 
           entityManager.addEntity(projectileEntity);
           // fired, wait until next time to fire
@@ -119,14 +124,20 @@ void TowerAttackSystem::checkRangeAndShootProjectiles(EntityManager& entityManag
 
 void TowerAttackSystem::reduceElapsedTimeToNextFire(EntityManager & entityManager, float dt)
 {
-  vector<shared_ptr<Entity>> fireTowerEntities =
-    entityManager.getEntities(entityManager.getComponentChecker(vector<int> {ComponentType::tower_meta}));
+  vector<shared_ptr<Entity>> towerEntities = entityManager.getEntities(entityManager.getComponentChecker(
+    vector<int> {ComponentType::tower_meta}));
 
-  for (shared_ptr<Entity> fireTowerEntity : fireTowerEntities) {
-    FireTowerAttackComponent *fireTowerAttackComponent = fireTowerEntity->getComponent<FireTowerAttackComponent>();
+  for (shared_ptr<Entity> towerEntity : towerEntities) {
+    FireTowerAttackComponent *fireTowerAttackComponent = towerEntity->getComponent<FireTowerAttackComponent>();
     if (fireTowerAttackComponent != nullptr) fireTowerAttackComponent->reduceElapsedTimeToNextFire(dt);
 
-    LightTowerAttackComponent *lightTowerAttackComponent = fireTowerEntity->getComponent<LightTowerAttackComponent>();
+    LightTowerAttackComponent *lightTowerAttackComponent = towerEntity->getComponent<LightTowerAttackComponent>();
     if (lightTowerAttackComponent != nullptr) lightTowerAttackComponent->reduceElapsedTimeToNextFire(dt);
+
+    StarTowerAttackComponent *starTowerAttackComponent = towerEntity->getComponent<StarTowerAttackComponent>();
+    if (starTowerAttackComponent != nullptr) starTowerAttackComponent->reduceElapsedTimeToNextFire(dt);
+
+    BoomerangTowerAttackComponent *boomerangTowerAttackComponent = towerEntity->getComponent<BoomerangTowerAttackComponent>();
+    if (boomerangTowerAttackComponent != nullptr) boomerangTowerAttackComponent->reduceElapsedTimeToNextFire(dt);
   }
 }

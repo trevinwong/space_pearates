@@ -1,6 +1,6 @@
 #include "tower_attack_component.hpp"
 
-TowerAttackComponent::TowerAttackComponent(glm::vec2 _relativeFirePosition, float _attackRange, int _maxLevel, float _fireRate, int _projectileAttackPower) :
+TowerAttackComponent::TowerAttackComponent(vec2 _relativeFirePosition, float _attackRange, int _maxLevel, float _fireRate, int _projectileAttackPower) :
   relativeFirePosition(_relativeFirePosition),
   attackRange(_attackRange),
   maxLevel(_maxLevel),

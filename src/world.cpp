@@ -1,19 +1,17 @@
 #include "world.hpp"
 
 // Entities that we do not want to erase on resetting
-const vector<int> non_recyclable_components = { 
+const vector<int> non_recyclable_components = {
   ComponentType::tile, ComponentType::map, ComponentType::home, ComponentType::background_sprite, ComponentType::player };
 
 void World::init(vec2 screen)
 {
-
-  
   projection = glm::ortho(0.0f, static_cast<GLfloat>(screen.x), static_cast<GLfloat>(screen.y), 0.0f, -1.0f, 1.0f);
   physicsSystem.setScreenInfo(screen);
   collisionSystem.setScreenInfo(screen);
   HUD::getInstance();
   entityManager = EntityManager();
-   particleSystem.initParticleSystem(entityManager);
+  particleSystem.initParticleSystem(entityManager);
 
   Entity mapData = MapEntityFactory::createMapEntityFromFile(map_path("map0.txt"));
   entityManager.addEntity(mapData);
@@ -49,6 +47,8 @@ void World::update(float dt)
 
   enemySystem.move(dt, entityManager, wavesetSystem);
   physicsSystem.moveEntities(entityManager, dt);
+  physicsSystem.rotateEntities(entityManager, dt);
+  interpolationSystem.update(entityManager, dt);
   collisionSystem.checkCollisions(entityManager, wavesetSystem);
   spriteSystem.updateElapsedTime(dt);
 
@@ -63,11 +63,11 @@ void World::update(float dt)
   towerAttackSystem.reduceElapsedTimeToNextFire(entityManager, dt);
 
   // OffScreen garbage check
-  offscreenGarbageSystem.destroyOffScreenEntities(entityManager, ComponentType::projectile);
+  offscreenGarbageSystem.destroyEntitiesContainingAll(entityManager, vector<int>{ComponentType::projectile, ComponentType::movement});
   resourceSystem.handleResourceSpawnAndDespawn(entityManager, dt);
-	deathSystem.handleDeaths(entityManager);
+  deathSystem.handleDeaths(entityManager);
 
-  particleSystem.updateParticles(entityManager,dt);
+  particleSystem.updateParticles(entityManager, dt);
 }
 
 void World::processInput(float dt, GLboolean keys[], GLboolean keysProcessed[])
@@ -77,7 +77,7 @@ void World::processInput(float dt, GLboolean keys[], GLboolean keysProcessed[])
   {
     // Remove all recyclable entities
     entityManager.filterRemoveByComponentType(non_recyclable_components);
-    
+
     // Reset HUD and music
     HUD::getInstance().reset();
     AudioLoader::getInstance().reset();
