@@ -36,7 +36,17 @@ public:
     float speed,
     int attackPower
   );
-  ~ProjectileEntityFactory();
+
+  static Entity createStarProjectiles(
+    glm::vec2 size,
+    glm::vec4 filterColor,
+    glm::vec2 startPostion,
+    glm::vec2 Velocity,
+    glm::vec2 Accel,
+    glm::vec2 MaxVelocity,
+    glm::vec2 MaxAccel,
+    int attackPower
+  );
 private:
   ProjectileEntityFactory();
 };

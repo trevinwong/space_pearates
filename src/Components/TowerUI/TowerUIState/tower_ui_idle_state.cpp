@@ -150,6 +150,9 @@ void TowerUiIdleState::processBuildNewTower(glm::vec2 playerCenterPosition, BUIL
     case BUILD_LIGHT_TOWER:
       towerEntity = TowerEntityFactory::createLightTower(towerCenterBottomPosition, towerSize);
       break;
+    case BUILD_STAR_TOWER:
+      towerEntity = TowerEntityFactory::createStarTower(towerCenterBottomPosition, towerSize);
+      break;
     default:
       return; // unknown type of tower
     }
@@ -161,6 +164,7 @@ void TowerUiIdleState::processBuildNewTower(glm::vec2 playerCenterPosition, BUIL
     }
     else {
       // TODO: tell player not enough money
+      // TODO: not enough money, so destroy towerEntity
     }
     // update HUD
     HUD::getInstance().resource_count = walletComponent->coins;

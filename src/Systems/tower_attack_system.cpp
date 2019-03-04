@@ -1,13 +1,5 @@
 #include "tower_attack_system.hpp"
 
-TowerAttackSystem::TowerAttackSystem() {
-
-}
-
-TowerAttackSystem::~TowerAttackSystem() {
-
-}
-
 void TowerAttackSystem::checkRangeAndShootProjectiles(EntityManager& entityManager) {
 
   vector<shared_ptr<Entity>> enemyEntities =
@@ -56,7 +48,7 @@ void TowerAttackSystem::checkRangeAndShootProjectiles(EntityManager& entityManag
           auto projectileLeftTopPosition = firePointPosition - projectileSize * 0.5f;
           auto speed = 100.0f;
           auto velocityDirection = glm::normalize(enemyCenterPosition - firePointPosition);
-          auto attackPower = 10;
+          auto attackPower = towerAttackComponent->getProjectileAttackPower();
           Entity projectileEntity =
             ProjectileEntityFactory::createAimProjectile(projectileSize, projectileColor, projectileLeftTopPosition, speed, velocityDirection, attackPower);
 
@@ -71,12 +63,29 @@ void TowerAttackSystem::checkRangeAndShootProjectiles(EntityManager& entityManag
           auto projectileColor = glm::vec4(1, 1, 1, 1);
           auto projectileLeftTopPosition = firePointPosition - projectileSize * 0.5f;
           auto speed = 240.0f;
-          auto attackPower = 10;
+          auto attackPower = towerAttackComponent->getProjectileAttackPower();
           vector<Entity> projectileEntities =
             ProjectileEntityFactory::createSpreadProjectiles(projectileNumberPerShoot, projectileSize, projectileColor, projectileLeftTopPosition, speed, attackPower);
 
           for (Entity projectile : projectileEntities)
             entityManager.addEntity(projectile);
+          // fired, wait until next time to fire
+          towerAttackComponent->resetElapsedTimeToNextFire();
+        }
+        else if (towerAttackComponent->getTowerType() == TowerTypeID::star_tower) {
+          // in the range, FIRE!
+          auto projectileSize = dynamic_cast<StarTowerAttackComponent*>(towerAttackComponent)->getProjectileSize();
+          auto projectileColor = glm::vec4(1, 1, 1, 1);
+          auto projectileLeftTopPosition = firePointPosition - projectileSize * 0.5f;
+          vec2 velocity = glm::normalize(enemyCenterPosition - firePointPosition) * 400.0f;
+          vec2 acc = vec2(0, 0);
+          vec2 maxVelocity = vec2(1000.0f, 1000.0f);
+          vec2 maxAcc = vec2(0.0f, 1000.0f);
+          auto attackPower = towerAttackComponent->getProjectileAttackPower();
+          Entity projectileEntity =
+            ProjectileEntityFactory::createStarProjectiles(projectileSize, projectileColor, projectileLeftTopPosition, velocity, acc, maxVelocity, maxAcc, attackPower);
+
+          entityManager.addEntity(projectileEntity);
           // fired, wait until next time to fire
           towerAttackComponent->resetElapsedTimeToNextFire();
         }

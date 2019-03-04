@@ -50,3 +50,32 @@ vector<Entity> ProjectileEntityFactory::createSpreadProjectiles(int projectileNu
   return spreadProjectileEntities;
 }
 
+Entity ProjectileEntityFactory::createStarProjectiles(glm::vec2 size, glm::vec4 color, glm::vec2 startPostion, glm::vec2 velocity, glm::vec2 accel, glm::vec2 maxVelocity, glm::vec2 maxAccel, int attackPower)
+{
+  Entity projectileEntity;
+
+  TransformComponent *transformComponent = new TransformComponent(startPostion, size, 0.0f);  // TODO: calculate rotation by velocityDirection
+  ColorComponent *colorComponent = new ColorComponent(color);
+
+  CollisionComponent *collision = new CollisionComponent(startPostion, size, 0.0f);
+
+  MovementComponent *movementComponent = new MovementComponent(velocity, accel, maxVelocity, maxAccel);
+  movementComponent->offScreenOK = true;  // a projectile can be off screen and then be destroyed by projectile_destroy_system
+
+  ProjectileComponent *projectileComponent = new ProjectileComponent(attackPower);
+
+  // SpriteComponent
+  Program *towerProgram = new Program(shader_path("sprite.vert"), shader_path("sprite.frag"));
+  Texture *towerTexture = new Texture(texture_path("star_projectile.png"), true);
+  SpriteComponent *spriteComponent = new SpriteComponent(towerProgram, towerTexture);
+
+  projectileEntity.setComponent<SpriteComponent>(spriteComponent);
+  projectileEntity.setComponent<TransformComponent>(transformComponent);
+  projectileEntity.setComponent<ColorComponent>(colorComponent);
+  projectileEntity.setComponent<MovementComponent>(movementComponent);
+  projectileEntity.setComponent<ProjectileComponent>(projectileComponent);
+  projectileEntity.setComponent<CollisionComponent>(collision);
+
+  return projectileEntity;
+}
+
