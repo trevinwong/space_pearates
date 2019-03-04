@@ -1,27 +1,27 @@
 ﻿#include "offscreen_garbage_system.hpp"
 
-OffscreenGarbageSystem::OffscreenGarbageSystem()
+void OffscreenGarbageSystem::destroyOffScreenEntities(EntityManager & entityManager, ComponentType::ComponentType type)
 {
+  checkAndDestroy(entityManager, vector<int>{type});
 }
 
-OffscreenGarbageSystem::~OffscreenGarbageSystem()
+void OffscreenGarbageSystem::destroyOffScreenEntities(EntityManager & entityManager, vector<int> component_types)
 {
+  checkAndDestroy(entityManager, component_types);
 }
 
-void OffscreenGarbageSystem::destroyOffScreenEntities(EntityManager & entityManager)
-{
-  vector<shared_ptr<Entity>> targetEntities =
-    entityManager.getEntitiesHasOneOf(entityManager.getComponentChecker(this->targetEntitiesCharacterizedComponents));
+void OffscreenGarbageSystem::checkAndDestroy(EntityManager & entityManager, vector<int> components) {
+  vector<shared_ptr<Entity>> targetEntities = entityManager.getEntitiesHasOneOf(entityManager.getComponentChecker(components));
 
   for (shared_ptr<Entity> targetEntity : targetEntities) {
     TransformComponent *transformComponent = targetEntity->getComponent<TransformComponent>();
     if (transformComponent == nullptr) continue;
 
-    auto projectileLeftTopPositon = transformComponent->position;
-    auto projectileSize = transformComponent->size;
+    auto leftTopPositon = transformComponent->position;
+    auto size = transformComponent->size;
 
-    if ((projectileLeftTopPositon.x > SCREEN_WIDTH || projectileLeftTopPositon.x + projectileSize.x < 0.0) ||
-      (projectileLeftTopPositon.y > SCREEN_HEIGHT || projectileLeftTopPositon.y + projectileSize.y < 0.0)) 
+    if ((leftTopPositon.x > SCREEN_WIDTH || leftTopPositon.x + size.x < 0.0) ||
+      (leftTopPositon.y > SCREEN_HEIGHT || leftTopPositon.y + size.y < 0.0))
     {
       entityManager.removeEntity(targetEntity);
     }

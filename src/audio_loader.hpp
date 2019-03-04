@@ -20,8 +20,9 @@ public:
   Mix_Music *eurobeat_full;
   Mix_Music *hip_shop;
 
+  void reset();
   void changeBgm();
-  //TODO: destroy method, leaking pointers for now...
+  void destroy();
 
 private:
   AudioLoader();

@@ -16,12 +16,16 @@ public:
     return instance;
   }
 
+  double play_time;
+  int resource_count;
+  int enemy_count;
+	bool you_win;
+  bool game_over;
+	bool build_phase;
+
+  void reset();
+  void update(float dt);
   void draw();
-  int resource_count = 0;
-  int enemy_count = 0;
-	bool you_win = false; // TODO: Change this later.
-  bool game_over = false;
-	bool build_phase = true;
 
 private:
   HUD();

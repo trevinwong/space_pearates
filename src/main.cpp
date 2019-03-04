@@ -8,6 +8,9 @@
 
 World world;
 
+GLboolean keys[1024];
+GLboolean keysProcessed[1024];
+
 void error_callback(int error, const char* desc)
 {
 	fprintf(stderr, "%d: %s", error, desc);
@@ -19,11 +22,11 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 	if (key >= 0 && key < 1024)
 	{
 		if (action == GLFW_PRESS) {
-			world.keys[key] = GL_TRUE;
+			keys[key] = GL_TRUE;
 		}
 		else if (action == GLFW_RELEASE) {
-			world.keys[key] = GL_FALSE;
-			world.keysProcessed[key] = GL_FALSE;
+			keys[key] = GL_FALSE;
+			keysProcessed[key] = GL_FALSE;
 		}
 	}
 }
@@ -77,18 +80,8 @@ int main(int argc, char * argv[]) {
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-	// Audio.
-	if (SDL_Init(SDL_INIT_AUDIO) < 0)
-	{
-		fprintf(stderr, "Failed to initialize SDL Audio");
-		return false;
-	}
-
-	if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) == -1)
-	{
-		fprintf(stderr, "Failed to open audio device");
-		return false;
-	}
+  // Playing background music indefinitely (init audio)
+  AudioLoader::getInstance();
 
 	world.init(vec2(SCREEN_WIDTH, SCREEN_HEIGHT));
 
@@ -113,7 +106,7 @@ int main(int argc, char * argv[]) {
 		// Process events from the window system.
 		glfwPollEvents();
 
-		world.processInput(deltaTime);
+		world.processInput(deltaTime, keys, keysProcessed);
 		world.update(deltaTime);
 		world.draw();
 
@@ -121,7 +114,9 @@ int main(int argc, char * argv[]) {
 		glfwSwapBuffers(mWindow);
 	}
 
-	Mix_CloseAudio();
+  AudioLoader::getInstance().destroy();
+  world.destroy();
+
 	glfwTerminate();
 	return EXIT_SUCCESS;
 }

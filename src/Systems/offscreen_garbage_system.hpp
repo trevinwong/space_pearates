@@ -5,24 +5,21 @@
 #include "utility.hpp"
 #include "entity.hpp"
 #include "entity_manager.hpp"
-#include "../Components/projectile_component.hpp"
 #include "../Components/transform_component.hpp"
 
 /*
-  Any entity which has one of the component in targetEntitiesHasOneOfComponents will be checked if offscreen
-  The enetity will be destroyed if offscreen
+  Destory offscreen entities
 
   e.g.
-  if targetEntitiesHasOneOfComponents = { ComponentType::A, ComponentType::E, ComponentType::F }
-  then all entities which contain A, OR contain E, OR contain F will be checked
+  if component_types = { ComponentType::A, ComponentType::E, ComponentType::F }
+  then all entities which contain A OR E OR F will be checked
 */
 class OffscreenGarbageSystem {
-  public:
-    OffscreenGarbageSystem();
-    ~OffscreenGarbageSystem();
-    void destroyOffScreenEntities(EntityManager & entityManager);
-  private:
-    vector<int> targetEntitiesCharacterizedComponents = { ComponentType::projectile };
+public:
+  void destroyOffScreenEntities(EntityManager & entityManager, vector<int> component_types);
+  void destroyOffScreenEntities(EntityManager & entityManager, ComponentType::ComponentType type);
+private:
+  void checkAndDestroy(EntityManager & entityManager, vector<int> components);
 };
 
 #endif // !OFFSCREEN_GARBAGE_SYSTEM_H

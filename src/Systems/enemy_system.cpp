@@ -59,7 +59,7 @@ void EnemySystem::move (float dt, EntityManager& entityManager, WavesetSystem &w
 }
 
 
-void EnemySystem::getMap (EntityManager& entityManager) {
+void EnemySystem::setMap (EntityManager& entityManager) {
   vector<shared_ptr<Entity>> entityList = entityManager.getEntities();
   for (shared_ptr<Entity> e: entityList) {
     MapComponent *mapComponent = e->getComponent<MapComponent>();

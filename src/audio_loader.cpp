@@ -12,16 +12,20 @@ AudioLoader::AudioLoader() {
     fprintf(stderr, "Failed to open audio device");
   }
 
+  // Load sound effects
   collect_coin_sound = Mix_LoadWAV(audio_path("collect_coin.wav"));
-  //battle_theme1 = Mix_LoadWAV(audio_path("battle_theme1.ogg"));
+
+  // Load music
   eurobeat_full = Mix_LoadMUS(audio_path("eurobeat_full.wav"));
   hip_shop = Mix_LoadMUS(audio_path("hip_shop.wav"));
   cout << "Loaded audio" << endl;
+  reset();
+}
 
-  // Now play bgm forever
+void AudioLoader::reset()
+{
   if (Mix_PlayMusic(eurobeat_full, -1) == -1) {
     cout << "Mix_PlayMusic: " << Mix_GetError() << endl;
-    // well, there's no music, but most games don't break without music...
   }
 }
 
@@ -31,4 +35,13 @@ void AudioLoader::changeBgm() {
     cout << "Mix_FadeInMusic: " << Mix_GetError() << endl;
   }
   cout << "changeBgm()" << endl;
+}
+
+void AudioLoader::destroy()
+{
+  Mix_CloseAudio();
+
+  Mix_FreeChunk(collect_coin_sound);
+  Mix_FreeMusic(eurobeat_full);
+  Mix_FreeMusic(hip_shop);
 }

@@ -12,6 +12,7 @@
 #include "Systems/sprite_system.hpp"
 #include "Systems/physics_system.hpp"
 #include "Systems/billboard_system.hpp"
+#include "Systems/enemy_system.hpp"
 #include "Systems/player_system.hpp"
 #include "Systems/resource_system.hpp"
 #include "Systems/collision_system.hpp"
@@ -35,36 +36,32 @@
 class World
 {
 public:
-  World();
-  ~World();
-  void init(glm::vec2 screen);
+  vec2 player_spawn = vec2(0.0f, 0.0f);
+  void init(vec2 screen);
+  void processInput(float dt, GLboolean keys[], GLboolean keysProcessed[]);
   void update(float dt); // dt = delta time, how much time has passed since update was last called
-  void processInput(float dt);
   void draw();
   void destroy();
-  GLboolean keys[1024];
-  GLboolean keysProcessed[1024];
 
 private:
+  glm::mat4 projection;
   EntityManager entityManager;
-  EventSystem eventSystem;
+  PhysicsSystem physicsSystem;
+  CollisionSystem collisionSystem;
+
   SpriteSystem spriteSystem;
   BackgroundSystem backgroundSystem;
   BillboardSystem billboardSystem;
-  glm::mat4 projection;
-  TileMapSystem tileMapSystem;
-  //Change later after figuring out how to read multiple enemies
   EnemySystem enemySystem;
-  EnemySpawnSystem enemySpawnSystem;
   PlayerSystem playerSystem;
-	PhysicsSystem physicsSystem;
-  CollisionSystem collisionSystem;
+  ResourceSystem resourceSystem;
+
   TowerRangeDisplaySystem towerRangeDisplaySystem;
   TowerAttackSystem towerAttackSystem;
-  OffscreenGarbageSystem projectileGarbageSystem;
-  ResourceSystem resourceSystem;
   TowerUiSystem towerUiSystem;
+
   WavesetSystem wavesetSystem;
+  OffscreenGarbageSystem offscreenGarbageSystem;
 };
 
 #endif
