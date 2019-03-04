@@ -27,6 +27,28 @@ Entity ResourceFactory::build(vec2 position, float scale)
   return e;
 }
 
+vector<Entity> ResourceFactory::buildCluster(int amount, vec2 position, vec2 size, float scale)
+{
+	float CLUSTER_OFFSET_X = size.x;
+	float CLUSTER_OFFSET_Y = size.y / 2;
+	vector<Entity> cluster;
+	std::random_device rd; 
+	std::mt19937 gen(rd());
+	for (int i = 0; i < amount; i++) {
+		float minY = position.y; 
+		float maxY = position.y + CLUSTER_OFFSET_Y;
+		float minX = position.x;
+		float maxX = position.x + CLUSTER_OFFSET_X;
+
+		std::uniform_real_distribution<> disX(minX, maxX);
+		std::uniform_real_distribution<> disY(minY, maxY);
+		vec2 randPos = {disX(gen), disY(gen)};
+		cluster.push_back(ResourceFactory::build(randPos, scale));
+	}	
+	return cluster;
+}
+
+
 // Just for lazy testing.. spawns some coins along the floor, hardcoded
 void ResourceFactory::spawnMany(EntityManager & entities)
 {

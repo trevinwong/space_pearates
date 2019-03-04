@@ -144,6 +144,8 @@ set(SOURCE_FILES_CORE
 	src/Systems/billboard_system.hpp
 	src/Systems/collision_system.cpp
 	src/Systems/collision_system.hpp
+	src/Systems/death_system.hpp
+	src/Systems/death_system.cpp
 	src/Systems/physics_system.hpp
 	src/Systems/physics_system.cpp
 	src/Systems/player_system.cpp
@@ -158,20 +160,20 @@ set(SOURCE_FILES_CORE
 	src/Systems/offscreen_garbage_system.hpp
 	src/Systems/tower_ui_system.cpp
 	src/Systems/tower_ui_system.hpp
-	src/Utility/timer.hpp
-	src/Utility/timer.cpp
-	src/Utility/waveset_structs.hpp
-	src/Utility/waveset_structs.cpp
 	src/Systems/enemy_system.cpp
 	src/Systems/enemy_system.hpp
 	src/Systems/enemy_spawn_system.cpp
 	src/Systems/enemy_spawn_system.hpp
 	src/Systems/waveset_system.cpp
 	src/Systems/waveset_system.hpp
-	src/line.hpp
-	src/line.cpp
 	src/Systems/resource_system.cpp
 	src/Systems/resource_system.hpp
+	src/line.hpp
+	src/line.cpp
+	src/Utility/timer.hpp
+	src/Utility/timer.cpp
+	src/Utility/waveset_structs.hpp
+	src/Utility/waveset_structs.cpp
 	src/entity.cpp
 	src/entity.hpp
 	src/entity_manager.cpp

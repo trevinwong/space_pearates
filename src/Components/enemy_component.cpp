@@ -1,7 +1,8 @@
 #include "enemy_component.hpp"
 
-EnemyComponent::EnemyComponent()
+EnemyComponent::EnemyComponent(int _worth)
 {
+	worth =_worth;
 }
 
 

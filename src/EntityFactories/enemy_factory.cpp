@@ -11,7 +11,7 @@ Entity EnemyFactory::build(vec2 position, vec2 velocity, vec2 scale)
   ColorComponent *colour = new ColorComponent(glm::vec4(0.0f, 1.0f, 0.6f, 1.0f));
   Program *billboardProgram = new Program(shader_path("billboard.vert"), shader_path("billboard.frag"));
   HealthComponent *health = new HealthComponent(billboardProgram, 30);
-  EnemyComponent *enemy = new EnemyComponent();
+  EnemyComponent *enemy = new EnemyComponent(2);
 
   Entity e;
   e.setComponent<SpriteComponent>(sprite);

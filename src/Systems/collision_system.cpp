@@ -61,6 +61,7 @@ void CollisionSystem::handleCollision(shared_ptr<Entity> e1, shared_ptr<Entity> 
   if (player != nullptr && resource != nullptr) {
     // remove the resouce from world
     entityManager.removeEntity(e2);
+    Mix_PlayChannel(-1, AudioLoader::getInstance().collect_coin_sound, 0);
     // Add the resource into wallet
     WalletComponent *wallet = e1->getComponent<WalletComponent>();
     if (wallet != nullptr) {
@@ -70,7 +71,6 @@ void CollisionSystem::handleCollision(shared_ptr<Entity> e1, shared_ptr<Entity> 
       // TODO: so far only coins, modify this part for diff types of resource
       HUD::getInstance().resource_count = wallet->coins;
     }
-    Mix_PlayChannel(-1, AudioLoader::getInstance().collect_coin_sound, 0);
   }
 
   ProjectileComponent *projectile = e1->getComponent<ProjectileComponent>();
@@ -78,11 +78,8 @@ void CollisionSystem::handleCollision(shared_ptr<Entity> e1, shared_ptr<Entity> 
   TransformComponent *pos = e2->getComponent<TransformComponent>();
 
   if (projectile != nullptr && enemy != nullptr) {
-    entityManager.removeEntity(e2);
-    entityManager.removeEntity(e1);
-    if (pos && (rand() % 2 == 0)) {
-      entityManager.addEntity(ResourceFactory::build(pos->position));
-    }
+		e1->setComponent<DeathComponent>(new DeathComponent());
+		e2->setComponent<DeathComponent>(new DeathComponent());
 		wavesetSystem.currentEnemies--;
   }
 }
