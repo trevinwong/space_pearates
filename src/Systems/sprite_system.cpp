@@ -16,6 +16,13 @@ void SpriteSystem::drawSprites(EntityManager &entityManager, glm::mat4 projectio
     SpriteComponent *spriteComponent = e->getComponent<SpriteComponent>();
     TransformComponent *transformComponent = e->getComponent<TransformComponent>();
     ColorComponent *colorComponent = e->getComponent<ColorComponent>();
+    ParticleComponent *particleComponent = e->getComponent<ParticleComponent>();
+
+    if (particleComponent != nullptr) {
+      if (particleComponent->active == false) {
+        continue;
+      }
+    }
 
     // Use the program attached with the spriteComponent.
     spriteComponent->program->use();

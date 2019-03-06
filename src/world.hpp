@@ -23,6 +23,7 @@
 #include "Systems/background_system.hpp"
 #include "Systems/waveset_system.hpp"
 #include "Systems/death_system.hpp"
+#include "Systems/particle_system.hpp"
 #include "EntityFactories/map_entity_factory.hpp"
 #include "EntityFactories/background_entity_factory.hpp"
 #include "EntityFactories/player_factory.hpp"
@@ -63,6 +64,8 @@ private:
 
   WavesetSystem wavesetSystem;
   OffscreenGarbageSystem offscreenGarbageSystem;
+
+  ParticleSystem particleSystem;
 };
 
 #endif

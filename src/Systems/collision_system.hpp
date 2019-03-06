@@ -18,6 +18,7 @@
 #include "Components/death_component.hpp"
 #include "EntityFactories/resource_factory.hpp"
 #include "Systems/waveset_system.hpp"
+#include "Systems/particle_system.hpp"
 
 using EntityGrid = vector<vector<vector<shared_ptr<Entity>>>>;
 

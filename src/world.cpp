@@ -6,11 +6,14 @@ const vector<int> non_recyclable_components = {
 
 void World::init(vec2 screen)
 {
+
+  
   projection = glm::ortho(0.0f, static_cast<GLfloat>(screen.x), static_cast<GLfloat>(screen.y), 0.0f, -1.0f, 1.0f);
   physicsSystem.setScreenInfo(screen);
   collisionSystem.setScreenInfo(screen);
   HUD::getInstance();
   entityManager = EntityManager();
+   particleSystem.initParticleSystem(entityManager);
 
   Entity mapData = MapEntityFactory::createMapEntityFromFile(map_path("map0.txt"));
   entityManager.addEntity(mapData);
@@ -33,6 +36,8 @@ void World::init(vec2 screen)
 
   Entity w = WavesetManagerFactory::build(waveset_path("waveset0.txt"));
   entityManager.addEntity(w);
+
+
 }
 
 void World::update(float dt)
@@ -61,6 +66,8 @@ void World::update(float dt)
   offscreenGarbageSystem.destroyOffScreenEntities(entityManager, ComponentType::projectile);
   resourceSystem.handleResourceSpawnAndDespawn(entityManager, dt);
 	deathSystem.handleDeaths(entityManager);
+
+  particleSystem.updateParticles(entityManager,dt);
 }
 
 void World::processInput(float dt, GLboolean keys[], GLboolean keysProcessed[])

@@ -14,3 +14,8 @@ float Timer::getTimeLeft()
 {
 	return maxTime - elapsedTime;
 }
+
+void Timer::reset() 
+{
+	elapsedTime = 0;
+}

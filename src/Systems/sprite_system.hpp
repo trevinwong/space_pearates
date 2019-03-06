@@ -13,6 +13,7 @@
 #include "Components/collision_component.hpp"
 #include "Components/animated_component.hpp"
 #include "Components/player_component.hpp"
+#include "Components/particle_component.hpp"
 
 class SpriteSystem
 {
