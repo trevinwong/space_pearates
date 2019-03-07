@@ -31,6 +31,7 @@ namespace ComponentType {
 		damage,
 		death,
 		waveset,
+    particle,
 		max_count // Add above.
   };
 }

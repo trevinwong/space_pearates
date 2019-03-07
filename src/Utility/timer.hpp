@@ -6,6 +6,7 @@ public:
 	Timer(float _maxTime, float _elapsedTime = 0.0f);
 	void update(float dt);
 	float getTimeLeft();
+	void reset();
 	float elapsedTime;
 	float maxTime;
 };

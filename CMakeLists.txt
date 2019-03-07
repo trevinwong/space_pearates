@@ -68,6 +68,8 @@ set(SOURCE_FILES_CORE
 	src/Components/base_component.hpp
 	src/EntityFactories/projectile_entity_factory.cpp
 	src/EntityFactories/projectile_entity_factory.hpp
+	src/EntityFactories/particle_factory.cpp
+	src/EntityFactories/particle_factory.hpp
 	src/math.hpp
 	src/math.cpp
 	src/subscriber.hpp
@@ -134,6 +136,7 @@ set(SOURCE_FILES_CORE
 	src/Components/animated_component.hpp
 	src/Components/waveset_component.cpp
 	src/Components/waveset_component.hpp
+	src/Components/particle_component.hpp
 	src/Systems/event_system.cpp
 	src/Systems/event_system.hpp
 	src/Systems/sprite_system.cpp
@@ -168,6 +171,8 @@ set(SOURCE_FILES_CORE
 	src/Systems/waveset_system.hpp
 	src/Systems/resource_system.cpp
 	src/Systems/resource_system.hpp
+	src/Systems/particle_system.cpp
+	src/Systems/particle_system.hpp
 	src/line.hpp
 	src/line.cpp
 	src/Utility/timer.hpp
