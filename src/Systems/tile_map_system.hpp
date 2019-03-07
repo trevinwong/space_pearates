@@ -14,6 +14,7 @@ class TileMapSystem
 {
 public:
   static void loadTileMap(EntityManager &entityManager, vec2 &player_spawn);
+  static vector<glm::vec2> enemySpawnPoints;
 };
 
 #endif

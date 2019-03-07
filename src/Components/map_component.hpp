@@ -20,6 +20,7 @@ public:
   float height_tile;
   std::vector<std::vector<char>> mapData2DArray;
   std::vector<std::vector<TOWER_ID>> towerDistributionMap;
+  std::vector<glm::vec2> enemySpawnPoints;
 
   /*
     For those func below, x and y are screen coords, col and row are 2D vector indexes
