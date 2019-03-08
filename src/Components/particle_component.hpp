@@ -5,6 +5,15 @@
 #include "base_component.hpp"
 #include "../Utility/timer.hpp" 
 #include "entity.hpp"
+#include "texture.hpp"
+
+namespace ParticleType {
+  enum type {
+      nothing,
+      blood,
+      smoke
+  };
+}
 
 class ParticleComponent : public BaseComponent
 {
@@ -19,6 +28,11 @@ public:
     float speed; 
     glm::vec2 particleScale;
     bool active;
+
+    ParticleType::type type;
+
+    Texture * bloodTexture = new Texture(texture_path("blood.png"), true);
+    Texture * smokeTexture = new Texture(texture_path("smoke.png"), true);
 };
 
 #endif

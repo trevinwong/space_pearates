@@ -10,7 +10,6 @@
 #include "../Components/sprite_component.hpp"
 #include "../Components/transform_component.hpp"
 #include "../Components/color_component.hpp"
-#include "../Components/movement_component.hpp"
 #include "../Components/particle_component.hpp"
 #include "../Components/health_component.hpp"
 #include "../Components/home_component.hpp"
