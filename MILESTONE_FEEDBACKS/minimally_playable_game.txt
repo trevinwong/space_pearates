@@ -1,0 +1,19 @@
+TEAM 6 -- Tower Defense
+
+===================================================================
+OVERALL GRADING (90)
+
+* Core part:
+  - Decision tree for enemy behaviour is hardcoded (-2.5)
+  - Game was a little too easy to play.
+  - Help window is included.
+  - Game executes and terminates smoothly. Game resets smoothly.
+  - Minor bug for game ending (-2.5).
+  - Noticeable bug: change music button has a bug if you keep pressing it (-5)
+* Creative Part (25/25):
+  - Music (+5)
+  - Added more sprites (+5)
+  -  the HUDs for tower selection, good rendering of transitions (+5)
+  -  physics based movements (+10)
+ 
+Creative that got score last time: ECS system
