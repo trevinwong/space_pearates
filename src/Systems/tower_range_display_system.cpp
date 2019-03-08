@@ -24,47 +24,42 @@ void TowerRangeDisplaySystem::drawRanges(EntityManager & entityManager, glm::mat
   float mapTileWidth = mapComponent->width_tile;
   float mapTileHeight = mapComponent->height_tile;
 
-
   for (shared_ptr<Entity> e : tower_entities)
   {
-
     TransformComponent *transformComponent = e->getComponent<TransformComponent>();
-    if (transformComponent == nullptr) continue;
 
-    // a tower may contain multi attack component
-    FireTowerAttackComponent *fireTowerAttackComponent = e->getComponent<FireTowerAttackComponent>();
-    LightTowerAttackComponent *lightTowerAttackComponent = e->getComponent<LightTowerAttackComponent>();
+    TowerAttackComponent *towerAttackComponent = e->getComponent<TowerAttackComponent>();
+    if (transformComponent == nullptr || towerAttackComponent == nullptr) continue;
+    // calculate the positon of the range circle
+    vec2 towerLeftTopPosition = transformComponent->position;
+    vec2 towerSize = transformComponent->size;
+    vec2 towerCenterPosition = towerLeftTopPosition + towerSize * 0.5f;
 
-    vector<TowerAttackComponent*> towerAttackComponents;
-    if (fireTowerAttackComponent != nullptr)  towerAttackComponents.push_back(fireTowerAttackComponent);
-    if (lightTowerAttackComponent != nullptr)  towerAttackComponents.push_back(lightTowerAttackComponent);
+    // check if player and a tower in the same tile
+    // display range circle if they are in the same tile
+    if (((int)(towerCenterPosition.x / mapTileWidth) == (int)(playerCenterPosition.x / mapTileWidth)) &&
+      ((int)(towerCenterPosition.y / mapTileHeight) == (int)(playerCenterPosition.y / mapTileHeight))) {
 
-    for (TowerAttackComponent* towerAttackComponent : towerAttackComponents) {
-      // calculate the positon of the range circle
-      vec2 towerLeftTopPosition = transformComponent->position;
-      vec2 towerSize = transformComponent->size;
-      vec2 towerCenterPosition = towerLeftTopPosition + towerSize * 0.5f;
+      // towerRadius -> drawRangesHelper function
+      float towerRadius = towerAttackComponent->getAttackRange();
 
-      // check if player and a tower in the same tile
-      // display range circle if they are in the same tile
-      if (((int)(towerCenterPosition.x / mapTileWidth) == (int)(playerCenterPosition.x / mapTileWidth)) &&
-        ((int)(towerCenterPosition.y / mapTileHeight) == (int)(playerCenterPosition.y / mapTileHeight))) {
+      // shootRangeCircleCenterPosition -> drawRangesHelper function
+      vec2 relativeFirePosition = towerAttackComponent->relativeFirePosition;
+      vec2 shootRangeCircleCenterPosition(towerCenterPosition + towerSize * relativeFirePosition);
 
-        // towerRadius -> drawRangesHelper function
-        float towerRadius = towerAttackComponent->getAttackRange();
-
-        // shootRangeCircleCenterPosition -> drawRangesHelper function
-        vec2 relativeFirePosition = towerAttackComponent->relativeFirePosition;
-        vec2 shootRangeCircleCenterPosition(towerCenterPosition + towerSize * relativeFirePosition);
-
-        // lightTowerRangeSpriteComponent -> drawRangesHelper function
-        TowerRangeSpriteComponent *towerRangeSpriteComponent = e->getComponent<TowerRangeSpriteComponent>();
-        // draw range
-        drawRangesHelper(towerRangeSpriteComponent, shootRangeCircleCenterPosition, towerRadius, projection);
-      }
+      // lightTowerRangeSpriteComponent -> drawRangesHelper function
+      TowerRangeSpriteComponent *towerRangeSpriteComponent = e->getComponent<TowerRangeSpriteComponent>();
+      // draw range
+      drawRangesHelper(towerRangeSpriteComponent, shootRangeCircleCenterPosition, towerRadius, projection);
     }
-
   }
+}
+
+// check if player and a tower in the same tile
+bool TowerRangeDisplaySystem::isPlayerNear(float mapTileWidth, float mapTileHeight, vec2 &towerCenterPosition, vec2 &playerCenterPosition)
+{
+  return ((int)(towerCenterPosition.x / mapTileWidth) == (int)(playerCenterPosition.x / mapTileWidth)) &&
+    ((int)(towerCenterPosition.y / mapTileHeight) == (int)(playerCenterPosition.y / mapTileHeight));
 }
 
 void TowerRangeDisplaySystem::drawRangesHelper(SpriteComponent *towerRangeSpriteComponent, vec2 shootRangeCircleCenterPosition, float towerRadius, glm::mat4 projection)

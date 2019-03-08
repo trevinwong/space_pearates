@@ -18,6 +18,11 @@ bool Entity::hasOneOfComponents(std::bitset<ComponentType::max_count> component_
   return ((component_checker & has_components).any());
 }
 
+bool Entity::hasAllOfComponents(std::bitset<ComponentType::max_count> component_checker)
+{
+  return ((component_checker & has_components).all());
+}
+
 bool Entity::hasNoneOfComponents(std::bitset<ComponentType::max_count> component_checker)
 {
   return ((component_checker & has_components).none());

@@ -7,8 +7,13 @@
 
 class LightTowerAttackComponent : public TowerAttackComponent {
 public:
-  // Note: _shootRate (unit: s)
-  LightTowerAttackComponent(glm::vec2 _relativeFirePosition, float _attackRange, int _maxLevel, float _fireRate, int projectileAttackPower, int projectileNumberPerShoot);
+  // Note: _fireRate (unit: s)
+  LightTowerAttackComponent(vec2 _relativeFirePosition,
+    float _attackRange,
+    int _maxLevel,
+    float _fireRate,
+    int projectileAttackPower,
+    int projectileNumberPerShoot);
 
   int getProjectileNumberPerShoot();
 

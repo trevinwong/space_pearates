@@ -8,7 +8,7 @@
 class FireTowerAttackComponent : public TowerAttackComponent {
 public:
   // Note: _shootRate (unit: s)
-  FireTowerAttackComponent(glm::vec2 _relativeFirePosition, float _attackRange, int _maxLevel, float _fireRate, int projectileAttackPower);
+  FireTowerAttackComponent(vec2 _relativeFirePosition, float _attackRange, int _maxLevel, float _fireRate, int _projectileAttackPower);
 
   virtual int getTowerType() { return towerTypeID; };
 

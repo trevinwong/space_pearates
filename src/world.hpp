@@ -11,6 +11,7 @@
 #include "Systems/event_system.hpp"
 #include "Systems/sprite_system.hpp"
 #include "Systems/physics_system.hpp"
+#include "Systems/interpolation_system.hpp"
 #include "Systems/billboard_system.hpp"
 #include "Systems/enemy_system.hpp"
 #include "Systems/player_system.hpp"
@@ -52,6 +53,7 @@ private:
   glm::mat4 projection;
   EntityManager entityManager;
   PhysicsSystem physicsSystem;
+  InterpolationSystem interpolationSystem;
   CollisionSystem collisionSystem;
 	DeathSystem deathSystem;
   SpriteSystem spriteSystem;

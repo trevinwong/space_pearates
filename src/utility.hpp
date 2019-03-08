@@ -109,6 +109,7 @@ void printVec3(string name, vec3 vec);
 #define BUILD_WATER_TOWER 'W'
 #define BUILD_LIGHT_TOWER 'L'
 #define BUILD_STAR_TOWER 'R'
+#define BUILD_BOOMERANG_TOWER 'B'
 #define SELL_TOWER_OPERATION 'S'
 #define UPGRADE_TOWER_OPERATION 'U'
 #define FIX_TOWER_OPERATION 'X'

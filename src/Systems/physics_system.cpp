@@ -17,14 +17,12 @@ float PhysicsSystem::getFriction(vec2 velocity, float dt)
 }
 
 void PhysicsSystem::moveEntities(EntityManager &entityManager, float dt) {
-	vector<shared_ptr<Entity>> entities = entityManager.getEntities(entityManager.getComponentChecker(vector<int>{ComponentType::transform, ComponentType::movement}));
+	vector<shared_ptr<Entity>> entities = entityManager.getEntities(entityManager.getComponentChecker(
+    vector<int>{ComponentType::transform, ComponentType::movement}));
 
   for (shared_ptr<Entity> e : entities) {
     TransformComponent *transform = e->getComponent<TransformComponent>();
     MovementComponent *movement = e->getComponent<MovementComponent>();
-		CollisionComponent *collision = e->getComponent<CollisionComponent>();
-    ProjectileComponent *projectile = e->getComponent<ProjectileComponent>();
-    WaterTowerFactorComponent *waterTowerFactor = e->getComponent<WaterTowerFactorComponent>();
 	
 		movement->accel.y += getGravity(dt);
 		movement->accel.x += getFriction(movement->velocity, dt);
@@ -37,6 +35,10 @@ void PhysicsSystem::moveEntities(EntityManager &entityManager, float dt) {
 		}
 		movement->velocity = glm::clamp(newVelocity, -movement->maxVelocity, movement->maxVelocity);
 
+		CollisionComponent *collision = e->getComponent<CollisionComponent>();
+    ProjectileComponent *projectile = e->getComponent<ProjectileComponent>();
+    WaterTowerFactorComponent *waterTowerFactor = e->getComponent<WaterTowerFactorComponent>();
+
     if(waterTowerFactor)
       transform->position = transform->position + movement->velocity * waterTowerFactor->speedFactor * dt;
 		else
@@ -45,6 +47,21 @@ void PhysicsSystem::moveEntities(EntityManager &entityManager, float dt) {
 		if (collision != nullptr) collision->position = transform->position;
 		if (!movement->offScreenOK) adjustPositionOntoScreen(entityManager, e);
 	}
+}
+
+void PhysicsSystem::rotateEntities(EntityManager & entityManager, float dt)
+{
+  vector<shared_ptr<Entity>> entities = entityManager.getEntities(entityManager.getComponentChecker(
+    vector<int>{ComponentType::transform, ComponentType::projectile}));
+  for (shared_ptr<Entity> e : entities) {
+    TransformComponent *transform = e->getComponent<TransformComponent>();
+    ProjectileComponent *projectile = e->getComponent<ProjectileComponent>();
+
+    if (projectile->rotateOn) transform->rotation += 10.0 * dt;
+
+    CollisionComponent *collision = e->getComponent<CollisionComponent>();
+    if (collision != nullptr) collision->rotation = transform->rotation;
+  }
 }
 
 void PhysicsSystem::adjustPositionAroundTiles(EntityManager &entityManager, shared_ptr<Entity> &e) {

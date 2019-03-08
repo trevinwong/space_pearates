@@ -1,7 +1,7 @@
 #include "light_tower_attack_component.hpp"
 
 LightTowerAttackComponent::LightTowerAttackComponent(
-  glm::vec2 _relativeFirePosition,
+  vec2 _relativeFirePosition,
   float _attackRange,
   int _maxLevel,
   float _fireRate,

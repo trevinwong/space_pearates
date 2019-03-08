@@ -12,6 +12,7 @@
 #include "Components/TowerComponents/water_tower_factor_component.hpp"
 #include "Components/TowerComponents/light_tower_attack_component.hpp"
 #include "Components/TowerComponents/star_tower_attack_component.hpp"
+#include "Components/TowerComponents/boomerang_tower_attack_component.hpp"
 #include "../entity_manager.hpp"
 #include "../EntityFactories/projectile_entity_factory.hpp"
 
@@ -20,9 +21,9 @@
   create projectile and shoot the projectile to the enemy
 */
 class TowerAttackSystem {
-  public:
-    void checkRangeAndShootProjectiles(EntityManager& entityManager);
-    void reduceElapsedTimeToNextFire(EntityManager& entityManager, float dt);
+public:
+  void checkRangeAndShootProjectiles(EntityManager& entityManager);
+  void reduceElapsedTimeToNextFire(EntityManager& entityManager, float dt);
 };
 
 #endif

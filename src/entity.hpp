@@ -38,6 +38,8 @@ public:
 
   // check if an entity has any one of required components in component_checker
   bool hasOneOfComponents(std::bitset<ComponentType::max_count> component_checker);
+  // check if an entity has all of required components in component_checker
+  bool hasAllOfComponents(std::bitset<ComponentType::max_count> component_checker);
   // check if an entity has none of the required components in component_checker
   bool hasNoneOfComponents(std::bitset<ComponentType::max_count> component_checker);
 

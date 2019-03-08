@@ -16,10 +16,11 @@
 */
 class OffscreenGarbageSystem {
 public:
-  void destroyOffScreenEntities(EntityManager & entityManager, vector<int> component_types);
-  void destroyOffScreenEntities(EntityManager & entityManager, ComponentType::ComponentType type);
+  void destroyEntitiesContaining(EntityManager & entityManager, ComponentType::ComponentType type);
+  void destroyEntitiesContaining(EntityManager & entityManager, vector<int> component_types);
+  void destroyEntitiesContainingAll(EntityManager & entityManager, vector<int> component_types);
 private:
-  void checkAndDestroy(EntityManager & entityManager, vector<int> components);
+  void destroyOffscreen(EntityManager & entityManager, vector<shared_ptr<Entity>> entities);
 };
 
 #endif // !OFFSCREEN_GARBAGE_SYSTEM_H
