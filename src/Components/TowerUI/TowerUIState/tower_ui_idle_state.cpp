@@ -147,6 +147,9 @@ void TowerUiIdleState::processBuildNewTower(glm::vec2 playerCenterPosition, BUIL
     case BUILD_FIRE_TOWER:
       towerEntity = TowerEntityFactory::createFireTower(towerCenterBottomPosition, towerSize);
       break;
+    case BUILD_WATER_TOWER:
+      towerEntity = TowerEntityFactory::createWaterTower(towerCenterBottomPosition, towerSize);
+      break;
     case BUILD_LIGHT_TOWER:
       towerEntity = TowerEntityFactory::createLightTower(towerCenterBottomPosition, towerSize);
       break;

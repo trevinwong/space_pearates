@@ -12,6 +12,7 @@ Entity EnemyFactory::build(vec2 position, vec2 velocity, vec2 scale)
   Program *billboardProgram = new Program(shader_path("billboard.vert"), shader_path("billboard.frag"));
   HealthComponent *health = new HealthComponent(billboardProgram, 30);
   EnemyComponent *enemy = new EnemyComponent(2);
+  WaterTowerFactorComponent *waterTowerFactor = new WaterTowerFactorComponent();
 
   Entity e;
   e.setComponent<SpriteComponent>(sprite);
@@ -19,6 +20,7 @@ Entity EnemyFactory::build(vec2 position, vec2 velocity, vec2 scale)
 	e.setComponent<CollisionComponent>(collision);
   e.setComponent<ColorComponent>(colour);
   e.setComponent<MovementComponent>(move);
+  e.setComponent<WaterTowerFactorComponent>(waterTowerFactor);
   e.setComponent<HealthComponent>(health);
   e.setComponent<EnemyComponent>(enemy);
   return e;

@@ -98,6 +98,9 @@ set(SOURCE_FILES_CORE
 	src/Components/TowerComponents/tower_attack_component.cpp
 	src/Components/TowerComponents/tower_attack_component.hpp
 	src/Components/TowerComponents/tower_range_sprite_component.hpp
+  src/Components/TowerComponents/water_tower_attack_component.cpp
+	src/Components/TowerComponents/water_tower_attack_component.hpp
+	src/Components/TowerComponents/water_tower_factor_component.hpp
 	src/Components/TowerComponents/fire_tower_attack_component.cpp
 	src/Components/TowerComponents/fire_tower_attack_component.hpp
 	src/Components/TowerComponents/light_tower_attack_component.cpp
@@ -163,6 +166,12 @@ set(SOURCE_FILES_CORE
 	src/Systems/offscreen_garbage_system.hpp
 	src/Systems/tower_ui_system.cpp
 	src/Systems/tower_ui_system.hpp
+	src/Systems/render_to_texture_system.cpp
+	src/Systems/render_to_texture_system.hpp
+	src/Utility/timer.hpp
+	src/Utility/timer.cpp
+	src/Utility/waveset_structs.hpp
+	src/Utility/waveset_structs.cpp
 	src/Systems/enemy_system.cpp
 	src/Systems/enemy_system.hpp
 	src/Systems/enemy_spawn_system.cpp

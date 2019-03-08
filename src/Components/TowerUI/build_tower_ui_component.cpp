@@ -6,17 +6,21 @@ BuildTowerUiComponent::BuildTowerUiComponent()
   currentSelectedTowerTypeListIndex = 0;
 
   towerTypeList.push_back(BUILD_FIRE_TOWER);
+  towerTypeList.push_back(BUILD_WATER_TOWER);
   towerTypeList.push_back(BUILD_LIGHT_TOWER);
   towerTypeList.push_back(BUILD_STAR_TOWER);
 
   // Fire Tower Sprite
   Texture *fireTowerSpriteTexture = new Texture(texture_path("build_fire_tower_icon.png"), true);
+  // Water Tower Sprite
+  Texture *waterTowerSpriteTexture = new Texture(texture_path("build_water_tower_icon.png"), true);
   // Light Tower Sprite
   Texture *lightTowerSpriteTexture = new Texture(texture_path("build_light_tower_icon.png"), true);
   // Star Tower Sprite
   Texture *starTowerSpriteTexture = new Texture(texture_path("build_star_tower_icon.png"), true);
   
   towerTypeListUiIcons.push_back(fireTowerSpriteTexture);
+  towerTypeListUiIcons.push_back(waterTowerSpriteTexture);
   towerTypeListUiIcons.push_back(lightTowerSpriteTexture);
   towerTypeListUiIcons.push_back(starTowerSpriteTexture);
 }

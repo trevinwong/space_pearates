@@ -10,30 +10,43 @@ void TowerAttackSystem::checkRangeAndShootProjectiles(EntityManager& entityManag
   // no enemies or no towers in the world now
   if (enemyEntities.size() == 0 || towerEntities.size() == 0) return;
 
-  // Loop all towers
-  for (shared_ptr<Entity> towerEntity : towerEntities) {
+  // Loop all enemies
+  for (shared_ptr<Entity> enemyEntity : enemyEntities) {
+    TransformComponent *enemyTransformComponent = enemyEntity->getComponent<TransformComponent>();
+    if (enemyTransformComponent == nullptr) continue;
 
-    SpriteComponent *spriteComponent = towerEntity->getComponent<SpriteComponent>();
-    TransformComponent *transformComponent = towerEntity->getComponent<TransformComponent>();
-    TowerAttackComponent *towerAttackComponent = towerEntity->getComponent<TowerAttackComponent>();
+    vec2 enemyPosition = enemyTransformComponent->position;
+    vec2 enemyCenterPosition = enemyPosition + enemyTransformComponent->size * 0.5f;
+    float enemyHitboxRadius = glm::max(enemyTransformComponent->size.x, enemyTransformComponent->size.y);
 
-    // check null here
-    if (spriteComponent == nullptr || transformComponent == nullptr || towerAttackComponent == nullptr) continue;
+    // each time we check if an enmey is in water tower attack range,
+    // we assume the enemy is not.
+    // Reset its water tower factor
+    // then, if it is in any water tower range, the tower loop below will update the factor
+    auto waterTowerFactorComponent = enemyEntity->getComponent<WaterTowerFactorComponent>();
+    if (waterTowerFactorComponent != nullptr) {
+      // here, reset the water tower factor
+      waterTowerFactorComponent->speedFactor = 1.0f;
+    }
 
-    // calculate the fire point position
-    vec2 towerLeftTopPosition = transformComponent->position;
-    vec2 towerSize = transformComponent->size;
-    vec2 towerCenterPosition = towerLeftTopPosition + towerSize * 0.5f;
-    vec2 relativeFirePosition = towerAttackComponent->relativeFirePosition;
-    vec2 firePointPosition(towerCenterPosition + towerSize * relativeFirePosition);
+    // Loop all towers
+    for (shared_ptr<Entity> towerEntity : towerEntities) {
 
-    // loop all
-    float towerRadius = towerAttackComponent->getAttackRange();
-    for (shared_ptr<Entity> enemyEntity : enemyEntities) {
-      TransformComponent *enemyTransformComponent = enemyEntity->getComponent<TransformComponent>();
-      vec2 enemyPosition = enemyTransformComponent->position;
-      vec2 enemyCenterPosition = enemyPosition + enemyTransformComponent->size * 0.5f;
-      float enemyHitboxRadius = glm::max(enemyTransformComponent->size.x, enemyTransformComponent->size.y);
+      SpriteComponent *spriteComponent = towerEntity->getComponent<SpriteComponent>();
+      TransformComponent *transformComponent = towerEntity->getComponent<TransformComponent>();
+      TowerAttackComponent *towerAttackComponent = towerEntity->getComponent<TowerAttackComponent>();
+
+      // check null here
+      if (spriteComponent == nullptr || transformComponent == nullptr || towerAttackComponent == nullptr) continue;
+
+      // calculate the fire point position
+      vec2 towerLeftTopPosition = transformComponent->position;
+      vec2 towerSize = transformComponent->size;
+      vec2 towerCenterPosition = towerLeftTopPosition + towerSize * 0.5f;
+      vec2 relativeFirePosition = towerAttackComponent->relativeFirePosition;
+      vec2 firePointPosition(towerCenterPosition + towerSize * relativeFirePosition);
+
+      float towerRadius = towerAttackComponent->getAttackRange();
 
       // calcule distance
       float centerOfCircleDist = glm::distance(enemyCenterPosition, firePointPosition);
@@ -55,6 +68,16 @@ void TowerAttackSystem::checkRangeAndShootProjectiles(EntityManager& entityManag
           entityManager.addEntity(projectileEntity);
           // fired, wait until next time to fire
           towerAttackComponent->resetElapsedTimeToNextFire();
+        }
+        else if (towerAttackComponent->getTowerType() == TowerTypeID::water_tower) {
+          // in the range, slow it down!
+          float slowDownFactor = dynamic_cast<WaterTowerAttackComponent*>(towerAttackComponent)->getSlowDownFactor();
+          if (waterTowerFactorComponent != nullptr) {
+            // if an enemy is in the overlap of two water towers, 
+            // then we pickup the smallest factor
+            waterTowerFactorComponent->speedFactor = glm::min(waterTowerFactorComponent->speedFactor, slowDownFactor);
+          }
+          // Note: water tower does not have fire rate
         }
         else if (towerAttackComponent->getTowerType() == TowerTypeID::light_tower) {
           // in the range, FIRE!
@@ -89,7 +112,6 @@ void TowerAttackSystem::checkRangeAndShootProjectiles(EntityManager& entityManag
           // fired, wait until next time to fire
           towerAttackComponent->resetElapsedTimeToNextFire();
         }
-
       }
     }
   }

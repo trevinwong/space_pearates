@@ -8,6 +8,8 @@
 #include "Components/collision_component.hpp"
 #include "Components/transform_component.hpp"
 #include "Components/TowerComponents/fire_tower_attack_component.hpp"
+#include "Components/TowerComponents/water_tower_attack_component.hpp"
+#include "Components/TowerComponents/water_tower_factor_component.hpp"
 #include "Components/TowerComponents/light_tower_attack_component.hpp"
 #include "Components/TowerComponents/star_tower_attack_component.hpp"
 #include "../entity_manager.hpp"
