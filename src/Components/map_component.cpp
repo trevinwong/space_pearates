@@ -5,8 +5,8 @@ MapComponent::MapComponent(std::vector<std::vector<char>> _mapData2DArray) :
 {
   this->num_y_tiles = this->mapData2DArray.size();
   this->num_x_tiles = this->mapData2DArray.front().size();
-  this->width_tile = SCREEN_WIDTH / this->num_x_tiles;
-  this->height_tile = SCREEN_HEIGHT / this->num_y_tiles;
+  this->width_tile = (float)SCREEN_WIDTH / (float)this->num_x_tiles;
+  this->height_tile = (float)SCREEN_HEIGHT / (float)this->num_y_tiles;
 
   // initial a blank map for tower distribution
   // towerDistributionMap[row][col] or towerDistributionMap[y][x]
