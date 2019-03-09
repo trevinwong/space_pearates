@@ -79,6 +79,7 @@ void CollisionSystem::handleCollision(shared_ptr<Entity> e1, shared_ptr<Entity> 
   if (projectile != nullptr && enemy != nullptr) {
     // Hit
     ParticleSystem::emitParticleCluster(entityManager, pos->position);
+    Mix_PlayChannel(-1, AudioLoader::getInstance().enemy_dead, 0);
 
     SplineComponent *spline = e1->getComponent<SplineComponent>();
     if (spline == nullptr) {

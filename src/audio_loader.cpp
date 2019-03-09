@@ -14,6 +14,9 @@ AudioLoader::AudioLoader() {
 
   // Load sound effects
   collect_coin_sound = Mix_LoadWAV(audio_path("collect_coin.wav"));
+  jump = Mix_LoadWAV(audio_path("jump.wav"));
+  build_tower = Mix_LoadWAV(audio_path("build.wav"));
+  enemy_dead = Mix_LoadWAV(audio_path("dead.wav"));
 
   // Load music
   eurobeat_full = Mix_LoadMUS(audio_path("eurobeat_full.wav"));
@@ -42,6 +45,9 @@ void AudioLoader::destroy()
   Mix_CloseAudio();
 
   Mix_FreeChunk(collect_coin_sound);
+  Mix_FreeChunk(jump);
+  Mix_FreeChunk(build_tower);
+  Mix_FreeChunk(enemy_dead);
   Mix_FreeMusic(eurobeat_full);
   Mix_FreeMusic(hip_shop);
 }

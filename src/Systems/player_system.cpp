@@ -31,6 +31,7 @@ void PlayerSystem::interpInput(EntityManager &entityManager, float dt, GLboolean
 
 		if (keys[GLFW_KEY_UP] && !keysProcessed[GLFW_KEY_UP] && player->jumps > 0)
 		{
+			Mix_PlayChannel(-1, AudioLoader::getInstance().jump, 0);
 			keysProcessed[GLFW_KEY_UP] = true;
 			player->jumps--;
 			if (movement->velocity.y > 0) movement->velocity.y = 0;

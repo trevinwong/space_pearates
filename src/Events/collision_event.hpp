@@ -5,13 +5,13 @@
 #include "event.hpp"
 #include "entity.hpp"
 
-class CollisionEvent : public Event
+class CollisionEvent
 {
 public:
   CollisionEvent(shared_ptr<Entity> e1, shared_ptr<Entity> e2);
   ~CollisionEvent();
-  static const int typeId = EventType::collision;
-  inline virtual int getTypeId() const { return typeId; };
+  // static const int typeId = EventType::collision;
+  // inline virtual int getTypeId() const { return typeId; };
 };
 
 #endif

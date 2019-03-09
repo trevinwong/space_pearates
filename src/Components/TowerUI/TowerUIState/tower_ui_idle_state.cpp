@@ -245,6 +245,7 @@ void TowerUiIdleState::processOperate(glm::vec2 playerCenterPosition, TOWER_UI_O
 
     TowerMetaComponent *towerMetaComponent = towerEntity.getComponent<TowerMetaComponent>();
     if (walletComponent->spend(towerMetaComponent->buildCost)) {
+      Mix_PlayChannel(-1, AudioLoader::getInstance().build_tower, 0);
       entityManager.addEntity(towerEntity);
       mapComponent->buildTowerAt(towerEntity.id, col, row);
     }
