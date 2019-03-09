@@ -4,7 +4,6 @@ TowerUiButtonMetaComponent::TowerUiButtonMetaComponent() {
   initProgramAndShader();
   initIcons();
   initKeyframePos();
-  initFont();
 
   buildOptList.push_back(BUILD_FIRE_TOWER);
   buildOptList.push_back(BUILD_WATER_TOWER);
@@ -92,12 +91,6 @@ void TowerUiButtonMetaComponent::initKeyframePos() {
   // Note: line1 is below line2
   descriptionLine1Pos = vec2(middleButtonRelativePosition.x, middleButtonRelativePosition.y - 6);
   descriptionLine2Pos = vec2(middleButtonRelativePosition.x, middleButtonRelativePosition.y - 22);
-}
-
-void TowerUiButtonMetaComponent::initFont() {
-  textRender = Text("munro_small.ttf");
-  textRender.setProjectionSize(SCREEN_WIDTH, SCREEN_HEIGHT);
-  textRender.preprocessGlyphs();
 }
 
 shared_ptr<Texture> TowerUiButtonMetaComponent::getTextureByOpt(TOWER_UI_OPT_TYPE opt) {

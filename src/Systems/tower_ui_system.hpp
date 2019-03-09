@@ -18,8 +18,6 @@
 
 class TowerUiSystem {
 public:
-  TowerUiSystem() {};
-  ~TowerUiSystem() {};
   void interpInput(EntityManager& entityManager, GLboolean keys[], GLboolean keysProcessed[]);
   void update(EntityManager& entityManager, float dt);
   void render(EntityManager& entityManager, glm::mat4 projection);

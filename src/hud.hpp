@@ -29,7 +29,6 @@ public:
 
 private:
   HUD();
-  Text text;
 };
 
 #endif

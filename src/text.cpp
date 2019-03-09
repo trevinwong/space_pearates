@@ -5,40 +5,41 @@ Text::Text()
   if (FT_Init_FreeType(&ft))
     cout << "ERROR::FREETYPE: Could not init FreeType Library" << endl;
 
-  if (FT_New_Face(ft, font_path("arial.ttf"), 0, &face))
-    cout << "ERROR::FREETYPE: Failed to load font" << endl;
+  //loadFont("arial.ttf");
+  const int numFonts = Font::count;
+  string fonts[numFonts] = { "munro.ttf", "munro_small.ttf" };
+  for (int i = 0; i < numFonts; i++) {
+    loadFont(fonts[i], i);
+  }
 
-  // Arbitrary size init. Note: set width to 0 to autoscale according to height.
-  FT_Set_Pixel_Sizes(face, 0, 48);
-  // Arbitrary screen size for rendering the font glyphs, not sure if changing it helps much..
-  projection = glm::ortho(0.0f, 800.0f, 600.0f, 0.0f, -1.0f, 1.0f); // top-left, but flipped
+  setProjectionSize();
+  preprocessGlyphs(); // Pre-load font characters to be used
+
+  FT_Done_FreeType(ft);
 }
 
-Text::Text(string fontName)
+void Text::loadFont(string fontName, int index)
 {
-  if (FT_Init_FreeType(&ft))
-    cout << "ERROR::FREETYPE: Could not init FreeType Library" << endl;
-
   string fontPath = string(font_path()) + fontName;
   if (FT_New_Face(ft, fontPath.c_str(), 0, &face))
     cout << "ERROR::FREETYPE: Failed to load font" << endl;
 
-  // Arbitrary size init. Note: set width to 0 to autoscale according to height.
-  FT_Set_Pixel_Sizes(face, 0, 48);
-  // Arbitrary screen size for rendering the font glyphs, not sure if changing it helps much..
-  projection = glm::ortho(0.0f, 800.0f, 600.0f, 0.0f, -1.0f, 1.0f); // top-left, but flipped
-}
+  // NOTE: set width to 0 to autoscale according to height
+  FT_Set_Pixel_Sizes(face, 0, 48); // Arbitrary size init
 
-void Text::preprocessGlyphs()
-{
-  loadGlyphs();         // load 128 ASCII chars
-  initShaderProgram();  // attach glyph shaders
-  initVertexObjects();  // setup glyph VAO, VBO
+  loadGlyphs(index);    // Load 128 ASCII chars
+  FT_Done_Face(face);   // Done with font
 }
 
 void Text::setProjectionSize(float width, float height) {
   //projection = glm::ortho(0.0f, width, 0.0f, height);
-  projection = glm::ortho(0.0f, width, height, 0.0f, -1.0f, 1.0f);
+  projection = glm::ortho(0.0f, width, height, 0.0f, -1.0f, 1.0f);// top-left, but flipped
+}
+
+void Text::preprocessGlyphs()
+{
+  initShaderProgram();  // attach glyph shaders
+  initVertexObjects();  // setup glyph VAO, VBO
 }
 
 void Text::initShaderProgram()
@@ -46,7 +47,7 @@ void Text::initShaderProgram()
   program = new Program(shader_path("glyph.vert"), shader_path("glyph.frag"));
 }
 
-void Text::loadGlyphs()
+void Text::loadGlyphs(int index)
 {
   glPixelStorei(GL_UNPACK_ALIGNMENT, 1); // Disable byte-alignment restriction
 
@@ -85,11 +86,10 @@ void Text::loadGlyphs()
       glm::ivec2(face->glyph->bitmap_left, face->glyph->bitmap_top),
       (unsigned int)face->glyph->advance.x
     };
-    Characters.insert(std::pair<GLchar, Character>(c, character));
+    FontCharacters.push_back({});
+    FontCharacters.at(index).insert(std::pair<GLchar, Character>(c, character));
   }
   //cout << "Loaded all character glyphs" << endl;
-  FT_Done_Face(face);
-  FT_Done_FreeType(ft);
 }
 
 void Text::initVertexObjects()
@@ -111,12 +111,12 @@ void Text::initVertexObjects()
   glBindVertexArray(0);
 }
 
-void Text::render(string text, glm::vec2 position, float scale, glm::vec3 color)
+void Text::render(string text, glm::vec2 position, float scale, glm::vec3 color, int font)
 {
-  render(text, GLfloat(position.x), GLfloat(position.y), GLfloat(scale), color);
+  render(text, GLfloat(position.x), GLfloat(position.y), GLfloat(scale), color, font);
 }
 
-void Text::render(string text, GLfloat x, GLfloat y, GLfloat scale, glm::vec3 color)
+void Text::render(string text, GLfloat x, GLfloat y, GLfloat scale, glm::vec3 color, int font)
 {
   // Activate corresponding render state	
   program->use();
@@ -129,7 +129,7 @@ void Text::render(string text, GLfloat x, GLfloat y, GLfloat scale, glm::vec3 co
   string::const_iterator c;
   for (c = text.begin(); c != text.end(); c++)
   {
-    Character ch = Characters[*c];
+    Character ch = FontCharacters[font][*c];
 
     GLfloat xpos = x + ch.Bearing.x * scale;
     GLfloat ypos = y - (ch.Size.y - ch.Bearing.y) * scale * -1;

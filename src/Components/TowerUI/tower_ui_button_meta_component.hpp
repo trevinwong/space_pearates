@@ -19,22 +19,22 @@ public:
 
   // These variables are init in the constructor
   // These variables will not be changed during runtime, they are used as keyframes to compute animation path
-  glm::vec2 leftButtonSize;
-  glm::vec2 middleButtonSize;
-  glm::vec2 rightButtonSize;
+  vec2 leftButtonSize;
+  vec2 middleButtonSize;
+  vec2 rightButtonSize;
 
-  glm::vec2 leftButtonRelativePosition;
-  glm::vec2 middleButtonRelativePosition;
-  glm::vec2 rightButtonRelativePosition;
+  vec2 leftButtonRelativePosition;
+  vec2 middleButtonRelativePosition;
+  vec2 rightButtonRelativePosition;
 
   glm::vec4 leftButtonRGBA;
   glm::vec4 middleButtonRGBA;
   glm::vec4 rightButtonRGBA;
 
   // descriptionLine1 pos
-  glm::vec2 descriptionLine1Pos;
+  vec2 descriptionLine1Pos;
   // descriptionLine2 pos
-  glm::vec2 descriptionLine2Pos;
+  vec2 descriptionLine2Pos;
 
   // icons
   shared_ptr<Texture> buildFireTowerIcon;
@@ -50,8 +50,6 @@ public:
   vector<TOWER_UI_OPT_TYPE> buildOptList;
   vector<TOWER_UI_OPT_TYPE> towerOptList;
 
-  Text textRender;
-
   static const int typeID = ComponentType::tower_ui_button_meta;
   inline virtual int getTypeID() const { return typeID; };
 
@@ -59,7 +57,6 @@ private:
   void initProgramAndShader();
   void initIcons();
   void initKeyframePos();
-  void initFont();
 };
 
 #endif // !TOWER_UI_BUTTON_META_H
