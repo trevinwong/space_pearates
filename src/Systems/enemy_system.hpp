@@ -10,7 +10,7 @@
 class EnemySystem
 {
 public:
-  void move(float dt, EntityManager& entities, WavesetSystem &wavesetSystem);
+  void move(float dt, EntityManager& entities);
   void setMap(EntityManager& entities);
 private:
   vector<vector<char>> map;

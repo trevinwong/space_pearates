@@ -26,6 +26,7 @@
 #include "Systems/waveset_system.hpp"
 #include "Systems/death_system.hpp"
 #include "Systems/particle_system.hpp"
+#include "Systems/damage_system.hpp"
 #include "EntityFactories/map_entity_factory.hpp"
 #include "EntityFactories/background_entity_factory.hpp"
 #include "EntityFactories/player_factory.hpp"
@@ -62,12 +63,12 @@ private:
   EnemySystem enemySystem;
   PlayerSystem playerSystem;
   ResourceSystem resourceSystem;
+	DamageSystem damageSystem;
 
   TowerRangeDisplaySystem towerRangeDisplaySystem;
   TowerAttackSystem towerAttackSystem;
   TowerUiSystem towerUiSystem;
 
-  WavesetSystem wavesetSystem;
   OffscreenGarbageSystem offscreenGarbageSystem;
   ParticleSystem particleSystem;
   RenderToTextureSystem renderToTextureSystem;

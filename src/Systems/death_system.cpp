@@ -13,6 +13,9 @@ void DeathSystem::handleDeaths(EntityManager &entityManager)
 				entityManager.addEntity(resource);
 			}
 			entityManager.removeEntity(e);
+			WavesetSystem::getInstance().decrementEnemies(1, entityManager);
+			ParticleSystem::emitParticleCluster(entityManager, transform->position);
+			Mix_PlayChannel(-1, AudioLoader::getInstance().enemy_dead, 0);
 		}
 
 		if (projectile != nullptr) {

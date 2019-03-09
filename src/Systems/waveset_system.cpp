@@ -11,25 +11,25 @@ void WavesetSystem::handleBuildAndDefensePhase(EntityManager &entityManager, flo
 
 	for (shared_ptr<Entity> e : entities) {
 		WavesetComponent *waveset_manager = e->getComponent<WavesetComponent>();
-		Waveset waveset = waveset_manager->waveset;
+		Waveset &waveset = waveset_manager->waveset;
 
 		if (isWavesetOver(waveset)) {
 			HUD::getInstance().you_win = true;	
 			return;
 		}
 		
-		Wave wave = waveset.waves[waveNo];
+		Wave &wave = waveset.waves[waveNo];
 
 		if (phase == BuildPhase) {				
 			buildTimer += dt;
 			HUD::getInstance().build_phase = true;
-			if (buildTimer > wave.buildPhaseTime) startDefensePhase(wave.totalEnemies);
+			if (buildTimer > wave.buildPhaseTime) startDefensePhase(wave);
 		}
 
 		if (phase == DefensePhase) {
 			defenseTimer += dt;
 			HUD::getInstance().build_phase = false;
-			HUD::getInstance().enemy_count = currentEnemies;
+			HUD::getInstance().enemy_count = wave.currEnemies;
 			if (isWaveOver(wave)) {
 				waveNo++;
 				startBuildPhase();
@@ -49,25 +49,25 @@ void WavesetSystem::startBuildPhase()
 	buildTimer = 0;
 }
 
-void WavesetSystem::startDefensePhase(int totalEnemies)
+void WavesetSystem::startDefensePhase(Wave &wave)
 {
 	phase = DefensePhase;
 	defenseTimer = 0;
 	clusterNo = 0;
-	currentEnemies = totalEnemies;
+	wave.currEnemies = wave.totalEnemies;
 }
 
-bool WavesetSystem::timeToSpawnNextCluster(Wave wave)
+bool WavesetSystem::timeToSpawnNextCluster(Wave &wave)
 {
 	return clusterNo < wave.clusters.size() && defenseTimer > wave.spawnTimes[clusterNo];
 }
 
-bool WavesetSystem::isWaveOver(Wave wave)
+bool WavesetSystem::isWaveOver(Wave &wave)
 {
-	return clusterNo >= wave.clusters.size() && currentEnemies <= 0;
+	return clusterNo >= wave.clusters.size() && wave.currEnemies <= 0;
 }
 
-bool WavesetSystem::isWavesetOver(Waveset waveset)
+bool WavesetSystem::isWavesetOver(Waveset &waveset)
 {
 	return waveNo >= waveset.waves.size();
 }
@@ -96,3 +96,27 @@ void WavesetSystem::spawnCluster(EntityManager &entityManager, Cluster cluster)
 		}
 	}	
 }
+
+// Refactor this and refactor the waveset data out of a component and into a class.
+void WavesetSystem::decrementEnemies(int amount, EntityManager &entityManager)
+{
+	vector<shared_ptr<Entity>> entities = entityManager.getEntities(entityManager.getComponentChecker(vector<int>{ComponentType::waveset}));
+
+	for (shared_ptr<Entity> e : entities) {
+		WavesetComponent *waveset_manager = e->getComponent<WavesetComponent>();
+		Waveset &waveset = waveset_manager->waveset;
+		if (!isWavesetOver(waveset)) {
+			Wave &wave = waveset.waves[waveNo];	
+			wave.currEnemies -= amount;
+		}
+	}
+}
+
+
+
+
+
+
+
+
+

@@ -14,17 +14,23 @@
 class WavesetSystem
 {
 public:
-	WavesetSystem();
+  WavesetSystem(WavesetSystem const&) = delete;
+  void operator=(WavesetSystem const&) = delete;
+  static WavesetSystem& getInstance()
+  {
+    static WavesetSystem instance;
+    return instance;
+  }
 
 	void handleBuildAndDefensePhase(EntityManager &entityManager, float dt);
 	void startBuildPhase();
-	void startDefensePhase(int totalEnemies);
-	bool timeToSpawnNextCluster(Wave wave);
-	bool isWaveOver(Wave wave);
-	bool isWavesetOver(Waveset waveset);
+	void startDefensePhase(Wave &wave);
+	bool timeToSpawnNextCluster(Wave &wave);
+	bool isWaveOver(Wave &wave);
+	bool isWavesetOver(Waveset &waveset);
 	void spawnCluster(EntityManager &entityManager, Cluster cluster);
+	void decrementEnemies(int amount, EntityManager &entityManager);
 
-	int currentEnemies = 0;
 	int waveNo = 0;
 	int clusterNo = 0;
 
@@ -38,6 +44,8 @@ public:
 	float defenseTimer;
 
 	vector<glm::vec2> enemySpawnPoints;
+private:
+	WavesetSystem();
 };
 
 #endif
