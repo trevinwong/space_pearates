@@ -72,10 +72,6 @@ set(SOURCE_FILES_CORE
 	src/EntityFactories/particle_factory.hpp
 	src/math.hpp
 	src/math.cpp
-	src/subscriber.hpp
-	src/Events/event.hpp
-	src/Events/collision_event.cpp
-	src/Events/collision_event.hpp
 	src/Components/collision_component.cpp
 	src/Components/collision_component.hpp
 	src/Components/color_component.cpp
@@ -142,8 +138,6 @@ set(SOURCE_FILES_CORE
 	src/Components/particle_component.hpp
 	src/Components/damage_component.hpp
 	src/Components/damage_component.cpp
-	src/Systems/event_system.cpp
-	src/Systems/event_system.hpp
 	src/Systems/sprite_system.cpp
 	src/Systems/sprite_system.hpp
 	src/Systems/background_system.cpp
