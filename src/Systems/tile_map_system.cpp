@@ -1,11 +1,14 @@
 #include "tile_map_system.hpp"
 
+vector<glm::vec2> TileMapSystem::enemySpawnPoints;
+
 void TileMapSystem::loadTileMap(EntityManager & entityManager, vec2 & player_spawn)
 {
   shared_ptr<Entity> mapEntity = entityManager.getEntities(entityManager.getComponentChecker(vector<int>{ComponentType::map}))[0];
   MapComponent *mapComponent = mapEntity->getComponent<MapComponent>();
   if (mapComponent == nullptr) return;
 
+  //vector<glm::vec2> enemySpawnPoints;
   auto tileMap = mapComponent->mapData2DArray;
   int num_y_tiles = mapComponent->num_y_tiles;
   int num_x_tiles = mapComponent->num_x_tiles;
@@ -37,9 +40,13 @@ void TileMapSystem::loadTileMap(EntityManager & entityManager, vec2 & player_spa
       else if (*col == MAP_PLAYER_SPAWN) {
         player_spawn = vec2(col_i*width_tile, row_i*height_tile);
       }
+	  else if (*col == MAP_ENEMY_SPAWN) {
+		  enemySpawnPoints.push_back(vec2(col_i*width_tile, row_i*height_tile));
+	  }
       col_i++;
     }
     col_i = 0;
     row_i++;
   }
+  mapComponent->enemySpawnPoints = enemySpawnPoints;
 }

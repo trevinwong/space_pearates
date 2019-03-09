@@ -79,9 +79,20 @@ void WavesetSystem::spawnCluster(EntityManager &entityManager, Cluster cluster)
 		//TODO: Do stuff based on enemyData[i].x (Enemy type ID)
 		for (int j = 0; j < enemyData[i].y; j++) {
 			//TODO: Spawn the enemy at spawn points instead.
-			int xLoc = (rand() % 11 + 1) * 100;
-			int xOffset = j * 5; 
-			entityManager.addEntity(EnemyFactory::build(vec2(xLoc + xOffset, 100), vec2(0.0f, 40.f)));
+			if (enemySpawnPoints.size() == 0)
+			{
+				//Failsafe in case spawnpoints were not found.
+				int xLoc = (rand() % 11 + 1) * 100;
+				int xOffset = j * 5;
+				entityManager.addEntity(EnemyFactory::build(vec2(xLoc + xOffset, 100), vec2(0.0f, 40.f)));
+			}
+			else
+			{
+				int spawnPointIndex = (rand() % enemySpawnPoints.size());
+				glm::vec2 spawnPoint = enemySpawnPoints[spawnPointIndex];
+				entityManager.addEntity(EnemyFactory::build(spawnPoint, vec2(0.0f, 40.f)));
+			}
+			
 		}
 	}	
 }

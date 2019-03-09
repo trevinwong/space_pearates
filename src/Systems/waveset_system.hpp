@@ -36,6 +36,8 @@ public:
 	PhaseType phase = BuildPhase; 
 	float buildTimer;
 	float defenseTimer;
+
+	vector<glm::vec2> enemySpawnPoints;
 };
 
 #endif

@@ -16,6 +16,7 @@ void World::init(vec2 screen)
   Entity mapData = MapEntityFactory::createMapEntityFromFile(map_path("map0.txt"));
   entityManager.addEntity(mapData);
   TileMapSystem::loadTileMap(entityManager, player_spawn);
+  wavesetSystem.enemySpawnPoints = TileMapSystem::enemySpawnPoints;
   entityManager.addEntity(PlayerFactory::build(player_spawn));
 
   ResourceFactory::spawnMany(entityManager); // TODO: maybe remove
