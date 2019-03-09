@@ -140,6 +140,8 @@ set(SOURCE_FILES_CORE
 	src/Components/waveset_component.cpp
 	src/Components/waveset_component.hpp
 	src/Components/particle_component.hpp
+	src/Components/damage_component.hpp
+	src/Components/damage_component.cpp
 	src/Systems/event_system.cpp
 	src/Systems/event_system.hpp
 	src/Systems/sprite_system.cpp
@@ -152,6 +154,8 @@ set(SOURCE_FILES_CORE
 	src/Systems/collision_system.hpp
 	src/Systems/death_system.hpp
 	src/Systems/death_system.cpp
+	src/Systems/damage_system.hpp
+	src/Systems/damage_system.cpp
 	src/Systems/physics_system.hpp
 	src/Systems/physics_system.cpp
 	src/Systems/interpolation_system.cpp

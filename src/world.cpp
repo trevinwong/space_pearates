@@ -16,7 +16,7 @@ void World::init(vec2 screen)
   Entity mapData = MapEntityFactory::createMapEntityFromFile(map_path("map0.txt"));
   entityManager.addEntity(mapData);
   TileMapSystem::loadTileMap(entityManager, player_spawn);
-  wavesetSystem.enemySpawnPoints = TileMapSystem::enemySpawnPoints;
+	WavesetSystem::getInstance().enemySpawnPoints = TileMapSystem::enemySpawnPoints;
   entityManager.addEntity(PlayerFactory::build(player_spawn));
 
   ResourceFactory::spawnMany(entityManager); // TODO: maybe remove
@@ -43,13 +43,12 @@ void World::update(float dt)
   HUD::getInstance().update(dt);
 
   // Note: Be careful, order may matter in some cases for systems
-  wavesetSystem.handleBuildAndDefensePhase(entityManager, dt);
-
-  enemySystem.move(dt, entityManager, wavesetSystem);
+	WavesetSystem::getInstance().handleBuildAndDefensePhase(entityManager, dt);
+  enemySystem.move(dt, entityManager);
   physicsSystem.moveEntities(entityManager, dt);
   physicsSystem.rotateEntities(entityManager, dt);
   interpolationSystem.update(entityManager, dt);
-  collisionSystem.checkCollisions(entityManager, wavesetSystem);
+  collisionSystem.checkCollisions(entityManager);
   spriteSystem.updateElapsedTime(dt);
 
   // Background Update
@@ -65,9 +64,9 @@ void World::update(float dt)
   // OffScreen garbage check
   offscreenGarbageSystem.destroyEntitiesContainingAll(entityManager, vector<int>{ComponentType::projectile, ComponentType::movement});
   resourceSystem.handleResourceSpawnAndDespawn(entityManager, dt);
-  deathSystem.handleDeaths(entityManager);
-
   particleSystem.updateParticles(entityManager, dt);
+	damageSystem.handleDamage(entityManager);
+	deathSystem.handleDeaths(entityManager);
 }
 
 void World::processInput(float dt, GLboolean keys[], GLboolean keysProcessed[])

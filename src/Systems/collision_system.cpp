@@ -29,64 +29,80 @@ EntityGrid CollisionSystem::preprocessEntitiesIntoGrid(vector<shared_ptr<Entity>
   return grid;
 }
 
-void CollisionSystem::checkCollisions(EntityManager &entityManager, WavesetSystem &wavesetSystem)
+void CollisionSystem::checkCollisions(EntityManager &entityManager)
 {
   vector<shared_ptr<Entity>> collidables = entityManager.getEntities(
     entityManager.getComponentChecker(vector<int> {ComponentType::collision}));
   EntityGrid grid = preprocessEntitiesIntoGrid(collidables);
+	unordered_map<string, bool> collision_cache;
 
-  for (vector<vector<shared_ptr<Entity>>> row : grid) {
-    for (vector<shared_ptr<Entity>> cell : row) {
-      for (shared_ptr<Entity> e1 : cell) {
-        for (shared_ptr<Entity> e2 : cell) {
-          CollisionComponent *e1_collision = e1->getComponent<CollisionComponent>();
-          CollisionComponent *e2_collision = e2->getComponent<CollisionComponent>();
+		for (vector<vector<shared_ptr<Entity>>> row : grid) {
+			for (vector<shared_ptr<Entity>> cell : row) {
+				for (shared_ptr<Entity> e1 : cell) {
+					for (shared_ptr<Entity> e2 : cell) {
+						if (e1 != e2) {
+							CollisionComponent *e1_collision = e1->getComponent<CollisionComponent>();
+							CollisionComponent *e2_collision = e2->getComponent<CollisionComponent>();
+							string hash1 = std::to_string(e1->id) + ":" + std::to_string(e2->id);
+							string hash2 = std::to_string(e2->id) + ":" + std::to_string(e1->id);
 
-          if (e1_collision->isCollidingWith(*e2_collision)) {
-            handleCollision(e1, e2, entityManager, wavesetSystem);
-          }
-        }
-      }
-    }
-  }
+						if (e1_collision->isCollidingWith(*e2_collision) && !collision_cache[hash1] && !collision_cache[hash2]) {
+							collision_cache[hash1] = true;
+							collision_cache[hash2] = true;
+							handleCollision(e1, e2, entityManager);
+						}
+					}
+				}
+			}
+		}
+	}
 }
 
-void CollisionSystem::handleCollision(shared_ptr<Entity> e1, shared_ptr<Entity> e2, EntityManager &entityManager, WavesetSystem &wavesetSystem)
+void CollisionSystem::handleCollisionOfType(bitset<ComponentType::max_count> components1, bitset<ComponentType::max_count> components2, shared_ptr<Entity> e1, shared_ptr<Entity> e2, EntityManager &entityManager, void(*handleCollisionFn)(shared_ptr<Entity>, shared_ptr<Entity>, EntityManager&))
 {
-  srand(time(NULL));
+	bool pair1 = e1->hasComponents(components1) && e2->hasComponents(components2);
+	bool pair2 = e1->hasComponents(components2) && e2->hasComponents(components1);
+	if (pair1) handleCollisionFn(e1, e2, entityManager);
+	if (pair2) handleCollisionFn(e2, e1, entityManager);
+}
 
-  PlayerComponent *player = e1->getComponent<PlayerComponent>();
-  ResourceComponent *resource = e2->getComponent<ResourceComponent>();
-  if (player != nullptr && resource != nullptr) {
-    // remove the resouce from world
-    entityManager.removeEntity(e2);
-    Mix_PlayChannel(-1, AudioLoader::getInstance().collect_coin_sound, 0);
-    // Add the resource into wallet
-    WalletComponent *wallet = e1->getComponent<WalletComponent>();
-    if (wallet != nullptr) {
-      // TODO: for diff type resources, increase diff amount
-      wallet->earn(1);
-      // update HUD resource counter
-      // TODO: so far only coins, modify this part for diff types of resource
-      HUD::getInstance().resource_count = wallet->coins;
-    }
-  }
+void CollisionSystem::handlePlayerResource(shared_ptr<Entity> player, shared_ptr<Entity> resource, EntityManager &entityManager)
+{
+	// remove the resouce from world
+	entityManager.removeEntity(resource);
+	// Add the resource into wallet
+	WalletComponent *wallet = player->getComponent<WalletComponent>();
+	if (wallet != nullptr) {
+		// TODO: for diff type resources, increase diff amount
+		wallet->earn(1);
+		// update HUD resource counter
+		// TODO: so far only coins, modify this part for diff types of resource
+		HUD::getInstance().resource_count = wallet->coins;
+	}
+	Mix_PlayChannel(-1, AudioLoader::getInstance().collect_coin_sound, 0);
+}
 
-  ProjectileComponent *projectile = e1->getComponent<ProjectileComponent>();
-  EnemyComponent *enemy = e2->getComponent<EnemyComponent>();
-  TransformComponent *pos = e2->getComponent<TransformComponent>();
+void CollisionSystem::handleProjectileEnemy(shared_ptr<Entity> projectile, shared_ptr<Entity> enemy, EntityManager &entityManager)
+{
+	ProjectileComponent *projectile_info = projectile->getComponent<ProjectileComponent>();
+	SplineComponent *spline = projectile->getComponent<SplineComponent>();
 
-  if (projectile != nullptr && enemy != nullptr) {
-    // Hit
-    ParticleSystem::emitParticleCluster(entityManager, pos->position);
-    Mix_PlayChannel(-1, AudioLoader::getInstance().enemy_dead, 0);
+	if (spline == nullptr) {
+		// Not a boomerang projectile, remove it
+		projectile->setComponent<DeathComponent>(new DeathComponent());
+	}
 
-    SplineComponent *spline = e1->getComponent<SplineComponent>();
-    if (spline == nullptr) {
-      // Not a boomerang projectile, remove it
-      e1->setComponent<DeathComponent>(new DeathComponent());
-    }
-		e2->setComponent<DeathComponent>(new DeathComponent());
-		wavesetSystem.currentEnemies--;
-  }
+	TransformComponent *transform = enemy->getComponent<TransformComponent>();
+	enemy->setComponent<DamageComponent>(new DamageComponent(projectile_info->getAttackPower()));
+}
+
+void CollisionSystem::handleCollision(shared_ptr<Entity> e1, shared_ptr<Entity> e2, EntityManager &entityManager)
+{
+	bitset<ComponentType::max_count> isPlayer = entityManager.getComponentChecker(vector<int>{ComponentType::player});
+	bitset<ComponentType::max_count> isResource = entityManager.getComponentChecker(vector<int>{ComponentType::resource});
+	bitset<ComponentType::max_count> isEnemy = entityManager.getComponentChecker(vector<int>{ComponentType::enemy});
+	bitset<ComponentType::max_count> isProjectile = entityManager.getComponentChecker(vector<int>{ComponentType::projectile});
+
+	handleCollisionOfType(isPlayer, isResource, e1, e2, entityManager, handlePlayerResource);
+	handleCollisionOfType(isProjectile, isEnemy, e1, e2, entityManager, handleProjectileEnemy);
 }

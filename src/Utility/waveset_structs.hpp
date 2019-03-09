@@ -15,6 +15,7 @@ public:
 	vector<int> spawnTimes;
 	vector<Cluster> clusters;
 	int totalEnemies = 0;
+	int currEnemies = 0;
 	Wave(int _buildPhaseTime, vector<int> _spawnTimes, vector<Cluster> _clusters);
 };
 
