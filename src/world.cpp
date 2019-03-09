@@ -28,9 +28,8 @@ void World::init(vec2 screen)
   entityManager.addEntity(backgroundEntity);
 
   // Generate the build tower ui entity
-  vector<Entity> towerUiEntities = TowerUiEntityFactory::createTowerUiButtons();
-  for (Entity towerUiEntity : towerUiEntities)
-    entityManager.addEntity(towerUiEntity);
+  Entity towerUiEntity = TowerUiEntityFactory::create();
+  entityManager.addEntity(towerUiEntity);
 
   Entity w = WavesetManagerFactory::build(waveset_path("waveset0.txt"));
   entityManager.addEntity(w);
@@ -90,8 +89,8 @@ void World::processInput(float dt, GLboolean keys[], GLboolean keysProcessed[])
     entityManager.addEntity(EnemySpawnFactory::build(2.0));
     enemySystem.setMap(entityManager);
 
-    for (Entity towerUiEntity : TowerUiEntityFactory::createTowerUiButtons())
-      entityManager.addEntity(towerUiEntity);
+    Entity towerUiEntity = TowerUiEntityFactory::create();
+    entityManager.addEntity(towerUiEntity);
 
     entityManager.addEntity(WavesetManagerFactory::build(waveset_path("waveset0.txt")));
 
@@ -105,7 +104,7 @@ void World::processInput(float dt, GLboolean keys[], GLboolean keysProcessed[])
   }
 
   playerSystem.interpInput(entityManager, dt, keys, keysProcessed);
-  towerUiSystem.interpInput(entityManager, keys);
+  towerUiSystem.interpInput(entityManager, keys, keysProcessed);
 }
 
 void World::draw()

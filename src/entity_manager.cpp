@@ -14,6 +14,17 @@ bitset<ComponentType::max_count> EntityManager::getComponentChecker(vector<int> 
   return component_checker;	
 }
 
+shared_ptr<Entity> EntityManager::getEntityById(int _id) {
+  shared_ptr<Entity> target = nullptr;
+  for (shared_ptr<Entity> e : entities) {
+    if (e->id == _id) {
+      target = e;
+      break;
+    }
+  }
+  return target;
+}
+
 vector<shared_ptr<Entity>> EntityManager::getEntities() {
 	return entities;
 }

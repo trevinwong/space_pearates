@@ -13,6 +13,7 @@ class EntityManager {
 public:
   bitset<ComponentType::max_count> getComponentChecker(ComponentType::ComponentType type);
   bitset<ComponentType::max_count> getComponentChecker(vector<int> components);
+	shared_ptr<Entity> getEntityById(int id);
 	vector<shared_ptr<Entity>> getEntities();
   vector<shared_ptr<Entity>> getEntities(bitset<ComponentType::max_count> component_checker);
   vector<shared_ptr<Entity>> getEntitiesHasOneOf(bitset<ComponentType::max_count> component_checker);

@@ -1,93 +1,99 @@
 #include "tower_ui_shift_right_state.hpp"
 
-TowerUiShiftRightState::TowerUiShiftRightState():
-  shiftRightDuration(0.0)
-{
+TowerUiShiftRightState::TowerUiShiftRightState() {
+  duration = 0.0f;
+  totalTime = SHIFT_RIGHT_TOTAL_TIME;
 }
 
-void TowerUiShiftRightState::input(EntityManager& entityManager, GLboolean keys[])
-{
+void TowerUiShiftRightState::input(EntityManager &entityManager, GLboolean keys[], GLboolean keysProcessed[]) {
   // curretly in the middle of shift right state, cannot change state
   return;
 }
 
-void TowerUiShiftRightState::update(EntityManager& entityManager, float dt)
-{
+void TowerUiShiftRightState::update(EntityManager &entityManager, float dt) {
   // increase duration of current state
-  shiftRightDuration += dt;
+  duration += dt;
 
   vector<shared_ptr<Entity>> playerEntities =
-    entityManager.getEntities(entityManager.getComponentChecker(vector<int> {ComponentType::player}));
+      entityManager.getEntities(entityManager.getComponentChecker(vector<int>{ComponentType::player}));
   vector<shared_ptr<Entity>> towerUiEntities =
-    entityManager.getEntities(entityManager.getComponentChecker(vector<int> {ComponentType::build_tower_ui, ComponentType::tower_ui_button_meta, ComponentType::operate_tower_ui, ComponentType::build_tower_ui}));
+      entityManager.getEntities(entityManager.getComponentChecker(vector<int>{ComponentType::tower_ui_button, ComponentType::tower_ui_button_meta, ComponentType::tower_ui_state}));
 
   if (playerEntities.size() == 0 || towerUiEntities.size() == 0) return;
 
-  TowerUiButtonMetaComponent *towerUiButtonMetaComponent = towerUiEntities[0]->getComponent<TowerUiButtonMetaComponent>();
+  TowerUiButtonComponent *towerUiButton = towerUiEntities[0]->getComponent<TowerUiButtonComponent>();
+  TowerUiButtonMetaComponent *towerUiButtonMeta = towerUiEntities[0]->getComponent<TowerUiButtonMetaComponent>();
   TransformComponent *playerTransformComponent = playerEntities[0]->getComponent<TransformComponent>();
 
-  if (towerUiButtonMetaComponent == nullptr || playerTransformComponent == nullptr) return;
+  if (towerUiButton == nullptr || towerUiButtonMeta == nullptr || playerTransformComponent == nullptr) return;
   glm::vec2 playerCenterTopPosition = glm::vec2(playerTransformComponent->position.x + playerTransformComponent->size.x * 0.5, playerTransformComponent->position.y);
 
-  for (shared_ptr<Entity> towerUiEntity : towerUiEntities) {
-    TowerUiButtonComponent *towerUiButtonComponent = towerUiEntity->getComponent<TowerUiButtonComponent>();
-    if (towerUiButtonComponent == nullptr) continue;
+  towerUiButton->descriptionLine1 = "";
+  towerUiButton->descriptionLine1Pos = towerUiButtonMeta->descriptionLine1Pos + playerCenterTopPosition;
+  towerUiButton->descriptionLine2 = "";
+  towerUiButton->descriptionLine2Pos = towerUiButtonMeta->descriptionLine1Pos + playerCenterTopPosition;
+
+  // Update buttons position/size/color
+  vector<shared_ptr<TowerUiButtonComponent::TowerUiBtn>> btnList = towerUiButton->btnList;
+  for (shared_ptr<TowerUiButtonComponent::TowerUiBtn> btn : btnList) {
+    if (btn == nullptr) continue;
 
     // Update buttons position/size/color
-    switch (towerUiButtonComponent->relativeIndex) {
-    case LEFT_TOWER_UI_BUTTON_RELATIVE_INDEX:   // left -> middle
-      towerUiButtonComponent->position = playerCenterTopPosition + computeInterpolation(towerUiButtonMetaComponent->leftButtonRelativePosition, towerUiButtonMetaComponent->middleButtonRelativePosition);
-      towerUiButtonComponent->size = computeInterpolation(towerUiButtonMetaComponent->leftButtonSize, towerUiButtonMetaComponent->middleButtonSize);
-      towerUiButtonComponent->RGBA = computeInterpolation(towerUiButtonMetaComponent->leftButtonRGBA, towerUiButtonMetaComponent->middleButtonRGBA);
-      break;
-    case MIDDLE_TOWER_UI_BUTTON_RELATIVE_INDEX: // middle -> right
-      towerUiButtonComponent->position = playerCenterTopPosition + computeInterpolation(towerUiButtonMetaComponent->middleButtonRelativePosition, towerUiButtonMetaComponent->rightButtonRelativePosition);
-      towerUiButtonComponent->size = computeInterpolation(towerUiButtonMetaComponent->middleButtonSize, towerUiButtonMetaComponent->rightButtonSize);
-      towerUiButtonComponent->RGBA = computeInterpolation(towerUiButtonMetaComponent->middleButtonRGBA, towerUiButtonMetaComponent->rightButtonRGBA);
-      break;
-    case RIGHT_TOWER_UI_BUTTON_RELATIVE_INDEX: // right -> left
-      towerUiButtonComponent->position = playerCenterTopPosition + computeInterpolation(towerUiButtonMetaComponent->rightButtonRelativePosition, towerUiButtonMetaComponent->leftButtonRelativePosition);
-      towerUiButtonComponent->size = computeInterpolation(towerUiButtonMetaComponent->rightButtonSize, towerUiButtonMetaComponent->leftButtonSize);
-      towerUiButtonComponent->RGBA = computeInterpolation(towerUiButtonMetaComponent->rightButtonRGBA, towerUiButtonMetaComponent->leftButtonRGBA);
-      break;
-    default:
-      break;
+    switch (btn->relativeIndex) {
+      case LEFT_TOWER_UI_BUTTON_RELATIVE_INDEX:   // left -> middle
+        btn->position = playerCenterTopPosition + computeCatmullRomInterpolation(towerUiButtonMeta->rightButtonRelativePosition, towerUiButtonMeta->leftButtonRelativePosition, towerUiButtonMeta->middleButtonRelativePosition);
+        btn->size = computeCatmullRomInterpolation(towerUiButtonMeta->rightButtonSize, towerUiButtonMeta->leftButtonSize, towerUiButtonMeta->middleButtonSize);
+        btn->RGBA = computeLinearInterpolation(towerUiButtonMeta->leftButtonRGBA, towerUiButtonMeta->middleButtonRGBA);
+        btn->opt = towerUiButton->getOptListAt(towerUiButton->getSelectedOptIndex() + btn->relativeIndex);
+        btn->icon = towerUiButtonMeta->getTextureByOpt(btn->opt);
+        break;
+      case MIDDLE_TOWER_UI_BUTTON_RELATIVE_INDEX: // middle -> right
+        btn->position = playerCenterTopPosition + computeCatmullRomInterpolation(towerUiButtonMeta->leftButtonRelativePosition, towerUiButtonMeta->middleButtonRelativePosition, towerUiButtonMeta->rightButtonRelativePosition);
+        btn->size = computeCatmullRomInterpolation(towerUiButtonMeta->leftButtonSize, towerUiButtonMeta->middleButtonSize, towerUiButtonMeta->rightButtonSize);
+        btn->RGBA = computeLinearInterpolation(towerUiButtonMeta->middleButtonRGBA, towerUiButtonMeta->rightButtonRGBA);
+        btn->opt = towerUiButton->getOptListAt(towerUiButton->getSelectedOptIndex() + btn->relativeIndex);
+        btn->icon = towerUiButtonMeta->getTextureByOpt(btn->opt);
+        break;
+      case RIGHT_TOWER_UI_BUTTON_RELATIVE_INDEX: // right -> left
+        btn->position = playerCenterTopPosition + computeCatmullRomInterpolation(towerUiButtonMeta->middleButtonRelativePosition, towerUiButtonMeta->rightButtonRelativePosition, towerUiButtonMeta->leftButtonRelativePosition);
+        btn->size = computeCatmullRomInterpolation(towerUiButtonMeta->middleButtonSize, towerUiButtonMeta->rightButtonSize, towerUiButtonMeta->leftButtonSize);
+        btn->RGBA = computeLinearInterpolation(towerUiButtonMeta->rightButtonRGBA, towerUiButtonMeta->leftButtonRGBA);
+        btn->opt = towerUiButton->getOptListAt(towerUiButton->getSelectedOptIndex() + btn->relativeIndex);
+        btn->icon = towerUiButtonMeta->getTextureByOpt(btn->opt);
+        break;
+      default:
+        break;
     }
   }
 
   // if touch the end of state
   // then finish current state and move to next state
-  if (shiftRightDuration >= SHIFT_RIGHT_TOTAL_TIME) {
+  if (duration >= totalTime) {
     // update index
-    BuildTowerUiComponent *buildTowerUiComponent = towerUiEntities[0]->getComponent<BuildTowerUiComponent>();
-    OperateTowerUiComponent *operateTowerUiComponent = towerUiEntities[0]->getComponent<OperateTowerUiComponent>();
-
-    // shift buttons to right == move index to left
-    if (buildTowerUiComponent != nullptr) buildTowerUiComponent->moveLeftCurrentSelectedTowerTypeListIndex();
-    if (operateTowerUiComponent != nullptr) operateTowerUiComponent->moveLeftCurrentSelectedTowerOperationListIndex();
+    towerUiButton->shiftRightSelectedOptIndex();
 
     // update relative index
-    for (shared_ptr<Entity> towerUiEntity : towerUiEntities) {
-      TowerUiButtonComponent *towerUiButtonComponent = towerUiEntity->getComponent<TowerUiButtonComponent>();
-      if (towerUiButtonComponent == nullptr) continue;
+    vector<shared_ptr<TowerUiButtonComponent::TowerUiBtn>> btnList = towerUiButton->btnList;
+    for (shared_ptr<TowerUiButtonComponent::TowerUiBtn> btn : btnList) {
+      if (btn == nullptr) continue;
 
-      switch (towerUiButtonComponent->relativeIndex) {
-      case RIGHT_TOWER_UI_BUTTON_RELATIVE_INDEX:   // right -> left
-        towerUiButtonComponent->relativeIndex = LEFT_TOWER_UI_BUTTON_RELATIVE_INDEX;
-        break;
-      case MIDDLE_TOWER_UI_BUTTON_RELATIVE_INDEX: // middle -> right
-        towerUiButtonComponent->relativeIndex = RIGHT_TOWER_UI_BUTTON_RELATIVE_INDEX;
-        break;
-      case LEFT_TOWER_UI_BUTTON_RELATIVE_INDEX: // left -> middle
-        towerUiButtonComponent->relativeIndex = MIDDLE_TOWER_UI_BUTTON_RELATIVE_INDEX;
-        break;
-      default:
-        break;
+      switch (btn->relativeIndex) {
+        case RIGHT_TOWER_UI_BUTTON_RELATIVE_INDEX:   // right -> left
+          btn->relativeIndex = LEFT_TOWER_UI_BUTTON_RELATIVE_INDEX;
+          break;
+        case MIDDLE_TOWER_UI_BUTTON_RELATIVE_INDEX: // middle -> right
+          btn->relativeIndex = RIGHT_TOWER_UI_BUTTON_RELATIVE_INDEX;
+          break;
+        case LEFT_TOWER_UI_BUTTON_RELATIVE_INDEX: // left -> middle
+          btn->relativeIndex = MIDDLE_TOWER_UI_BUTTON_RELATIVE_INDEX;
+          break;
+        default:
+          break;
       }
     }
 
     // create a new state
-    TowerUiStateComponent* newState = new TowerUiIdleState();
+    TowerUiStateComponent *newState = new TowerUiIdleState();
     // update state
     for (shared_ptr<Entity> e : towerUiEntities) {
       e->setComponent<TowerUiStateComponent>(newState);
@@ -97,14 +103,3 @@ void TowerUiShiftRightState::update(EntityManager& entityManager, float dt)
   }
 }
 
-
-
-template<typename T>
-inline T TowerUiShiftRightState::computeInterpolation(T start, T end)
-{
-  if (shiftRightDuration >= SHIFT_RIGHT_TOTAL_TIME) return end;
-  if (shiftRightDuration <= 0) return start;
-
-  T result = (shiftRightDuration / SHIFT_RIGHT_TOTAL_TIME) * end + (SHIFT_RIGHT_TOTAL_TIME - shiftRightDuration) / SHIFT_RIGHT_TOTAL_TIME * start;
-  return result;
-}

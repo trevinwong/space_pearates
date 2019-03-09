@@ -7,8 +7,6 @@
 #include "../Components/sprite_component.hpp"
 #include "../Components/color_component.hpp"
 #include "../Components/transform_component.hpp"
-#include "../Components/TowerUI/build_tower_ui_component.hpp"
-#include "../Components/TowerUI/operate_tower_ui_component.hpp"
 #include "../Components/TowerUI/tower_ui_button_component.hpp"
 #include "../Components/TowerUI/tower_ui_button_meta_component.hpp"
 #include "../Components/TowerUI/TowerUIState/tower_ui_state_component.hpp"
@@ -16,9 +14,9 @@
 
 class TowerUiEntityFactory {
   public:
-    static vector<Entity> createTowerUiButtons();
+    static Entity create();
   private:
-    TowerUiEntityFactory();
+    TowerUiEntityFactory(){};
 };
 
 #endif // !TOWER_UI_ENTITY_FACTORY_H
