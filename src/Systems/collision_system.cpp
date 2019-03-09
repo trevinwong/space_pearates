@@ -92,7 +92,6 @@ void CollisionSystem::handleProjectileEnemy(shared_ptr<Entity> projectile, share
 		projectile->setComponent<DeathComponent>(new DeathComponent());
 	}
 
-	TransformComponent *transform = enemy->getComponent<TransformComponent>();
 	enemy->setComponent<DamageComponent>(new DamageComponent(projectile_info->getAttackPower()));
 }
 

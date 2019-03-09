@@ -16,11 +16,6 @@ struct Character {
 };
 
 // Add new fonts here and in constructor Text()
-enum Font {
-  munro,
-  munro_small,
-  count
-};
 
 // Singleton https://stackoverflow.com/questions/1008019/c-singleton-design-pattern
 class Text
@@ -36,6 +31,11 @@ public:
 
   void render(string text, vec2 position, float scale=1.0f, vec3 color=vec3(1.0f, 1.0f, 1.0f), int font=0);
   void render(string text, GLfloat x, GLfloat y, GLfloat scale=1.0f, vec3 color=vec3(1.0f, 1.0f, 1.0f), int font=0);
+	enum Font {
+		munro,
+		munro_small,
+		count
+	};
 
 private:
   Text();
