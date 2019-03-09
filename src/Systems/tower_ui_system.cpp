@@ -96,11 +96,9 @@ void TowerUiSystem::renderTowerUiButtons(TowerUiButtonMetaComponent *towerUiButt
 
 void TowerUiSystem::renderDescription(TowerUiButtonMetaComponent *towerUiButtonMeta, TowerUiButtonComponent *towerUiButton, glm::mat4 projection){
   if(towerUiButton->descriptionLine1.size() != 0) {
-    Text textRender = towerUiButtonMeta->textRender;
-    textRender.render(towerUiButton->descriptionLine1, towerUiButton->descriptionLine1Pos, 0.5, vec3(1.f, 1.f, 0.f));
+    Text::getInstance().render(towerUiButton->descriptionLine1, towerUiButton->descriptionLine1Pos, 0.5, vec3(1.f, 1.f, 0.f), Text::Font::munro_small);
   }
   if(towerUiButton->descriptionLine2.size() != 0) {
-    Text textRender = towerUiButtonMeta->textRender;
-    textRender.render(towerUiButton->descriptionLine2, towerUiButton->descriptionLine2Pos, 0.5, vec3(1.f, 1.f, 0.f));
+    Text::getInstance().render(towerUiButton->descriptionLine2, towerUiButton->descriptionLine2Pos, 0.5, vec3(1.f, 1.f, 0.f), Text::Font::munro_small);
   }
 }

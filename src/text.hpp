@@ -15,22 +15,40 @@ struct Character {
   GLuint     Advance;    // Offset to advance to next glyph
 };
 
+// Add new fonts here and in constructor Text()
+
+// Singleton https://stackoverflow.com/questions/1008019/c-singleton-design-pattern
 class Text
 {
 public:
-  Text();
-  Text(string fontName);
-  void preprocessGlyphs();
-  void setProjectionSize(float width, float height);
-  void render(string text, vec2 position, float scale=1.0f, vec3 color=vec3(1.0f, 1.0f, 1.0f));
-  void render(string text, GLfloat x, GLfloat y, GLfloat scale=1.0f, vec3 color=vec3(1.0f, 1.0f, 1.0f));
+  Text(Text const&) = delete; //C++11 delete unwanted methods
+  void operator=(Text const&) = delete;
+  static Text& getInstance()
+  {
+    static Text instance;
+    return instance;
+  }
+
+  void render(string text, vec2 position, float scale=1.0f, vec3 color=vec3(1.0f, 1.0f, 1.0f), int font=0);
+  void render(string text, GLfloat x, GLfloat y, GLfloat scale=1.0f, vec3 color=vec3(1.0f, 1.0f, 1.0f), int font=0);
+	enum Font {
+		munro,
+		munro_small,
+		count
+	};
 
 private:
-  void loadGlyphs();
+  Text();
+
+  void loadFont(string fontName, int index);
+  void setProjectionSize(float width=SCREEN_WIDTH, float height=SCREEN_HEIGHT);
+  void preprocessGlyphs(); // should be called once per new font load
+
+  void loadGlyphs(int index);
   void initShaderProgram();
   void initVertexObjects();
 
-  map<GLchar, Character> Characters;
+  vector<map<GLchar, Character>> FontCharacters;
   FT_Library ft;
   FT_Face face;
 

@@ -111,12 +111,3 @@ void WavesetSystem::decrementEnemies(int amount, EntityManager &entityManager)
 		}
 	}
 }
-
-
-
-
-
-
-
-
-
