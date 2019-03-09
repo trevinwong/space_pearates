@@ -4,6 +4,7 @@
 #include "../../../utility.hpp"
 #include "../../../hud.hpp"
 #include "../../../entity_manager.hpp"
+#include "../../../audio_loader.hpp"
 #include "../../map_component.hpp"
 #include "../../wallet_component.hpp"
 #include "../../../EntityFactories/tower_entity_factory.hpp"
