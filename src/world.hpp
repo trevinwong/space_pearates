@@ -8,7 +8,6 @@
 #include "Utility/waveset_structs.hpp"
 #include "entity_manager.hpp"
 #include "Systems/tile_map_system.hpp"
-#include "Systems/event_system.hpp"
 #include "Systems/sprite_system.hpp"
 #include "Systems/physics_system.hpp"
 #include "Systems/interpolation_system.hpp"

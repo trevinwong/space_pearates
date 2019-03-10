@@ -3,7 +3,6 @@
 
 #include "utility.hpp"
 #include "entity.hpp"
-#include "subscriber.hpp"
 #include "entity_manager.hpp"
 #include "line.hpp"
 #include "Components/projectile_component.hpp"
@@ -14,7 +13,6 @@
 #include "Components/tile_component.hpp"
 #include "Components/player_component.hpp"
 #include "Components/TowerComponents/water_tower_factor_component.hpp"
-#include "Events/collision_event.hpp"
 
 class PhysicsSystem
 {

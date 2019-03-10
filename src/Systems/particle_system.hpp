@@ -3,7 +3,6 @@
 
 #include "utility.hpp"
 #include "entity.hpp"
-#include "subscriber.hpp"
 #include "entity_manager.hpp"
 #include "../Utility/timer.hpp"
 #include "../EntityFactories/particle_factory.hpp"
