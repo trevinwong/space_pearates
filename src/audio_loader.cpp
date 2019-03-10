@@ -30,6 +30,7 @@ void AudioLoader::reset()
   if (Mix_PlayMusic(eurobeat_full, -1) == -1) {
     cout << "Mix_PlayMusic: " << Mix_GetError() << endl;
   }
+  isHipOn = false;
 }
 
 void AudioLoader::changeBgm() {

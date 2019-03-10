@@ -22,6 +22,7 @@ public:
     return instance;
   }
 
+  void reset();
 	void handleBuildAndDefensePhase(EntityManager &entityManager, float dt);
 	void startBuildPhase();
 	void startDefensePhase(Wave &wave);

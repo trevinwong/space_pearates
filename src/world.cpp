@@ -1,15 +1,15 @@
 #include "world.hpp"
 
-// Entities that we do not want to erase on resetting
+// Entities that we do not want to erase upon resetting, can be reused
 const vector<int> non_recyclable_components = {
-  ComponentType::tile, ComponentType::map, ComponentType::home, ComponentType::background_sprite, ComponentType::player };
+  ComponentType::tile, ComponentType::map, ComponentType::home, ComponentType::background_sprite, ComponentType::player, 
+  ComponentType::waveset }; // TODO: eventually move WavesetManagerFactory(WavesetComponent) functionality to WavesetSystem singleton...
 
 void World::init(vec2 screen)
 {
   projection = glm::ortho(0.0f, static_cast<GLfloat>(screen.x), static_cast<GLfloat>(screen.y), 0.0f, -1.0f, 1.0f);
   physicsSystem.setScreenInfo(screen);
   collisionSystem.setScreenInfo(screen);
-  HUD::getInstance();
   entityManager = EntityManager();
   particleSystem.initParticleSystem(entityManager);
 
@@ -18,11 +18,11 @@ void World::init(vec2 screen)
   TileMapSystem::loadTileMap(entityManager, player_spawn);
 	WavesetSystem::getInstance().enemySpawnPoints = TileMapSystem::enemySpawnPoints;
   entityManager.addEntity(PlayerFactory::build(player_spawn));
-
+  // Spawn starting resources
   ResourceFactory::spawnMany(entityManager); // TODO: maybe remove
 
-  entityManager.addEntity(EnemySpawnFactory::build(2.0));
   enemySystem.setMap(entityManager);
+  entityManager.addEntity(WavesetManagerFactory::build(waveset_path("waveset0.txt")));
 
   // create background entity
   Entity backgroundEntity = BackgroundEntityFactory::createBackgroundEntity();
@@ -31,9 +31,6 @@ void World::init(vec2 screen)
   // Generate the build tower ui entity
   Entity towerUiEntity = TowerUiEntityFactory::create();
   entityManager.addEntity(towerUiEntity);
-
-  Entity w = WavesetManagerFactory::build(waveset_path("waveset0.txt"));
-  entityManager.addEntity(w);
 
   renderToTextureSystem.initWaterEffect();
 }
@@ -72,7 +69,7 @@ void World::update(float dt)
 void World::processInput(float dt, GLboolean keys[], GLboolean keysProcessed[])
 {
   // Reset
-  if (keys[GLFW_KEY_R] && !keysProcessed[GLFW_KEY_R] && false)
+  if (keys[GLFW_KEY_R] && !keysProcessed[GLFW_KEY_R])
   {
     // Remove all recyclable entities
     entityManager.filterRemoveByComponentType(non_recyclable_components);
@@ -80,19 +77,17 @@ void World::processInput(float dt, GLboolean keys[], GLboolean keysProcessed[])
     // Reset HUD and music
     HUD::getInstance().reset();
     AudioLoader::getInstance().reset();
+
     // Reset player position
     shared_ptr<Entity> player = entityManager.getEntitiesHasOneOf(entityManager.getComponentChecker(ComponentType::player))[0];
     player->getComponent<TransformComponent>()->position = player_spawn;
     // Spawn starting resources
     ResourceFactory::spawnMany(entityManager); // TODO: maybe remove
 
-    entityManager.addEntity(EnemySpawnFactory::build(2.0));
-    enemySystem.setMap(entityManager);
+    WavesetSystem::getInstance().reset();
 
     Entity towerUiEntity = TowerUiEntityFactory::create();
     entityManager.addEntity(towerUiEntity);
-
-    entityManager.addEntity(WavesetManagerFactory::build(waveset_path("waveset0.txt")));
 
     keysProcessed[GLFW_KEY_R] = true;
   }

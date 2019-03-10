@@ -1,6 +1,6 @@
 #include "tile_map_system.hpp"
 
-vector<glm::vec2> TileMapSystem::enemySpawnPoints;
+vector<vec2> TileMapSystem::enemySpawnPoints;
 
 void TileMapSystem::loadTileMap(EntityManager & entityManager, vec2 & player_spawn)
 {
@@ -23,7 +23,7 @@ void TileMapSystem::loadTileMap(EntityManager & entityManager, vec2 & player_spa
     for (col = row->begin(); col != row->end(); col++) {
       if (*col == MAP_PLATFORM_TILE)
       {
-        entityManager.addEntity(TileFactory::build(*col,
+        entityManager.addEntity(TileFactory::buildTile(
           vec2(col_i*width_tile, row_i*height_tile),
           vec2(width_tile, height_tile)));
       }
@@ -32,7 +32,7 @@ void TileMapSystem::loadTileMap(EntityManager & entityManager, vec2 & player_spa
         entityManager.addEntity(base);
       }
       else if (*col == MAP_TOWER_POSITION) {
-        Entity towerBuildAreaIndicator = BuildAreaIndicatorFactory::build(
+        Entity towerBuildAreaIndicator = TileFactory::buildTowerAreaIndicator(
           vec2(col_i*width_tile, row_i*height_tile),
           vec2(width_tile, height_tile));
         entityManager.addEntity(towerBuildAreaIndicator);
@@ -40,9 +40,9 @@ void TileMapSystem::loadTileMap(EntityManager & entityManager, vec2 & player_spa
       else if (*col == MAP_PLAYER_SPAWN) {
         player_spawn = vec2(col_i*width_tile, row_i*height_tile);
       }
-	  else if (*col == MAP_ENEMY_SPAWN) {
-		  enemySpawnPoints.push_back(vec2(col_i*width_tile, row_i*height_tile));
-	  }
+      else if (*col == MAP_ENEMY_SPAWN) {
+        enemySpawnPoints.push_back(vec2(col_i*width_tile, row_i*height_tile));
+      }
       col_i++;
     }
     col_i = 0;
