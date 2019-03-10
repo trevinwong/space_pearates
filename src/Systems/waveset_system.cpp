@@ -19,7 +19,7 @@ void WavesetSystem::handleBuildAndDefensePhase(EntityManager &entityManager, flo
 	vector<shared_ptr<Entity>> entities = entityManager.getEntities(entityManager.getComponentChecker(vector<int>{ComponentType::waveset}));
 
 	for (shared_ptr<Entity> e : entities) {
-		WavesetComponent *waveset_manager = e->getComponent<WavesetComponent>();
+		shared_ptr<WavesetComponent> waveset_manager = e->getComponent<WavesetComponent>();
 		Waveset &waveset = waveset_manager->waveset;
 
 		if (isWavesetOver(waveset)) {
@@ -117,7 +117,7 @@ void WavesetSystem::decrementEnemies(int amount, EntityManager &entityManager)
 	vector<shared_ptr<Entity>> entities = entityManager.getEntities(entityManager.getComponentChecker(vector<int>{ComponentType::waveset}));
 
 	for (shared_ptr<Entity> e : entities) {
-		WavesetComponent *waveset_manager = e->getComponent<WavesetComponent>();
+		shared_ptr<WavesetComponent> waveset_manager = e->getComponent<WavesetComponent>();
 		Waveset &waveset = waveset_manager->waveset;
 		if (!isWavesetOver(waveset)) {
 			Wave &wave = waveset.waves[waveNo];	

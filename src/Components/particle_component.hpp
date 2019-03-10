@@ -31,8 +31,8 @@ public:
 
     ParticleType::type type;
 
-    Texture * bloodTexture = new Texture(texture_path("blood.png"), true);
-    Texture * smokeTexture = new Texture(texture_path("smoke.png"), true);
+    shared_ptr<Texture> bloodTexture = make_shared<Texture>(texture_path("blood.png"), true);
+    shared_ptr<Texture> smokeTexture = make_shared<Texture>(texture_path("smoke.png"), true);
 };
 
 #endif

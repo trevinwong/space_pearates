@@ -99,8 +99,3 @@ void EntityManager::filterRemoveByComponentType(vector<int> types)
     }
   }
 }
-
-void EntityManager::destroyAll()
-{
-  entities.clear();
-}

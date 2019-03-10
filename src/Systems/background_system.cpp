@@ -8,9 +8,9 @@ void BackgroundSystem::update(EntityManager & entityManager)
     entityManager.getComponentChecker(vector<int>{ComponentType::background_sprite}));
   if (playerEntities.size() == 0 || bgEntities.size() == 0) return;
 
-  TransformComponent* playerTransformComponent = playerEntities[0]->getComponent<TransformComponent>();
-  TransformComponent* bgTransformComponent = bgEntities[0]->getComponent<TransformComponent>();
-  BackgroundSpriteComponent* bgSpriteComponent = bgEntities[0]->getComponent<BackgroundSpriteComponent>();
+  shared_ptr<TransformComponent> playerTransformComponent = playerEntities[0]->getComponent<TransformComponent>();
+  shared_ptr<TransformComponent> bgTransformComponent = bgEntities[0]->getComponent<TransformComponent>();
+  shared_ptr<BackgroundSpriteComponent> bgSpriteComponent = bgEntities[0]->getComponent<BackgroundSpriteComponent>();
   if (playerTransformComponent == nullptr || bgTransformComponent == nullptr || bgSpriteComponent == nullptr) return;
 
   vec2 positionOffset = bgSpriteComponent->positionOffset;
@@ -26,9 +26,9 @@ void BackgroundSystem::render(EntityManager & entityManager, glm::mat4 projectio
     entityManager.getComponentChecker(vector<int> {ComponentType::background_sprite}));
 
   for (shared_ptr<Entity> e : entities) {
-    BackgroundSpriteComponent *spriteComponent = e->getComponent<BackgroundSpriteComponent>();
-    TransformComponent *transformComponent = e->getComponent<TransformComponent>();
-    ColorComponent *colorComponent = e->getComponent<ColorComponent>();
+    shared_ptr<BackgroundSpriteComponent> spriteComponent = e->getComponent<BackgroundSpriteComponent>();
+    shared_ptr<TransformComponent> transformComponent = e->getComponent<TransformComponent>();
+    shared_ptr<ColorComponent> colorComponent = e->getComponent<ColorComponent>();
     if (spriteComponent == nullptr || transformComponent == nullptr || colorComponent == nullptr) continue;
 
     // Use the program attached with the spriteComponent.

@@ -20,9 +20,9 @@ void ParticleSystem::initParticleSystem(EntityManager & manager) {
 void ParticleSystem::emitParticleCluster(EntityManager & manager, vec2 clusterOrigin) {
   for (int i = 0; i < 20; i++) {
     shared_ptr<Entity> particle = particleClusters[findUnusedParticle()];
-    ParticleComponent * pComponent = particle->getComponent<ParticleComponent>();
-    TransformComponent * tComponent = particle->getComponent<TransformComponent>();
-    SpriteComponent *sComponent = particle->getComponent<SpriteComponent>();
+    shared_ptr<ParticleComponent> pComponent = particle->getComponent<ParticleComponent>();
+    shared_ptr<TransformComponent> tComponent = particle->getComponent<TransformComponent>();
+    shared_ptr<SpriteComponent> sComponent = particle->getComponent<SpriteComponent>();
     tComponent->position = clusterOrigin;
     sComponent->texture = pComponent->bloodTexture;
     pComponent->type = ParticleType::blood;
@@ -32,14 +32,14 @@ void ParticleSystem::emitParticleCluster(EntityManager & manager, vec2 clusterOr
 
 int ParticleSystem::findUnusedParticle() {
   for (int i = lastUsedIndex; i < (MAX_PARTICLES); i++) {
-    ParticleComponent * pComponent = particleClusters[i]->getComponent<ParticleComponent>();
+    shared_ptr<ParticleComponent> pComponent = particleClusters[i]->getComponent<ParticleComponent>();
     if (pComponent->active == false) {
       lastUsedIndex = i;
       return i;
     }
   }
   for (int i = 0; i < lastUsedIndex; i++) {
-    ParticleComponent * pComponent = particleClusters[i]->getComponent<ParticleComponent>();
+    shared_ptr<ParticleComponent> pComponent = particleClusters[i]->getComponent<ParticleComponent>();
     if (pComponent->active == false) {
       lastUsedIndex = i;
       return i;
@@ -52,10 +52,10 @@ int ParticleSystem::findUnusedParticle() {
 void ParticleSystem::emitSmoke(EntityManager & manager, vec2 clusterOrigin) {
   for (int i = 0; i < 5; i++) {
     shared_ptr<Entity> particle = particleClusters[findUnusedParticle()];
-    ParticleComponent * pComponent = particle->getComponent<ParticleComponent>();
-    TransformComponent * tComponent = particle->getComponent<TransformComponent>();
-    SpriteComponent *sComponent = particle->getComponent<SpriteComponent>();
-    ColorComponent *cComponent = particle->getComponent<ColorComponent>();
+    shared_ptr<ParticleComponent> pComponent = particle->getComponent<ParticleComponent>();
+    shared_ptr<TransformComponent> tComponent = particle->getComponent<TransformComponent>();
+    shared_ptr<SpriteComponent> sComponent = particle->getComponent<SpriteComponent>();
+    shared_ptr<ColorComponent> cComponent = particle->getComponent<ColorComponent>();
     tComponent->position = clusterOrigin;
     tComponent->size = vec2(110.0f, 120.0f);
     sComponent->texture = pComponent->smokeTexture;
@@ -69,8 +69,8 @@ void ParticleSystem::emitSmoke(EntityManager & manager, vec2 clusterOrigin) {
 void ParticleSystem::updateParticles(EntityManager & manager, float dt) {
   vector<shared_ptr<Entity>> particles = manager.getEntities(manager.getComponentChecker(vector<int> {ComponentType::particle}));
   shared_ptr<Entity> home = manager.getEntities(manager.getComponentChecker(vector<int> {ComponentType::home}))[0];
-  HealthComponent * hComponent = home->getComponent<HealthComponent>();
-  ColorComponent * hcComponent = home->getComponent<ColorComponent>();
+  shared_ptr<HealthComponent> hComponent = home->getComponent<HealthComponent>();
+  shared_ptr<ColorComponent> hcComponent = home->getComponent<ColorComponent>();
 
   if (nextActionTime < 0 && (hComponent->curHP < (0.5 * hComponent->maxHP))) {
     emitSmoke(manager, vec2(560.f, 710.f));
@@ -83,9 +83,9 @@ void ParticleSystem::updateParticles(EntityManager & manager, float dt) {
 
   // Handle particles emitted when enemy dies
   for (shared_ptr<Entity> particle : particles) {
-    ParticleComponent *pComponent = particle->getComponent<ParticleComponent>();
-    ColorComponent *cComponent = particle->getComponent<ColorComponent>();
-    TransformComponent *tComponent = particle->getComponent<TransformComponent>();
+    shared_ptr<ParticleComponent> pComponent = particle->getComponent<ParticleComponent>();
+    shared_ptr<ColorComponent> cComponent = particle->getComponent<ColorComponent>();
+    shared_ptr<TransformComponent> tComponent = particle->getComponent<TransformComponent>();
 
     if (pComponent->active != true || pComponent->type == ParticleType::nothing) {
       continue;
@@ -122,14 +122,14 @@ void ParticleSystem::resetParticles(EntityManager & manager)
 {
   vector<shared_ptr<Entity>> particles = manager.getEntities(manager.getComponentChecker(vector<int> {ComponentType::particle}));
   for (shared_ptr<Entity> particle : particles) {
-    ParticleComponent *pComponent = particle->getComponent<ParticleComponent>();
-    ColorComponent *cComponent = particle->getComponent<ColorComponent>();
-    TransformComponent *tComponent = particle->getComponent<TransformComponent>();
+    shared_ptr<ParticleComponent> pComponent = particle->getComponent<ParticleComponent>();
+    shared_ptr<ColorComponent> cComponent = particle->getComponent<ColorComponent>();
+    shared_ptr<TransformComponent> tComponent = particle->getComponent<TransformComponent>();
     resetParticle(cComponent, tComponent, pComponent);
   }
 }
 
-void ParticleSystem::resetParticle(ColorComponent * cComponent, TransformComponent * tComponent, ParticleComponent * pComponent)
+void ParticleSystem::resetParticle(shared_ptr<ColorComponent> cComponent, shared_ptr<TransformComponent> tComponent, shared_ptr<ParticleComponent> pComponent)
 {
   cComponent->RGBA.w = 1.0f; // reset alpha to 1         
   tComponent->size = pComponent->particleScale;

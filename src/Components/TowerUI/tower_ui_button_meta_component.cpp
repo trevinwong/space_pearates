@@ -16,10 +16,14 @@ TowerUiButtonMetaComponent::TowerUiButtonMetaComponent() {
   towerOptList.push_back(SELL_TOWER_OPERATION);
 }
 
+TowerUiButtonMetaComponent::~TowerUiButtonMetaComponent() {
+  glDeleteBuffers(1, &this->VBO);
+  glDeleteVertexArrays(1, &this->quadVAO);
+}
+
 void TowerUiButtonMetaComponent::initProgramAndShader() {
   program = make_shared<Program>(shader_path("sprite.vert"), shader_path("sprite.frag"));
 
-  GLuint VBO;
   GLfloat vertices[] = {
       // Pos      // Tex
       0.0f, 1.0f, 0.0f, 1.0f,

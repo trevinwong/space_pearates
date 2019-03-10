@@ -5,7 +5,7 @@ int Entity::next_id = 0;
 Entity::Entity()
 {
   id = next();
-  components = std::vector<BaseComponent*>(ComponentType::max_count, nullptr);
+  components = std::vector<shared_ptr<BaseComponent>>(ComponentType::max_count, nullptr);
 }
 
 bool Entity::hasComponents(std::bitset<ComponentType::max_count> component_checker)
@@ -31,7 +31,7 @@ bool Entity::hasNoneOfComponents(std::bitset<ComponentType::max_count> component
 void Entity::print()
 {
   cout << "Entity ID: " << id << endl;
-  for (BaseComponent* component : components) {
+  for (shared_ptr<BaseComponent> component : components) {
     if (component != nullptr) cout << component->getTypeID() << "  ";
   }
   cout << endl;

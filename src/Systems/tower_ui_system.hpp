@@ -21,8 +21,8 @@ public:
   void update(EntityManager& entityManager, float dt);
   void render(EntityManager& entityManager, glm::mat4 projection);
 private:
-  void renderTowerUiButtons(TowerUiButtonMetaComponent *towerUiButtonMeta, TowerUiButtonComponent *towerUiButton, glm::mat4 projection);
-  void renderDescription(TowerUiButtonMetaComponent *towerUiButtonMeta, TowerUiButtonComponent *towerUiButton,  glm::mat4 projection);
+  void renderTowerUiButtons(shared_ptr<TowerUiButtonMetaComponent> towerUiButtonMeta, shared_ptr<TowerUiButtonComponent> towerUiButton, glm::mat4 projection);
+  void renderDescription(shared_ptr<TowerUiButtonMetaComponent> towerUiButtonMeta, shared_ptr<TowerUiButtonComponent> towerUiButton,  glm::mat4 projection);
 };
 
 #endif // !TOWER_UI_SYSTEM_H

@@ -2,32 +2,32 @@
 
 Entity TowerEntityFactory::createFireTower(vec2 towerCenterBottomPosition, vec2 _size)
 {
-  Program *billboardProgram = new Program(shader_path("billboard.vert"), shader_path("billboard.frag"));
-  HealthComponent *health = new HealthComponent(billboardProgram, 100);
+  shared_ptr<Program> billboardProgram = make_shared<Program>(shader_path("billboard.vert"), shader_path("billboard.frag"));
+  shared_ptr<HealthComponent> health = make_shared<HealthComponent>(billboardProgram, 100);
 
-  TransformComponent *transform = new TransformComponent(getTopLeftPosition(towerCenterBottomPosition, _size), _size, 0.0f);
-  ColorComponent *color = new ColorComponent(glm::vec4(1.0f, 1.0f, 1.0f, 1.0f)); // diff tower can have diff color
+  shared_ptr<TransformComponent> transform = make_shared<TransformComponent>(getTopLeftPosition(towerCenterBottomPosition, _size), _size, 0.0f);
+  shared_ptr<ColorComponent> color = make_shared<ColorComponent>(glm::vec4(1.0f, 1.0f, 1.0f, 1.0f)); // diff tower can have diff color
 
-  Program *towerProgram = new Program(shader_path("sprite.vert"), shader_path("sprite.frag"));
-  Texture *towerTexture = new Texture(texture_path("fire_tower.png"), true);
-  SpriteComponent *sprite = new SpriteComponent(towerProgram, towerTexture);
+  shared_ptr<Program> towerProgram = make_shared<Program>(shader_path("sprite.vert"), shader_path("sprite.frag"));
+  shared_ptr<Texture> towerTexture = make_shared<Texture>(texture_path("fire_tower.png"), true);
+  shared_ptr<SpriteComponent> sprite = make_shared<SpriteComponent>(towerProgram, towerTexture);
 
-  Program *towerRangeProgram = new Program(shader_path("sprite.vert"), shader_path("sprite.frag"));
-  Texture *towerRangeTexture = new Texture(texture_path("fire_tower_range.png"), true);
-  TowerRangeSpriteComponent *towerRangeSprite = new TowerRangeSpriteComponent(towerRangeProgram, towerRangeTexture);
+  shared_ptr<Program> towerRangeProgram = make_shared<Program>(shader_path("sprite.vert"), shader_path("sprite.frag"));
+  shared_ptr<Texture> towerRangeTexture = make_shared<Texture>(texture_path("fire_tower_range.png"), true);
+  shared_ptr<TowerRangeSpriteComponent> towerRangeSprite = make_shared<TowerRangeSpriteComponent>(towerRangeProgram, towerRangeTexture);
 
   vec2 relativeFirePosition(0.0, -0.3);
   float attackRange = 120.0f;
   int maxLevel = 3;
   float fireRate = 6.0f; // increasing this slows the fire rate...
   int projectileAttackPower = 10;
-  FireTowerAttackComponent *fireTowerAttack = new FireTowerAttackComponent(
+  shared_ptr<FireTowerAttackComponent> fireTowerAttack = make_shared<FireTowerAttackComponent>(
     relativeFirePosition, attackRange, maxLevel, fireRate, projectileAttackPower);
 
   int buildCost = 1;
   int sellGet = 1;
   int upgradeCost = 2;
-  TowerMetaComponent *towerMeta = new TowerMetaComponent(buildCost, sellGet, upgradeCost);
+  shared_ptr<TowerMetaComponent> towerMeta = make_shared<TowerMetaComponent>(buildCost, sellGet, upgradeCost);
 
   Entity towerEntity;
   towerEntity.setComponent<SpriteComponent>(sprite);
@@ -42,32 +42,31 @@ Entity TowerEntityFactory::createFireTower(vec2 towerCenterBottomPosition, vec2 
 
 Entity TowerEntityFactory::createWaterTower(vec2 towerCenterBottomPosition, vec2 _size)
 {
-  Program *billboardProgram = new Program(shader_path("billboard.vert"), shader_path("billboard.frag"));
-  HealthComponent *health = new HealthComponent(billboardProgram, 100);
+  shared_ptr<Program> billboardProgram = make_shared<Program>(shader_path("billboard.vert"), shader_path("billboard.frag"));
+  shared_ptr<HealthComponent> health = make_shared<HealthComponent>(billboardProgram, 100);
 
-  TransformComponent *transform = new TransformComponent(getTopLeftPosition(towerCenterBottomPosition, _size), _size, 0.0f);
-  ColorComponent *color = new ColorComponent(glm::vec4(1.0f, 1.0f, 1.0f, 1.0f)); // diff tower can have diff color
+  shared_ptr<TransformComponent> transform = make_shared<TransformComponent>(getTopLeftPosition(towerCenterBottomPosition, _size), _size, 0.0f);
+  shared_ptr<ColorComponent> color = make_shared<ColorComponent>(glm::vec4(1.0f, 1.0f, 1.0f, 1.0f)); // diff tower can have diff color
 
-  Program *towerProgram = new Program(shader_path("sprite.vert"), shader_path("sprite.frag"));
-  Texture *towerTexture = new Texture(texture_path("water_tower.png"), true);
-  SpriteComponent *sprite = new SpriteComponent(towerProgram, towerTexture);
+  shared_ptr<Program> towerProgram = make_shared<Program>(shader_path("sprite.vert"), shader_path("sprite.frag"));
+  shared_ptr<Texture> towerTexture = make_shared<Texture>(texture_path("water_tower.png"), true);
+  shared_ptr<SpriteComponent> sprite = make_shared<SpriteComponent>(towerProgram, towerTexture);
 
-  Program *towerRangeProgram = new Program(shader_path("sprite.vert"), shader_path("sprite.frag"));
-  Texture *towerRangeTexture = new Texture(texture_path("water_tower_range.png"), true);
-  TowerRangeSpriteComponent *towerRangeSprite = new TowerRangeSpriteComponent(towerRangeProgram, towerRangeTexture);
+  shared_ptr<Program> towerRangeProgram = make_shared<Program>(shader_path("sprite.vert"), shader_path("sprite.frag"));
+  shared_ptr<Texture> towerRangeTexture = make_shared<Texture>(texture_path("water_tower_range.png"), true);
+  shared_ptr<TowerRangeSpriteComponent> towerRangeSprite = make_shared<TowerRangeSpriteComponent>(towerRangeProgram, towerRangeTexture);
 
   vec2 relativeFirePosition(0.0, 0.0);
   float attackRange = 250.0f;
   int maxLevel = 3;
-  int projectileNumberPerShoot = 4;
   float slowDownFactor = 0.65f;
-  WaterTowerAttackComponent *waterTowerAttack = new WaterTowerAttackComponent(
+  shared_ptr<WaterTowerAttackComponent> waterTowerAttack = make_shared<WaterTowerAttackComponent>(
     relativeFirePosition, attackRange, maxLevel, slowDownFactor);
 
   int buildCost = 1;
   int sellGet = 1;
   int upgradeCost = 2;
-  TowerMetaComponent *towerMeta = new TowerMetaComponent(buildCost, sellGet, upgradeCost);
+  shared_ptr<TowerMetaComponent> towerMeta = make_shared<TowerMetaComponent>(buildCost, sellGet, upgradeCost);
 
   Entity towerEntity;
   towerEntity.setComponent<SpriteComponent>(sprite);
@@ -82,19 +81,19 @@ Entity TowerEntityFactory::createWaterTower(vec2 towerCenterBottomPosition, vec2
 
 Entity TowerEntityFactory::createLightTower(vec2 towerCenterBottomPosition, vec2 _size)
 {
-  Program *billboardProgram = new Program(shader_path("billboard.vert"), shader_path("billboard.frag"));
-  HealthComponent *health = new HealthComponent(billboardProgram, 100);
+  shared_ptr<Program> billboardProgram = make_shared<Program>(shader_path("billboard.vert"), shader_path("billboard.frag"));
+  shared_ptr<HealthComponent> health = make_shared<HealthComponent>(billboardProgram, 100);
 
-  TransformComponent *transform = new TransformComponent(getTopLeftPosition(towerCenterBottomPosition, _size), _size, 0.0f);
-  ColorComponent *color = new ColorComponent(glm::vec4(1.0f, 1.0f, 1.0f, 1.0f)); // diff tower can have diff color
+  shared_ptr<TransformComponent> transform = make_shared<TransformComponent>(getTopLeftPosition(towerCenterBottomPosition, _size), _size, 0.0f);
+  shared_ptr<ColorComponent> color = make_shared<ColorComponent>(glm::vec4(1.0f, 1.0f, 1.0f, 1.0f)); // diff tower can have diff color
 
-  Program *towerProgram = new Program(shader_path("sprite.vert"), shader_path("sprite.frag"));
-  Texture *towerTexture = new Texture(texture_path("light_tower.png"), true);
-  SpriteComponent *sprite = new SpriteComponent(towerProgram, towerTexture);
+  shared_ptr<Program> towerProgram = make_shared<Program>(shader_path("sprite.vert"), shader_path("sprite.frag"));
+  shared_ptr<Texture> towerTexture = make_shared<Texture>(texture_path("light_tower.png"), true);
+  shared_ptr<SpriteComponent> sprite = make_shared<SpriteComponent>(towerProgram, towerTexture);
 
-  Program *towerRangeProgram = new Program(shader_path("sprite.vert"), shader_path("sprite.frag"));
-  Texture *towerRangeTexture = new Texture(texture_path("light_tower_range.png"), true);
-  TowerRangeSpriteComponent *towerRangeSprite = new TowerRangeSpriteComponent(towerRangeProgram, towerRangeTexture);
+  shared_ptr<Program> towerRangeProgram = make_shared<Program>(shader_path("sprite.vert"), shader_path("sprite.frag"));
+  shared_ptr<Texture> towerRangeTexture = make_shared<Texture>(texture_path("light_tower_range.png"), true);
+  shared_ptr<TowerRangeSpriteComponent> towerRangeSprite = make_shared<TowerRangeSpriteComponent>(towerRangeProgram, towerRangeTexture);
 
   vec2 relativeFirePosition(0.0, -0.3);
   float attackRange = 180.0f;
@@ -102,13 +101,13 @@ Entity TowerEntityFactory::createLightTower(vec2 towerCenterBottomPosition, vec2
   float fireRate = 8.0f;
   int projectileAttackPower = 10;
   int projectileNumberPerShoot = 4;
-  LightTowerAttackComponent *lightTowerAttack = new LightTowerAttackComponent(
+  shared_ptr<LightTowerAttackComponent> lightTowerAttack = make_shared<LightTowerAttackComponent>(
     relativeFirePosition, attackRange, maxLevel, fireRate, projectileAttackPower, projectileNumberPerShoot);
 
   int buildCost = 1;
   int sellGet = 1;
   int upgradeCost = 2;
-  TowerMetaComponent *towerMeta = new TowerMetaComponent(buildCost, sellGet, upgradeCost);
+  shared_ptr<TowerMetaComponent> towerMeta = make_shared<TowerMetaComponent>(buildCost, sellGet, upgradeCost);
 
   Entity towerEntity;
   towerEntity.setComponent<SpriteComponent>(sprite);
@@ -123,19 +122,19 @@ Entity TowerEntityFactory::createLightTower(vec2 towerCenterBottomPosition, vec2
 
 Entity TowerEntityFactory::createStarTower(vec2 towerCenterBottomPosition, vec2 _size)
 {
-  Program *billboardProgram = new Program(shader_path("billboard.vert"), shader_path("billboard.frag"));
-  HealthComponent *health = new HealthComponent(billboardProgram, 100);
+  shared_ptr<Program> billboardProgram = make_shared<Program>(shader_path("billboard.vert"), shader_path("billboard.frag"));
+  shared_ptr<HealthComponent> health = make_shared<HealthComponent>(billboardProgram, 100);
 
-  TransformComponent *transform = new TransformComponent(getTopLeftPosition(towerCenterBottomPosition, _size), _size, 0.0f);
-  ColorComponent *color = new ColorComponent(glm::vec4(1.0f, 1.0f, 1.0f, 1.0f)); // diff tower can have diff color
+  shared_ptr<TransformComponent> transform = make_shared<TransformComponent>(getTopLeftPosition(towerCenterBottomPosition, _size), _size, 0.0f);
+  shared_ptr<ColorComponent> color = make_shared<ColorComponent>(glm::vec4(1.0f, 1.0f, 1.0f, 1.0f)); // diff tower can have diff color
 
-  Program *towerProgram = new Program(shader_path("sprite.vert"), shader_path("sprite.frag"));
-  Texture *towerTexture = new Texture(texture_path("star_tower.png"), true);
-  SpriteComponent *sprite = new SpriteComponent(towerProgram, towerTexture);
+  shared_ptr<Program> towerProgram = make_shared<Program>(shader_path("sprite.vert"), shader_path("sprite.frag"));
+  shared_ptr<Texture> towerTexture = make_shared<Texture>(texture_path("star_tower.png"), true);
+  shared_ptr<SpriteComponent> sprite = make_shared<SpriteComponent>(towerProgram, towerTexture);
 
-  Program *towerRangeProgram = new Program(shader_path("sprite.vert"), shader_path("sprite.frag"));
-  Texture *towerRangeTexture = new Texture(texture_path("star_tower_range.png"), true);
-  TowerRangeSpriteComponent *towerRangeSprite = new TowerRangeSpriteComponent(towerRangeProgram, towerRangeTexture);
+  shared_ptr<Program> towerRangeProgram = make_shared<Program>(shader_path("sprite.vert"), shader_path("sprite.frag"));
+  shared_ptr<Texture> towerRangeTexture = make_shared<Texture>(texture_path("star_tower_range.png"), true);
+  shared_ptr<TowerRangeSpriteComponent> towerRangeSprite = make_shared<TowerRangeSpriteComponent>(towerRangeProgram, towerRangeTexture);
 
   vec2 relativeFirePosition(0.0, -0.3);
   float attackRange = 180.0f;
@@ -143,13 +142,13 @@ Entity TowerEntityFactory::createStarTower(vec2 towerCenterBottomPosition, vec2 
   float fireRate = 4.0f;
   int projectileAttackPower = 10;
   vec2 projectileSize = vec2(10, 10);
-  StarTowerAttackComponent *starTowerAttack = new StarTowerAttackComponent(
+  shared_ptr<StarTowerAttackComponent> starTowerAttack = make_shared<StarTowerAttackComponent>(
     relativeFirePosition, attackRange, maxLevel, fireRate, projectileAttackPower, projectileSize);
 
   int buildCost = 1;
   int sellGet = 1;
   int upgradeCost = 2;
-  TowerMetaComponent *towerMeta = new TowerMetaComponent(buildCost, sellGet, upgradeCost);
+  shared_ptr<TowerMetaComponent> towerMeta = make_shared<TowerMetaComponent>(buildCost, sellGet, upgradeCost);
 
   Entity towerEntity;
   towerEntity.setComponent<SpriteComponent>(sprite);
@@ -164,32 +163,32 @@ Entity TowerEntityFactory::createStarTower(vec2 towerCenterBottomPosition, vec2 
 
 Entity TowerEntityFactory::createBoomerangTower(vec2 towerCenterBottomPosition, vec2 _size)
 {
-  Program *billboardProgram = new Program(shader_path("billboard.vert"), shader_path("billboard.frag"));
-  HealthComponent *health = new HealthComponent(billboardProgram, 100);
+  shared_ptr<Program> billboardProgram = make_shared<Program>(shader_path("billboard.vert"), shader_path("billboard.frag"));
+  shared_ptr<HealthComponent> health = make_shared<HealthComponent>(billboardProgram, 100);
 
-  TransformComponent *transform = new TransformComponent(getTopLeftPosition(towerCenterBottomPosition, _size), _size, 0.0f);
-  ColorComponent *color = new ColorComponent(glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
+  shared_ptr<TransformComponent> transform = make_shared<TransformComponent>(getTopLeftPosition(towerCenterBottomPosition, _size), _size, 0.0f);
+  shared_ptr<ColorComponent> color = make_shared<ColorComponent>(glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
 
-  Program *towerProgram = new Program(shader_path("sprite.vert"), shader_path("sprite.frag"));
-  Texture *towerTexture = new Texture(texture_path("boomerang_tower.png"), true);
-  SpriteComponent *sprite = new SpriteComponent(towerProgram, towerTexture);
+  shared_ptr<Program> towerProgram = make_shared<Program>(shader_path("sprite.vert"), shader_path("sprite.frag"));
+  shared_ptr<Texture> towerTexture = make_shared<Texture>(texture_path("boomerang_tower.png"), true);
+  shared_ptr<SpriteComponent> sprite = make_shared<SpriteComponent>(towerProgram, towerTexture);
 
-  Program *towerRangeProgram = new Program(shader_path("sprite.vert"), shader_path("sprite.frag"));
-  Texture *towerRangeTexture = new Texture(texture_path("light_tower_range.png"), true);//TODO
-  TowerRangeSpriteComponent *towerRangeSprite = new TowerRangeSpriteComponent(towerRangeProgram, towerRangeTexture);
+  shared_ptr<Program> towerRangeProgram = make_shared<Program>(shader_path("sprite.vert"), shader_path("sprite.frag"));
+  shared_ptr<Texture> towerRangeTexture = make_shared<Texture>(texture_path("light_tower_range.png"), true);//TODO
+  shared_ptr<TowerRangeSpriteComponent> towerRangeSprite = make_shared<TowerRangeSpriteComponent>(towerRangeProgram, towerRangeTexture);
 
   vec2 relativeFirePosition(0.0, -0.3);
   float attackRange = 180.0f;
   int maxLevel = 1;
   float fireRate = 14.0f; //TODO maybe change this for level up too - tower specific power ups
   int projectileAttackPower = 5; //TODO Adjust this (currently applies damage per frame)
-  BoomerangTowerAttackComponent *boomerangTowerAttack = new BoomerangTowerAttackComponent(
+  shared_ptr<BoomerangTowerAttackComponent> boomerangTowerAttack = make_shared<BoomerangTowerAttackComponent>(
     relativeFirePosition, attackRange, maxLevel, fireRate, projectileAttackPower);
 
   int buildCost = 1;
   int sellGet = 1;
   int upgradeCost = 2;
-  TowerMetaComponent *towerMeta = new TowerMetaComponent(buildCost, sellGet, upgradeCost);
+  shared_ptr<TowerMetaComponent> towerMeta = make_shared<TowerMetaComponent>(buildCost, sellGet, upgradeCost);
 
   Entity towerEntity;
   towerEntity.setComponent<SpriteComponent>(sprite);

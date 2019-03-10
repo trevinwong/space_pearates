@@ -14,11 +14,11 @@ public:
   float jumpVelocity;
   static const int typeID = ComponentType::player;
   inline virtual int getTypeID() const { return typeID; };
-  
-  Texture * texture_left;	
-  Texture * texture_right;
-  Texture * texture_idle;
-  Texture * texture_jump;
+
+  shared_ptr<Texture> texture_left;
+  shared_ptr<Texture> texture_right;
+  shared_ptr<Texture> texture_idle;
+  shared_ptr<Texture> texture_jump;
 
 private:
   int INIT_MAX_JUMPS = 2;

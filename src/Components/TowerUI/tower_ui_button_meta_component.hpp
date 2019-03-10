@@ -13,9 +13,12 @@
 class TowerUiButtonMetaComponent : public BaseComponent {
 public:
   TowerUiButtonMetaComponent();
+  ~TowerUiButtonMetaComponent();
 
   shared_ptr<Program> program;
-  GLuint  quadVAO;
+
+  GLuint VBO;
+  GLuint quadVAO;
 
   // These variables are init in the constructor
   // These variables will not be changed during runtime, they are used as keyframes to compute animation path

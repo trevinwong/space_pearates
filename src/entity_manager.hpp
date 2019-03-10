@@ -25,8 +25,6 @@ public:
   // Remove entities that do NOT contain one of these component types
   void filterRemoveByComponentType(ComponentType::ComponentType type);
   void filterRemoveByComponentType(vector<int> components);
-
-  void destroyAll();
 private:
 	vector<shared_ptr<Entity>> entities;
 };

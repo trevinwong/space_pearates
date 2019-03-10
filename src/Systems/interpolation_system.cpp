@@ -6,9 +6,9 @@ void InterpolationSystem::update(EntityManager & entityManager, float dt)
     vector<int>{ComponentType::spline, ComponentType::transform, ComponentType::collision}));
   
   for (shared_ptr<Entity> e : entities) {
-    SplineComponent *spline = e->getComponent<SplineComponent>();
-    TransformComponent *transform = e->getComponent<TransformComponent>();
-    CollisionComponent *collision = e->getComponent<CollisionComponent>();
+    shared_ptr<SplineComponent> spline = e->getComponent<SplineComponent>();
+    shared_ptr<TransformComponent> transform = e->getComponent<TransformComponent>();
+    shared_ptr<CollisionComponent> collision = e->getComponent<CollisionComponent>();
 
     vec2 new_pos = catmull_rom_spline(spline->controlPoints, spline->getTime());
     transform->position = new_pos;
