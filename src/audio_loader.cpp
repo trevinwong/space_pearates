@@ -33,11 +33,13 @@ void AudioLoader::reset()
 }
 
 void AudioLoader::changeBgm() {
-  // play music forever, fading in over 5 seconds
-  if (Mix_FadeInMusic(hip_shop, -1, 5000) == -1) {
-    cout << "Mix_FadeInMusic: " << Mix_GetError() << endl;
+  if (!isHipOn) {
+    // play music forever, fading in over 5 seconds
+    if (Mix_FadeInMusic(hip_shop, -1, 5000) == -1) {
+      cout << "Mix_FadeInMusic: " << Mix_GetError() << endl;
+    }
+    isHipOn = true;
   }
-  cout << "changeBgm()" << endl;
 }
 
 void AudioLoader::destroy()

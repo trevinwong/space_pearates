@@ -23,6 +23,7 @@ public:
   //Mix_Chunk *battle_theme1;
   Mix_Music *eurobeat_full;
   Mix_Music *hip_shop;
+  bool isHipOn = false;
 
   void reset();
   void changeBgm();
