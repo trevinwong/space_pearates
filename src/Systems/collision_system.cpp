@@ -61,7 +61,7 @@ void CollisionSystem::checkCollisions(EntityManager &entityManager)
 void CollisionSystem::handleCollisionOfType(bitset<ComponentType::max_count> components1, bitset<ComponentType::max_count> components2, shared_ptr<Entity> e1, shared_ptr<Entity> e2, EntityManager &entityManager, void(*handleCollisionFn)(shared_ptr<Entity>, shared_ptr<Entity>, EntityManager&))
 {
 	bool pair1 = e1->hasComponents(components1) && e2->hasComponents(components2);
-	bool pair2 = e1->hasComponents(components2) && e2->hasComponents(components1);	
+	bool pair2 = e1->hasComponents(components2) && e2->hasComponents(components1);
 	if (pair1) handleCollisionFn(e1, e2, entityManager);
 	if (pair2) handleCollisionFn(e2, e1, entityManager);
 }
@@ -80,6 +80,15 @@ void CollisionSystem::handlePlayerResource(shared_ptr<Entity> player, shared_ptr
 		HUD::getInstance().resource_count = wallet->coins;
 	}
 	Mix_PlayChannel(-1, AudioLoader::getInstance().collect_coin_sound, 0);
+}
+
+void CollisionSystem::handlePlayerEnemy(shared_ptr<Entity> player, shared_ptr<Entity> enemy, EntityManager &entityManager)
+{
+  // Add the resource into wallet
+  HealthComponent *health = player->getComponent<HealthComponent>();
+  if (health) {
+    player->setComponent<DamageComponent>(new DamageComponent(enemy->getComponent<EnemyComponent>()->attack));
+  }
 }
 
 void CollisionSystem::handleProjectileEnemy(shared_ptr<Entity> projectile, shared_ptr<Entity> enemy, EntityManager &entityManager)
@@ -104,4 +113,5 @@ void CollisionSystem::handleCollision(shared_ptr<Entity> e1, shared_ptr<Entity> 
 
 	handleCollisionOfType(isPlayer, isResource, e1, e2, entityManager, handlePlayerResource);
 	handleCollisionOfType(isProjectile, isEnemy, e1, e2, entityManager, handleProjectileEnemy);
+  handleCollisionOfType(isPlayer, isEnemy, e1, e2, entityManager, handlePlayerEnemy);
 }

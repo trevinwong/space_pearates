@@ -11,6 +11,9 @@
 #include "Components/collision_component.hpp"
 #include "Components/animated_component.hpp"
 #include "Components/wallet_component.hpp"
+#include "Components/health_component.hpp"
+#include "Components/collision_component.hpp"
+
 
 class PlayerFactory
 {

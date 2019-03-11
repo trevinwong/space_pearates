@@ -14,6 +14,8 @@ Entity PlayerFactory::build(vec2 translation, vec2 scale)
     vec2(0.0f, 0.0f), vec2(0.0f, 0.0f), vec2(300.0f, 350.0f), vec2(1000.0f, 600.0f));
   movement->offScreenOK = false;
 
+  Program *billboardProgram = new Program(shader_path("billboard.vert"), shader_path("billboard.frag"));
+  HealthComponent *health = new HealthComponent(billboardProgram, 30);
   GLfloat rotation = 0.0f;
   TransformComponent *transform = new TransformComponent(translation, scale, rotation);
   CollisionComponent *collision = new CollisionComponent(translation, scale, rotation);
@@ -25,6 +27,7 @@ Entity PlayerFactory::build(vec2 translation, vec2 scale)
   e.setComponent<ColorComponent>(color);
   e.setComponent<AnimatedComponent>(animated);
   e.setComponent<PlayerComponent>(player);
+  e.setComponent<HealthComponent>(health);
   e.setComponent<MovementComponent>(movement);
   e.setComponent<TransformComponent>(transform);
   e.setComponent<CollisionComponent>(collision);

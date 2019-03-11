@@ -31,6 +31,7 @@ public:
   void checkCollisions(EntityManager &entityManager);
 	void handleCollisionOfType(bitset<ComponentType::max_count> components1, bitset<ComponentType::max_count> components2, shared_ptr<Entity> e1, shared_ptr<Entity> e2, EntityManager &entityManager, void(*handleCollisionFn)(shared_ptr<Entity>, shared_ptr<Entity>, EntityManager&));
 	static void handlePlayerResource(shared_ptr<Entity> player, shared_ptr<Entity> resource, EntityManager &entityManager);
+  static void handlePlayerEnemy(shared_ptr<Entity> player, shared_ptr<Entity> enemy, EntityManager &entityManager);
 	static void handleProjectileEnemy(shared_ptr<Entity> projectile, shared_ptr<Entity> enemy, EntityManager &entityManager);
 private:
   vec2 screen;
