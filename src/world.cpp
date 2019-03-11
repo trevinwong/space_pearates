@@ -42,6 +42,9 @@ void World::processInput(float dt, GLboolean keys[], GLboolean keysProcessed[])
     // Remove all recyclable entities
     entityManager.filterRemoveByComponentType(non_recyclable_components);
 
+    // Reset map tower data
+    shared_ptr<Entity> map = entityManager.getEntitiesHasOneOf(entityManager.getComponentChecker(ComponentType::map))[0];
+    map->getComponent<MapComponent>()->reset();
     // Reset particles pool
     particleSystem.resetParticles(entityManager);
     // Reset home health to max
