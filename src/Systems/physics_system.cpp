@@ -70,6 +70,9 @@ void PhysicsSystem::adjustPositionAroundTiles(EntityManager &entityManager, shar
 	MovementComponent *movement = e->getComponent<MovementComponent>();
 
 	for (shared_ptr<Entity> tile : tiles) {
+    TileComponent* tile_info = tile->getComponent<TileComponent>();
+    if (!tile_info->isPhysical) continue;
+
 		TransformComponent* tile_transform = tile->getComponent<TransformComponent>();
 
 		if (transform->isCollidingWith(*tile_transform)) {

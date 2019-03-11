@@ -51,14 +51,10 @@ set(SOURCE_FILES_CORE
 	src/EntityFactories/background_entity_factory.hpp
 	src/EntityFactories/enemy_factory.cpp
 	src/EntityFactories/enemy_factory.hpp
-	src/EntityFactories/enemy_spawn_factory.cpp
-	src/EntityFactories/enemy_spawn_factory.hpp
 	src/EntityFactories/map_entity_factory.cpp
 	src/EntityFactories/map_entity_factory.hpp
 	src/EntityFactories/tower_ui_entity_factory.cpp
 	src/EntityFactories/tower_ui_entity_factory.hpp
-	src/EntityFactories/build_area_indicator_entity_factory.cpp
-	src/EntityFactories/build_area_indicator_entity_factory.hpp
 	src/EntityFactories/tile_factory.cpp
 	src/EntityFactories/tile_factory.hpp
 	src/EntityFactories/resource_factory.cpp
@@ -96,7 +92,7 @@ set(SOURCE_FILES_CORE
 	src/Components/TowerComponents/tower_attack_component.cpp
 	src/Components/TowerComponents/tower_attack_component.hpp
 	src/Components/TowerComponents/tower_range_sprite_component.hpp
-  src/Components/TowerComponents/water_tower_attack_component.cpp
+	src/Components/TowerComponents/water_tower_attack_component.cpp
 	src/Components/TowerComponents/water_tower_attack_component.hpp
 	src/Components/TowerComponents/water_tower_factor_component.hpp
 	src/Components/TowerComponents/fire_tower_attack_component.cpp
@@ -121,10 +117,10 @@ set(SOURCE_FILES_CORE
 	src/Components/TowerUI/TowerUIState/tower_ui_shift_right_state.hpp
 	src/Components/projectile_component.cpp
 	src/Components/projectile_component.hpp
+	src/Components/tile_component.cpp
+	src/Components/tile_component.hpp
 	src/Components/enemy_component.cpp
 	src/Components/enemy_component.hpp
-	src/Components/enemy_spawn_component.cpp
-	src/Components/enemy_spawn_component.hpp
 	src/Components/map_component.cpp
 	src/Components/map_component.hpp
 	src/Components/home_component.cpp
@@ -174,8 +170,6 @@ set(SOURCE_FILES_CORE
 	src/Utility/waveset_structs.cpp
 	src/Systems/enemy_system.cpp
 	src/Systems/enemy_system.hpp
-	src/Systems/enemy_spawn_system.cpp
-	src/Systems/enemy_spawn_system.hpp
 	src/Systems/waveset_system.cpp
 	src/Systems/waveset_system.hpp
 	src/Systems/resource_system.cpp

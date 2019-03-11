@@ -7,6 +7,9 @@
 class TileComponent : public BaseComponent
 {
 public:
+  TileComponent(bool _isPhysical=true);
+  bool isPhysical;
+
 	static const int typeID = ComponentType::tile;
 	inline virtual int getTypeID() const { return typeID; };
 };

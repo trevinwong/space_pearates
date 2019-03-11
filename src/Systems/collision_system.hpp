@@ -13,7 +13,6 @@
 #include "Components/player_component.hpp"
 #include "Components/enemy_component.hpp"
 #include "Components/resource_component.hpp"
-#include "Components/enemy_spawn_component.hpp"
 #include "Components/wallet_component.hpp"
 #include "Components/spline_component.hpp"
 #include "Components/death_component.hpp"

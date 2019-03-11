@@ -10,11 +10,14 @@ class HealthComponent : public BaseComponent
 public:
   HealthComponent(Program *_program, float maxHP);
   ~HealthComponent();
+  void reset();
+
   static const int typeID = ComponentType::health;
   inline virtual int getTypeID() const { return typeID; };
-  Program *program;
+
   float maxHP;
   float curHP;
+  Program *program;
   GLuint  quadVAO; // we only need VAO as a member as it remembers any VBOs it's associated with
 };
 

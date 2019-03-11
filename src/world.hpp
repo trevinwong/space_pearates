@@ -4,7 +4,6 @@
 #include "utility.hpp"
 #include "hud.hpp"
 #include "Systems/enemy_system.hpp"
-#include "Systems/enemy_spawn_system.hpp"
 #include "Utility/waveset_structs.hpp"
 #include "entity_manager.hpp"
 #include "Systems/tile_map_system.hpp"
@@ -30,7 +29,6 @@
 #include "EntityFactories/background_entity_factory.hpp"
 #include "EntityFactories/player_factory.hpp"
 #include "EntityFactories/resource_factory.hpp"
-#include "EntityFactories/enemy_spawn_factory.hpp"
 #include "EntityFactories/tower_ui_entity_factory.hpp"
 #include "EntityFactories/waveset_manager_factory.hpp"
 #include "Components/collision_component.hpp"
@@ -52,25 +50,28 @@ public:
 private:
   glm::mat4 projection;
   EntityManager entityManager;
+
   PhysicsSystem physicsSystem;
   InterpolationSystem interpolationSystem;
   CollisionSystem collisionSystem;
-	DeathSystem deathSystem;
+
   SpriteSystem spriteSystem;
   BackgroundSystem backgroundSystem;
   BillboardSystem billboardSystem;
+
   EnemySystem enemySystem;
   PlayerSystem playerSystem;
-  ResourceSystem resourceSystem;
-	DamageSystem damageSystem;
 
   TowerRangeDisplaySystem towerRangeDisplaySystem;
   TowerAttackSystem towerAttackSystem;
   TowerUiSystem towerUiSystem;
+  RenderToTextureSystem renderToTextureSystem;
 
   OffscreenGarbageSystem offscreenGarbageSystem;
   ParticleSystem particleSystem;
-  RenderToTextureSystem renderToTextureSystem;
+  ResourceSystem resourceSystem;
+	DamageSystem damageSystem;
+	DeathSystem deathSystem;
 };
 
 #endif

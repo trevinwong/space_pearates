@@ -9,12 +9,12 @@
 #include "Components/movement_component.hpp"
 #include "Components/resource_component.hpp"
 
-class ResourceSystem 
+class ResourceSystem
 {
 public:
-	void handleResourceSpawnAndDespawn(EntityManager &entityManager, float dt);
-	void updateSpawn(EntityManager& entityManager);
-	void updateDespawn(EntityManager& entityManager, float dt);
+  void handleResourceSpawnAndDespawn(EntityManager &entityManager, float dt);
+  void updateSpawn(EntityManager& entityManager);
+  void updateDespawn(EntityManager& entityManager, float dt);
 };
 
 #endif

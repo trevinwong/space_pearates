@@ -19,7 +19,7 @@ Entity TowerEntityFactory::createFireTower(vec2 towerCenterBottomPosition, vec2 
   vec2 relativeFirePosition(0.0, -0.3);
   float attackRange = 120.0f;
   int maxLevel = 3;
-  float fireRate = 2.0f;
+  float fireRate = 6.0f; // increasing this slows the fire rate...
   int projectileAttackPower = 10;
   FireTowerAttackComponent *fireTowerAttack = new FireTowerAttackComponent(
     relativeFirePosition, attackRange, maxLevel, fireRate, projectileAttackPower);
@@ -99,7 +99,7 @@ Entity TowerEntityFactory::createLightTower(vec2 towerCenterBottomPosition, vec2
   vec2 relativeFirePosition(0.0, -0.3);
   float attackRange = 180.0f;
   int maxLevel = 2;
-  float fireRate = 4.0f;
+  float fireRate = 8.0f;
   int projectileAttackPower = 10;
   int projectileNumberPerShoot = 4;
   LightTowerAttackComponent *lightTowerAttack = new LightTowerAttackComponent(
@@ -141,7 +141,7 @@ Entity TowerEntityFactory::createStarTower(vec2 towerCenterBottomPosition, vec2 
   float attackRange = 180.0f;
   int maxLevel = 1;
   float fireRate = 4.0f;
-  int projectileAttackPower = 50;
+  int projectileAttackPower = 10;
   vec2 projectileSize = vec2(10, 10);
   StarTowerAttackComponent *starTowerAttack = new StarTowerAttackComponent(
     relativeFirePosition, attackRange, maxLevel, fireRate, projectileAttackPower, projectileSize);
@@ -182,7 +182,7 @@ Entity TowerEntityFactory::createBoomerangTower(vec2 towerCenterBottomPosition, 
   float attackRange = 180.0f;
   int maxLevel = 1;
   float fireRate = 14.0f; //TODO maybe change this for level up too - tower specific power ups
-  int projectileAttackPower = 50;
+  int projectileAttackPower = 1; //TODO smaller...
   BoomerangTowerAttackComponent *boomerangTowerAttack = new BoomerangTowerAttackComponent(
     relativeFirePosition, attackRange, maxLevel, fireRate, projectileAttackPower);
 

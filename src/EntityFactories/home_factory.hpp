@@ -1,7 +1,6 @@
 #ifndef HOME_FACTORY_H
 #define HOME_FACTORY_H
 
-#include <vector>
 #include "utility.hpp"
 #include "entity.hpp"
 #include "entity_manager.hpp"

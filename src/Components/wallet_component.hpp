@@ -5,18 +5,18 @@
 #include "base_component.hpp"
 
 class WalletComponent : public BaseComponent {
-  public:
-    WalletComponent();
+public:
+  WalletComponent();
 
-    bool spend(int amount);
-    void earn(int amount);
+  bool spend(int amount);
+  void earn(int amount);
 
-    int coins;
+  int coins;
 
-    static const int typeID = ComponentType::wallet;
-    inline virtual int getTypeID() const { return typeID; };
-  private:
-    
+  static const int typeID = ComponentType::wallet;
+  inline virtual int getTypeID() const { return typeID; };
+private:
+
 };
 
 #endif // !WALLET_COMPONENT_H

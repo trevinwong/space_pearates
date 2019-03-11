@@ -5,6 +5,15 @@ WavesetSystem::WavesetSystem()
 	srand(time(NULL));
 }
 
+void WavesetSystem::reset()
+{
+  waveNo = 0;
+  clusterNo = 0;
+  phase = BuildPhase;
+  buildTimer = 0;
+  defenseTimer = 0;
+}
+
 void WavesetSystem::handleBuildAndDefensePhase(EntityManager &entityManager, float dt)
 {
 	vector<shared_ptr<Entity>> entities = entityManager.getEntities(entityManager.getComponentChecker(vector<int>{ComponentType::waveset}));

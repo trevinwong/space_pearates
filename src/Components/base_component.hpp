@@ -7,11 +7,10 @@ namespace ComponentType {
     sprite,
     color,
     collision,
-    map,
     movement,
     water_tower_factor,
+    map,
     enemy,
-    enemy_spawn,
     background_sprite,
     player,
     wallet,
@@ -24,22 +23,22 @@ namespace ComponentType {
     tower_ui_state,
     projectile,
     spline,
-		tile,
+    tile,
     resource,
     animated,
     home,
-		damage,
-		death,
-		waveset,
+    damage,
+    death,
+    waveset,
     particle,
-		max_count // Add above.
+    max_count // Add above.
   };
 }
 
 class BaseComponent
 {
 public:
-	virtual int getTypeID() const = 0;
+  virtual int getTypeID() const = 0;
 };
 
 #endif

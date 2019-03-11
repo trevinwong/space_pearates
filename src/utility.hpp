@@ -90,6 +90,9 @@ void printVec3(string name, vec3 vec);
 #define SCREEN_WIDTH 1280
 #define SCREEN_HEIGHT 800
 
+#define GRAVITY_VELOCITY 350.0f
+#define GRAVITY_ACCEL 600.0f
+
 #define MAP_EMPTY_BLOCK '0'
 #define MAP_PLATFORM_TILE 'B'   // B -> Block
 #define MAP_TOWER_POSITION 'T'  // T -> Tower build position

@@ -21,7 +21,7 @@ AudioLoader::AudioLoader() {
   // Load music
   eurobeat_full = Mix_LoadMUS(audio_path("eurobeat_full.wav"));
   hip_shop = Mix_LoadMUS(audio_path("hip_shop.wav"));
-  cout << "Loaded audio" << endl;
+  
   reset();
 }
 
@@ -30,6 +30,7 @@ void AudioLoader::reset()
   if (Mix_PlayMusic(eurobeat_full, -1) == -1) {
     cout << "Mix_PlayMusic: " << Mix_GetError() << endl;
   }
+  isHipOn = false;
 }
 
 void AudioLoader::changeBgm() {

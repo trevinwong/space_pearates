@@ -15,7 +15,7 @@
 class DamageSystem
 {
 public:
-	void handleDamage(EntityManager &entityManager);
+  void handleDamage(EntityManager &entityManager);
 };
 
 #endif
