@@ -48,3 +48,8 @@ HealthComponent::~HealthComponent()
 {
   glDeleteVertexArrays(1, &this->quadVAO);
 }
+
+void HealthComponent::reset()
+{
+  curHP = maxHP;
+}

@@ -50,25 +50,28 @@ public:
 private:
   glm::mat4 projection;
   EntityManager entityManager;
+
   PhysicsSystem physicsSystem;
   InterpolationSystem interpolationSystem;
   CollisionSystem collisionSystem;
-	DeathSystem deathSystem;
+
   SpriteSystem spriteSystem;
   BackgroundSystem backgroundSystem;
   BillboardSystem billboardSystem;
+
   EnemySystem enemySystem;
   PlayerSystem playerSystem;
-  ResourceSystem resourceSystem;
-	DamageSystem damageSystem;
 
   TowerRangeDisplaySystem towerRangeDisplaySystem;
   TowerAttackSystem towerAttackSystem;
   TowerUiSystem towerUiSystem;
+  RenderToTextureSystem renderToTextureSystem;
 
   OffscreenGarbageSystem offscreenGarbageSystem;
   ParticleSystem particleSystem;
-  RenderToTextureSystem renderToTextureSystem;
+  ResourceSystem resourceSystem;
+	DamageSystem damageSystem;
+	DeathSystem deathSystem;
 };
 
 #endif

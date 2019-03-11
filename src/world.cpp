@@ -19,7 +19,7 @@ void World::init(vec2 screen)
 	WavesetSystem::getInstance().enemySpawnPoints = TileMapSystem::enemySpawnPoints;
   entityManager.addEntity(PlayerFactory::build(player_spawn));
   // Spawn starting resources
-  ResourceFactory::spawnMany(entityManager); // TODO: maybe remove
+  ResourceFactory::spawnInitial(entityManager); // TODO: maybe remove
 
   enemySystem.setMap(entityManager);
   entityManager.addEntity(WavesetManagerFactory::build(waveset_path("waveset0.txt")));
@@ -37,9 +37,9 @@ void World::init(vec2 screen)
 
 void World::update(float dt)
 {
+  // Note: Be careful, order may matter in some cases for systems
   HUD::getInstance().update(dt);
 
-  // Note: Be careful, order may matter in some cases for systems
 	WavesetSystem::getInstance().handleBuildAndDefensePhase(entityManager, dt);
   enemySystem.move(dt, entityManager);
   physicsSystem.moveEntities(entityManager, dt);
@@ -58,7 +58,7 @@ void World::update(float dt)
   towerAttackSystem.checkRangeAndShootProjectiles(entityManager);
   towerAttackSystem.reduceElapsedTimeToNextFire(entityManager, dt);
 
-  // OffScreen garbage check
+  // Remove entities
   offscreenGarbageSystem.destroyEntitiesContainingAll(entityManager, vector<int>{ComponentType::projectile, ComponentType::movement});
   resourceSystem.handleResourceSpawnAndDespawn(entityManager, dt);
   particleSystem.updateParticles(entityManager, dt);
@@ -78,13 +78,18 @@ void World::processInput(float dt, GLboolean keys[], GLboolean keysProcessed[])
     HUD::getInstance().reset();
     AudioLoader::getInstance().reset();
 
-    // Reset player position
-    shared_ptr<Entity> player = entityManager.getEntitiesHasOneOf(entityManager.getComponentChecker(ComponentType::player))[0];
-    player->getComponent<TransformComponent>()->position = player_spawn;
-    // Spawn starting resources
-    ResourceFactory::spawnMany(entityManager); // TODO: maybe remove
-
     WavesetSystem::getInstance().reset();
+
+    // Reset home health to max
+    shared_ptr<Entity> home = entityManager.getEntitiesHasOneOf(entityManager.getComponentChecker(ComponentType::home))[0];
+    home->getComponent<HealthComponent>()->reset();
+    // Reset player position and wallet
+    shared_ptr<Entity> player = entityManager.getEntitiesHasOneOf(entityManager.getComponentChecker(vector<int>{ComponentType::player, ComponentType::wallet}))[0];
+    player->getComponent<TransformComponent>()->position = player_spawn;
+    player->getComponent<WalletComponent>()->coins = 0;
+
+    // Spawn starting resources
+    ResourceFactory::spawnInitial(entityManager);
 
     Entity towerUiEntity = TowerUiEntityFactory::create();
     entityManager.addEntity(towerUiEntity);

@@ -14,12 +14,13 @@
 #include "../Components/home_component.hpp"
 
 class ParticleSystem {
-    public:
-        void initParticleSystem(EntityManager & manager);
-        static void emitParticleCluster(EntityManager & manager, glm::vec2 clusterOrigin); // Create a particle cluster at posn clusterOrigin
-        static void updateParticles(EntityManager & manager, float dt);
-        static std::vector<shared_ptr<Entity>> particleClusters;
-        static int findUnusedParticle();
-        static void emitSmoke(EntityManager & manager, glm::vec2 clusterOrigin);
+public:
+  void initParticleSystem(EntityManager & manager);
+  static void emitParticleCluster(EntityManager & manager, vec2 clusterOrigin); // Create a particle cluster at posn clusterOrigin
+  static void updateParticles(EntityManager & manager, float dt);
+  static vector<shared_ptr<Entity>> particleClusters;
+  static int findUnusedParticle();
+  static void emitSmoke(EntityManager & manager, glm::vec2 clusterOrigin);
+  //TODO: destroy()
 };
 #endif

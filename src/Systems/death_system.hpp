@@ -17,7 +17,7 @@
 class DeathSystem
 {
 public:
-	void handleDeaths(EntityManager &entityManager);
+  void handleDeaths(EntityManager &entityManager);
 };
 
 #endif
