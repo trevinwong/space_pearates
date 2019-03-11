@@ -8,8 +8,8 @@
 class MapComponent : public BaseComponent
 {
 public:
-  MapComponent(std::vector<std::vector<char>> _mapData2DArray);
-  ~MapComponent();
+  MapComponent(vector<vector<char>> _mapData2DArray);
+  void reset();
 
   static const int typeID = ComponentType::map;
   inline virtual int getTypeID() const { return typeID; };
@@ -18,9 +18,9 @@ public:
   int num_x_tiles;
   float width_tile;
   float height_tile;
-  std::vector<std::vector<char>> mapData2DArray;
-  std::vector<std::vector<TOWER_ID>> towerDistributionMap;
-  std::vector<glm::vec2> enemySpawnPoints;
+  vector<vector<char>> mapData2DArray;
+  vector<vector<TOWER_ID>> towerDistributionMap;
+  vector<vec2> enemySpawnPoints;
 
   /*
     For those func below, x and y are screen coords, col and row are 2D vector indexes
