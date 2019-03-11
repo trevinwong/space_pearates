@@ -44,7 +44,7 @@ void World::processInput(float dt, GLboolean keys[], GLboolean keysProcessed[])
     entityManager.filterRemoveByComponentType(non_recyclable_components);
     //vector<shared_ptr<Entity>> resources = entityManager.getEntities(entityManager.getComponentChecker(vector<int> {ComponentType::resource}));
     //cout << resources.size() << endl;
-    //cout << "Removed count: " << before - entityManager.getSize() << endl;
+    //cout << "Removed count(1): " << before - entityManager.getSize() << endl;
 
     // Reset particles pool
     particleSystem.resetParticles(entityManager);
@@ -59,10 +59,11 @@ void World::processInput(float dt, GLboolean keys[], GLboolean keysProcessed[])
     // Spawn starting resources
     ResourceFactory::spawnInitial(entityManager);            // adds 6 entities
     entityManager.addEntity(TowerUiEntityFactory::create()); // adds 1 entity
+    //cout << "Removed count(2): " << (before - entityManager.getSize()+7) << endl;
 
     keysProcessed[GLFW_KEY_R] = true;
   }
-  // TODO: music should alternate
+
   if (keys[GLFW_KEY_H] && !keysProcessed[GLFW_KEY_H])
   {
     AudioLoader::getInstance().changeBgm();

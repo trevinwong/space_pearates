@@ -59,11 +59,10 @@ void EnemySystem::move (float dt, EntityManager& entityManager) {
 }
 
 
-void EnemySystem::setMap (EntityManager& entityManager) {
-  vector<shared_ptr<Entity>> entityList = entityManager.getEntities();
-  for (shared_ptr<Entity> e: entityList) {
-    MapComponent *mapComponent = e->getComponent<MapComponent>();
-    if (!mapComponent) continue;
-    map = mapComponent->mapData2DArray;
-  }
+bool EnemySystem::setMap (EntityManager& entityManager) {
+  shared_ptr<Entity> e = entityManager.getEntitiesHasOneOf(entityManager.getComponentChecker(vector<int>{ComponentType::map}))[0];
+  MapComponent *mapComponent = e->getComponent<MapComponent>();
+  if (!mapComponent) return false;
+  map = mapComponent->mapData2DArray;
+  return true;
 }

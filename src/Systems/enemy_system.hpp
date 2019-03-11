@@ -6,12 +6,13 @@
 #include "tile_map_system.hpp"
 #include "hud.hpp"
 #include "waveset_system.hpp"
+#include "Components/map_component.hpp"
 
 class EnemySystem
 {
 public:
   void move(float dt, EntityManager& entities);
-  void setMap(EntityManager& entities);
+  bool setMap(EntityManager& entityManager);
 private:
   vector<vector<char>> map;
 };
