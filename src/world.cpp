@@ -11,10 +11,8 @@ void World::init(vec2 screen)
   physicsSystem.setScreenInfo(screen);
   collisionSystem.setScreenInfo(screen);
   entityManager = EntityManager();
-  particleSystem.initParticleSystem(entityManager);
 
-  Entity mapData = MapEntityFactory::createMapEntityFromFile(map_path("map0.txt"));
-  entityManager.addEntity(mapData);
+  entityManager.addEntity(MapEntityFactory::createMapEntityFromFile(map_path("map0.txt")));
   TileMapSystem::loadTileMap(entityManager, player_spawn);
   WavesetSystem::getInstance().enemySpawnPoints = TileMapSystem::enemySpawnPoints;
   entityManager.addEntity(PlayerFactory::build(player_spawn));
@@ -24,14 +22,10 @@ void World::init(vec2 screen)
   enemySystem.setMap(entityManager);
   entityManager.addEntity(WavesetManagerFactory::build(waveset_path("waveset0.txt")));
 
-  // create background entity
-  Entity backgroundEntity = BackgroundEntityFactory::createBackgroundEntity();
-  entityManager.addEntity(backgroundEntity);
+  entityManager.addEntity(BackgroundEntityFactory::createBackgroundEntity());
+  entityManager.addEntity(TowerUiEntityFactory::create());
 
-  // Generate the build tower ui entity
-  Entity towerUiEntity = TowerUiEntityFactory::create();
-  entityManager.addEntity(towerUiEntity);
-
+  particleSystem.initParticleSystem(entityManager); // adds particle entities pool
   renderToTextureSystem.initWaterEffect();
 }
 
@@ -45,16 +39,15 @@ void World::processInput(float dt, GLboolean keys[], GLboolean keysProcessed[])
     AudioLoader::getInstance().reset();
     WavesetSystem::getInstance().reset();
 
-    /*entityManager.destroyAll();
-    init(vec2(SCREEN_WIDTH, SCREEN_HEIGHT));*/
-
     // Remove all recyclable entities
     int before = entityManager.getSize();
     entityManager.filterRemoveByComponentType(non_recyclable_components);
     //vector<shared_ptr<Entity>> resources = entityManager.getEntities(entityManager.getComponentChecker(vector<int> {ComponentType::resource}));
     //cout << resources.size() << endl;
-    cout << "Removed count: " << before - entityManager.getSize() << endl;
+    //cout << "Removed count: " << before - entityManager.getSize() << endl;
 
+    // Reset particles pool
+    particleSystem.resetParticles(entityManager);
     // Reset home health to max
     shared_ptr<Entity> home = entityManager.getEntitiesHasOneOf(entityManager.getComponentChecker(ComponentType::home))[0];
     home->getComponent<HealthComponent>()->reset();
@@ -64,10 +57,8 @@ void World::processInput(float dt, GLboolean keys[], GLboolean keysProcessed[])
     player->getComponent<WalletComponent>()->coins = 0;
 
     // Spawn starting resources
-    ResourceFactory::spawnInitial(entityManager); // adds 6 entities
-
-    Entity towerUiEntity = TowerUiEntityFactory::create();
-    entityManager.addEntity(towerUiEntity); // adds 1 entity
+    ResourceFactory::spawnInitial(entityManager);            // adds 6 entities
+    entityManager.addEntity(TowerUiEntityFactory::create()); // adds 1 entity
 
     keysProcessed[GLFW_KEY_R] = true;
   }
