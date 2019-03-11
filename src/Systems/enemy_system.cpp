@@ -23,17 +23,21 @@ void EnemySystem::move (float dt, EntityManager& entityManager) {
 		bool flag = false;
 		vel.y = abs(vel.y) < eps ? movementComponent->maxVelocity.y : vel.y;
 
-    if (map[yind][xind] == MAP_BASE_POSITION) {
-      entityManager.removeEntity(e);
+		if (map[yind][xind] == MAP_BASE_POSITION) {
+			entityManager.removeEntity(e);
 			WavesetSystem::getInstance().decrementEnemies(1, entityManager);
-      if (healthComponent) {
-        healthComponent->curHP = healthComponent->curHP - 20 < 0 ? 0 : healthComponent->curHP - 20;
-         if (healthComponent->curHP <= 0) {
-            HUD::getInstance().game_over = true;
-         }
-      }
+			if (healthComponent) {
+				int damage = 20;
+				if (enemyComponent) {
+					damage = enemyComponent->totalAtk;
+				}
+				healthComponent->curHP = healthComponent->curHP - damage < 0 ? 0 : healthComponent->curHP - damage;
 
-    }
+				if (healthComponent->curHP <= 0) {
+					HUD::getInstance().game_over = true;
+				}
+			}
+		}
 
 		for (int i = 0; i <= ceil(vel.y*dt/40); i++)
 			if (map[yind+i][xind] == MAP_PLATFORM_TILE || map[yind+i][xind+1] == MAP_PLATFORM_TILE)

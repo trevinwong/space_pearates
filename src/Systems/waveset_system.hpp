@@ -29,7 +29,7 @@ public:
 	bool timeToSpawnNextCluster(Wave &wave);
 	bool isWaveOver(Wave &wave);
 	bool isWavesetOver(Waveset &waveset);
-	void spawnCluster(EntityManager &entityManager, Cluster cluster);
+	void spawnCluster(EntityManager &entityManager, Cluster cluster, int hp, int spd, int atk);
 	void decrementEnemies(int amount, EntityManager &entityManager);
 
 	int waveNo = 0;

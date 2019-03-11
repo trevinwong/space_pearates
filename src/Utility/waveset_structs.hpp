@@ -22,6 +22,9 @@ public:
 class Waveset {
 public:
 	vector<Wave> waves;
-	Waveset(vector<Wave> _waves);
+	vector<int> hpMult;
+	vector<int> spdMult;
+	vector<int> atkMult;
+	Waveset(vector<Wave> _waves, vector<int> _hpMult, vector<int> _spdMult, vector<int> _atkMult);
 };
 #endif
