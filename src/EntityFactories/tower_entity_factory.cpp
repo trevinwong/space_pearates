@@ -141,7 +141,7 @@ Entity TowerEntityFactory::createStarTower(vec2 towerCenterBottomPosition, vec2 
   float attackRange = 180.0f;
   int maxLevel = 1;
   float fireRate = 4.0f;
-  int projectileAttackPower = 50;
+  int projectileAttackPower = 10;
   vec2 projectileSize = vec2(10, 10);
   StarTowerAttackComponent *starTowerAttack = new StarTowerAttackComponent(
     relativeFirePosition, attackRange, maxLevel, fireRate, projectileAttackPower, projectileSize);
@@ -182,7 +182,7 @@ Entity TowerEntityFactory::createBoomerangTower(vec2 towerCenterBottomPosition, 
   float attackRange = 180.0f;
   int maxLevel = 1;
   float fireRate = 14.0f; //TODO maybe change this for level up too - tower specific power ups
-  int projectileAttackPower = 50;
+  int projectileAttackPower = 1; //TODO smaller...
   BoomerangTowerAttackComponent *boomerangTowerAttack = new BoomerangTowerAttackComponent(
     relativeFirePosition, attackRange, maxLevel, fireRate, projectileAttackPower);
 
