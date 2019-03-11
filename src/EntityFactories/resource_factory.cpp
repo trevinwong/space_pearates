@@ -11,7 +11,7 @@ Entity ResourceFactory::build(vec2 position, float scale)
 
   ResourceComponent *resource = new ResourceComponent(20.0); // resource stays on screen for 20s
   MovementComponent *movement = new MovementComponent(
-    vec2(0.0f, 0.0f), vec2(0.0f, 0.0f), vec2(0.0f, 50.0f), vec2(0.0f, 50.0f));
+    vec2(0.0f, 0.0f), vec2(0.0f, 0.0f), vec2(0.0f, GRAVITY_VELOCITY), vec2(0.0f, GRAVITY_ACCEL));
 
   TransformComponent *transform = new TransformComponent(position, scale, 0.0f);
   CollisionComponent *collision = new CollisionComponent(position, scale, 0.0f);

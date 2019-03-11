@@ -73,6 +73,8 @@ void World::processInput(float dt, GLboolean keys[], GLboolean keysProcessed[])
   {
     // Remove all recyclable entities
     entityManager.filterRemoveByComponentType(non_recyclable_components);
+    //vector<shared_ptr<Entity>> resources = entityManager.getEntities(entityManager.getComponentChecker(vector<int> {ComponentType::resource}));
+    //cout << resources.size() << endl;
 
     // Reset HUD and music
     HUD::getInstance().reset();
