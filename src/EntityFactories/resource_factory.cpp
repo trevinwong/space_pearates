@@ -27,7 +27,7 @@ Entity ResourceFactory::build(vec2 position, float scale)
   return e;
 }
 
-vector<Entity> ResourceFactory::buildCluster(int amount, vec2 position, vec2 size, float scale)
+vector<Entity> ResourceFactory::buildCluster(int amount, vec2 position, vec2 size)
 {
   float CLUSTER_OFFSET_X = size.x;
   float CLUSTER_OFFSET_Y = size.y / 2;
@@ -43,7 +43,7 @@ vector<Entity> ResourceFactory::buildCluster(int amount, vec2 position, vec2 siz
     std::uniform_real_distribution<> disX(minX, maxX);
     std::uniform_real_distribution<> disY(minY, maxY);
     vec2 randPos = { disX(gen), disY(gen) };
-    cluster.push_back(ResourceFactory::build(randPos, scale));
+    cluster.push_back(ResourceFactory::build(randPos));
   }
   return cluster;
 }

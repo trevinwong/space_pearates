@@ -79,6 +79,11 @@ bool EntityManager::removeEntity(shared_ptr<Entity> entity) {
   return false;
 }
 
+int EntityManager::getSize()
+{
+  return entities.size();
+}
+
 void EntityManager::filterRemoveByComponentType(ComponentType::ComponentType type)
 {
   filterRemoveByComponentType(vector<int>{type});
@@ -89,8 +94,11 @@ void EntityManager::filterRemoveByComponentType(vector<int> types)
   for (int i = 0; i < entities.size(); i++) {
     shared_ptr<Entity> e = entities[i];
     if (e->hasNoneOfComponents(getComponentChecker(types))) {
-      /*if (e->hasComponents(getComponentChecker(vector<int>{ComponentType::resource}))) {
-        cout << "removed a resource" << endl;
+      
+      /*for (int i = 5; i < ComponentType::max_count; i++) {
+        if (e->hasComponents(getComponentChecker(vector<int>{i}))) {
+          cout << "removed ..." << i << endl;
+        }
       }*/
       entities[i] = entities[entities.size() - 1];
       entities.pop_back();

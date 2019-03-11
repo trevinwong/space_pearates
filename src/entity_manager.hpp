@@ -20,6 +20,7 @@ public:
   vector<shared_ptr<Entity>> getEntitiesHasAllOf(bitset<ComponentType::max_count> component_checker);
 	void addEntity(Entity e);
   bool removeEntity(shared_ptr<Entity> entity);
+  int getSize();
 
   // Remove entities that do NOT contain one of these component types
   void filterRemoveByComponentType(ComponentType::ComponentType type);

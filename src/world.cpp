@@ -2,7 +2,7 @@
 
 // Entities that we do not want to erase upon resetting, can be reused
 const vector<int> non_recyclable_components = {
-  ComponentType::tile, ComponentType::map, ComponentType::home, ComponentType::background_sprite, ComponentType::player, 
+  ComponentType::tile, ComponentType::map, ComponentType::home, ComponentType::background_sprite, ComponentType::player, ComponentType::particle,
   ComponentType::waveset }; // TODO: eventually move WavesetManagerFactory(WavesetComponent) functionality to WavesetSystem singleton...
 
 void World::init(vec2 screen)
@@ -16,7 +16,7 @@ void World::init(vec2 screen)
   Entity mapData = MapEntityFactory::createMapEntityFromFile(map_path("map0.txt"));
   entityManager.addEntity(mapData);
   TileMapSystem::loadTileMap(entityManager, player_spawn);
-	WavesetSystem::getInstance().enemySpawnPoints = TileMapSystem::enemySpawnPoints;
+  WavesetSystem::getInstance().enemySpawnPoints = TileMapSystem::enemySpawnPoints;
   entityManager.addEntity(PlayerFactory::build(player_spawn));
   // Spawn starting resources
   ResourceFactory::spawnInitial(entityManager); // TODO: maybe remove
@@ -35,12 +35,59 @@ void World::init(vec2 screen)
   renderToTextureSystem.initWaterEffect();
 }
 
+void World::processInput(float dt, GLboolean keys[], GLboolean keysProcessed[])
+{
+  // Reset
+  if (keys[GLFW_KEY_R] && !keysProcessed[GLFW_KEY_R])
+  {
+    // Reset singletons
+    HUD::getInstance().reset();
+    AudioLoader::getInstance().reset();
+    WavesetSystem::getInstance().reset();
+
+    /*entityManager.destroyAll();
+    init(vec2(SCREEN_WIDTH, SCREEN_HEIGHT));*/
+
+    // Remove all recyclable entities
+    int before = entityManager.getSize();
+    entityManager.filterRemoveByComponentType(non_recyclable_components);
+    //vector<shared_ptr<Entity>> resources = entityManager.getEntities(entityManager.getComponentChecker(vector<int> {ComponentType::resource}));
+    //cout << resources.size() << endl;
+    cout << "Removed count: " << before - entityManager.getSize() << endl;
+
+    // Reset home health to max
+    shared_ptr<Entity> home = entityManager.getEntitiesHasOneOf(entityManager.getComponentChecker(ComponentType::home))[0];
+    home->getComponent<HealthComponent>()->reset();
+    // Reset player position and wallet
+    shared_ptr<Entity> player = entityManager.getEntitiesHasOneOf(entityManager.getComponentChecker(vector<int>{ComponentType::player, ComponentType::wallet}))[0];
+    player->getComponent<TransformComponent>()->position = player_spawn;
+    player->getComponent<WalletComponent>()->coins = 0;
+
+    // Spawn starting resources
+    ResourceFactory::spawnInitial(entityManager); // adds 6 entities
+
+    Entity towerUiEntity = TowerUiEntityFactory::create();
+    entityManager.addEntity(towerUiEntity); // adds 1 entity
+
+    keysProcessed[GLFW_KEY_R] = true;
+  }
+  // TODO: music should alternate
+  if (keys[GLFW_KEY_H] && !keysProcessed[GLFW_KEY_H])
+  {
+    AudioLoader::getInstance().changeBgm();
+    keysProcessed[GLFW_KEY_H] = true;
+  }
+
+  playerSystem.interpInput(entityManager, dt, keys, keysProcessed);
+  towerUiSystem.interpInput(entityManager, keys, keysProcessed);
+}
+
 void World::update(float dt)
 {
   // Note: Be careful, order may matter in some cases for systems
   HUD::getInstance().update(dt);
 
-	WavesetSystem::getInstance().handleBuildAndDefensePhase(entityManager, dt);
+  WavesetSystem::getInstance().handleBuildAndDefensePhase(entityManager, dt);
   enemySystem.move(dt, entityManager);
   physicsSystem.moveEntities(entityManager, dt);
   physicsSystem.rotateEntities(entityManager, dt);
@@ -60,53 +107,11 @@ void World::update(float dt)
 
   // Remove entities
   offscreenGarbageSystem.destroyEntitiesContainingAll(entityManager, vector<int>{ComponentType::projectile, ComponentType::movement});
+  offscreenGarbageSystem.destroyEntitiesContainingAll(entityManager, vector<int>{ComponentType::resource});
   resourceSystem.handleResourceSpawnAndDespawn(entityManager, dt);
   particleSystem.updateParticles(entityManager, dt);
-	damageSystem.handleDamage(entityManager);
-	deathSystem.handleDeaths(entityManager);
-}
-
-void World::processInput(float dt, GLboolean keys[], GLboolean keysProcessed[])
-{
-  // Reset
-  if (keys[GLFW_KEY_R] && !keysProcessed[GLFW_KEY_R])
-  {
-    // Remove all recyclable entities
-    entityManager.filterRemoveByComponentType(non_recyclable_components);
-    //vector<shared_ptr<Entity>> resources = entityManager.getEntities(entityManager.getComponentChecker(vector<int> {ComponentType::resource}));
-    //cout << resources.size() << endl;
-
-    // Reset HUD and music
-    HUD::getInstance().reset();
-    AudioLoader::getInstance().reset();
-
-    WavesetSystem::getInstance().reset();
-
-    // Reset home health to max
-    shared_ptr<Entity> home = entityManager.getEntitiesHasOneOf(entityManager.getComponentChecker(ComponentType::home))[0];
-    home->getComponent<HealthComponent>()->reset();
-    // Reset player position and wallet
-    shared_ptr<Entity> player = entityManager.getEntitiesHasOneOf(entityManager.getComponentChecker(vector<int>{ComponentType::player, ComponentType::wallet}))[0];
-    player->getComponent<TransformComponent>()->position = player_spawn;
-    player->getComponent<WalletComponent>()->coins = 0;
-
-    // Spawn starting resources
-    ResourceFactory::spawnInitial(entityManager);
-
-    Entity towerUiEntity = TowerUiEntityFactory::create();
-    entityManager.addEntity(towerUiEntity);
-
-    keysProcessed[GLFW_KEY_R] = true;
-  }
-  // TODO: music should alternate
-  if (keys[GLFW_KEY_H] && !keysProcessed[GLFW_KEY_H])
-  {
-    AudioLoader::getInstance().changeBgm();
-    keysProcessed[GLFW_KEY_H] = true;
-  }
-
-  playerSystem.interpInput(entityManager, dt, keys, keysProcessed);
-  towerUiSystem.interpInput(entityManager, keys, keysProcessed);
+  damageSystem.handleDamage(entityManager);
+  deathSystem.handleDeaths(entityManager);
 }
 
 void World::draw()
