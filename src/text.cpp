@@ -89,7 +89,6 @@ void Text::loadGlyphs(int index)
     FontCharacters.push_back({});
     FontCharacters.at(index).insert(std::pair<GLchar, Character>(c, character));
   }
-  //cout << "Loaded all character glyphs" << endl;
 }
 
 void Text::initVertexObjects()

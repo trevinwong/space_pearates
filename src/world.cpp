@@ -17,7 +17,7 @@ void World::init(vec2 screen)
   WavesetSystem::getInstance().enemySpawnPoints = TileMapSystem::enemySpawnPoints;
   entityManager.addEntity(PlayerFactory::build(player_spawn));
   // Spawn starting resources
-  ResourceFactory::spawnInitial(entityManager); // TODO: maybe remove
+  ResourceFactory::spawnInitial(entityManager);
 
   enemySystem.setMap(entityManager);
   entityManager.addEntity(WavesetManagerFactory::build(waveset_path("waveset0.txt")));

@@ -21,7 +21,7 @@ AudioLoader::AudioLoader() {
   // Load music
   eurobeat_full = Mix_LoadMUS(audio_path("eurobeat_full.wav"));
   hip_shop = Mix_LoadMUS(audio_path("hip_shop.wav"));
-  cout << "Loaded audio" << endl;
+  
   reset();
 }
 

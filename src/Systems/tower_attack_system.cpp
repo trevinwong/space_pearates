@@ -54,7 +54,10 @@ void TowerAttackSystem::checkRangeAndShootProjectiles(EntityManager& entityManag
 
       if (centerOfCircleDist < radiusSum && towerAttackComponent->isReadyForNextFire()) {
         // in the range, FIRE!
-        if (towerAttackComponent->getTowerType() == TowerTypeID::fire_tower) {
+        switch (towerAttackComponent->getTowerType())
+        {
+        case TowerTypeID::fire_tower:
+        {
           auto projectileSize = vec2(15.0, 15.0);
           auto projectileColor = glm::vec4(1, 1, 1, 1);
           auto projectileLeftTopPosition = firePointPosition - projectileSize * 0.5f;
@@ -67,17 +70,10 @@ void TowerAttackSystem::checkRangeAndShootProjectiles(EntityManager& entityManag
           entityManager.addEntity(projectileEntity);
           // fired, wait until next time to fire
           towerAttackComponent->resetElapsedTimeToNextFire();
+          break;
         }
-        else if (towerAttackComponent->getTowerType() == TowerTypeID::water_tower) {
-          // in the range, slow it down!
-          float slowDownFactor = dynamic_cast<WaterTowerAttackComponent*>(towerAttackComponent)->getSlowDownFactor();
-          if (waterTowerFactorComponent != nullptr) {
-            // if an enemy is in the overlap of two water towers, then we pickup the smallest factor
-            waterTowerFactorComponent->speedFactor = glm::min(waterTowerFactorComponent->speedFactor, slowDownFactor);
-          }
-          // Note: water tower does not have fire rate
-        }
-        else if (towerAttackComponent->getTowerType() == TowerTypeID::light_tower) {
+        case TowerTypeID::light_tower:
+        {
           auto projectileNumberPerShoot = dynamic_cast<LightTowerAttackComponent*>(towerAttackComponent)->getProjectileNumberPerShoot();
           auto projectileSize = vec2(15.0, 15.0);
           auto projectileColor = glm::vec4(1, 1, 1, 1);
@@ -91,8 +87,10 @@ void TowerAttackSystem::checkRangeAndShootProjectiles(EntityManager& entityManag
             entityManager.addEntity(projectile);
           // fired, wait until next time to fire
           towerAttackComponent->resetElapsedTimeToNextFire();
+          break;
         }
-        else if (towerAttackComponent->getTowerType() == TowerTypeID::star_tower) {
+        case TowerTypeID::star_tower:
+        {
           auto projectileSize = dynamic_cast<StarTowerAttackComponent*>(towerAttackComponent)->getProjectileSize();
           auto projectileColor = glm::vec4(1, 1, 1, 1);
           auto projectileLeftTopPosition = firePointPosition - projectileSize * 0.5f;
@@ -107,8 +105,10 @@ void TowerAttackSystem::checkRangeAndShootProjectiles(EntityManager& entityManag
           entityManager.addEntity(projectileEntity);
           // fired, wait until next time to fire
           towerAttackComponent->resetElapsedTimeToNextFire();
+          break;
         }
-        else if (towerAttackComponent->getTowerType() == TowerTypeID::boomerang_tower) {
+        case TowerTypeID::boomerang_tower:
+        {
           auto attackPower = towerAttackComponent->getProjectileAttackPower();
           Entity projectileEntity = ProjectileEntityFactory::createBoomerang(
             firePointPosition, enemyCenterPosition, attackPower);
@@ -116,6 +116,21 @@ void TowerAttackSystem::checkRangeAndShootProjectiles(EntityManager& entityManag
           entityManager.addEntity(projectileEntity);
           // fired, wait until next time to fire
           towerAttackComponent->resetElapsedTimeToNextFire();
+          break;
+        }
+        case TowerTypeID::water_tower:
+        {
+          // in the range, slow it down!
+          float slowDownFactor = dynamic_cast<WaterTowerAttackComponent*>(towerAttackComponent)->getSlowDownFactor();
+          if (waterTowerFactorComponent != nullptr) {
+            // if an enemy is in the overlap of two water towers, then we pickup the smallest factor
+            waterTowerFactorComponent->speedFactor = glm::min(waterTowerFactorComponent->speedFactor, slowDownFactor);
+          }
+          // Note: water tower does not have fire rate
+          break;
+        }
+        default:
+          break;
         }
       }
     }

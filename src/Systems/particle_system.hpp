@@ -20,7 +20,6 @@ public:
   static void emitSmoke(EntityManager & manager, vec2 clusterOrigin);
   static void updateParticles(EntityManager & manager, float dt);
   static void resetParticles(EntityManager & manager);
-  //TODO: destroy()
 
 private:
   static vector<shared_ptr<Entity>> particleClusters;
