@@ -14,7 +14,7 @@ Wave::Wave(int _buildPhaseTime, vector<int> _spawnTimes, vector<Cluster> _cluste
 	}
 }
 
-Waveset::Waveset(vector<Wave> _waves) :
-	waves(_waves)
+Waveset::Waveset(vector<Wave> _waves, vector<int> _hpMult, vector<int> _spdMult, vector<int> _atkMult) :
+	waves(_waves), hpMult(_hpMult), spdMult(_spdMult), atkMult(_atkMult)
 {
 }

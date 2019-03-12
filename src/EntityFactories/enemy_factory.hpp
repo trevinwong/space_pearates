@@ -15,7 +15,8 @@
 class EnemyFactory
 {
 public:
-  static Entity build(vec2 position, vec2 velocity, vec2 scale=vec2(40.0f,40.0f));
+  static Entity build(vec2 position, vec2 velocity,  int hpMult = 100, 
+	  int spdMult = 100, int atkMult = 100, vec2 scale=vec2(40.0f,40.0f));
 };
 
 #endif

@@ -53,23 +53,40 @@ Waveset WavesetManagerFactory::readWavesetFile(string fileName)
 
 	vector<string> txtFiles;
 	vector<Wave> waves;
+	vector<int> hpMult;
+	vector<int> spdMult;
+	vector<int> atkMult;
 
 	while (!ifs.eof()) {
 		string waveFile; 
 		string line;
 		std::getline(ifs, line); 
 		std::stringstream iss(line); 
+		int hp;
+		int speed;
+		int attack;
+
 		fillVariable(iss, waveFile, "buildTime");
 
 		int i = getPreviouslyReadIndex(txtFiles, waveFile);
 		Wave wave = (i != -1) ? waves[i] : readWaveDataFile(wave_path() + waveFile);
 
+		fillVariable(iss, hp, "hp");
+		checkValidSeparatorAndMove(iss, "waveset");
+		fillVariable(iss, speed, "speed");
+		checkValidSeparatorAndMove(iss, "waveset");
+		fillVariable(iss, attack, "attack");
+		checkExtraText(iss, "waveset");
+
 		waves.push_back(wave);
 		txtFiles.push_back(waveFile);
+		hpMult.push_back(hp);
+		spdMult.push_back(speed);
+		atkMult.push_back(attack);
 	}
 
 	ifs.close();
-	return Waveset(waves);
+	return Waveset(waves, hpMult, spdMult, atkMult);
 }
 
 Wave WavesetManagerFactory::readWaveDataFile(string fileName)

@@ -21,6 +21,7 @@
 #include <climits>
 #include <iomanip>
 #include <random>
+#include <algorithm>
 
 using std::string;
 using std::vector;

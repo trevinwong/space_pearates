@@ -28,6 +28,9 @@ void WavesetSystem::handleBuildAndDefensePhase(EntityManager &entityManager, flo
 		}
 		
 		Wave &wave = waveset.waves[waveNo];
+		int hp = waveset.hpMult[waveNo];
+		int spd = waveset.spdMult[waveNo];
+		int atk = waveset.atkMult[waveNo];
 
 		if (phase == BuildPhase) {				
 			buildTimer += dt;
@@ -44,7 +47,7 @@ void WavesetSystem::handleBuildAndDefensePhase(EntityManager &entityManager, flo
 				startBuildPhase();
 			} else {
 				if (timeToSpawnNextCluster(wave)) {
-					spawnCluster(entityManager, wave.clusters[clusterNo]);
+					spawnCluster(entityManager, wave.clusters[clusterNo], hp, spd, atk);
 					clusterNo++;
 				}	
 			}
@@ -81,7 +84,8 @@ bool WavesetSystem::isWavesetOver(Waveset &waveset)
 	return waveNo >= waveset.waves.size();
 }
 
-void WavesetSystem::spawnCluster(EntityManager &entityManager, Cluster cluster)
+void WavesetSystem::spawnCluster(EntityManager &entityManager, Cluster cluster,
+	int hp, int spd, int atk)
 {
 	vector<vec2> enemyData = cluster.enemyData;
 	for (int i = 0; i < enemyData.size(); i++) {
@@ -93,15 +97,16 @@ void WavesetSystem::spawnCluster(EntityManager &entityManager, Cluster cluster)
 				//Failsafe in case spawnpoints were not found.
 				int xLoc = (rand() % 11 + 1) * 100;
 				int xOffset = j * 5;
-				entityManager.addEntity(EnemyFactory::build(vec2(xLoc + xOffset, 100), vec2(0.0f, 40.f)));
+				entityManager.addEntity(EnemyFactory::build(vec2(xLoc + xOffset, 100), vec2(0.0f, 40.f),
+					hp, spd, atk));
 			}
 			else
 			{
 				int spawnPointIndex = (rand() % enemySpawnPoints.size());
 				glm::vec2 spawnPoint = enemySpawnPoints[spawnPointIndex];
-				entityManager.addEntity(EnemyFactory::build(spawnPoint, vec2(0.0f, 40.f)));
+				entityManager.addEntity(EnemyFactory::build(spawnPoint, vec2(0.0f, 40.f),
+					hp, spd, atk));
 			}
-			
 		}
 	}	
 }
