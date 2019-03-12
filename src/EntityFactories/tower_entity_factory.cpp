@@ -182,7 +182,7 @@ Entity TowerEntityFactory::createBoomerangTower(vec2 towerCenterBottomPosition, 
   float attackRange = 180.0f;
   int maxLevel = 1;
   float fireRate = 14.0f; //TODO maybe change this for level up too - tower specific power ups
-  int projectileAttackPower = 1; //TODO smaller...
+  int projectileAttackPower = 5; //TODO Adjust this (currently applies damage per frame)
   BoomerangTowerAttackComponent *boomerangTowerAttack = new BoomerangTowerAttackComponent(
     relativeFirePosition, attackRange, maxLevel, fireRate, projectileAttackPower);
 
