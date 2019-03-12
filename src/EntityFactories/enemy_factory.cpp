@@ -2,9 +2,9 @@
 
 Entity EnemyFactory::build(vec2 position, vec2 velocity, int hpMult, int spdMult, int atkMult, vec2 scale)
 {
-	float speed = spdMult / 100;
-	float hp = hpMult / 100;
-	float attack = atkMult / 100;
+	float speed = spdMult / 100.0;
+	float hp = hpMult / 100.0;
+	float attack = atkMult / 100.0;
   Program *program = new Program(shader_path("sprite.vert"), shader_path("sprite.frag"));
   Texture *texture = new Texture(texture_path("enemy0.png"), true);
   SpriteComponent *sprite = new SpriteComponent(program, texture);

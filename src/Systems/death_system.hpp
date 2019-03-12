@@ -18,6 +18,7 @@ class DeathSystem
 {
 public:
   void handleDeaths(EntityManager &entityManager);
+  int dropRate = 50;
 };
 
 #endif
