@@ -14,7 +14,7 @@ Entity EnemyFactory::build(vec2 position, vec2 velocity, int hpMult, int spdMult
   shared_ptr<ColorComponent> colour = make_shared<ColorComponent>(glm::vec4(0.0f, 1.0f, 0.6f, 1.0f));
   shared_ptr<Program> billboardProgram = make_shared<Program>(shader_path("billboard.vert"), shader_path("billboard.frag"));
   shared_ptr<HealthComponent> health = make_shared<HealthComponent>(billboardProgram, 30 * hp);
-  shared_ptr<EnemyComponent> enemy = make_shared<EnemyComponent>(2, attack);
+  shared_ptr<EnemyComponent> enemy = make_shared<EnemyComponent>(1, attack);
   shared_ptr<WaterTowerFactorComponent> waterTowerFactor = make_shared<WaterTowerFactorComponent>();
 
   Entity e;
