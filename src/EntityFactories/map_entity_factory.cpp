@@ -9,7 +9,7 @@ Entity MapEntityFactory::createMapEntityFromFile(char * fileName)
 Entity MapEntityFactory::createMapEntityFromFile(std::string fileName)
 {
   vector<vector<char>> tileMap2DArray = MapEntityFactory::readMapDataFile(fileName);
-  MapComponent *mapComponent = new MapComponent(tileMap2DArray);
+  shared_ptr<MapComponent> mapComponent = make_shared<MapComponent>(tileMap2DArray);
 
   Entity mapEntity;
   mapEntity.setComponent<MapComponent>(mapComponent);

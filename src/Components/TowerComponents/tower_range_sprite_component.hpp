@@ -9,7 +9,7 @@ FireTowerRangeSpriteComponent inhert SpriteComponent in order to render an extra
 */
 class TowerRangeSpriteComponent : public SpriteComponent {
 public:
-  TowerRangeSpriteComponent(Program *_program, Texture *_texture) : SpriteComponent(_program, _texture) {};
+  TowerRangeSpriteComponent(shared_ptr<Program> _program, shared_ptr<Texture> _texture) : SpriteComponent(_program, _texture) {};
   static const int typeID = ComponentType::tower_range_sprite;
   inline virtual int getTypeID() const { return typeID; };
 };

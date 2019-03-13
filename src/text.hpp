@@ -39,6 +39,7 @@ public:
 
 private:
   Text();
+  ~Text();
 
   void loadFont(string fontName, int index);
   void setProjectionSize(float width=SCREEN_WIDTH, float height=SCREEN_HEIGHT);
@@ -52,8 +53,10 @@ private:
   FT_Library ft;
   FT_Face face;
 
-  Program *program;
+  shared_ptr<Program> program;
   glm::mat4 projection;
+
+  GLuint texture;
   GLuint VAO, VBO;
 };
 

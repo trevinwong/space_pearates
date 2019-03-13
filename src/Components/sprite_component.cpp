@@ -1,10 +1,8 @@
 #include "sprite_component.hpp"
 
-SpriteComponent::SpriteComponent(Program *_program, Texture *_texture) :
+SpriteComponent::SpriteComponent(shared_ptr<Program> _program, shared_ptr<Texture> _texture) :
 	program(_program), texture(_texture)
 {
-	// We want to create a square in which we can overlay our texture on.
-	GLuint VBO;
 	// Define our vertices (a square is composed of two triangles.)
 	// We define 6 vertices because we don't want to use IBOs.
 
@@ -51,5 +49,6 @@ SpriteComponent::SpriteComponent(Program *_program, Texture *_texture) :
 SpriteComponent::~SpriteComponent()
 {
 	glDeleteVertexArrays(1, &this->quadVAO);
+  glDeleteBuffers(1, &this->VBO);
 }
 

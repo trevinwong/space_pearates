@@ -2,7 +2,6 @@
 #define COLLISION_EVENT_H
 
 #include "utility.hpp"
-#include "event.hpp"
 #include "entity.hpp"
 
 class CollisionEvent

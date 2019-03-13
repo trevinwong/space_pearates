@@ -12,7 +12,7 @@ void TowerAttackSystem::checkRangeAndShootProjectiles(EntityManager& entityManag
 
   // Loop all enemies
   for (shared_ptr<Entity> enemyEntity : enemyEntities) {
-    TransformComponent *enemyTransformComponent = enemyEntity->getComponent<TransformComponent>();
+    shared_ptr<TransformComponent> enemyTransformComponent = enemyEntity->getComponent<TransformComponent>();
     if (enemyTransformComponent == nullptr) continue;
 
     vec2 enemyPosition = enemyTransformComponent->position;
@@ -32,9 +32,9 @@ void TowerAttackSystem::checkRangeAndShootProjectiles(EntityManager& entityManag
     // Loop all towers
     for (shared_ptr<Entity> towerEntity : towerEntities) {
 
-      SpriteComponent *spriteComponent = towerEntity->getComponent<SpriteComponent>();
-      TransformComponent *transformComponent = towerEntity->getComponent<TransformComponent>();
-      TowerAttackComponent *towerAttackComponent = towerEntity->getComponent<TowerAttackComponent>();
+      shared_ptr<SpriteComponent> spriteComponent = towerEntity->getComponent<SpriteComponent>();
+      shared_ptr<TransformComponent> transformComponent = towerEntity->getComponent<TransformComponent>();
+      shared_ptr<TowerAttackComponent> towerAttackComponent = towerEntity->getComponent<TowerAttackComponent>();
 
       // check null here
       if (spriteComponent == nullptr || transformComponent == nullptr || towerAttackComponent == nullptr) continue;
@@ -74,7 +74,7 @@ void TowerAttackSystem::checkRangeAndShootProjectiles(EntityManager& entityManag
         }
         case TowerTypeID::light_tower:
         {
-          auto projectileNumberPerShoot = dynamic_cast<LightTowerAttackComponent*>(towerAttackComponent)->getProjectileNumberPerShoot();
+          auto projectileNumberPerShoot = std::dynamic_pointer_cast<LightTowerAttackComponent>(towerAttackComponent)->getProjectileNumberPerShoot();
           auto projectileSize = vec2(15.0, 15.0);
           auto projectileColor = glm::vec4(1, 1, 1, 1);
           auto projectileLeftTopPosition = firePointPosition - projectileSize * 0.5f;
@@ -91,7 +91,7 @@ void TowerAttackSystem::checkRangeAndShootProjectiles(EntityManager& entityManag
         }
         case TowerTypeID::star_tower:
         {
-          auto projectileSize = dynamic_cast<StarTowerAttackComponent*>(towerAttackComponent)->getProjectileSize();
+          auto projectileSize = std::dynamic_pointer_cast<StarTowerAttackComponent>(towerAttackComponent)->getProjectileSize();
           auto projectileColor = glm::vec4(1, 1, 1, 1);
           auto projectileLeftTopPosition = firePointPosition - projectileSize * 0.5f;
           vec2 velocity = glm::normalize(enemyCenterPosition - firePointPosition) * 400.0f;
@@ -121,7 +121,7 @@ void TowerAttackSystem::checkRangeAndShootProjectiles(EntityManager& entityManag
         case TowerTypeID::water_tower:
         {
           // in the range, slow it down!
-          float slowDownFactor = dynamic_cast<WaterTowerAttackComponent*>(towerAttackComponent)->getSlowDownFactor();
+          float slowDownFactor = std::dynamic_pointer_cast<WaterTowerAttackComponent>(towerAttackComponent)->getSlowDownFactor();
           if (waterTowerFactorComponent != nullptr) {
             // if an enemy is in the overlap of two water towers, then we pickup the smallest factor
             waterTowerFactorComponent->speedFactor = glm::min(waterTowerFactorComponent->speedFactor, slowDownFactor);
@@ -143,16 +143,16 @@ void TowerAttackSystem::reduceElapsedTimeToNextFire(EntityManager & entityManage
     vector<int> {ComponentType::tower_meta}));
 
   for (shared_ptr<Entity> towerEntity : towerEntities) {
-    FireTowerAttackComponent *fireTowerAttackComponent = towerEntity->getComponent<FireTowerAttackComponent>();
+    shared_ptr<FireTowerAttackComponent> fireTowerAttackComponent = towerEntity->getComponent<FireTowerAttackComponent>();
     if (fireTowerAttackComponent != nullptr) fireTowerAttackComponent->reduceElapsedTimeToNextFire(dt);
 
-    LightTowerAttackComponent *lightTowerAttackComponent = towerEntity->getComponent<LightTowerAttackComponent>();
+    shared_ptr<LightTowerAttackComponent> lightTowerAttackComponent = towerEntity->getComponent<LightTowerAttackComponent>();
     if (lightTowerAttackComponent != nullptr) lightTowerAttackComponent->reduceElapsedTimeToNextFire(dt);
 
-    StarTowerAttackComponent *starTowerAttackComponent = towerEntity->getComponent<StarTowerAttackComponent>();
+    shared_ptr<StarTowerAttackComponent> starTowerAttackComponent = towerEntity->getComponent<StarTowerAttackComponent>();
     if (starTowerAttackComponent != nullptr) starTowerAttackComponent->reduceElapsedTimeToNextFire(dt);
 
-    BoomerangTowerAttackComponent *boomerangTowerAttackComponent = towerEntity->getComponent<BoomerangTowerAttackComponent>();
+    shared_ptr<BoomerangTowerAttackComponent> boomerangTowerAttackComponent = towerEntity->getComponent<BoomerangTowerAttackComponent>();
     if (boomerangTowerAttackComponent != nullptr) boomerangTowerAttackComponent->reduceElapsedTimeToNextFire(dt);
   }
 }

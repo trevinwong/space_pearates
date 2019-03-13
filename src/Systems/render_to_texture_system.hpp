@@ -29,8 +29,9 @@ private:
   // return vec3(towerFirePosX, towerFirePosY, attackRange)
   vector<vec3> getWaterTowerPosAndRange(EntityManager entityManager);
 
-  Program* waterProgram;
+  shared_ptr<Program> waterProgram;
 
+  GLuint depthrenderbuffer = 0;
   GLuint FramebufferName = 0;
   GLuint renderedTexture;
   GLuint VBO;

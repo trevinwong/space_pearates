@@ -8,7 +8,7 @@
 class HealthComponent : public BaseComponent
 {
 public:
-  HealthComponent(Program *_program, float maxHP);
+  HealthComponent(shared_ptr<Program> _program, float maxHP);
   ~HealthComponent();
   void reset();
 
@@ -17,8 +17,9 @@ public:
 
   float maxHP;
   float curHP;
-  Program *program;
+  shared_ptr<Program> program;
   GLuint  quadVAO; // we only need VAO as a member as it remembers any VBOs it's associated with
+  GLuint VBO; // We want to create a square in which we can overlay our texture on.
 };
 
 #endif

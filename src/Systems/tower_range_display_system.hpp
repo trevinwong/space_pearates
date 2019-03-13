@@ -20,7 +20,7 @@ public:
 
 private:
   bool isPlayerNear(float mapTileWidth, float mapTileHeight, vec2 &towerCenterPosition, vec2 &playerCenterPosition);
-  void drawRangesHelper(SpriteComponent *towerRangeSpriteComponent, vec2 shootRangeCircleCenterPosition, float towerRadius, glm::mat4 projection);
+  void drawRangesHelper(shared_ptr<SpriteComponent> towerRangeSpriteComponent, vec2 shootRangeCircleCenterPosition, float towerRadius, glm::mat4 projection);
 };
 
 #endif

@@ -13,10 +13,10 @@ void SpriteSystem::drawSprites(EntityManager &entityManager, glm::mat4 projectio
   vector<shared_ptr<Entity>> filtered_entities = entityManager.getEntities(entityManager.getComponentChecker(vector<int> {ComponentType::sprite, ComponentType::transform, ComponentType::color}));
 
   for (shared_ptr<Entity> e : filtered_entities) {
-    SpriteComponent *spriteComponent = e->getComponent<SpriteComponent>();
-    TransformComponent *transformComponent = e->getComponent<TransformComponent>();
-    ColorComponent *colorComponent = e->getComponent<ColorComponent>();
-    ParticleComponent *particleComponent = e->getComponent<ParticleComponent>();
+    shared_ptr<SpriteComponent> spriteComponent = e->getComponent<SpriteComponent>();
+    shared_ptr<TransformComponent> transformComponent = e->getComponent<TransformComponent>();
+    shared_ptr<ColorComponent> colorComponent = e->getComponent<ColorComponent>();
+    shared_ptr<ParticleComponent> particleComponent = e->getComponent<ParticleComponent>();
 
     if (particleComponent != nullptr) {
       if (particleComponent->active == false) {
@@ -55,7 +55,7 @@ void SpriteSystem::drawSprites(EntityManager &entityManager, glm::mat4 projectio
     spriteComponent->texture->bind();
 
     // Check if sprite is animated
-    AnimatedComponent *animatedComponent = e->getComponent<AnimatedComponent>();
+    shared_ptr<AnimatedComponent> animatedComponent = e->getComponent<AnimatedComponent>();
 
     if (animatedComponent != nullptr) {
 
@@ -80,13 +80,22 @@ void SpriteSystem::drawSprites(EntityManager &entityManager, glm::mat4 projectio
         1.0f, 1.0f, spriteEndX, 1.0f,
         1.0f, 0.0f, spriteEndX, 0.0f
       };
+      // change exists vertices by use spriteComponent->quadVAO
+      glBindBuffer(GL_ARRAY_BUFFER, spriteComponent->VBO);
+      glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+      glBindVertexArray(spriteComponent->quadVAO);
+      // Enable the first "in" variable in our vertex shader - make sure that this corresponds to the right variable!
+      // i.e. layout (location = 0) in shaders
+      glEnableVertexAttribArray(0);
+      //                   (index, size, type, isNormalized, stride, pointer to offset)
+      glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(GLfloat), (GLvoid*)0);
+      // layout (location = 1)
+      glEnableVertexAttribArray(1);
+      glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(GLfloat), (GLvoid*)(2 * sizeof(GLfloat)));
 
-      // get pointer
-      void *ptr = glMapBuffer(GL_ARRAY_BUFFER, GL_WRITE_ONLY);
-      // Copy data into memory
-      memcpy(ptr, vertices, sizeof(vertices));
-      // Tell OpenGL we're done with the pointer
-      glUnmapBuffer(GL_ARRAY_BUFFER);
+      // Re-bind the current VBO and VAO to 0 to avoid accidentally modifying the ones we just configured here.
+      glBindVertexArray(0);
+      glBindBuffer(GL_ARRAY_BUFFER, 0);
     }
 
     glBindVertexArray(spriteComponent->quadVAO);

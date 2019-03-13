@@ -18,6 +18,13 @@ Text::Text()
   FT_Done_FreeType(ft);
 }
 
+Text::~Text()
+{
+  glDeleteBuffers(1, &VBO);
+  glDeleteVertexArrays(1, &VAO);
+  if(texture) glDeleteTextures(1, &texture);
+}
+
 void Text::loadFont(string fontName, int index)
 {
   string fontPath = string(font_path()) + fontName;
@@ -44,7 +51,7 @@ void Text::preprocessGlyphs()
 
 void Text::initShaderProgram()
 {
-  program = new Program(shader_path("glyph.vert"), shader_path("glyph.frag"));
+  program = make_shared<Program>(shader_path("glyph.vert"), shader_path("glyph.frag"));
 }
 
 void Text::loadGlyphs(int index)
@@ -60,7 +67,6 @@ void Text::loadGlyphs(int index)
       continue;
     }
     // Generate texture
-    GLuint texture;
     glGenTextures(1, &texture);
     glBindTexture(GL_TEXTURE_2D, texture);
     glTexImage2D(

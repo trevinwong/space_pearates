@@ -54,4 +54,9 @@ void Texture::bind() const
   glBindTexture(GL_TEXTURE_2D, ID);
 }
 
+Texture::~Texture()
+{
+  if (ID) glDeleteTextures(1, &ID);
+}
+
 
