@@ -9,7 +9,9 @@ void DamageSystem::handleDamage(EntityManager &entityManager)
     shared_ptr<HealthComponent> health = e->getComponent<HealthComponent>();
 
     if (health != nullptr) {
-      health->curHP -= damage->power;
+			for (float dmg : damage->damage_instances) {
+				health->curHP -= dmg;
+			}
       if (health->curHP <= 0) {
         e->setComponent<DeathComponent>(make_shared<DeathComponent>());
       }
