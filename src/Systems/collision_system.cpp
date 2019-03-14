@@ -86,13 +86,18 @@ void CollisionSystem::handleProjectileEnemy(shared_ptr<Entity> projectile, share
 {
 	shared_ptr<ProjectileComponent> projectile_info = projectile->getComponent<ProjectileComponent>();
 	shared_ptr<SplineComponent> spline = projectile->getComponent<SplineComponent>();
+	shared_ptr<DamageComponent> damage = enemy->getComponent<DamageComponent>();
 
 	if (spline == nullptr) {
 		// Not a boomerang projectile, remove it
 		projectile->setComponent<DeathComponent>(make_shared<DeathComponent>());
 	}
 
-	enemy->setComponent<DamageComponent>(make_shared<DamageComponent>(projectile_info->getAttackPower()));
+	if (damage == nullptr) {
+		enemy->setComponent<DamageComponent>(make_shared<DamageComponent>(projectile_info->getAttackPower()));
+	} else {
+		damage->addDamageInstance(projectile_info->getAttackPower());
+	}
 }
 
 void CollisionSystem::handleCollision(shared_ptr<Entity> e1, shared_ptr<Entity> e2, EntityManager &entityManager)

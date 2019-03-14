@@ -7,8 +7,9 @@
 class DamageComponent : public BaseComponent
 {
 public:
-	float power;
-	DamageComponent(float _power);
+	vector<float> damage_instances;
+	DamageComponent(float damage);
+	void addDamageInstance(float damage);
 
 	static const int typeID = ComponentType::damage;
 	inline virtual int getTypeID() const { return typeID; };
