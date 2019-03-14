@@ -41,6 +41,7 @@ class World
 {
 public:
   void init(vec2 screen);
+  void reset();
   void processInput(float dt, GLboolean keys[], GLboolean keysProcessed[]);
   void update(float dt); // dt = delta time, how much time has passed since update was last called
   void draw();
