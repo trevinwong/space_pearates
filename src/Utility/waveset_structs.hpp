@@ -1,7 +1,7 @@
 #ifndef WAVESET_STRUCTS_H
 #define WAVESET_STRUCTS_H
 
-#include "utility.hpp"
+#include "Utility/utility.hpp"
 
 class Cluster {
 public:

@@ -1,10 +1,10 @@
 #ifndef PHYSICS_SYSTEM_H
 #define PHYSICS_SYSTEM_H
 
-#include "utility.hpp"
+#include "Utility/utility.hpp"
 #include "entity.hpp"
 #include "entity_manager.hpp"
-#include "line.hpp"
+#include "Utility/line.hpp"
 #include "Components/projectile_component.hpp"
 #include "Components/sprite_component.hpp"
 #include "Components/transform_component.hpp"

@@ -1,7 +1,7 @@
 #ifndef ENTITY_H
 #define ENTITY_H
 
-#include "utility.hpp"
+#include "Utility/utility.hpp"
 #include "Components/base_component.hpp"
 
 class Entity {

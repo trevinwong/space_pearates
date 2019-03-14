@@ -1,10 +1,10 @@
 #ifndef SPRITE_COMPONENT_H
 #define SPRITE_COMPONENT_H
 
-#include "utility.hpp"
+#include "Utility/utility.hpp"
 #include "base_component.hpp"
-#include "program.hpp"
-#include "texture.hpp"
+#include "Utility/program.hpp"
+#include "Utility/texture.hpp"
 
 class SpriteComponent : public BaseComponent
 {

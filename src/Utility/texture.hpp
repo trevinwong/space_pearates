@@ -1,7 +1,7 @@
 #ifndef TEXTURE_H
 #define TEXTURE_H
 
-#include "utility.hpp"
+#include "Utility/utility.hpp"
 
 /* Utility class to load images, generate and bind textures.
  * Holds the format and the configuration of the texture as well.

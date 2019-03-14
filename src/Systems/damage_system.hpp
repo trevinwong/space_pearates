@@ -1,7 +1,7 @@
 #ifndef DAMAGE_SYSTEM_H
 #define DAMAGE_SYSTEM_H
 
-#include "utility.hpp"
+#include "Utility/utility.hpp"
 #include "entity_manager.hpp"
 #include "entity.hpp"
 #include "Components/damage_component.hpp"

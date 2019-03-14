@@ -1,7 +1,7 @@
 #ifndef AUDIO_PLAYER_H
 #define AUDIO_PLAYER_H
 
-#include "utility.hpp"
+#include "Utility/utility.hpp"
 
 // Singleton https://stackoverflow.com/questions/1008019/c-singleton-design-pattern
 class AudioLoader

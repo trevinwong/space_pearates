@@ -1,7 +1,7 @@
 #ifndef WORLD_H
 #define WORLD_H
 
-#include "utility.hpp"
+#include "Utility/utility.hpp"
 #include "hud.hpp"
 #include "Systems/enemy_system.hpp"
 #include "Utility/waveset_structs.hpp"

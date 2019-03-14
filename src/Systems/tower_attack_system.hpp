@@ -1,7 +1,7 @@
 #ifndef TOWER_SHOOTING_SYSTEM_H
 #define TOWER_SHOOTING_SYSTEM_H
 
-#include "utility.hpp"
+#include "Utility/utility.hpp"
 #include "entity.hpp"
 #include "Components/sprite_component.hpp"
 #include "Components/movement_component.hpp"

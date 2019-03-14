@@ -2,7 +2,7 @@
 #define PROJECTILE_ENTITY_FACTORY_H
 
 #include <vector>
-#include "utility.hpp"
+#include "Utility/utility.hpp"
 #include "entity.hpp"
 #include "entity_manager.hpp"
 #include "../Components/transform_component.hpp"
@@ -12,8 +12,8 @@
 #include "../Components/projectile_component.hpp"
 #include "../Components/collision_component.hpp"
 #include "../Components/spline_component.hpp"
-#include "../texture.hpp"
-#include "../program.hpp"
+#include "../Utility/texture.hpp"
+#include "../Utility/program.hpp"
 
 class ProjectileEntityFactory {
 public:

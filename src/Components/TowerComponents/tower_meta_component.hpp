@@ -1,7 +1,7 @@
 #ifndef TOWER_META_COMPONENT_H
 #define TOWER_META_COMPONENT_H
 
-#include "utility.hpp"
+#include "Utility/utility.hpp"
 #include "../base_component.hpp"
 
 class TowerMetaComponent : public BaseComponent {

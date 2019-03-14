@@ -1,7 +1,7 @@
 #ifndef LINE_H
 #define LINE_H
 
-#include "utility.hpp"
+#include "Utility/utility.hpp"
 
 class Line {
 	public:

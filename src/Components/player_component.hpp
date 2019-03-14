@@ -1,9 +1,9 @@
 #ifndef PLAYER_COMPONENT_H
 #define PLAYER_COMPONENT_H
 
-#include "utility.hpp"
+#include "Utility/utility.hpp"
 #include "base_component.hpp"
-#include "texture.hpp"
+#include "Utility/texture.hpp"
 
 class PlayerComponent : public BaseComponent
 {

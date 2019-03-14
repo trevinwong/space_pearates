@@ -1,7 +1,7 @@
 #ifndef RESOURCE_SYSTEM_H
 #define RESOURCE_SYSTEM_H
 
-#include "utility.hpp"
+#include "Utility/utility.hpp"
 #include "entity.hpp"
 #include "entity_manager.hpp"
 #include "Components/sprite_component.hpp"

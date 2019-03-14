@@ -2,7 +2,7 @@
 #define RESOURCE_FACTORY_H
 
 #include "entity.hpp"
-#include "program.hpp"
+#include "Utility/program.hpp"
 #include "entity_manager.hpp"
 #include "Components/sprite_component.hpp"
 #include "Components/transform_component.hpp"

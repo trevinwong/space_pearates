@@ -1,7 +1,7 @@
 #ifndef TOWER_UI_ENTITY_FACTORY_H
 #define TOWER_UI_ENTITY_FACTORY_H
 
-#include "../utility.hpp"
+#include "../Utility/utility.hpp"
 #include "../entity.hpp"
 #include "../entity_manager.hpp"
 #include "../Components/sprite_component.hpp"

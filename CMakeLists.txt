@@ -66,8 +66,8 @@ set(SOURCE_FILES_CORE
 	src/EntityFactories/projectile_entity_factory.hpp
 	src/EntityFactories/particle_factory.cpp
 	src/EntityFactories/particle_factory.hpp
-	src/math.hpp
-	src/math.cpp
+	src/Utility/math.hpp
+	src/Utility/math.cpp
 	src/Components/collision_component.cpp
 	src/Components/collision_component.hpp
 	src/Components/color_component.cpp
@@ -176,8 +176,8 @@ set(SOURCE_FILES_CORE
 	src/Systems/resource_system.hpp
 	src/Systems/particle_system.cpp
 	src/Systems/particle_system.hpp
-	src/line.hpp
-	src/line.cpp
+	src/Utility/line.hpp
+	src/Utility/line.cpp
 	src/Utility/timer.hpp
 	src/Utility/timer.cpp
 	src/Utility/waveset_structs.hpp
@@ -186,18 +186,18 @@ set(SOURCE_FILES_CORE
 	src/entity.hpp
 	src/entity_manager.cpp
 	src/entity_manager.hpp
-	src/program.cpp
-	src/program.hpp
-	src/texture.cpp
-	src/texture.hpp
-	src/utility.cpp
-	src/utility.hpp
-	src/text.cpp
-	src/text.hpp
+	src/Utility/program.cpp
+	src/Utility/program.hpp
+	src/Utility/texture.cpp
+	src/Utility/texture.hpp
+	src/Utility/utility.cpp
+	src/Utility/utility.hpp
+	src/Utility/text.cpp
+	src/Utility/text.hpp
 	src/hud.cpp
 	src/hud.hpp
-	src/audio_loader.cpp
-	src/audio_loader.hpp
+	src/Utility/audio_loader.cpp
+	src/Utility/audio_loader.hpp
 	src/world.cpp
 	src/world.hpp
 )

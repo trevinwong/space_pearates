@@ -1,9 +1,9 @@
 #ifndef HEALTH_COMPONENT_H
 #define HEALTH_COMPONENT_H
 
-#include "utility.hpp"
+#include "Utility/utility.hpp"
 #include "base_component.hpp"
-#include "program.hpp"
+#include "Utility/program.hpp"
 
 class HealthComponent : public BaseComponent
 {

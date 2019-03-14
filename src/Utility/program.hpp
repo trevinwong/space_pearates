@@ -1,7 +1,7 @@
 #ifndef PROGRAM_H
 #define PROGRAM_H
 
-#include "utility.hpp"
+#include "Utility/utility.hpp"
 
 /*	Utility class to compile and link shaders into a program object.
  *	Contains functions to set uniforms, and to generate compilation/linking error messages.

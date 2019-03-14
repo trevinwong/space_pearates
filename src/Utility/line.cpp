@@ -1,4 +1,4 @@
-#include "line.hpp"
+#include "Utility/line.hpp"
 
 Line::Line(vec2 Pt1, vec2 Pt2) :
 	pt1(Pt1), pt2(Pt2)

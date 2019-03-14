@@ -1,9 +1,9 @@
 #ifndef RENDER_TO_TEXTURE_SYSTEM_H
 #define RENDER_TO_TEXTURE_SYSTEM_H
 
-#include "../utility.hpp"
-#include "../program.hpp"
-#include "../texture.hpp"
+#include "../Utility/utility.hpp"
+#include "../Utility/program.hpp"
+#include "../Utility/texture.hpp"
 #include "../entity_manager.hpp"
 #include "../Components/transform_component.hpp"
 #include "../Components/TowerComponents/tower_attack_component.hpp"

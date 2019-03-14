@@ -3,7 +3,7 @@
 
 #include "entity_manager.hpp"
 #include "base_component.hpp"
-#include "utility.hpp"
+#include "Utility/utility.hpp"
 
 class MapComponent : public BaseComponent
 {

@@ -1,11 +1,11 @@
 #ifndef PARTICLE_COMPONENT_H
 #define PARTICLE_COMPONENT_H
 
-#include "utility.hpp"
+#include "Utility/utility.hpp"
 #include "base_component.hpp"
 #include "../Utility/timer.hpp" 
 #include "entity.hpp"
-#include "texture.hpp"
+#include "Utility/texture.hpp"
 
 namespace ParticleType {
   enum type {

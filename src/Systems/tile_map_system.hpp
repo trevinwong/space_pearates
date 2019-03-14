@@ -1,7 +1,7 @@
 #ifndef TILE_MAP_SYSTEM_H
 #define TILE_MAP_SYSTEM_H
 
-#include "utility.hpp"
+#include "Utility/utility.hpp"
 #include "entity_manager.hpp"
 #include "../Components/map_component.hpp"
 #include "../EntityFactories/tile_factory.hpp"

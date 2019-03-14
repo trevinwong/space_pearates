@@ -1,7 +1,7 @@
 #ifndef DAMAGE_COMPONENT_H
 #define DAMAGE_COMPONENT_H
 
-#include "utility.hpp"
+#include "Utility/utility.hpp"
 #include "base_component.hpp"
 
 class DamageComponent : public BaseComponent

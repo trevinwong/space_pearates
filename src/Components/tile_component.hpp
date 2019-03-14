@@ -1,7 +1,7 @@
 #ifndef TILE_COMPONENT_H
 #define TILE_COMPONENT_H
 
-#include "utility.hpp"
+#include "Utility/utility.hpp"
 #include "base_component.hpp"
 
 class TileComponent : public BaseComponent

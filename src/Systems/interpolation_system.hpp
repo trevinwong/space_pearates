@@ -4,7 +4,7 @@
 #define GLM_ENABLE_EXPERIMENTAL
 #include "glm/gtx/spline.hpp"
 
-#include "utility.hpp"
+#include "Utility/utility.hpp"
 #include "entity_manager.hpp"
 #include "Components/spline_component.hpp"
 #include "Components/transform_component.hpp"
