@@ -1,8 +1,8 @@
 #ifndef TEXT_H
 #define TEXT_H
 
-#include "utility.hpp"
-#include "program.hpp"
+#include "Utility/utility.hpp"
+#include "Utility/program.hpp"
 
 // Taken from: https://learnopengl.com/In-Practice/Text-Rendering
 #include <ft2build.h>

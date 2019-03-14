@@ -1,4 +1,4 @@
-#include "program.hpp"
+#include "Utility/program.hpp"
 
 Program::Program(const char* vertexPath, const char* fragmentPath)
 {

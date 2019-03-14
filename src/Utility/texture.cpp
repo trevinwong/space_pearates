@@ -1,4 +1,4 @@
-#include "texture.hpp"
+#include "Utility/texture.hpp"
 
 Texture::Texture(const GLchar *file, GLboolean alpha)
   : width(0), height(0), internalFormat(GL_RGB), imageFormat(GL_RGB), wrapS(GL_REPEAT), wrapT(GL_REPEAT), filterMin(GL_LINEAR), filterMax(GL_LINEAR)

@@ -2,11 +2,11 @@
 #define COLLISION_SYSTEM_H
 
 #include "hud.hpp"
-#include "audio_loader.hpp"
-#include "utility.hpp"
+#include "Utility/audio_loader.hpp"
+#include "Utility/utility.hpp"
 #include "entity.hpp"
 #include "entity_manager.hpp"
-#include "math.hpp"
+#include "Utility/math.hpp"
 #include "Components/movement_component.hpp"
 #include "Components/collision_component.hpp"
 #include "Components/transform_component.hpp"

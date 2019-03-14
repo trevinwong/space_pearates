@@ -1,7 +1,7 @@
 #ifndef WATER_TOWER_ATTACK_COMPONENT_H
 #define WATER_TOWER_ATTACK_COMPONENT_H
 
-#include "utility.hpp"
+#include "Utility/utility.hpp"
 #include "../base_component.hpp"
 #include "tower_attack_component.hpp"
 

@@ -1,7 +1,7 @@
 #ifndef ANIMATED_COMPONENT_H
 #define ANIMATED_COMPONENT_H
 
-#include "utility.hpp"
+#include "Utility/utility.hpp"
 #include "base_component.hpp"
 
 class AnimatedComponent : public BaseComponent

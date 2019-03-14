@@ -2,7 +2,7 @@
 #define TOWER_UI_SYSTEM_H
 
 #include <algorithm>
-#include "../utility.hpp"
+#include "../Utility/utility.hpp"
 #include "../entity.hpp"
 #include "../entity_manager.hpp"
 #include "../EntityFactories/tower_entity_factory.hpp"

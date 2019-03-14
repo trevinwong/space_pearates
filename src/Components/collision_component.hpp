@@ -1,7 +1,7 @@
 #ifndef COLLISION_COMPONENT_H
 #define COLLISION_COMPONENT_H
 
-#include "utility.hpp"
+#include "Utility/utility.hpp"
 #include "base_component.hpp"
 #include "entity.hpp"
 

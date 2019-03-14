@@ -1,9 +1,9 @@
 #ifndef SPRITE_SYSTEM_H
 #define SPRITE_SYSTEM_H
 
-#include "utility.hpp"
-#include "texture.hpp"
-#include "program.hpp"
+#include "Utility/utility.hpp"
+#include "Utility/texture.hpp"
+#include "Utility/program.hpp"
 #include "entity.hpp"
 #include "entity_manager.hpp"
 #include "Components/base_component.hpp"

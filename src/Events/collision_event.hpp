@@ -1,7 +1,7 @@
 #ifndef COLLISION_EVENT_H
 #define COLLISION_EVENT_H
 
-#include "utility.hpp"
+#include "Utility/utility.hpp"
 #include "entity.hpp"
 
 class CollisionEvent

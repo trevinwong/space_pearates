@@ -3,7 +3,7 @@
 
 #define GL3W_IMPLEMENTATION  // DO NOT define this in any other C++ or header files
 #define STB_IMAGE_IMPLEMENTATION // DO NOT define this in any other C++ or header files
-#include "utility.hpp"
+#include "Utility/utility.hpp"
 #include "world.hpp"
 
 GLboolean keys[1024];

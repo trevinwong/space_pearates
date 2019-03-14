@@ -1,7 +1,7 @@
 #ifndef WAVESET_COMPONENT_H
 #define WAVESET_COMPONENT_H
 
-#include "utility.hpp"
+#include "Utility/utility.hpp"
 #include "base_component.hpp"
 #include "EntityFactories/enemy_factory.hpp"
 #include "Utility/waveset_structs.hpp"

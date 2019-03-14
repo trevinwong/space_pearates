@@ -1,10 +1,10 @@
 #ifndef TOWER_UI_IDLE_STATE_H
 #define TOWER_UI_IDLE_STATE_H
 
-#include "../../../utility.hpp"
+#include "../../../Utility/utility.hpp"
 #include "../../../hud.hpp"
 #include "../../../entity_manager.hpp"
-#include "../../../audio_loader.hpp"
+#include "../../../Utility/audio_loader.hpp"
 #include "../../map_component.hpp"
 #include "../../wallet_component.hpp"
 #include "../../../EntityFactories/tower_entity_factory.hpp"
