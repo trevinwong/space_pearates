@@ -1,7 +1,7 @@
 #ifndef MAP_ENTITY_FACTORY_H
 #define MAP_ENTITY_FACTORY_H
 
-#include "utility.hpp"
+#include "Utility/utility.hpp"
 #include "entity_manager.hpp"
 #include "../Components/map_component.hpp"
 

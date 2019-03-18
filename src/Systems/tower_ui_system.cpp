@@ -5,7 +5,7 @@ void TowerUiSystem::interpInput(EntityManager &entityManager, GLboolean keys[], 
       entityManager.getEntities(entityManager.getComponentChecker(vector<int>{ComponentType::tower_ui_state}));
   if (towerBuildUiEntities.size() == 0) return;
 
-  TowerUiStateComponent *towerUiStateComponent = towerBuildUiEntities[0]->getComponent<TowerUiStateComponent>();
+  shared_ptr<TowerUiStateComponent> towerUiStateComponent = towerBuildUiEntities[0]->getComponent<TowerUiStateComponent>();
   if (towerUiStateComponent == nullptr) return;
 
   towerUiStateComponent->input(entityManager, keys, keysProcessed);
@@ -18,7 +18,7 @@ void TowerUiSystem::update(EntityManager &entityManager, float dt) {
 
   // get state machine
   // because all buttons are shared one state component, get one and execute one, no need to use for loop
-  TowerUiStateComponent *state = towerBuildUiEntities[0]->getComponent<TowerUiStateComponent>();
+  shared_ptr<TowerUiStateComponent> state = towerBuildUiEntities[0]->getComponent<TowerUiStateComponent>();
   if (state == nullptr) return;
 
   state->update(entityManager, dt);
@@ -32,9 +32,9 @@ void TowerUiSystem::render(EntityManager &entityManager, glm::mat4 projection) {
 
   if (playerEntities.size() == 0 || towerBuildUiEntities.size() == 0) return;
 
-  TransformComponent *playerTransformComponent = playerEntities[0]->getComponent<TransformComponent>();
-  TowerUiButtonComponent *towerUiButton = towerBuildUiEntities[0]->getComponent<TowerUiButtonComponent>();
-  TowerUiButtonMetaComponent *towerUiButtonMeta = towerBuildUiEntities[0]->getComponent<TowerUiButtonMetaComponent>();
+  shared_ptr<TransformComponent> playerTransformComponent = playerEntities[0]->getComponent<TransformComponent>();
+  shared_ptr<TowerUiButtonComponent> towerUiButton = towerBuildUiEntities[0]->getComponent<TowerUiButtonComponent>();
+  shared_ptr<TowerUiButtonMetaComponent> towerUiButtonMeta = towerBuildUiEntities[0]->getComponent<TowerUiButtonMetaComponent>();
   if (playerTransformComponent == nullptr || towerUiButton == nullptr || towerUiButtonMeta == nullptr) return;
 
   glm::vec2 playerPosition = playerTransformComponent->position;
@@ -47,7 +47,7 @@ void TowerUiSystem::render(EntityManager &entityManager, glm::mat4 projection) {
   renderDescription(towerUiButtonMeta, towerUiButton, projection);
 }
 
-void TowerUiSystem::renderTowerUiButtons(TowerUiButtonMetaComponent *towerUiButtonMeta, TowerUiButtonComponent *towerUiButton, glm::mat4 projection) {
+void TowerUiSystem::renderTowerUiButtons(shared_ptr<TowerUiButtonMetaComponent> towerUiButtonMeta, shared_ptr<TowerUiButtonComponent> towerUiButton, glm::mat4 projection) {
 
   vector<shared_ptr<TowerUiButtonComponent::TowerUiBtn>> btnList = towerUiButton->btnList;
   // sort by size
@@ -94,7 +94,7 @@ void TowerUiSystem::renderTowerUiButtons(TowerUiButtonMetaComponent *towerUiButt
   }
 }
 
-void TowerUiSystem::renderDescription(TowerUiButtonMetaComponent *towerUiButtonMeta, TowerUiButtonComponent *towerUiButton, glm::mat4 projection){
+void TowerUiSystem::renderDescription(shared_ptr<TowerUiButtonMetaComponent> towerUiButtonMeta, shared_ptr<TowerUiButtonComponent> towerUiButton, glm::mat4 projection){
   if(towerUiButton->descriptionLine1.size() != 0) {
     Text::getInstance().render(towerUiButton->descriptionLine1, towerUiButton->descriptionLine1Pos, 0.5, vec3(1.f, 1.f, 0.f), Text::Font::munro_small);
   }

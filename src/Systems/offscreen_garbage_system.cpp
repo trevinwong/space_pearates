@@ -20,7 +20,7 @@ void OffscreenGarbageSystem::destroyEntitiesContainingAll(EntityManager & entity
 void OffscreenGarbageSystem::destroyOffscreen(EntityManager & entityManager, vector<shared_ptr<Entity>> entities)
 {
   for (shared_ptr<Entity> targetEntity : entities) {
-    TransformComponent *transformComponent = targetEntity->getComponent<TransformComponent>();
+    shared_ptr<TransformComponent> transformComponent = targetEntity->getComponent<TransformComponent>();
     if (transformComponent == nullptr) continue;
 
     auto leftTopPositon = transformComponent->position;

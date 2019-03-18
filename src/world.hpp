@@ -1,7 +1,7 @@
 #ifndef WORLD_H
 #define WORLD_H
 
-#include "utility.hpp"
+#include "Utility/utility.hpp"
 #include "hud.hpp"
 #include "Systems/enemy_system.hpp"
 #include "Utility/waveset_structs.hpp"
@@ -44,7 +44,6 @@ public:
   void processInput(float dt, GLboolean keys[], GLboolean keysProcessed[]);
   void update(float dt); // dt = delta time, how much time has passed since update was last called
   void draw();
-  void destroy();
   vec2 player_spawn = vec2(0.0f, 0.0f);
 
 private:

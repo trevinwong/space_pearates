@@ -3,13 +3,20 @@
 
 #define GL3W_IMPLEMENTATION  // DO NOT define this in any other C++ or header files
 #define STB_IMAGE_IMPLEMENTATION // DO NOT define this in any other C++ or header files
-#include "utility.hpp"
+#include "Utility/utility.hpp"
 #include "world.hpp"
-
-World world;
 
 GLboolean keys[1024];
 GLboolean keysProcessed[1024];
+
+class Main{
+public:
+  ~Main(){
+    glfwTerminate();
+  }
+};
+shared_ptr<Main> mainObj = make_shared<Main>();
+shared_ptr<World> world;
 
 void error_callback(int error, const char* desc)
 {
@@ -83,7 +90,8 @@ int main(int argc, char * argv[]) {
   // Playing background music indefinitely (init audio)
   AudioLoader::getInstance();
 
-  world.init(vec2(SCREEN_WIDTH, SCREEN_HEIGHT));
+  world = make_shared<World>();
+  world->init(vec2(SCREEN_WIDTH, SCREEN_HEIGHT));
 
   // dT variables.
   GLfloat deltaTime = 0.0f;
@@ -106,18 +114,16 @@ int main(int argc, char * argv[]) {
     // Process events from the window system.
     glfwPollEvents();
 
-    world.processInput(deltaTime, keys, keysProcessed);
-    world.update(deltaTime);
-    world.draw();
+    world->processInput(deltaTime, keys, keysProcessed);
+    world->update(deltaTime);
+    world->draw();
 
     // Flip buffers and draw.
     glfwSwapBuffers(mWindow);
   }
 
   AudioLoader::getInstance().destroy();
-  world.destroy();
 
-  glfwTerminate();
   return EXIT_SUCCESS;
 }
 

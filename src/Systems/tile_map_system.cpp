@@ -5,7 +5,7 @@ vector<vec2> TileMapSystem::enemySpawnPoints;
 void TileMapSystem::loadTileMap(EntityManager & entityManager, vec2 & player_spawn)
 {
   shared_ptr<Entity> mapEntity = entityManager.getEntities(entityManager.getComponentChecker(vector<int>{ComponentType::map}))[0];
-  MapComponent *mapComponent = mapEntity->getComponent<MapComponent>();
+  shared_ptr<MapComponent> mapComponent = mapEntity->getComponent<MapComponent>();
   if (mapComponent == nullptr) return;
 
   //vector<glm::vec2> enemySpawnPoints;

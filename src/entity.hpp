@@ -1,7 +1,7 @@
 #ifndef ENTITY_H
 #define ENTITY_H
 
-#include "utility.hpp"
+#include "Utility/utility.hpp"
 #include "Components/base_component.hpp"
 
 class Entity {
@@ -11,14 +11,14 @@ public:
 
   // Template functions MUST be defined in the header as the compiler must see it before generating code for any usages.
   template <typename T>
-  T* getComponent()
+  shared_ptr<T> getComponent()
   {
-    T *component = static_cast<T*>(components[T::typeID]);
+    shared_ptr<T> component = std::dynamic_pointer_cast<T>(components[T::typeID]);
     return (component == nullptr) ? nullptr : component;
   }
 
   template <typename T>
-  void setComponent(T* component)
+  void setComponent(shared_ptr<T> component)
   {
     components[T::typeID] = component;
     has_components.set(T::typeID, 1);
@@ -29,8 +29,9 @@ public:
   {
     // TO-DO: Move to c++11 unique_ptrs as this can cause seg fault
     // if something is holding onto this pointer still...
-    delete components[T::typeID];
-    components[T::typeID] = nullptr;
+    shared_ptr<BaseComponent> component = components[T::typeID];
+    if (component) component.reset();
+    components[T::typeID] == nullptr;
     has_components.set(T::typeID, 0);
   }
 
@@ -52,7 +53,7 @@ public:
 
   void print();
 private:
-  std::vector<BaseComponent*> components;
+  std::vector<shared_ptr<BaseComponent>> components;
   std::bitset<ComponentType::max_count> has_components;
 };
 

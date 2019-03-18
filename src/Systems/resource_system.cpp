@@ -13,7 +13,7 @@ void ResourceSystem::updateDespawn(EntityManager& entityManager, float dt) {
   vector<shared_ptr<Entity>> resources = entityManager.getEntities(entityManager.getComponentChecker(vector<int> {ComponentType::resource}));
 
   for (shared_ptr<Entity> resource : resources) {
-    ResourceComponent *resourceComponent = resource->getComponent<ResourceComponent>();
+    shared_ptr<ResourceComponent> resourceComponent = resource->getComponent<ResourceComponent>();
     resourceComponent->timer.update(dt);
 
     if (resourceComponent->timer.getTimeLeft() <= 0) {

@@ -19,7 +19,7 @@ EntityGrid CollisionSystem::preprocessEntitiesIntoGrid(vector<shared_ptr<Entity>
       vec2 cell_size = { cell_width, cell_height };
 
       for (shared_ptr<Entity> e : entities) {
-        CollisionComponent *collision = e->getComponent<CollisionComponent>();
+				shared_ptr<CollisionComponent> collision = e->getComponent<CollisionComponent>();
         if (Math::isCollidingWith(cell_pos, cell_size, collision->position, collision->size)) {
           grid[x][y].push_back(e);
         }
@@ -41,12 +41,12 @@ void CollisionSystem::checkCollisions(EntityManager &entityManager)
       for (shared_ptr<Entity> e1 : cell) {
         for (shared_ptr<Entity> e2 : cell) {
 					if (e1 != e2) {
-						CollisionComponent *e1_collision = e1->getComponent<CollisionComponent>();
-						CollisionComponent *e2_collision = e2->getComponent<CollisionComponent>();
+						shared_ptr<CollisionComponent> e1_collision = e1->getComponent<CollisionComponent>();
+						shared_ptr<CollisionComponent> e2_collision = e2->getComponent<CollisionComponent>();
 						string hash1 = std::to_string(e1->id) + ":" + std::to_string(e2->id);
 						string hash2 = std::to_string(e2->id) + ":" + std::to_string(e1->id);
 
-						if (e1_collision->isCollidingWith(*e2_collision) && !collision_cache[hash1] && !collision_cache[hash2]) {
+						if (e1_collision && e2_collision && e1_collision->isCollidingWith(*e2_collision) && !collision_cache[hash1] && !collision_cache[hash2]) {
 							collision_cache[hash1] = true;
 							collision_cache[hash2] = true;
 							handleCollision(e1, e2, entityManager);
@@ -61,7 +61,7 @@ void CollisionSystem::checkCollisions(EntityManager &entityManager)
 void CollisionSystem::handleCollisionOfType(bitset<ComponentType::max_count> components1, bitset<ComponentType::max_count> components2, shared_ptr<Entity> e1, shared_ptr<Entity> e2, EntityManager &entityManager, void(*handleCollisionFn)(shared_ptr<Entity>, shared_ptr<Entity>, EntityManager&))
 {
 	bool pair1 = e1->hasComponents(components1) && e2->hasComponents(components2);
-	bool pair2 = e1->hasComponents(components2) && e2->hasComponents(components1);	
+	bool pair2 = e1->hasComponents(components2) && e2->hasComponents(components1);
 	if (pair1) handleCollisionFn(e1, e2, entityManager);
 	if (pair2) handleCollisionFn(e2, e1, entityManager);
 }
@@ -71,7 +71,7 @@ void CollisionSystem::handlePlayerResource(shared_ptr<Entity> player, shared_ptr
 	// remove the resouce from world
 	entityManager.removeEntity(resource);
 	// Add the resource into wallet
-	WalletComponent *wallet = player->getComponent<WalletComponent>();
+	shared_ptr<WalletComponent> wallet = player->getComponent<WalletComponent>();
 	if (wallet != nullptr) {
 		// TODO: for diff type resources, increase diff amount
 		wallet->earn(1);
@@ -82,17 +82,27 @@ void CollisionSystem::handlePlayerResource(shared_ptr<Entity> player, shared_ptr
 	Mix_PlayChannel(-1, AudioLoader::getInstance().collect_coin_sound, 0);
 }
 
+void CollisionSystem::handlePlayerEnemy(shared_ptr<Entity> player, shared_ptr<Entity> enemy, EntityManager &entityManager)
+{
+	player->setComponent<DamageComponent>(make_shared<DamageComponent>(enemy->getComponent<EnemyComponent>()->totalAtk));
+}
+
 void CollisionSystem::handleProjectileEnemy(shared_ptr<Entity> projectile, shared_ptr<Entity> enemy, EntityManager &entityManager)
 {
-	ProjectileComponent *projectile_info = projectile->getComponent<ProjectileComponent>();
-	SplineComponent *spline = projectile->getComponent<SplineComponent>();
+	shared_ptr<ProjectileComponent> projectile_info = projectile->getComponent<ProjectileComponent>();
+	shared_ptr<SplineComponent> spline = projectile->getComponent<SplineComponent>();
+	shared_ptr<DamageComponent> damage = enemy->getComponent<DamageComponent>();
 
 	if (spline == nullptr) {
 		// Not a boomerang projectile, remove it
-		projectile->setComponent<DeathComponent>(new DeathComponent());
+		projectile->setComponent<DeathComponent>(make_shared<DeathComponent>());
 	}
 
-	enemy->setComponent<DamageComponent>(new DamageComponent(projectile_info->getAttackPower()));
+	if (damage == nullptr) {
+		enemy->setComponent<DamageComponent>(make_shared<DamageComponent>(projectile_info->getAttackPower()));
+	} else {
+		damage->addDamageInstance(projectile_info->getAttackPower());
+	}
 }
 
 void CollisionSystem::handleCollision(shared_ptr<Entity> e1, shared_ptr<Entity> e2, EntityManager &entityManager)
@@ -104,4 +114,5 @@ void CollisionSystem::handleCollision(shared_ptr<Entity> e1, shared_ptr<Entity> 
 
 	handleCollisionOfType(isPlayer, isResource, e1, e2, entityManager, handlePlayerResource);
 	handleCollisionOfType(isProjectile, isEnemy, e1, e2, entityManager, handleProjectileEnemy);
+  handleCollisionOfType(isPlayer, isEnemy, e1, e2, entityManager, handlePlayerEnemy);
 }

@@ -1,7 +1,7 @@
 #ifndef MATH_H
 #define MATH_H
 
-#include "utility.hpp"
+#include "Utility/utility.hpp"
 
 class Math {
 public:

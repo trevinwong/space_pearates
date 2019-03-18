@@ -11,10 +11,10 @@ void EnemySystem::move (float dt, EntityManager& entityManager) {
 
   float eps = 0.001;
   for (shared_ptr<Entity> e : entityList) {
-    MovementComponent *movementComponent = e->getComponent<MovementComponent>();
-    EnemyComponent *enemyComponent = e->getComponent<EnemyComponent>();
-    TransformComponent *transformComponent = e->getComponent<TransformComponent>();
-    HealthComponent *healthComponent = home->getComponent<HealthComponent>();
+    shared_ptr<MovementComponent> movementComponent = e->getComponent<MovementComponent>();
+    shared_ptr<EnemyComponent> enemyComponent = e->getComponent<EnemyComponent>();
+    shared_ptr<TransformComponent> transformComponent = e->getComponent<TransformComponent>();
+    shared_ptr<HealthComponent> healthComponent = home->getComponent<HealthComponent>();
 
 		vec2 vel = movementComponent->velocity;
 		vec2 pos = transformComponent->position;
@@ -65,7 +65,7 @@ void EnemySystem::move (float dt, EntityManager& entityManager) {
 
 bool EnemySystem::setMap (EntityManager& entityManager) {
   shared_ptr<Entity> e = entityManager.getEntitiesHasOneOf(entityManager.getComponentChecker(vector<int>{ComponentType::map}))[0];
-  MapComponent *mapComponent = e->getComponent<MapComponent>();
+	shared_ptr<MapComponent> mapComponent = e->getComponent<MapComponent>();
   if (!mapComponent) return false;
   map = mapComponent->mapData2DArray;
   return true;

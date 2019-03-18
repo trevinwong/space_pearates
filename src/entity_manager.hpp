@@ -1,7 +1,7 @@
 #ifndef ENTITY_MANAGER_H
 #define ENTITY_MANAGER_H
 
-#include "utility.hpp"
+#include "Utility/utility.hpp"
 #include "Components/base_component.hpp"
 #include "Components/projectile_component.hpp"
 #include "entity.hpp"
@@ -25,8 +25,6 @@ public:
   // Remove entities that do NOT contain one of these component types
   void filterRemoveByComponentType(ComponentType::ComponentType type);
   void filterRemoveByComponentType(vector<int> components);
-
-  void destroyAll();
 private:
 	vector<shared_ptr<Entity>> entities;
 };

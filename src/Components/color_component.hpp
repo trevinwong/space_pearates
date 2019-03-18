@@ -1,7 +1,7 @@
 #ifndef COLOR_COMPONENT_H
 #define COLOR_COMPONENT_H
 
-#include "utility.hpp"
+#include "Utility/utility.hpp"
 #include "base_component.hpp"
 
 // Change to RGBA after we get everything running.

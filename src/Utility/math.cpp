@@ -1,4 +1,4 @@
-#include "math.hpp"
+#include "Utility/math.hpp"
 
 bool Math::isCollidingWith(vec2 pos1, vec2 size1, vec2 pos2, vec2 size2)
 {	

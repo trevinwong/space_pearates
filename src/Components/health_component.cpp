@@ -1,9 +1,7 @@
 #include "health_component.hpp"
 
-HealthComponent::HealthComponent(Program * _program, float _maxHP) : program(_program), maxHP(_maxHP), curHP(_maxHP)
+HealthComponent::HealthComponent(shared_ptr<Program> _program, float _maxHP) : program(_program), maxHP(_maxHP), curHP(_maxHP)
 {
-  // We want to create a square in which we can overlay our texture on.
-  GLuint VBO;
   // Define our vertices (a square is composed of two triangles.)
   // We define 6 vertices because we don't want to use IBOs.
 
@@ -46,6 +44,7 @@ HealthComponent::HealthComponent(Program * _program, float _maxHP) : program(_pr
 
 HealthComponent::~HealthComponent()
 {
+  glDeleteBuffers(1, &this->VBO);
   glDeleteVertexArrays(1, &this->quadVAO);
 }
 

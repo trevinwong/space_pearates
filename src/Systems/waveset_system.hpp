@@ -1,7 +1,7 @@
 #ifndef WAVESET_SYSTEM_H
 #define WAVESET_SYSTEM_H
 
-#include "utility.hpp"
+#include "Utility/utility.hpp"
 #include "entity.hpp"
 #include "entity_manager.hpp"
 #include "Utility/waveset_structs.hpp"

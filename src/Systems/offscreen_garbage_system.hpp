@@ -2,7 +2,7 @@
 #define OFFSCREEN_GARBAGE_SYSTEM_H
 
 #include <vector>
-#include "utility.hpp"
+#include "Utility/utility.hpp"
 #include "entity.hpp"
 #include "entity_manager.hpp"
 #include "../Components/transform_component.hpp"

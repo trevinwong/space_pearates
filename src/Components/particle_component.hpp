@@ -1,11 +1,11 @@
 #ifndef PARTICLE_COMPONENT_H
 #define PARTICLE_COMPONENT_H
 
-#include "utility.hpp"
+#include "Utility/utility.hpp"
 #include "base_component.hpp"
 #include "../Utility/timer.hpp" 
 #include "entity.hpp"
-#include "texture.hpp"
+#include "Utility/texture.hpp"
 
 namespace ParticleType {
   enum type {
@@ -31,8 +31,8 @@ public:
 
     ParticleType::type type;
 
-    Texture * bloodTexture = new Texture(texture_path("blood.png"), true);
-    Texture * smokeTexture = new Texture(texture_path("smoke.png"), true);
+    shared_ptr<Texture> bloodTexture = make_shared<Texture>(texture_path("blood.png"), true);
+    shared_ptr<Texture> smokeTexture = make_shared<Texture>(texture_path("smoke.png"), true);
 };
 
 #endif

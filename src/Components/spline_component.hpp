@@ -1,7 +1,7 @@
 #ifndef SPLINE_COMPONENT_H
 #define SPLINE_COMPONENT_H
 
-#include "utility.hpp"
+#include "Utility/utility.hpp"
 #include "base_component.hpp"
 
 class SplineComponent : public BaseComponent {

@@ -120,8 +120,3 @@ void World::draw()
   towerUiSystem.render(entityManager, projection);
   HUD::getInstance().draw();
 }
-
-void World::destroy()
-{
-  entityManager.destroyAll();
-}

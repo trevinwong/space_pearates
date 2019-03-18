@@ -5,7 +5,7 @@ Entity WavesetManagerFactory::build(string fileName)
 	Entity e;
 	Waveset waveset = readWavesetFile(fileName);
 	//std::shared_ptr<WavesetComponent> wavesetComponent = std::make_shared<WavesetComponent>(WavesetComponent(waveset));
-	WavesetComponent* wavesetComponent = new WavesetComponent(waveset);
+	shared_ptr<WavesetComponent> wavesetComponent = make_shared<WavesetComponent>(waveset);
 	e.setComponent<WavesetComponent>(wavesetComponent);
 	return e;
 }

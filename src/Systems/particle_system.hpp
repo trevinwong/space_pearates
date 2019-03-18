@@ -1,7 +1,7 @@
 #ifndef PARTICLE_SYSTEM_H
 #define PARTICLE_SYSTEM_H
 
-#include "utility.hpp"
+#include "Utility/utility.hpp"
 #include "entity.hpp"
 #include "entity_manager.hpp"
 #include "../Utility/timer.hpp"
@@ -24,7 +24,7 @@ public:
 private:
   static vector<shared_ptr<Entity>> particleClusters;
   static int findUnusedParticle();
-  static void resetParticle(ColorComponent * cComponent, TransformComponent * tComponent, ParticleComponent * pComponent);
+  static void resetParticle(shared_ptr<ColorComponent> cComponent, shared_ptr<TransformComponent> tComponent, shared_ptr<ParticleComponent> pComponent);
 
 };
 #endif

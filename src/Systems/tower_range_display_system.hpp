@@ -1,9 +1,9 @@
 #ifndef TOWER_RANGE_DISPLAY_SYSTEM_H
 #define TOWER_RANGE_DISPLAY_SYSTEM_H
 
-#include "utility.hpp"
-#include "texture.hpp"
-#include "program.hpp"
+#include "Utility/utility.hpp"
+#include "Utility/texture.hpp"
+#include "Utility/program.hpp"
 #include "entity.hpp"
 #include "entity_manager.hpp"
 #include "../Components/sprite_component.hpp"
@@ -20,7 +20,7 @@ public:
 
 private:
   bool isPlayerNear(float mapTileWidth, float mapTileHeight, vec2 &towerCenterPosition, vec2 &playerCenterPosition);
-  void drawRangesHelper(SpriteComponent *towerRangeSpriteComponent, vec2 shootRangeCircleCenterPosition, float towerRadius, glm::mat4 projection);
+  void drawRangesHelper(shared_ptr<SpriteComponent> towerRangeSpriteComponent, vec2 shootRangeCircleCenterPosition, float towerRadius, glm::mat4 projection);
 };
 
 #endif

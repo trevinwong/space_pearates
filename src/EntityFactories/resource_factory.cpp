@@ -2,19 +2,19 @@
 
 Entity ResourceFactory::build(vec2 position, float scale)
 {
-  Program *program = new Program(shader_path("sprite.vert"), shader_path("sprite.frag"));
-  Texture *texture = new Texture(texture_path("coin_rotating.png"), true);
+  shared_ptr<Program> program = make_shared<Program>(shader_path("sprite.vert"), shader_path("sprite.frag"));
+  shared_ptr<Texture> texture = make_shared<Texture>(texture_path("coin_rotating.png"), true);
 
-  SpriteComponent *sprite = new SpriteComponent(program, texture);
-  ColorComponent *colour = new ColorComponent(glm::vec4(1.0f, 1.0f, 0.0f, 1.0f));
-  AnimatedComponent *animated = new AnimatedComponent(6, 0.2);
+  shared_ptr<SpriteComponent> sprite = make_shared<SpriteComponent>(program, texture);
+  shared_ptr<ColorComponent> colour = make_shared<ColorComponent>(glm::vec4(1.0f, 1.0f, 0.0f, 1.0f));
+  shared_ptr<AnimatedComponent> animated = make_shared<AnimatedComponent>(6, 0.2);
 
-  ResourceComponent *resource = new ResourceComponent(20.0); // resource stays on screen for 20s
-  MovementComponent *movement = new MovementComponent(
+  shared_ptr<ResourceComponent> resource = make_shared<ResourceComponent>(20.0); // resource stays on screen for 20s
+  shared_ptr<MovementComponent> movement = make_shared<MovementComponent>(
     vec2(0.0f, 0.0f), vec2(0.0f, 0.0f), vec2(0.0f, GRAVITY_VELOCITY), vec2(0.0f, GRAVITY_ACCEL));
 
-  TransformComponent *transform = new TransformComponent(position, scale, 0.0f);
-  CollisionComponent *collision = new CollisionComponent(position, scale, 0.0f);
+  shared_ptr<TransformComponent> transform = make_shared<TransformComponent>(position, scale, 0.0f);
+  shared_ptr<CollisionComponent> collision = make_shared<CollisionComponent>(position, scale, 0.0f);
 
   Entity e;
   e.setComponent<SpriteComponent>(sprite);

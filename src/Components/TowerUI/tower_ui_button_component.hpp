@@ -1,7 +1,7 @@
 #ifndef TOWER_UI_BUTTON_COMPONENT_H
 #define TOWER_UI_BUTTON_COMPONENT_H
 
-#include "../../utility.hpp"
+#include "../../Utility/utility.hpp"
 #include "../base_component.hpp"
 #include "../sprite_component.hpp"
 

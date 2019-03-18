@@ -6,7 +6,7 @@
 class BackgroundSpriteComponent : public SpriteComponent {
 public:
   // initPosition indicate the position of background image when the player at (0, 0)
-  BackgroundSpriteComponent(vec2 _positionOffset, Program *_program, Texture *_texture) :
+  BackgroundSpriteComponent(vec2 _positionOffset, shared_ptr<Program> _program, shared_ptr<Texture> _texture) :
     positionOffset(_positionOffset),
     SpriteComponent(_program, _texture) {};
   static const int typeID = ComponentType::background_sprite;
