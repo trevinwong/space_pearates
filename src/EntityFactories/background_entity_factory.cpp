@@ -4,7 +4,7 @@ Entity BackgroundEntityFactory::createBackgroundEntity()
 {
   vec2 positionOffset(-200, -200); // another weird initialization?!?! cpp...
   shared_ptr<Program> program = make_shared<Program>(shader_path("sprite.vert"), shader_path("sprite.frag"));
-  shared_ptr<Texture> texture = make_shared<Texture>(texture_path("map0_bg_image.jpg"), false);
+  shared_ptr<Texture> texture = make_shared<Texture>(texture_path("earth_bg.png"), false);
   shared_ptr<BackgroundSpriteComponent> backgroundSpriteComponent = make_shared<BackgroundSpriteComponent>(positionOffset, program, texture);
 
   vec2 position = vec2(0, 0);
