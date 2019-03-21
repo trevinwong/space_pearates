@@ -55,6 +55,8 @@ set(SOURCE_FILES_CORE
 	src/EntityFactories/map_entity_factory.hpp
 	src/EntityFactories/tower_ui_entity_factory.cpp
 	src/EntityFactories/tower_ui_entity_factory.hpp
+  src/EntityFactories/menu_ui_factory.cpp
+  src/EntityFactories/menu_ui_factory.hpp
 	src/EntityFactories/tile_factory.cpp
 	src/EntityFactories/tile_factory.hpp
 	src/EntityFactories/resource_factory.cpp
@@ -115,6 +117,8 @@ set(SOURCE_FILES_CORE
 	src/Components/TowerUI/TowerUIState/tower_ui_shift_left_state.hpp
 	src/Components/TowerUI/TowerUIState/tower_ui_shift_right_state.cpp
 	src/Components/TowerUI/TowerUIState/tower_ui_shift_right_state.hpp
+  src/Components/MenuUI/menu_ui_component.cpp
+  src/Components/MenuUI/menu_ui_component.hpp
 	src/Components/projectile_component.cpp
 	src/Components/projectile_component.hpp
 	src/Components/tile_component.cpp
@@ -168,6 +172,8 @@ set(SOURCE_FILES_CORE
 	src/Utility/timer.cpp
 	src/Utility/waveset_structs.hpp
 	src/Utility/waveset_structs.cpp
+	src/Systems/menu_ui_system.cpp
+	src/Systems/menu_ui_system.hpp
 	src/Systems/enemy_system.cpp
 	src/Systems/enemy_system.hpp
 	src/Systems/waveset_system.cpp
@@ -200,6 +206,15 @@ set(SOURCE_FILES_CORE
 	src/Utility/audio_loader.hpp
 	src/help_menu.hpp
 	src/help_menu.cpp
+	src/Scenes/scene_manager.hpp
+	src/Scenes/scene_manager.cpp
+	src/Scenes/abstract_scene.hpp
+	src/Scenes/main_menu_scene.cpp
+	src/Scenes/main_menu_scene.hpp
+  src/Scenes/level_selection_scene.cpp
+	src/Scenes/level_selection_scene.hpp
+	src/Scenes/how_to_play_scene.cpp
+	src/Scenes/how_to_play_scene.hpp
 	src/world.cpp
 	src/world.hpp
 )

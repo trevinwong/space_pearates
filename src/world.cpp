@@ -5,8 +5,9 @@ const vector<int> non_recyclable_components = {
   ComponentType::tile, ComponentType::map, ComponentType::home, ComponentType::background_sprite, ComponentType::player, ComponentType::particle,
   ComponentType::waveset }; // TODO: eventually move WavesetManagerFactory(WavesetComponent) functionality to WavesetSystem singleton...
 
-void World::init(vec2 screen)
+World::World(std::weak_ptr<SceneManager> _sceneManager) : AbstractScene(_sceneManager)
 {
+  vec2 screen =  vec2(SCREEN_WIDTH, SCREEN_HEIGHT);
   projection = glm::ortho(0.0f, static_cast<GLfloat>(screen.x), static_cast<GLfloat>(screen.y), 0.0f, -1.0f, 1.0f);
   physicsSystem.setScreenInfo(screen);
   collisionSystem.setScreenInfo(screen);
@@ -22,7 +23,7 @@ void World::init(vec2 screen)
   enemySystem.setMap(entityManager);
   entityManager.addEntity(WavesetManagerFactory::build(waveset_path("waveset0.txt")));
 
-  entityManager.addEntity(BackgroundEntityFactory::createBackgroundEntity());
+  entityManager.addEntity(BackgroundEntityFactory::createBackgroundEntity("earth_bg.png", false, vec2(2304, 1620)));
   entityManager.addEntity(TowerUiEntityFactory::create());
 
   particleSystem.initParticleSystem(entityManager); // adds particle entities pool
@@ -55,16 +56,55 @@ void World::reset()
   // Spawn starting resources
   ResourceFactory::spawnInitial(entityManager);            // adds 6 entities
   entityManager.addEntity(TowerUiEntityFactory::create()); // adds 1 entity
+
+  paused = false;
+  HelpMenu::getInstance().showHelp = false;
 }
 
 void World::processInput(float dt, GLboolean keys[], GLboolean keysProcessed[])
 {
+  if (keys[GLFW_KEY_R] && !keysProcessed[GLFW_KEY_R])
+  {
+    reset();
+    keysProcessed[GLFW_KEY_R] = true;
+    return;
+  }
+  if (keys[GLFW_KEY_M] && !keysProcessed[GLFW_KEY_M])
+  {
+    AudioLoader::getInstance().changeBgm();
+    keysProcessed[GLFW_KEY_M] = true;
+  }
+  if (keys[GLFW_KEY_H] && !keysProcessed[GLFW_KEY_H])
+  {
+    paused = !paused;
+    HelpMenu::getInstance().showHelp = paused;
+    keysProcessed[GLFW_KEY_H] = true;
+  }
+  if (keys[GLFW_KEY_P] && !keysProcessed[GLFW_KEY_P])
+  {
+    paused = !paused;
+    HelpMenu::getInstance().showHelp = paused;
+    keysProcessed[GLFW_KEY_P] = true;
+  }
+  if (keys[GLFW_KEY_ESCAPE] && !keysProcessed[GLFW_KEY_ESCAPE])
+  {
+    if(shared_ptr<SceneManager> sceneManager_ptr = sceneManager.lock()){
+      sceneManager_ptr->setNextSceneToMainMenu();
+    }
+    paused = false;
+    HelpMenu::getInstance().showHelp = false;
+    keysProcessed[GLFW_KEY_ESCAPE] = true;
+  }
+  if (paused) return;
+
   playerSystem.interpInput(entityManager, dt, keys, keysProcessed);
   towerUiSystem.interpInput(entityManager, keys, keysProcessed);
 }
 
 void World::update(float dt)
 {
+  if (paused) return;
+
   // Note: Be careful, order may matter in some cases for systems
   HUD::getInstance().update(dt);
 

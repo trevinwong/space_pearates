@@ -21,6 +21,7 @@ namespace ComponentType {
     tower_ui_button,
     tower_ui_button_meta,
     tower_ui_state,
+    menu_ui,
     projectile,
     spline,
     tile,
