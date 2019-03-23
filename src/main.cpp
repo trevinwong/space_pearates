@@ -96,6 +96,7 @@ int main(int argc, char * argv[]) {
   // dT variables.
   GLfloat deltaTime = 0.0f;
   GLfloat lastFrame = glfwGetTime();
+  bool paused = false;
 
   // Rendering loop.
   while (!glfwWindowShouldClose(mWindow)) {
@@ -114,8 +115,26 @@ int main(int argc, char * argv[]) {
     // Process events from the window system.
     glfwPollEvents();
 
-    world->processInput(deltaTime, keys, keysProcessed);
-    world->update(deltaTime);
+    if (keys[GLFW_KEY_P] && !keysProcessed[GLFW_KEY_P])
+    {
+      paused = !paused;
+      keysProcessed[GLFW_KEY_P] = true;
+    }
+    if (keys[GLFW_KEY_R] && !keysProcessed[GLFW_KEY_R])
+    {
+      world->reset();
+      paused = false;
+      keysProcessed[GLFW_KEY_R] = true;
+    }
+    if (keys[GLFW_KEY_H] && !keysProcessed[GLFW_KEY_H])
+    {
+      AudioLoader::getInstance().changeBgm();
+      keysProcessed[GLFW_KEY_H] = true;
+    }
+    if (!paused) {
+      world->processInput(deltaTime, keys, keysProcessed);
+      world->update(deltaTime);
+    }
     world->draw();
 
     // Flip buffers and draw.

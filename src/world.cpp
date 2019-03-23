@@ -29,45 +29,36 @@ void World::init(vec2 screen)
   renderToTextureSystem.initWaterEffect();
 }
 
+void World::reset()
+{
+  // Reset singletons
+  HUD::getInstance().reset();
+  AudioLoader::getInstance().reset();
+  WavesetSystem::getInstance().reset();
+
+  // Remove all recyclable entities
+  entityManager.filterRemoveByComponentType(non_recyclable_components);
+
+  // Reset map tower data
+  shared_ptr<Entity> map = entityManager.getEntitiesHasOneOf(entityManager.getComponentChecker(ComponentType::map))[0];
+  map->getComponent<MapComponent>()->reset();
+  // Reset particles pool
+  particleSystem.resetParticles(entityManager);
+  // Reset home health to max
+  shared_ptr<Entity> home = entityManager.getEntitiesHasOneOf(entityManager.getComponentChecker(ComponentType::home))[0];
+  home->getComponent<HealthComponent>()->reset();
+  // Reset player position and wallet
+  shared_ptr<Entity> player = entityManager.getEntitiesHasOneOf(entityManager.getComponentChecker(vector<int>{ComponentType::player, ComponentType::wallet}))[0];
+  player->getComponent<TransformComponent>()->position = player_spawn;
+  player->getComponent<WalletComponent>()->coins = 0;
+
+  // Spawn starting resources
+  ResourceFactory::spawnInitial(entityManager);            // adds 6 entities
+  entityManager.addEntity(TowerUiEntityFactory::create()); // adds 1 entity
+}
+
 void World::processInput(float dt, GLboolean keys[], GLboolean keysProcessed[])
 {
-  // Reset
-  if (keys[GLFW_KEY_R] && !keysProcessed[GLFW_KEY_R])
-  {
-    // Reset singletons
-    HUD::getInstance().reset();
-    AudioLoader::getInstance().reset();
-    WavesetSystem::getInstance().reset();
-
-    // Remove all recyclable entities
-    entityManager.filterRemoveByComponentType(non_recyclable_components);
-
-    // Reset map tower data
-    shared_ptr<Entity> map = entityManager.getEntitiesHasOneOf(entityManager.getComponentChecker(ComponentType::map))[0];
-    map->getComponent<MapComponent>()->reset();
-    // Reset particles pool
-    particleSystem.resetParticles(entityManager);
-    // Reset home health to max
-    shared_ptr<Entity> home = entityManager.getEntitiesHasOneOf(entityManager.getComponentChecker(ComponentType::home))[0];
-    home->getComponent<HealthComponent>()->reset();
-    // Reset player position and wallet
-    shared_ptr<Entity> player = entityManager.getEntitiesHasOneOf(entityManager.getComponentChecker(vector<int>{ComponentType::player, ComponentType::wallet}))[0];
-    player->getComponent<TransformComponent>()->position = player_spawn;
-    player->getComponent<WalletComponent>()->coins = 0;
-
-    // Spawn starting resources
-    ResourceFactory::spawnInitial(entityManager);            // adds 6 entities
-    entityManager.addEntity(TowerUiEntityFactory::create()); // adds 1 entity
-
-    keysProcessed[GLFW_KEY_R] = true;
-  }
-
-  if (keys[GLFW_KEY_H] && !keysProcessed[GLFW_KEY_H])
-  {
-    AudioLoader::getInstance().changeBgm();
-    keysProcessed[GLFW_KEY_H] = true;
-  }
-
   playerSystem.interpInput(entityManager, dt, keys, keysProcessed);
   towerUiSystem.interpInput(entityManager, keys, keysProcessed);
 }
