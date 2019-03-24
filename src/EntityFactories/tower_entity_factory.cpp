@@ -19,8 +19,8 @@ Entity TowerEntityFactory::createFireTower(vec2 towerCenterBottomPosition, vec2 
   vec2 relativeFirePosition(0.0, -0.3);
   float attackRange = 120.0f;
   int maxLevel = 3;
-  float fireRate = 6.0f; // increasing this slows the fire rate...
-  int projectileAttackPower = 10;
+  float fireRate = 2.0f; // increasing this slows the fire rate...
+  int projectileAttackPower = 20;
   shared_ptr<FireTowerAttackComponent> fireTowerAttack = make_shared<FireTowerAttackComponent>(
     relativeFirePosition, attackRange, maxLevel, fireRate, projectileAttackPower);
 
@@ -98,8 +98,8 @@ Entity TowerEntityFactory::createLightTower(vec2 towerCenterBottomPosition, vec2
   vec2 relativeFirePosition(0.0, -0.3);
   float attackRange = 180.0f;
   int maxLevel = 2;
-  float fireRate = 8.0f;
-  int projectileAttackPower = 10;
+  float fireRate = 2.5f;
+  int projectileAttackPower = 20;
   int projectileNumberPerShoot = 4;
   shared_ptr<LightTowerAttackComponent> lightTowerAttack = make_shared<LightTowerAttackComponent>(
     relativeFirePosition, attackRange, maxLevel, fireRate, projectileAttackPower, projectileNumberPerShoot);
@@ -139,8 +139,8 @@ Entity TowerEntityFactory::createStarTower(vec2 towerCenterBottomPosition, vec2 
   vec2 relativeFirePosition(0.0, -0.3);
   float attackRange = 180.0f;
   int maxLevel = 1;
-  float fireRate = 4.0f;
-  int projectileAttackPower = 10;
+  float fireRate = 2.5f;
+  int projectileAttackPower = 40;
   vec2 projectileSize = vec2(10, 10);
   shared_ptr<StarTowerAttackComponent> starTowerAttack = make_shared<StarTowerAttackComponent>(
     relativeFirePosition, attackRange, maxLevel, fireRate, projectileAttackPower, projectileSize);
@@ -180,8 +180,8 @@ Entity TowerEntityFactory::createBoomerangTower(vec2 towerCenterBottomPosition, 
   vec2 relativeFirePosition(0.0, -0.3);
   float attackRange = 180.0f;
   int maxLevel = 1;
-  float fireRate = 14.0f; //TODO maybe change this for level up too - tower specific power ups
-  int projectileAttackPower = 5; //TODO Adjust this (currently applies damage per frame)
+  float fireRate = 3.0f; //TODO maybe change this for level up too - tower specific power ups
+  int projectileAttackPower = 10; //TODO Adjust this (currently applies damage per frame)
   shared_ptr<BoomerangTowerAttackComponent> boomerangTowerAttack = make_shared<BoomerangTowerAttackComponent>(
     relativeFirePosition, attackRange, maxLevel, fireRate, projectileAttackPower);
 
