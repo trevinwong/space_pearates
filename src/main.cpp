@@ -126,11 +126,19 @@ int main(int argc, char * argv[]) {
       paused = false;
       keysProcessed[GLFW_KEY_R] = true;
     }
-    if (keys[GLFW_KEY_H] && !keysProcessed[GLFW_KEY_H])
+    if (keys[GLFW_KEY_M] && !keysProcessed[GLFW_KEY_M])
     {
       AudioLoader::getInstance().changeBgm();
-      keysProcessed[GLFW_KEY_H] = true;
+      keysProcessed[GLFW_KEY_M] = true;
     }
+    // Launch help texture
+    if (keys[GLFW_KEY_H] && !keysProcessed[GLFW_KEY_H]) 
+    {
+      paused = !paused;
+      keysProcessed[GLFW_KEY_H] = true;
+      HelpMenu::getInstance().showHelp = paused;
+    }
+
     if (!paused) {
       world->processInput(deltaTime, keys, keysProcessed);
       world->update(deltaTime);
