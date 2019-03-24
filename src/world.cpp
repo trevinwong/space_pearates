@@ -110,4 +110,7 @@ void World::draw()
   towerRangeDisplaySystem.drawRanges(entityManager, projection);
   towerUiSystem.render(entityManager, projection);
   HUD::getInstance().draw();
+
+
+  HelpMenu::getInstance().draw(projection);
 }

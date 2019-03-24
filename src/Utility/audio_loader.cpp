@@ -21,7 +21,7 @@ AudioLoader::AudioLoader() {
   // Load music
   eurobeat_full = Mix_LoadMUS(audio_path("eurobeat_full.wav"));
   hip_shop = Mix_LoadMUS(audio_path("hip_shop.wav"));
-  
+
   reset();
 }
 
@@ -35,12 +35,24 @@ void AudioLoader::reset()
 
 void AudioLoader::changeBgm() {
   if (!isHipOn) {
-    // play music forever, fading in over 5 seconds
-    if (Mix_FadeInMusic(hip_shop, -1, 5000) == -1) {
-      cout << "Mix_FadeInMusic: " << Mix_GetError() << endl;
+    if (Mix_PlayMusic(hip_shop, -1) == -1) {
+      cout << "Mix_PlayMusic: " << Mix_GetError() << endl;
     }
-    isHipOn = true;
   }
+  else {
+    if (Mix_PlayMusic(eurobeat_full, -1) == -1) {
+      cout << "Mix_PlayMusic: " << Mix_GetError() << endl;
+    }
+  }
+  isHipOn = !isHipOn;
+}
+
+void AudioLoader::endgameBgm() { // TODO: cue on GAMEOVER
+  // play music forever, fading in over 5 seconds
+  if (Mix_FadeInMusic(hip_shop, -1, 5000) == -1) {
+    cout << "Mix_FadeInMusic: " << Mix_GetError() << endl;
+  }
+  isHipOn = true;
 }
 
 void AudioLoader::destroy()

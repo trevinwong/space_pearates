@@ -198,6 +198,8 @@ set(SOURCE_FILES_CORE
 	src/hud.hpp
 	src/Utility/audio_loader.cpp
 	src/Utility/audio_loader.hpp
+	src/help_menu.hpp
+	src/help_menu.cpp
 	src/world.cpp
 	src/world.hpp
 )

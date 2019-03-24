@@ -115,22 +115,28 @@ int main(int argc, char * argv[]) {
     // Process events from the window system.
     glfwPollEvents();
 
-    if (keys[GLFW_KEY_P] && !keysProcessed[GLFW_KEY_P])
-    {
-      paused = !paused;
-      keysProcessed[GLFW_KEY_P] = true;
-    }
     if (keys[GLFW_KEY_R] && !keysProcessed[GLFW_KEY_R])
     {
       world->reset();
       paused = false;
+      HelpMenu::getInstance().showHelp = paused;
       keysProcessed[GLFW_KEY_R] = true;
     }
-    if (keys[GLFW_KEY_H] && !keysProcessed[GLFW_KEY_H])
+    if (keys[GLFW_KEY_M] && !keysProcessed[GLFW_KEY_M])
     {
       AudioLoader::getInstance().changeBgm();
-      keysProcessed[GLFW_KEY_H] = true;
+      keysProcessed[GLFW_KEY_M] = true;
     }
+    // Launch help texture == pause
+    if (keys[GLFW_KEY_H] && !keysProcessed[GLFW_KEY_H] 
+      ||keys[GLFW_KEY_P] && !keysProcessed[GLFW_KEY_P])
+    {
+      paused = !paused;
+      HelpMenu::getInstance().showHelp = paused;
+      keysProcessed[GLFW_KEY_H] = true;
+      keysProcessed[GLFW_KEY_P] = true;
+    }
+
     if (!paused) {
       world->processInput(deltaTime, keys, keysProcessed);
       world->update(deltaTime);

@@ -3,6 +3,7 @@
 
 #include "Utility/utility.hpp"
 #include "hud.hpp"
+#include "help_menu.hpp"
 #include "Systems/enemy_system.hpp"
 #include "Utility/waveset_structs.hpp"
 #include "entity_manager.hpp"

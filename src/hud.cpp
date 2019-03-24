@@ -45,11 +45,7 @@ void HUD::draw()
   Text::getInstance().render("Enemies left:", vec2(900.0f, 120.0f));
   Text::getInstance().render(std::to_string(enemy_count), vec2(1200.0f, 120.0f));
 
-  //Tutorial
-  Text::getInstance().render("Press arrow keys to move",           vec2(190.0f, 240.0f), 0.5f, vec3(0.5f, 0.5f, 0.5f));
-  Text::getInstance().render("Press A or D to select tower type",  vec2(190.0f, 270.0f), 0.5f, vec3(0.5f, 0.5f, 0.5f));
-  Text::getInstance().render("Press S or Space to build towers",   vec2(190.0f, 300.0f), 0.5f, vec3(0.5f, 0.5f, 0.5f));
-  Text::getInstance().render("Press H for some hip-per music",     vec2(190.0f, 330.0f), 0.5f, vec3(0.5f, 0.5f, 0.5f));
+  Text::getInstance().render("Press H for help", vec2(20.f, 170.0f), 0.5f, vec3(0.5f, 0.5f, 0.5f));
 
 	if (you_win) Text::getInstance().render("YOU WIN!", vec2(400.0f, 400.0f), 2.0f);
 }
