@@ -27,6 +27,7 @@ public:
 
   void reset();
   void changeBgm();
+  void endgameBgm();
   void destroy();
 
 private:
