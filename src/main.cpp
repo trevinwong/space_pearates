@@ -4,7 +4,7 @@
 #define GL3W_IMPLEMENTATION  // DO NOT define this in any other C++ or header files
 #define STB_IMAGE_IMPLEMENTATION // DO NOT define this in any other C++ or header files
 #include "Utility/utility.hpp"
-#include "world.hpp"
+#include "Scenes/scene_manager.hpp"
 
 GLboolean keys[1024];
 GLboolean keysProcessed[1024];
@@ -16,7 +16,7 @@ public:
   }
 };
 shared_ptr<Main> mainObj = make_shared<Main>();
-shared_ptr<World> world;
+shared_ptr<SceneManager> sceneManager = make_shared<SceneManager>();
 
 void error_callback(int error, const char* desc)
 {
@@ -24,8 +24,9 @@ void error_callback(int error, const char* desc)
 }
 
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods) {
-  if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
-    glfwSetWindowShouldClose(window, GL_TRUE);
+  // Exit is handled in MainMenu
+  // if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
+  //   glfwSetWindowShouldClose(window, GL_TRUE);
   if (key >= 0 && key < 1024)
   {
     if (action == GLFW_PRESS) {
@@ -90,16 +91,22 @@ int main(int argc, char * argv[]) {
   // Playing background music indefinitely (init audio)
   AudioLoader::getInstance();
 
-  world = make_shared<World>();
-  world->init(vec2(SCREEN_WIDTH, SCREEN_HEIGHT));
+  sceneManager->setGLFWwindow(mWindow);
+  sceneManager->setNextSceneToMainMenu();
 
   // dT variables.
   GLfloat deltaTime = 0.0f;
   GLfloat lastFrame = glfwGetTime();
-  bool paused = false;
+
+  // Load GLFW which handles all of the extraneous stuff like creating a window
+  if (!glfwInit()) {
+    fprintf(stderr, "Failed to initialize GLFW.");
+    return EXIT_FAILURE;
+  }
 
   // Rendering loop.
   while (!glfwWindowShouldClose(mWindow)) {
+
     // Clear our screen for the upcoming render call.
     // TO-DO: Do we need to deal with depth?
     // TO-DO: Do we need a projection matrix?
@@ -107,41 +114,10 @@ int main(int argc, char * argv[]) {
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT);
 
-    // Calculate dT.
-    GLfloat currentFrame = glfwGetTime();
-    deltaTime = currentFrame - lastFrame;
-    lastFrame = currentFrame;
-
     // Process events from the window system.
     glfwPollEvents();
 
-    if (keys[GLFW_KEY_R] && !keysProcessed[GLFW_KEY_R])
-    {
-      world->reset();
-      paused = false;
-      HelpMenu::getInstance().showHelp = paused;
-      keysProcessed[GLFW_KEY_R] = true;
-    }
-    if (keys[GLFW_KEY_M] && !keysProcessed[GLFW_KEY_M])
-    {
-      AudioLoader::getInstance().changeBgm();
-      keysProcessed[GLFW_KEY_M] = true;
-    }
-    // Launch help texture == pause
-    if (keys[GLFW_KEY_H] && !keysProcessed[GLFW_KEY_H] 
-      ||keys[GLFW_KEY_P] && !keysProcessed[GLFW_KEY_P])
-    {
-      paused = !paused;
-      HelpMenu::getInstance().showHelp = paused;
-      keysProcessed[GLFW_KEY_H] = true;
-      keysProcessed[GLFW_KEY_P] = true;
-    }
-
-    if (!paused) {
-      world->processInput(deltaTime, keys, keysProcessed);
-      world->update(deltaTime);
-    }
-    world->draw();
+    sceneManager->update(keys, keysProcessed);
 
     // Flip buffers and draw.
     glfwSwapBuffers(mWindow);

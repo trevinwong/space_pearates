@@ -11,7 +11,7 @@
 class BackgroundEntityFactory
 {
 public:
-  static Entity createBackgroundEntity();
+  static Entity createBackgroundEntity(string bgImageFileName, GLboolean alpha, vec2 size);
 private:
   BackgroundEntityFactory();
 };
