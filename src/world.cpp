@@ -51,6 +51,9 @@ void World::reset()
   shared_ptr<Entity> player = entityManager.getEntitiesHasOneOf(entityManager.getComponentChecker(vector<int>{ComponentType::player, ComponentType::wallet}))[0];
   player->getComponent<TransformComponent>()->position = player_spawn;
   player->getComponent<WalletComponent>()->coins = 0;
+  player->getComponent<HealthComponent>()->curHP = player->getComponent<HealthComponent>()->maxHP;
+  player->removeComponent<DeathComponent>();
+  
 
   // Spawn starting resources
   ResourceFactory::spawnInitial(entityManager);            // adds 6 entities
