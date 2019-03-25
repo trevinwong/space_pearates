@@ -31,7 +31,7 @@ public:
     // if something is holding onto this pointer still...
     shared_ptr<BaseComponent> component = components[T::typeID];
     if (component) component.reset();
-    components[T::typeID] == nullptr;
+    components[T::typeID] = nullptr;
     has_components.set(T::typeID, 0);
   }
 
