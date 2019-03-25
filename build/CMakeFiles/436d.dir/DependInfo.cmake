@@ -22,6 +22,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/subi/CPSC436/game/src/Components/color_component.cpp" "/home/subi/CPSC436/game/build/CMakeFiles/436d.dir/src/Components/color_component.cpp.o"
   "/home/subi/CPSC436/game/src/Components/damage_component.cpp" "/home/subi/CPSC436/game/build/CMakeFiles/436d.dir/src/Components/damage_component.cpp.o"
   "/home/subi/CPSC436/game/src/Components/enemy_component.cpp" "/home/subi/CPSC436/game/build/CMakeFiles/436d.dir/src/Components/enemy_component.cpp.o"
+  "/home/subi/CPSC436/game/src/Components/enemy_path_component.cpp" "/home/subi/CPSC436/game/build/CMakeFiles/436d.dir/src/Components/enemy_path_component.cpp.o"
   "/home/subi/CPSC436/game/src/Components/enemy_spawn_component.cpp" "/home/subi/CPSC436/game/build/CMakeFiles/436d.dir/src/Components/enemy_spawn_component.cpp.o"
   "/home/subi/CPSC436/game/src/Components/health_component.cpp" "/home/subi/CPSC436/game/build/CMakeFiles/436d.dir/src/Components/health_component.cpp.o"
   "/home/subi/CPSC436/game/src/Components/home_component.cpp" "/home/subi/CPSC436/game/build/CMakeFiles/436d.dir/src/Components/home_component.cpp.o"

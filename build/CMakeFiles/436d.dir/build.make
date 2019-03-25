@@ -1017,9 +1017,33 @@ CMakeFiles/436d.dir/src/Components/enemy_component.cpp.o.provides: CMakeFiles/43
 CMakeFiles/436d.dir/src/Components/enemy_component.cpp.o.provides.build: CMakeFiles/436d.dir/src/Components/enemy_component.cpp.o
 
 
+CMakeFiles/436d.dir/src/Components/enemy_path_component.cpp.o: CMakeFiles/436d.dir/flags.make
+CMakeFiles/436d.dir/src/Components/enemy_path_component.cpp.o: ../src/Components/enemy_path_component.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/subi/CPSC436/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_41) "Building CXX object CMakeFiles/436d.dir/src/Components/enemy_path_component.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/436d.dir/src/Components/enemy_path_component.cpp.o -c /home/subi/CPSC436/game/src/Components/enemy_path_component.cpp
+
+CMakeFiles/436d.dir/src/Components/enemy_path_component.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/436d.dir/src/Components/enemy_path_component.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/subi/CPSC436/game/src/Components/enemy_path_component.cpp > CMakeFiles/436d.dir/src/Components/enemy_path_component.cpp.i
+
+CMakeFiles/436d.dir/src/Components/enemy_path_component.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/436d.dir/src/Components/enemy_path_component.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/subi/CPSC436/game/src/Components/enemy_path_component.cpp -o CMakeFiles/436d.dir/src/Components/enemy_path_component.cpp.s
+
+CMakeFiles/436d.dir/src/Components/enemy_path_component.cpp.o.requires:
+
+.PHONY : CMakeFiles/436d.dir/src/Components/enemy_path_component.cpp.o.requires
+
+CMakeFiles/436d.dir/src/Components/enemy_path_component.cpp.o.provides: CMakeFiles/436d.dir/src/Components/enemy_path_component.cpp.o.requires
+	$(MAKE) -f CMakeFiles/436d.dir/build.make CMakeFiles/436d.dir/src/Components/enemy_path_component.cpp.o.provides.build
+.PHONY : CMakeFiles/436d.dir/src/Components/enemy_path_component.cpp.o.provides
+
+CMakeFiles/436d.dir/src/Components/enemy_path_component.cpp.o.provides.build: CMakeFiles/436d.dir/src/Components/enemy_path_component.cpp.o
+
+
 CMakeFiles/436d.dir/src/Components/enemy_spawn_component.cpp.o: CMakeFiles/436d.dir/flags.make
 CMakeFiles/436d.dir/src/Components/enemy_spawn_component.cpp.o: ../src/Components/enemy_spawn_component.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/subi/CPSC436/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_41) "Building CXX object CMakeFiles/436d.dir/src/Components/enemy_spawn_component.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/subi/CPSC436/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_42) "Building CXX object CMakeFiles/436d.dir/src/Components/enemy_spawn_component.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/436d.dir/src/Components/enemy_spawn_component.cpp.o -c /home/subi/CPSC436/game/src/Components/enemy_spawn_component.cpp
 
 CMakeFiles/436d.dir/src/Components/enemy_spawn_component.cpp.i: cmake_force
@@ -1043,7 +1067,7 @@ CMakeFiles/436d.dir/src/Components/enemy_spawn_component.cpp.o.provides.build: C
 
 CMakeFiles/436d.dir/src/Components/map_component.cpp.o: CMakeFiles/436d.dir/flags.make
 CMakeFiles/436d.dir/src/Components/map_component.cpp.o: ../src/Components/map_component.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/subi/CPSC436/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_42) "Building CXX object CMakeFiles/436d.dir/src/Components/map_component.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/subi/CPSC436/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_43) "Building CXX object CMakeFiles/436d.dir/src/Components/map_component.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/436d.dir/src/Components/map_component.cpp.o -c /home/subi/CPSC436/game/src/Components/map_component.cpp
 
 CMakeFiles/436d.dir/src/Components/map_component.cpp.i: cmake_force
@@ -1067,7 +1091,7 @@ CMakeFiles/436d.dir/src/Components/map_component.cpp.o.provides.build: CMakeFile
 
 CMakeFiles/436d.dir/src/Components/home_component.cpp.o: CMakeFiles/436d.dir/flags.make
 CMakeFiles/436d.dir/src/Components/home_component.cpp.o: ../src/Components/home_component.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/subi/CPSC436/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_43) "Building CXX object CMakeFiles/436d.dir/src/Components/home_component.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/subi/CPSC436/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_44) "Building CXX object CMakeFiles/436d.dir/src/Components/home_component.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/436d.dir/src/Components/home_component.cpp.o -c /home/subi/CPSC436/game/src/Components/home_component.cpp
 
 CMakeFiles/436d.dir/src/Components/home_component.cpp.i: cmake_force
@@ -1091,7 +1115,7 @@ CMakeFiles/436d.dir/src/Components/home_component.cpp.o.provides.build: CMakeFil
 
 CMakeFiles/436d.dir/src/Components/resource_component.cpp.o: CMakeFiles/436d.dir/flags.make
 CMakeFiles/436d.dir/src/Components/resource_component.cpp.o: ../src/Components/resource_component.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/subi/CPSC436/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_44) "Building CXX object CMakeFiles/436d.dir/src/Components/resource_component.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/subi/CPSC436/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_45) "Building CXX object CMakeFiles/436d.dir/src/Components/resource_component.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/436d.dir/src/Components/resource_component.cpp.o -c /home/subi/CPSC436/game/src/Components/resource_component.cpp
 
 CMakeFiles/436d.dir/src/Components/resource_component.cpp.i: cmake_force
@@ -1115,7 +1139,7 @@ CMakeFiles/436d.dir/src/Components/resource_component.cpp.o.provides.build: CMak
 
 CMakeFiles/436d.dir/src/Components/animated_component.cpp.o: CMakeFiles/436d.dir/flags.make
 CMakeFiles/436d.dir/src/Components/animated_component.cpp.o: ../src/Components/animated_component.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/subi/CPSC436/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_45) "Building CXX object CMakeFiles/436d.dir/src/Components/animated_component.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/subi/CPSC436/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_46) "Building CXX object CMakeFiles/436d.dir/src/Components/animated_component.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/436d.dir/src/Components/animated_component.cpp.o -c /home/subi/CPSC436/game/src/Components/animated_component.cpp
 
 CMakeFiles/436d.dir/src/Components/animated_component.cpp.i: cmake_force
@@ -1139,7 +1163,7 @@ CMakeFiles/436d.dir/src/Components/animated_component.cpp.o.provides.build: CMak
 
 CMakeFiles/436d.dir/src/Components/waveset_component.cpp.o: CMakeFiles/436d.dir/flags.make
 CMakeFiles/436d.dir/src/Components/waveset_component.cpp.o: ../src/Components/waveset_component.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/subi/CPSC436/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_46) "Building CXX object CMakeFiles/436d.dir/src/Components/waveset_component.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/subi/CPSC436/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_47) "Building CXX object CMakeFiles/436d.dir/src/Components/waveset_component.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/436d.dir/src/Components/waveset_component.cpp.o -c /home/subi/CPSC436/game/src/Components/waveset_component.cpp
 
 CMakeFiles/436d.dir/src/Components/waveset_component.cpp.i: cmake_force
@@ -1163,7 +1187,7 @@ CMakeFiles/436d.dir/src/Components/waveset_component.cpp.o.provides.build: CMake
 
 CMakeFiles/436d.dir/src/Components/damage_component.cpp.o: CMakeFiles/436d.dir/flags.make
 CMakeFiles/436d.dir/src/Components/damage_component.cpp.o: ../src/Components/damage_component.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/subi/CPSC436/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_47) "Building CXX object CMakeFiles/436d.dir/src/Components/damage_component.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/subi/CPSC436/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_48) "Building CXX object CMakeFiles/436d.dir/src/Components/damage_component.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/436d.dir/src/Components/damage_component.cpp.o -c /home/subi/CPSC436/game/src/Components/damage_component.cpp
 
 CMakeFiles/436d.dir/src/Components/damage_component.cpp.i: cmake_force
@@ -1187,7 +1211,7 @@ CMakeFiles/436d.dir/src/Components/damage_component.cpp.o.provides.build: CMakeF
 
 CMakeFiles/436d.dir/src/Systems/sprite_system.cpp.o: CMakeFiles/436d.dir/flags.make
 CMakeFiles/436d.dir/src/Systems/sprite_system.cpp.o: ../src/Systems/sprite_system.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/subi/CPSC436/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_48) "Building CXX object CMakeFiles/436d.dir/src/Systems/sprite_system.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/subi/CPSC436/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_49) "Building CXX object CMakeFiles/436d.dir/src/Systems/sprite_system.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/436d.dir/src/Systems/sprite_system.cpp.o -c /home/subi/CPSC436/game/src/Systems/sprite_system.cpp
 
 CMakeFiles/436d.dir/src/Systems/sprite_system.cpp.i: cmake_force
@@ -1211,7 +1235,7 @@ CMakeFiles/436d.dir/src/Systems/sprite_system.cpp.o.provides.build: CMakeFiles/4
 
 CMakeFiles/436d.dir/src/Systems/background_system.cpp.o: CMakeFiles/436d.dir/flags.make
 CMakeFiles/436d.dir/src/Systems/background_system.cpp.o: ../src/Systems/background_system.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/subi/CPSC436/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_49) "Building CXX object CMakeFiles/436d.dir/src/Systems/background_system.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/subi/CPSC436/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_50) "Building CXX object CMakeFiles/436d.dir/src/Systems/background_system.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/436d.dir/src/Systems/background_system.cpp.o -c /home/subi/CPSC436/game/src/Systems/background_system.cpp
 
 CMakeFiles/436d.dir/src/Systems/background_system.cpp.i: cmake_force
@@ -1235,7 +1259,7 @@ CMakeFiles/436d.dir/src/Systems/background_system.cpp.o.provides.build: CMakeFil
 
 CMakeFiles/436d.dir/src/Systems/billboard_system.cpp.o: CMakeFiles/436d.dir/flags.make
 CMakeFiles/436d.dir/src/Systems/billboard_system.cpp.o: ../src/Systems/billboard_system.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/subi/CPSC436/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_50) "Building CXX object CMakeFiles/436d.dir/src/Systems/billboard_system.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/subi/CPSC436/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_51) "Building CXX object CMakeFiles/436d.dir/src/Systems/billboard_system.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/436d.dir/src/Systems/billboard_system.cpp.o -c /home/subi/CPSC436/game/src/Systems/billboard_system.cpp
 
 CMakeFiles/436d.dir/src/Systems/billboard_system.cpp.i: cmake_force
@@ -1259,7 +1283,7 @@ CMakeFiles/436d.dir/src/Systems/billboard_system.cpp.o.provides.build: CMakeFile
 
 CMakeFiles/436d.dir/src/Systems/collision_system.cpp.o: CMakeFiles/436d.dir/flags.make
 CMakeFiles/436d.dir/src/Systems/collision_system.cpp.o: ../src/Systems/collision_system.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/subi/CPSC436/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_51) "Building CXX object CMakeFiles/436d.dir/src/Systems/collision_system.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/subi/CPSC436/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_52) "Building CXX object CMakeFiles/436d.dir/src/Systems/collision_system.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/436d.dir/src/Systems/collision_system.cpp.o -c /home/subi/CPSC436/game/src/Systems/collision_system.cpp
 
 CMakeFiles/436d.dir/src/Systems/collision_system.cpp.i: cmake_force
@@ -1283,7 +1307,7 @@ CMakeFiles/436d.dir/src/Systems/collision_system.cpp.o.provides.build: CMakeFile
 
 CMakeFiles/436d.dir/src/Systems/death_system.cpp.o: CMakeFiles/436d.dir/flags.make
 CMakeFiles/436d.dir/src/Systems/death_system.cpp.o: ../src/Systems/death_system.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/subi/CPSC436/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_52) "Building CXX object CMakeFiles/436d.dir/src/Systems/death_system.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/subi/CPSC436/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_53) "Building CXX object CMakeFiles/436d.dir/src/Systems/death_system.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/436d.dir/src/Systems/death_system.cpp.o -c /home/subi/CPSC436/game/src/Systems/death_system.cpp
 
 CMakeFiles/436d.dir/src/Systems/death_system.cpp.i: cmake_force
@@ -1307,7 +1331,7 @@ CMakeFiles/436d.dir/src/Systems/death_system.cpp.o.provides.build: CMakeFiles/43
 
 CMakeFiles/436d.dir/src/Systems/damage_system.cpp.o: CMakeFiles/436d.dir/flags.make
 CMakeFiles/436d.dir/src/Systems/damage_system.cpp.o: ../src/Systems/damage_system.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/subi/CPSC436/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_53) "Building CXX object CMakeFiles/436d.dir/src/Systems/damage_system.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/subi/CPSC436/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_54) "Building CXX object CMakeFiles/436d.dir/src/Systems/damage_system.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/436d.dir/src/Systems/damage_system.cpp.o -c /home/subi/CPSC436/game/src/Systems/damage_system.cpp
 
 CMakeFiles/436d.dir/src/Systems/damage_system.cpp.i: cmake_force
@@ -1331,7 +1355,7 @@ CMakeFiles/436d.dir/src/Systems/damage_system.cpp.o.provides.build: CMakeFiles/4
 
 CMakeFiles/436d.dir/src/Systems/physics_system.cpp.o: CMakeFiles/436d.dir/flags.make
 CMakeFiles/436d.dir/src/Systems/physics_system.cpp.o: ../src/Systems/physics_system.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/subi/CPSC436/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_54) "Building CXX object CMakeFiles/436d.dir/src/Systems/physics_system.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/subi/CPSC436/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_55) "Building CXX object CMakeFiles/436d.dir/src/Systems/physics_system.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/436d.dir/src/Systems/physics_system.cpp.o -c /home/subi/CPSC436/game/src/Systems/physics_system.cpp
 
 CMakeFiles/436d.dir/src/Systems/physics_system.cpp.i: cmake_force
@@ -1355,7 +1379,7 @@ CMakeFiles/436d.dir/src/Systems/physics_system.cpp.o.provides.build: CMakeFiles/
 
 CMakeFiles/436d.dir/src/Systems/interpolation_system.cpp.o: CMakeFiles/436d.dir/flags.make
 CMakeFiles/436d.dir/src/Systems/interpolation_system.cpp.o: ../src/Systems/interpolation_system.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/subi/CPSC436/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_55) "Building CXX object CMakeFiles/436d.dir/src/Systems/interpolation_system.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/subi/CPSC436/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_56) "Building CXX object CMakeFiles/436d.dir/src/Systems/interpolation_system.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/436d.dir/src/Systems/interpolation_system.cpp.o -c /home/subi/CPSC436/game/src/Systems/interpolation_system.cpp
 
 CMakeFiles/436d.dir/src/Systems/interpolation_system.cpp.i: cmake_force
@@ -1379,7 +1403,7 @@ CMakeFiles/436d.dir/src/Systems/interpolation_system.cpp.o.provides.build: CMake
 
 CMakeFiles/436d.dir/src/Systems/player_system.cpp.o: CMakeFiles/436d.dir/flags.make
 CMakeFiles/436d.dir/src/Systems/player_system.cpp.o: ../src/Systems/player_system.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/subi/CPSC436/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_56) "Building CXX object CMakeFiles/436d.dir/src/Systems/player_system.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/subi/CPSC436/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_57) "Building CXX object CMakeFiles/436d.dir/src/Systems/player_system.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/436d.dir/src/Systems/player_system.cpp.o -c /home/subi/CPSC436/game/src/Systems/player_system.cpp
 
 CMakeFiles/436d.dir/src/Systems/player_system.cpp.i: cmake_force
@@ -1403,7 +1427,7 @@ CMakeFiles/436d.dir/src/Systems/player_system.cpp.o.provides.build: CMakeFiles/4
 
 CMakeFiles/436d.dir/src/Systems/tile_map_system.cpp.o: CMakeFiles/436d.dir/flags.make
 CMakeFiles/436d.dir/src/Systems/tile_map_system.cpp.o: ../src/Systems/tile_map_system.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/subi/CPSC436/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_57) "Building CXX object CMakeFiles/436d.dir/src/Systems/tile_map_system.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/subi/CPSC436/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_58) "Building CXX object CMakeFiles/436d.dir/src/Systems/tile_map_system.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/436d.dir/src/Systems/tile_map_system.cpp.o -c /home/subi/CPSC436/game/src/Systems/tile_map_system.cpp
 
 CMakeFiles/436d.dir/src/Systems/tile_map_system.cpp.i: cmake_force
@@ -1427,7 +1451,7 @@ CMakeFiles/436d.dir/src/Systems/tile_map_system.cpp.o.provides.build: CMakeFiles
 
 CMakeFiles/436d.dir/src/Systems/tower_range_display_system.cpp.o: CMakeFiles/436d.dir/flags.make
 CMakeFiles/436d.dir/src/Systems/tower_range_display_system.cpp.o: ../src/Systems/tower_range_display_system.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/subi/CPSC436/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_58) "Building CXX object CMakeFiles/436d.dir/src/Systems/tower_range_display_system.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/subi/CPSC436/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_59) "Building CXX object CMakeFiles/436d.dir/src/Systems/tower_range_display_system.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/436d.dir/src/Systems/tower_range_display_system.cpp.o -c /home/subi/CPSC436/game/src/Systems/tower_range_display_system.cpp
 
 CMakeFiles/436d.dir/src/Systems/tower_range_display_system.cpp.i: cmake_force
@@ -1451,7 +1475,7 @@ CMakeFiles/436d.dir/src/Systems/tower_range_display_system.cpp.o.provides.build:
 
 CMakeFiles/436d.dir/src/Systems/tower_attack_system.cpp.o: CMakeFiles/436d.dir/flags.make
 CMakeFiles/436d.dir/src/Systems/tower_attack_system.cpp.o: ../src/Systems/tower_attack_system.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/subi/CPSC436/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_59) "Building CXX object CMakeFiles/436d.dir/src/Systems/tower_attack_system.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/subi/CPSC436/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_60) "Building CXX object CMakeFiles/436d.dir/src/Systems/tower_attack_system.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/436d.dir/src/Systems/tower_attack_system.cpp.o -c /home/subi/CPSC436/game/src/Systems/tower_attack_system.cpp
 
 CMakeFiles/436d.dir/src/Systems/tower_attack_system.cpp.i: cmake_force
@@ -1475,7 +1499,7 @@ CMakeFiles/436d.dir/src/Systems/tower_attack_system.cpp.o.provides.build: CMakeF
 
 CMakeFiles/436d.dir/src/Systems/offscreen_garbage_system.cpp.o: CMakeFiles/436d.dir/flags.make
 CMakeFiles/436d.dir/src/Systems/offscreen_garbage_system.cpp.o: ../src/Systems/offscreen_garbage_system.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/subi/CPSC436/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_60) "Building CXX object CMakeFiles/436d.dir/src/Systems/offscreen_garbage_system.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/subi/CPSC436/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_61) "Building CXX object CMakeFiles/436d.dir/src/Systems/offscreen_garbage_system.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/436d.dir/src/Systems/offscreen_garbage_system.cpp.o -c /home/subi/CPSC436/game/src/Systems/offscreen_garbage_system.cpp
 
 CMakeFiles/436d.dir/src/Systems/offscreen_garbage_system.cpp.i: cmake_force
@@ -1499,7 +1523,7 @@ CMakeFiles/436d.dir/src/Systems/offscreen_garbage_system.cpp.o.provides.build: C
 
 CMakeFiles/436d.dir/src/Systems/tower_ui_system.cpp.o: CMakeFiles/436d.dir/flags.make
 CMakeFiles/436d.dir/src/Systems/tower_ui_system.cpp.o: ../src/Systems/tower_ui_system.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/subi/CPSC436/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_61) "Building CXX object CMakeFiles/436d.dir/src/Systems/tower_ui_system.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/subi/CPSC436/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_62) "Building CXX object CMakeFiles/436d.dir/src/Systems/tower_ui_system.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/436d.dir/src/Systems/tower_ui_system.cpp.o -c /home/subi/CPSC436/game/src/Systems/tower_ui_system.cpp
 
 CMakeFiles/436d.dir/src/Systems/tower_ui_system.cpp.i: cmake_force
@@ -1523,7 +1547,7 @@ CMakeFiles/436d.dir/src/Systems/tower_ui_system.cpp.o.provides.build: CMakeFiles
 
 CMakeFiles/436d.dir/src/Systems/render_to_texture_system.cpp.o: CMakeFiles/436d.dir/flags.make
 CMakeFiles/436d.dir/src/Systems/render_to_texture_system.cpp.o: ../src/Systems/render_to_texture_system.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/subi/CPSC436/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_62) "Building CXX object CMakeFiles/436d.dir/src/Systems/render_to_texture_system.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/subi/CPSC436/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_63) "Building CXX object CMakeFiles/436d.dir/src/Systems/render_to_texture_system.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/436d.dir/src/Systems/render_to_texture_system.cpp.o -c /home/subi/CPSC436/game/src/Systems/render_to_texture_system.cpp
 
 CMakeFiles/436d.dir/src/Systems/render_to_texture_system.cpp.i: cmake_force
@@ -1547,7 +1571,7 @@ CMakeFiles/436d.dir/src/Systems/render_to_texture_system.cpp.o.provides.build: C
 
 CMakeFiles/436d.dir/src/Utility/timer.cpp.o: CMakeFiles/436d.dir/flags.make
 CMakeFiles/436d.dir/src/Utility/timer.cpp.o: ../src/Utility/timer.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/subi/CPSC436/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_63) "Building CXX object CMakeFiles/436d.dir/src/Utility/timer.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/subi/CPSC436/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_64) "Building CXX object CMakeFiles/436d.dir/src/Utility/timer.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/436d.dir/src/Utility/timer.cpp.o -c /home/subi/CPSC436/game/src/Utility/timer.cpp
 
 CMakeFiles/436d.dir/src/Utility/timer.cpp.i: cmake_force
@@ -1571,7 +1595,7 @@ CMakeFiles/436d.dir/src/Utility/timer.cpp.o.provides.build: CMakeFiles/436d.dir/
 
 CMakeFiles/436d.dir/src/Utility/waveset_structs.cpp.o: CMakeFiles/436d.dir/flags.make
 CMakeFiles/436d.dir/src/Utility/waveset_structs.cpp.o: ../src/Utility/waveset_structs.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/subi/CPSC436/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_64) "Building CXX object CMakeFiles/436d.dir/src/Utility/waveset_structs.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/subi/CPSC436/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_65) "Building CXX object CMakeFiles/436d.dir/src/Utility/waveset_structs.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/436d.dir/src/Utility/waveset_structs.cpp.o -c /home/subi/CPSC436/game/src/Utility/waveset_structs.cpp
 
 CMakeFiles/436d.dir/src/Utility/waveset_structs.cpp.i: cmake_force
@@ -1595,7 +1619,7 @@ CMakeFiles/436d.dir/src/Utility/waveset_structs.cpp.o.provides.build: CMakeFiles
 
 CMakeFiles/436d.dir/src/Systems/enemy_system.cpp.o: CMakeFiles/436d.dir/flags.make
 CMakeFiles/436d.dir/src/Systems/enemy_system.cpp.o: ../src/Systems/enemy_system.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/subi/CPSC436/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_65) "Building CXX object CMakeFiles/436d.dir/src/Systems/enemy_system.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/subi/CPSC436/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_66) "Building CXX object CMakeFiles/436d.dir/src/Systems/enemy_system.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/436d.dir/src/Systems/enemy_system.cpp.o -c /home/subi/CPSC436/game/src/Systems/enemy_system.cpp
 
 CMakeFiles/436d.dir/src/Systems/enemy_system.cpp.i: cmake_force
@@ -1619,7 +1643,7 @@ CMakeFiles/436d.dir/src/Systems/enemy_system.cpp.o.provides.build: CMakeFiles/43
 
 CMakeFiles/436d.dir/src/Systems/enemy_spawn_system.cpp.o: CMakeFiles/436d.dir/flags.make
 CMakeFiles/436d.dir/src/Systems/enemy_spawn_system.cpp.o: ../src/Systems/enemy_spawn_system.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/subi/CPSC436/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_66) "Building CXX object CMakeFiles/436d.dir/src/Systems/enemy_spawn_system.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/subi/CPSC436/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_67) "Building CXX object CMakeFiles/436d.dir/src/Systems/enemy_spawn_system.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/436d.dir/src/Systems/enemy_spawn_system.cpp.o -c /home/subi/CPSC436/game/src/Systems/enemy_spawn_system.cpp
 
 CMakeFiles/436d.dir/src/Systems/enemy_spawn_system.cpp.i: cmake_force
@@ -1643,7 +1667,7 @@ CMakeFiles/436d.dir/src/Systems/enemy_spawn_system.cpp.o.provides.build: CMakeFi
 
 CMakeFiles/436d.dir/src/Systems/waveset_system.cpp.o: CMakeFiles/436d.dir/flags.make
 CMakeFiles/436d.dir/src/Systems/waveset_system.cpp.o: ../src/Systems/waveset_system.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/subi/CPSC436/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_67) "Building CXX object CMakeFiles/436d.dir/src/Systems/waveset_system.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/subi/CPSC436/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_68) "Building CXX object CMakeFiles/436d.dir/src/Systems/waveset_system.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/436d.dir/src/Systems/waveset_system.cpp.o -c /home/subi/CPSC436/game/src/Systems/waveset_system.cpp
 
 CMakeFiles/436d.dir/src/Systems/waveset_system.cpp.i: cmake_force
@@ -1667,7 +1691,7 @@ CMakeFiles/436d.dir/src/Systems/waveset_system.cpp.o.provides.build: CMakeFiles/
 
 CMakeFiles/436d.dir/src/Systems/resource_system.cpp.o: CMakeFiles/436d.dir/flags.make
 CMakeFiles/436d.dir/src/Systems/resource_system.cpp.o: ../src/Systems/resource_system.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/subi/CPSC436/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_68) "Building CXX object CMakeFiles/436d.dir/src/Systems/resource_system.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/subi/CPSC436/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_69) "Building CXX object CMakeFiles/436d.dir/src/Systems/resource_system.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/436d.dir/src/Systems/resource_system.cpp.o -c /home/subi/CPSC436/game/src/Systems/resource_system.cpp
 
 CMakeFiles/436d.dir/src/Systems/resource_system.cpp.i: cmake_force
@@ -1691,7 +1715,7 @@ CMakeFiles/436d.dir/src/Systems/resource_system.cpp.o.provides.build: CMakeFiles
 
 CMakeFiles/436d.dir/src/Systems/particle_system.cpp.o: CMakeFiles/436d.dir/flags.make
 CMakeFiles/436d.dir/src/Systems/particle_system.cpp.o: ../src/Systems/particle_system.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/subi/CPSC436/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_69) "Building CXX object CMakeFiles/436d.dir/src/Systems/particle_system.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/subi/CPSC436/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_70) "Building CXX object CMakeFiles/436d.dir/src/Systems/particle_system.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/436d.dir/src/Systems/particle_system.cpp.o -c /home/subi/CPSC436/game/src/Systems/particle_system.cpp
 
 CMakeFiles/436d.dir/src/Systems/particle_system.cpp.i: cmake_force
@@ -1715,7 +1739,7 @@ CMakeFiles/436d.dir/src/Systems/particle_system.cpp.o.provides.build: CMakeFiles
 
 CMakeFiles/436d.dir/src/line.cpp.o: CMakeFiles/436d.dir/flags.make
 CMakeFiles/436d.dir/src/line.cpp.o: ../src/line.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/subi/CPSC436/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_70) "Building CXX object CMakeFiles/436d.dir/src/line.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/subi/CPSC436/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_71) "Building CXX object CMakeFiles/436d.dir/src/line.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/436d.dir/src/line.cpp.o -c /home/subi/CPSC436/game/src/line.cpp
 
 CMakeFiles/436d.dir/src/line.cpp.i: cmake_force
@@ -1739,7 +1763,7 @@ CMakeFiles/436d.dir/src/line.cpp.o.provides.build: CMakeFiles/436d.dir/src/line.
 
 CMakeFiles/436d.dir/src/entity.cpp.o: CMakeFiles/436d.dir/flags.make
 CMakeFiles/436d.dir/src/entity.cpp.o: ../src/entity.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/subi/CPSC436/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_71) "Building CXX object CMakeFiles/436d.dir/src/entity.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/subi/CPSC436/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_72) "Building CXX object CMakeFiles/436d.dir/src/entity.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/436d.dir/src/entity.cpp.o -c /home/subi/CPSC436/game/src/entity.cpp
 
 CMakeFiles/436d.dir/src/entity.cpp.i: cmake_force
@@ -1763,7 +1787,7 @@ CMakeFiles/436d.dir/src/entity.cpp.o.provides.build: CMakeFiles/436d.dir/src/ent
 
 CMakeFiles/436d.dir/src/entity_manager.cpp.o: CMakeFiles/436d.dir/flags.make
 CMakeFiles/436d.dir/src/entity_manager.cpp.o: ../src/entity_manager.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/subi/CPSC436/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_72) "Building CXX object CMakeFiles/436d.dir/src/entity_manager.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/subi/CPSC436/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_73) "Building CXX object CMakeFiles/436d.dir/src/entity_manager.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/436d.dir/src/entity_manager.cpp.o -c /home/subi/CPSC436/game/src/entity_manager.cpp
 
 CMakeFiles/436d.dir/src/entity_manager.cpp.i: cmake_force
@@ -1787,7 +1811,7 @@ CMakeFiles/436d.dir/src/entity_manager.cpp.o.provides.build: CMakeFiles/436d.dir
 
 CMakeFiles/436d.dir/src/program.cpp.o: CMakeFiles/436d.dir/flags.make
 CMakeFiles/436d.dir/src/program.cpp.o: ../src/program.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/subi/CPSC436/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_73) "Building CXX object CMakeFiles/436d.dir/src/program.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/subi/CPSC436/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_74) "Building CXX object CMakeFiles/436d.dir/src/program.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/436d.dir/src/program.cpp.o -c /home/subi/CPSC436/game/src/program.cpp
 
 CMakeFiles/436d.dir/src/program.cpp.i: cmake_force
@@ -1811,7 +1835,7 @@ CMakeFiles/436d.dir/src/program.cpp.o.provides.build: CMakeFiles/436d.dir/src/pr
 
 CMakeFiles/436d.dir/src/texture.cpp.o: CMakeFiles/436d.dir/flags.make
 CMakeFiles/436d.dir/src/texture.cpp.o: ../src/texture.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/subi/CPSC436/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_74) "Building CXX object CMakeFiles/436d.dir/src/texture.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/subi/CPSC436/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_75) "Building CXX object CMakeFiles/436d.dir/src/texture.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/436d.dir/src/texture.cpp.o -c /home/subi/CPSC436/game/src/texture.cpp
 
 CMakeFiles/436d.dir/src/texture.cpp.i: cmake_force
@@ -1835,7 +1859,7 @@ CMakeFiles/436d.dir/src/texture.cpp.o.provides.build: CMakeFiles/436d.dir/src/te
 
 CMakeFiles/436d.dir/src/utility.cpp.o: CMakeFiles/436d.dir/flags.make
 CMakeFiles/436d.dir/src/utility.cpp.o: ../src/utility.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/subi/CPSC436/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_75) "Building CXX object CMakeFiles/436d.dir/src/utility.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/subi/CPSC436/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_76) "Building CXX object CMakeFiles/436d.dir/src/utility.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/436d.dir/src/utility.cpp.o -c /home/subi/CPSC436/game/src/utility.cpp
 
 CMakeFiles/436d.dir/src/utility.cpp.i: cmake_force
@@ -1859,7 +1883,7 @@ CMakeFiles/436d.dir/src/utility.cpp.o.provides.build: CMakeFiles/436d.dir/src/ut
 
 CMakeFiles/436d.dir/src/text.cpp.o: CMakeFiles/436d.dir/flags.make
 CMakeFiles/436d.dir/src/text.cpp.o: ../src/text.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/subi/CPSC436/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_76) "Building CXX object CMakeFiles/436d.dir/src/text.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/subi/CPSC436/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_77) "Building CXX object CMakeFiles/436d.dir/src/text.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/436d.dir/src/text.cpp.o -c /home/subi/CPSC436/game/src/text.cpp
 
 CMakeFiles/436d.dir/src/text.cpp.i: cmake_force
@@ -1883,7 +1907,7 @@ CMakeFiles/436d.dir/src/text.cpp.o.provides.build: CMakeFiles/436d.dir/src/text.
 
 CMakeFiles/436d.dir/src/hud.cpp.o: CMakeFiles/436d.dir/flags.make
 CMakeFiles/436d.dir/src/hud.cpp.o: ../src/hud.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/subi/CPSC436/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_77) "Building CXX object CMakeFiles/436d.dir/src/hud.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/subi/CPSC436/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_78) "Building CXX object CMakeFiles/436d.dir/src/hud.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/436d.dir/src/hud.cpp.o -c /home/subi/CPSC436/game/src/hud.cpp
 
 CMakeFiles/436d.dir/src/hud.cpp.i: cmake_force
@@ -1907,7 +1931,7 @@ CMakeFiles/436d.dir/src/hud.cpp.o.provides.build: CMakeFiles/436d.dir/src/hud.cp
 
 CMakeFiles/436d.dir/src/audio_loader.cpp.o: CMakeFiles/436d.dir/flags.make
 CMakeFiles/436d.dir/src/audio_loader.cpp.o: ../src/audio_loader.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/subi/CPSC436/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_78) "Building CXX object CMakeFiles/436d.dir/src/audio_loader.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/subi/CPSC436/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_79) "Building CXX object CMakeFiles/436d.dir/src/audio_loader.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/436d.dir/src/audio_loader.cpp.o -c /home/subi/CPSC436/game/src/audio_loader.cpp
 
 CMakeFiles/436d.dir/src/audio_loader.cpp.i: cmake_force
@@ -1931,7 +1955,7 @@ CMakeFiles/436d.dir/src/audio_loader.cpp.o.provides.build: CMakeFiles/436d.dir/s
 
 CMakeFiles/436d.dir/src/world.cpp.o: CMakeFiles/436d.dir/flags.make
 CMakeFiles/436d.dir/src/world.cpp.o: ../src/world.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/subi/CPSC436/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_79) "Building CXX object CMakeFiles/436d.dir/src/world.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/subi/CPSC436/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_80) "Building CXX object CMakeFiles/436d.dir/src/world.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/436d.dir/src/world.cpp.o -c /home/subi/CPSC436/game/src/world.cpp
 
 CMakeFiles/436d.dir/src/world.cpp.i: cmake_force
@@ -1995,6 +2019,7 @@ CMakeFiles/436d.dir/src/world.cpp.o.provides.build: CMakeFiles/436d.dir/src/worl
 "CMakeFiles/436d.dir/src/Components/TowerUI/TowerUIState/tower_ui_shift_right_state.cpp.o" \
 "CMakeFiles/436d.dir/src/Components/projectile_component.cpp.o" \
 "CMakeFiles/436d.dir/src/Components/enemy_component.cpp.o" \
+"CMakeFiles/436d.dir/src/Components/enemy_path_component.cpp.o" \
 "CMakeFiles/436d.dir/src/Components/enemy_spawn_component.cpp.o" \
 "CMakeFiles/436d.dir/src/Components/map_component.cpp.o" \
 "CMakeFiles/436d.dir/src/Components/home_component.cpp.o" \
@@ -2078,6 +2103,7 @@ CMakeFiles/436d.dir/src/world.cpp.o.provides.build: CMakeFiles/436d.dir/src/worl
 436d: CMakeFiles/436d.dir/src/Components/TowerUI/TowerUIState/tower_ui_shift_right_state.cpp.o
 436d: CMakeFiles/436d.dir/src/Components/projectile_component.cpp.o
 436d: CMakeFiles/436d.dir/src/Components/enemy_component.cpp.o
+436d: CMakeFiles/436d.dir/src/Components/enemy_path_component.cpp.o
 436d: CMakeFiles/436d.dir/src/Components/enemy_spawn_component.cpp.o
 436d: CMakeFiles/436d.dir/src/Components/map_component.cpp.o
 436d: CMakeFiles/436d.dir/src/Components/home_component.cpp.o
@@ -2121,7 +2147,7 @@ CMakeFiles/436d.dir/src/world.cpp.o.provides.build: CMakeFiles/436d.dir/src/worl
 436d: /usr/lib/x86_64-linux-gnu/libGL.so
 436d: /usr/lib/x86_64-linux-gnu/libfreetype.so
 436d: CMakeFiles/436d.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/subi/CPSC436/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_80) "Linking CXX executable 436d"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/subi/CPSC436/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_81) "Linking CXX executable 436d"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/436d.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -2169,6 +2195,7 @@ CMakeFiles/436d.dir/requires: CMakeFiles/436d.dir/src/Components/TowerUI/TowerUI
 CMakeFiles/436d.dir/requires: CMakeFiles/436d.dir/src/Components/TowerUI/TowerUIState/tower_ui_shift_right_state.cpp.o.requires
 CMakeFiles/436d.dir/requires: CMakeFiles/436d.dir/src/Components/projectile_component.cpp.o.requires
 CMakeFiles/436d.dir/requires: CMakeFiles/436d.dir/src/Components/enemy_component.cpp.o.requires
+CMakeFiles/436d.dir/requires: CMakeFiles/436d.dir/src/Components/enemy_path_component.cpp.o.requires
 CMakeFiles/436d.dir/requires: CMakeFiles/436d.dir/src/Components/enemy_spawn_component.cpp.o.requires
 CMakeFiles/436d.dir/requires: CMakeFiles/436d.dir/src/Components/map_component.cpp.o.requires
 CMakeFiles/436d.dir/requires: CMakeFiles/436d.dir/src/Components/home_component.cpp.o.requires

@@ -13,6 +13,7 @@ public:
   void move(float dt, EntityManager& entities);
   void moveShell (float dt, EntityManager& entityManager);
   void setMap(EntityManager& entities);
+  void moveRandom (float dt, EntityManager& entityManager);
 private:
   vector<vector<char>> map;
   vector<shared_ptr<Entity>> tiles;

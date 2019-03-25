@@ -39,6 +39,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/436d.dir/src/Components/TowerUI/TowerUIState/tower_ui_shift_right_state.cpp.o"
   "CMakeFiles/436d.dir/src/Components/projectile_component.cpp.o"
   "CMakeFiles/436d.dir/src/Components/enemy_component.cpp.o"
+  "CMakeFiles/436d.dir/src/Components/enemy_path_component.cpp.o"
   "CMakeFiles/436d.dir/src/Components/enemy_spawn_component.cpp.o"
   "CMakeFiles/436d.dir/src/Components/map_component.cpp.o"
   "CMakeFiles/436d.dir/src/Components/home_component.cpp.o"

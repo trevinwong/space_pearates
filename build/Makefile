@@ -609,6 +609,33 @@ src/Components/enemy_component.cpp.s:
 	$(MAKE) -f CMakeFiles/436d.dir/build.make CMakeFiles/436d.dir/src/Components/enemy_component.cpp.s
 .PHONY : src/Components/enemy_component.cpp.s
 
+src/Components/enemy_path_component.o: src/Components/enemy_path_component.cpp.o
+
+.PHONY : src/Components/enemy_path_component.o
+
+# target to build an object file
+src/Components/enemy_path_component.cpp.o:
+	$(MAKE) -f CMakeFiles/436d.dir/build.make CMakeFiles/436d.dir/src/Components/enemy_path_component.cpp.o
+.PHONY : src/Components/enemy_path_component.cpp.o
+
+src/Components/enemy_path_component.i: src/Components/enemy_path_component.cpp.i
+
+.PHONY : src/Components/enemy_path_component.i
+
+# target to preprocess a source file
+src/Components/enemy_path_component.cpp.i:
+	$(MAKE) -f CMakeFiles/436d.dir/build.make CMakeFiles/436d.dir/src/Components/enemy_path_component.cpp.i
+.PHONY : src/Components/enemy_path_component.cpp.i
+
+src/Components/enemy_path_component.s: src/Components/enemy_path_component.cpp.s
+
+.PHONY : src/Components/enemy_path_component.s
+
+# target to generate assembly for a file
+src/Components/enemy_path_component.cpp.s:
+	$(MAKE) -f CMakeFiles/436d.dir/build.make CMakeFiles/436d.dir/src/Components/enemy_path_component.cpp.s
+.PHONY : src/Components/enemy_path_component.cpp.s
+
 src/Components/enemy_spawn_component.o: src/Components/enemy_spawn_component.cpp.o
 
 .PHONY : src/Components/enemy_spawn_component.o
@@ -2319,6 +2346,9 @@ help:
 	@echo "... src/Components/enemy_component.o"
 	@echo "... src/Components/enemy_component.i"
 	@echo "... src/Components/enemy_component.s"
+	@echo "... src/Components/enemy_path_component.o"
+	@echo "... src/Components/enemy_path_component.i"
+	@echo "... src/Components/enemy_path_component.s"
 	@echo "... src/Components/enemy_spawn_component.o"
 	@echo "... src/Components/enemy_spawn_component.i"
 	@echo "... src/Components/enemy_spawn_component.s"

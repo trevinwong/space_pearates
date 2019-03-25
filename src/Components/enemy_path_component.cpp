@@ -5,15 +5,17 @@ EnemyPathComponent::EnemyPathComponent(int _type) {
 }
 
 void EnemyPathComponent::move (float dt, EntityManager& entityManager) {
+  setMap(entityManager);
   if (type == turtle_shell) {
+    printf("turtle shell\n");
     moveShell(dt, entityManager);
   } else if (type == random) {
     // EnemyPathComponent::moveRandom (dt, entityManager);
   } else {
+    printf("default\n");
     EnemyPathComponent::moveBasic(dt, entityManager);
   }
 }
-
 
 // Just moves back & forth on a single platform & turtle shells people
 void EnemyPathComponent::moveBasic (float dt, EntityManager& entityManager) {
@@ -79,8 +81,6 @@ void EnemyPathComponent::moveBasic (float dt, EntityManager& entityManager) {
   }
 }
 
-// Super simple AI; just tries to go down the map until it hits base
-// If it can't go down anymore, randomly goes right / left till it can go down
 void EnemyPathComponent::moveShell (float dt, EntityManager& entityManager) {
   srand(time(NULL));
   int arr[2] = {-1, 1};
@@ -144,5 +144,6 @@ void EnemyPathComponent::setMap (EntityManager& entityManager) {
     MapComponent *mapComponent = e->getComponent<MapComponent>();
     if (!mapComponent) continue;
     map = mapComponent->mapData2DArray;
+    printf("set map\n");
   }
 }

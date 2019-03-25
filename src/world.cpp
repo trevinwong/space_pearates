@@ -39,7 +39,7 @@ void World::init(vec2 screen)
 
 void World::update(float dt)
 {
-  enemySystem.setMap(entityManager);
+  // enemySystem.setMap(entityManager);
   HUD::getInstance().update(dt);
 
   // Note: Be careful, order may matter in some cases for systems
