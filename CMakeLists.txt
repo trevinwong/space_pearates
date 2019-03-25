@@ -123,6 +123,8 @@ set(SOURCE_FILES_CORE
 	src/Components/projectile_component.hpp
 	src/Components/enemy_component.cpp
 	src/Components/enemy_component.hpp
+  src/Components/enemy_path_component.cpp
+  src/Components/enemy_path_component.hpp
 	src/Components/enemy_spawn_component.cpp
 	src/Components/enemy_spawn_component.hpp
 	src/Components/map_component.cpp

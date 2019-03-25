@@ -11,9 +11,11 @@ class EnemySystem
 {
 public:
   void move(float dt, EntityManager& entities);
+  void moveShell (float dt, EntityManager& entityManager);
   void setMap(EntityManager& entities);
 private:
   vector<vector<char>> map;
+  vector<shared_ptr<Entity>> tiles;
 };
 
 #endif

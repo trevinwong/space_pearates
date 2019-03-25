@@ -12,11 +12,13 @@
 #include "Components/enemy_spawn_component.hpp"
 #include "Components/TowerComponents/water_tower_factor_component.hpp"
 #include "Components/collision_component.hpp"
+#include "Components/enemy_path_component.hpp"
+
 
 class EnemyFactory
 {
 public:
-  static Entity build(vec2 position, vec2 velocity, vec2 scale=vec2(40.0f,40.0f));
+  static Entity build(vec2 position, vec2 velocity, vec2 scale=vec2(40.0f,40.0f), int type=1);
 };
 
 #endif

@@ -82,6 +82,7 @@ void TowerAttackSystem::checkRangeAndShootProjectiles(EntityManager& entityManag
           auto projectileSize = vec2(15.0, 15.0);
           auto projectileColor = glm::vec4(1, 1, 1, 1);
           auto projectileLeftTopPosition = firePointPosition - projectileSize * 0.5f;
+
           auto speed = 240.0f;
           auto attackPower = towerAttackComponent->getProjectileAttackPower();
           vector<Entity> projectileEntities = ProjectileEntityFactory::createSpreadProjectiles(

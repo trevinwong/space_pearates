@@ -1,0 +1,96 @@
+# The set of languages for which implicit dependencies are needed:
+set(CMAKE_DEPENDS_LANGUAGES
+  "CXX"
+  )
+# The set of files for implicit dependencies of each language:
+set(CMAKE_DEPENDS_CHECK_CXX
+  "/home/subi/CPSC436/game/src/Components/TowerComponents/fire_tower_attack_component.cpp" "/home/subi/CPSC436/game/cmake-build-debug/CMakeFiles/436d.dir/src/Components/TowerComponents/fire_tower_attack_component.cpp.o"
+  "/home/subi/CPSC436/game/src/Components/TowerComponents/light_tower_attack_component.cpp" "/home/subi/CPSC436/game/cmake-build-debug/CMakeFiles/436d.dir/src/Components/TowerComponents/light_tower_attack_component.cpp.o"
+  "/home/subi/CPSC436/game/src/Components/TowerComponents/tower_attack_component.cpp" "/home/subi/CPSC436/game/cmake-build-debug/CMakeFiles/436d.dir/src/Components/TowerComponents/tower_attack_component.cpp.o"
+  "/home/subi/CPSC436/game/src/Components/TowerComponents/tower_meta_component.cpp" "/home/subi/CPSC436/game/cmake-build-debug/CMakeFiles/436d.dir/src/Components/TowerComponents/tower_meta_component.cpp.o"
+  "/home/subi/CPSC436/game/src/Components/TowerUI/TowerUIState/tower_ui_idle_state.cpp" "/home/subi/CPSC436/game/cmake-build-debug/CMakeFiles/436d.dir/src/Components/TowerUI/TowerUIState/tower_ui_idle_state.cpp.o"
+  "/home/subi/CPSC436/game/src/Components/TowerUI/TowerUIState/tower_ui_shift_left_state.cpp" "/home/subi/CPSC436/game/cmake-build-debug/CMakeFiles/436d.dir/src/Components/TowerUI/TowerUIState/tower_ui_shift_left_state.cpp.o"
+  "/home/subi/CPSC436/game/src/Components/TowerUI/TowerUIState/tower_ui_shift_right_state.cpp" "/home/subi/CPSC436/game/cmake-build-debug/CMakeFiles/436d.dir/src/Components/TowerUI/TowerUIState/tower_ui_shift_right_state.cpp.o"
+  "/home/subi/CPSC436/game/src/Components/TowerUI/TowerUIState/tower_ui_state_component.cpp" "/home/subi/CPSC436/game/cmake-build-debug/CMakeFiles/436d.dir/src/Components/TowerUI/TowerUIState/tower_ui_state_component.cpp.o"
+  "/home/subi/CPSC436/game/src/Components/TowerUI/build_tower_ui_component.cpp" "/home/subi/CPSC436/game/cmake-build-debug/CMakeFiles/436d.dir/src/Components/TowerUI/build_tower_ui_component.cpp.o"
+  "/home/subi/CPSC436/game/src/Components/TowerUI/operate_tower_ui_component.cpp" "/home/subi/CPSC436/game/cmake-build-debug/CMakeFiles/436d.dir/src/Components/TowerUI/operate_tower_ui_component.cpp.o"
+  "/home/subi/CPSC436/game/src/Components/TowerUI/tower_ui_button_component.cpp" "/home/subi/CPSC436/game/cmake-build-debug/CMakeFiles/436d.dir/src/Components/TowerUI/tower_ui_button_component.cpp.o"
+  "/home/subi/CPSC436/game/src/Components/TowerUI/tower_ui_button_meta_component.cpp" "/home/subi/CPSC436/game/cmake-build-debug/CMakeFiles/436d.dir/src/Components/TowerUI/tower_ui_button_meta_component.cpp.o"
+  "/home/subi/CPSC436/game/src/Components/animated_component.cpp" "/home/subi/CPSC436/game/cmake-build-debug/CMakeFiles/436d.dir/src/Components/animated_component.cpp.o"
+  "/home/subi/CPSC436/game/src/Components/collision_component.cpp" "/home/subi/CPSC436/game/cmake-build-debug/CMakeFiles/436d.dir/src/Components/collision_component.cpp.o"
+  "/home/subi/CPSC436/game/src/Components/color_component.cpp" "/home/subi/CPSC436/game/cmake-build-debug/CMakeFiles/436d.dir/src/Components/color_component.cpp.o"
+  "/home/subi/CPSC436/game/src/Components/enemy_component.cpp" "/home/subi/CPSC436/game/cmake-build-debug/CMakeFiles/436d.dir/src/Components/enemy_component.cpp.o"
+  "/home/subi/CPSC436/game/src/Components/enemy_spawn_component.cpp" "/home/subi/CPSC436/game/cmake-build-debug/CMakeFiles/436d.dir/src/Components/enemy_spawn_component.cpp.o"
+  "/home/subi/CPSC436/game/src/Components/health_component.cpp" "/home/subi/CPSC436/game/cmake-build-debug/CMakeFiles/436d.dir/src/Components/health_component.cpp.o"
+  "/home/subi/CPSC436/game/src/Components/home_component.cpp" "/home/subi/CPSC436/game/cmake-build-debug/CMakeFiles/436d.dir/src/Components/home_component.cpp.o"
+  "/home/subi/CPSC436/game/src/Components/map_component.cpp" "/home/subi/CPSC436/game/cmake-build-debug/CMakeFiles/436d.dir/src/Components/map_component.cpp.o"
+  "/home/subi/CPSC436/game/src/Components/movement_component.cpp" "/home/subi/CPSC436/game/cmake-build-debug/CMakeFiles/436d.dir/src/Components/movement_component.cpp.o"
+  "/home/subi/CPSC436/game/src/Components/player_component.cpp" "/home/subi/CPSC436/game/cmake-build-debug/CMakeFiles/436d.dir/src/Components/player_component.cpp.o"
+  "/home/subi/CPSC436/game/src/Components/projectile_component.cpp" "/home/subi/CPSC436/game/cmake-build-debug/CMakeFiles/436d.dir/src/Components/projectile_component.cpp.o"
+  "/home/subi/CPSC436/game/src/Components/resource_component.cpp" "/home/subi/CPSC436/game/cmake-build-debug/CMakeFiles/436d.dir/src/Components/resource_component.cpp.o"
+  "/home/subi/CPSC436/game/src/Components/sprite_component.cpp" "/home/subi/CPSC436/game/cmake-build-debug/CMakeFiles/436d.dir/src/Components/sprite_component.cpp.o"
+  "/home/subi/CPSC436/game/src/Components/transform_component.cpp" "/home/subi/CPSC436/game/cmake-build-debug/CMakeFiles/436d.dir/src/Components/transform_component.cpp.o"
+  "/home/subi/CPSC436/game/src/Components/wallet_component.cpp" "/home/subi/CPSC436/game/cmake-build-debug/CMakeFiles/436d.dir/src/Components/wallet_component.cpp.o"
+  "/home/subi/CPSC436/game/src/Components/waveset_component.cpp" "/home/subi/CPSC436/game/cmake-build-debug/CMakeFiles/436d.dir/src/Components/waveset_component.cpp.o"
+  "/home/subi/CPSC436/game/src/EntityFactories/background_entity_factory.cpp" "/home/subi/CPSC436/game/cmake-build-debug/CMakeFiles/436d.dir/src/EntityFactories/background_entity_factory.cpp.o"
+  "/home/subi/CPSC436/game/src/EntityFactories/enemy_factory.cpp" "/home/subi/CPSC436/game/cmake-build-debug/CMakeFiles/436d.dir/src/EntityFactories/enemy_factory.cpp.o"
+  "/home/subi/CPSC436/game/src/EntityFactories/enemy_spawn_factory.cpp" "/home/subi/CPSC436/game/cmake-build-debug/CMakeFiles/436d.dir/src/EntityFactories/enemy_spawn_factory.cpp.o"
+  "/home/subi/CPSC436/game/src/EntityFactories/home_factory.cpp" "/home/subi/CPSC436/game/cmake-build-debug/CMakeFiles/436d.dir/src/EntityFactories/home_factory.cpp.o"
+  "/home/subi/CPSC436/game/src/EntityFactories/map_entity_factory.cpp" "/home/subi/CPSC436/game/cmake-build-debug/CMakeFiles/436d.dir/src/EntityFactories/map_entity_factory.cpp.o"
+  "/home/subi/CPSC436/game/src/EntityFactories/player_factory.cpp" "/home/subi/CPSC436/game/cmake-build-debug/CMakeFiles/436d.dir/src/EntityFactories/player_factory.cpp.o"
+  "/home/subi/CPSC436/game/src/EntityFactories/projectile_entity_factory.cpp" "/home/subi/CPSC436/game/cmake-build-debug/CMakeFiles/436d.dir/src/EntityFactories/projectile_entity_factory.cpp.o"
+  "/home/subi/CPSC436/game/src/EntityFactories/resource_factory.cpp" "/home/subi/CPSC436/game/cmake-build-debug/CMakeFiles/436d.dir/src/EntityFactories/resource_factory.cpp.o"
+  "/home/subi/CPSC436/game/src/EntityFactories/tile_factory.cpp" "/home/subi/CPSC436/game/cmake-build-debug/CMakeFiles/436d.dir/src/EntityFactories/tile_factory.cpp.o"
+  "/home/subi/CPSC436/game/src/EntityFactories/tower_entity_factory.cpp" "/home/subi/CPSC436/game/cmake-build-debug/CMakeFiles/436d.dir/src/EntityFactories/tower_entity_factory.cpp.o"
+  "/home/subi/CPSC436/game/src/EntityFactories/tower_ui_entity_factory.cpp" "/home/subi/CPSC436/game/cmake-build-debug/CMakeFiles/436d.dir/src/EntityFactories/tower_ui_entity_factory.cpp.o"
+  "/home/subi/CPSC436/game/src/EntityFactories/waveset_manager_factory.cpp" "/home/subi/CPSC436/game/cmake-build-debug/CMakeFiles/436d.dir/src/EntityFactories/waveset_manager_factory.cpp.o"
+  "/home/subi/CPSC436/game/src/Events/collision_event.cpp" "/home/subi/CPSC436/game/cmake-build-debug/CMakeFiles/436d.dir/src/Events/collision_event.cpp.o"
+  "/home/subi/CPSC436/game/src/Systems/background_system.cpp" "/home/subi/CPSC436/game/cmake-build-debug/CMakeFiles/436d.dir/src/Systems/background_system.cpp.o"
+  "/home/subi/CPSC436/game/src/Systems/billboard_system.cpp" "/home/subi/CPSC436/game/cmake-build-debug/CMakeFiles/436d.dir/src/Systems/billboard_system.cpp.o"
+  "/home/subi/CPSC436/game/src/Systems/collision_system.cpp" "/home/subi/CPSC436/game/cmake-build-debug/CMakeFiles/436d.dir/src/Systems/collision_system.cpp.o"
+  "/home/subi/CPSC436/game/src/Systems/enemy_spawn_system.cpp" "/home/subi/CPSC436/game/cmake-build-debug/CMakeFiles/436d.dir/src/Systems/enemy_spawn_system.cpp.o"
+  "/home/subi/CPSC436/game/src/Systems/enemy_system.cpp" "/home/subi/CPSC436/game/cmake-build-debug/CMakeFiles/436d.dir/src/Systems/enemy_system.cpp.o"
+  "/home/subi/CPSC436/game/src/Systems/event_system.cpp" "/home/subi/CPSC436/game/cmake-build-debug/CMakeFiles/436d.dir/src/Systems/event_system.cpp.o"
+  "/home/subi/CPSC436/game/src/Systems/offscreen_garbage_system.cpp" "/home/subi/CPSC436/game/cmake-build-debug/CMakeFiles/436d.dir/src/Systems/offscreen_garbage_system.cpp.o"
+  "/home/subi/CPSC436/game/src/Systems/physics_system.cpp" "/home/subi/CPSC436/game/cmake-build-debug/CMakeFiles/436d.dir/src/Systems/physics_system.cpp.o"
+  "/home/subi/CPSC436/game/src/Systems/player_system.cpp" "/home/subi/CPSC436/game/cmake-build-debug/CMakeFiles/436d.dir/src/Systems/player_system.cpp.o"
+  "/home/subi/CPSC436/game/src/Systems/resource_system.cpp" "/home/subi/CPSC436/game/cmake-build-debug/CMakeFiles/436d.dir/src/Systems/resource_system.cpp.o"
+  "/home/subi/CPSC436/game/src/Systems/sprite_system.cpp" "/home/subi/CPSC436/game/cmake-build-debug/CMakeFiles/436d.dir/src/Systems/sprite_system.cpp.o"
+  "/home/subi/CPSC436/game/src/Systems/tile_map_system.cpp" "/home/subi/CPSC436/game/cmake-build-debug/CMakeFiles/436d.dir/src/Systems/tile_map_system.cpp.o"
+  "/home/subi/CPSC436/game/src/Systems/tower_attack_system.cpp" "/home/subi/CPSC436/game/cmake-build-debug/CMakeFiles/436d.dir/src/Systems/tower_attack_system.cpp.o"
+  "/home/subi/CPSC436/game/src/Systems/tower_range_display_system.cpp" "/home/subi/CPSC436/game/cmake-build-debug/CMakeFiles/436d.dir/src/Systems/tower_range_display_system.cpp.o"
+  "/home/subi/CPSC436/game/src/Systems/tower_ui_system.cpp" "/home/subi/CPSC436/game/cmake-build-debug/CMakeFiles/436d.dir/src/Systems/tower_ui_system.cpp.o"
+  "/home/subi/CPSC436/game/src/Systems/waveset_system.cpp" "/home/subi/CPSC436/game/cmake-build-debug/CMakeFiles/436d.dir/src/Systems/waveset_system.cpp.o"
+  "/home/subi/CPSC436/game/src/Utility/timer.cpp" "/home/subi/CPSC436/game/cmake-build-debug/CMakeFiles/436d.dir/src/Utility/timer.cpp.o"
+  "/home/subi/CPSC436/game/src/Utility/waveset_structs.cpp" "/home/subi/CPSC436/game/cmake-build-debug/CMakeFiles/436d.dir/src/Utility/waveset_structs.cpp.o"
+  "/home/subi/CPSC436/game/src/entity.cpp" "/home/subi/CPSC436/game/cmake-build-debug/CMakeFiles/436d.dir/src/entity.cpp.o"
+  "/home/subi/CPSC436/game/src/entity_manager.cpp" "/home/subi/CPSC436/game/cmake-build-debug/CMakeFiles/436d.dir/src/entity_manager.cpp.o"
+  "/home/subi/CPSC436/game/src/hud.cpp" "/home/subi/CPSC436/game/cmake-build-debug/CMakeFiles/436d.dir/src/hud.cpp.o"
+  "/home/subi/CPSC436/game/src/line.cpp" "/home/subi/CPSC436/game/cmake-build-debug/CMakeFiles/436d.dir/src/line.cpp.o"
+  "/home/subi/CPSC436/game/src/main.cpp" "/home/subi/CPSC436/game/cmake-build-debug/CMakeFiles/436d.dir/src/main.cpp.o"
+  "/home/subi/CPSC436/game/src/math.cpp" "/home/subi/CPSC436/game/cmake-build-debug/CMakeFiles/436d.dir/src/math.cpp.o"
+  "/home/subi/CPSC436/game/src/program.cpp" "/home/subi/CPSC436/game/cmake-build-debug/CMakeFiles/436d.dir/src/program.cpp.o"
+  "/home/subi/CPSC436/game/src/text.cpp" "/home/subi/CPSC436/game/cmake-build-debug/CMakeFiles/436d.dir/src/text.cpp.o"
+  "/home/subi/CPSC436/game/src/texture.cpp" "/home/subi/CPSC436/game/cmake-build-debug/CMakeFiles/436d.dir/src/texture.cpp.o"
+  "/home/subi/CPSC436/game/src/utility.cpp" "/home/subi/CPSC436/game/cmake-build-debug/CMakeFiles/436d.dir/src/utility.cpp.o"
+  "/home/subi/CPSC436/game/src/world.cpp" "/home/subi/CPSC436/game/cmake-build-debug/CMakeFiles/436d.dir/src/world.cpp.o"
+  )
+set(CMAKE_CXX_COMPILER_ID "GNU")
+
+# The include file search paths:
+set(CMAKE_CXX_TARGET_INCLUDE_PATH
+  "../src"
+  "../ext/stb_image"
+  "../ext/gl3w"
+  "../ext/glm"
+  "../$(FREETYPE_INCLUDE_DIRS)"
+  "/usr/include/SDL2"
+  "/usr/include/freetype2"
+  )
+
+# Targets to which this target links.
+set(CMAKE_TARGET_LINKED_INFO_FILES
+  )
+
+# Fortran module output directory.
+set(CMAKE_Fortran_TARGET_MODULE_DIR "")

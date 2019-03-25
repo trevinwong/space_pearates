@@ -12,6 +12,7 @@ namespace ComponentType {
     water_tower_factor,
     enemy,
     enemy_spawn,
+    enemy_path,
     background_sprite,
     player,
     wallet,
@@ -24,15 +25,15 @@ namespace ComponentType {
     tower_ui_state,
     projectile,
     spline,
-		tile,
+	tile,
     resource,
     animated,
     home,
-		damage,
-		death,
-		waveset,
+	damage,
+	death,
+	waveset,
     particle,
-		max_count // Add above.
+	max_count // Add above.
   };
 }
 

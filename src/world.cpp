@@ -22,7 +22,6 @@ void World::init(vec2 screen)
   ResourceFactory::spawnMany(entityManager); // TODO: maybe remove
 
   entityManager.addEntity(EnemySpawnFactory::build(2.0));
-  enemySystem.setMap(entityManager);
 
   // create background entity
   Entity backgroundEntity = BackgroundEntityFactory::createBackgroundEntity();
@@ -40,6 +39,7 @@ void World::init(vec2 screen)
 
 void World::update(float dt)
 {
+  enemySystem.setMap(entityManager);
   HUD::getInstance().update(dt);
 
   // Note: Be careful, order may matter in some cases for systems
