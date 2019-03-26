@@ -72,14 +72,14 @@ void ParticleSystem::updateParticles(EntityManager & manager, float dt) {
   shared_ptr<HealthComponent> hComponent = home->getComponent<HealthComponent>();
   shared_ptr<ColorComponent> hcComponent = home->getComponent<ColorComponent>();
 
-  if (nextActionTime < 0 && (hComponent->curHP < (0.5 * hComponent->maxHP))) {
-    emitSmoke(manager, vec2(560.f, 710.f));
-    hcComponent->RGBA.a = 1.0f;
-    nextActionTime = DELAY_PERIOD;
-  }
-  else {
-    nextActionTime -= dt;
-  }
+  // if (nextActionTime < 0 && (hComponent->curHP < (0.5 * hComponent->maxHP))) {
+  //   emitSmoke(manager, vec2(560.f, 710.f));
+  //   hcComponent->RGBA.a = 1.0f;
+  //   nextActionTime = DELAY_PERIOD;
+  // }
+  // else {
+  //   nextActionTime -= dt;
+  // }
 
   // Handle particles emitted when enemy dies
   for (shared_ptr<Entity> particle : particles) {

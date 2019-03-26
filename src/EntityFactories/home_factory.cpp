@@ -1,13 +1,13 @@
 #include "home_factory.hpp"
 
-const vec2 BASE_SIZE = glm::vec2(70.f, 125.f);
+const vec2 BASE_SIZE = glm::vec2(250.f, 170.f);
 const glm::vec4 BASE_COLOUR = glm::vec4(0.75f, 0.75f, 0.75f, 1.0f);
 
 Entity HomeFactory::createBase(vec2 position)
 {
   Entity homeEntity;
   shared_ptr<Program> program = make_shared<Program>(shader_path("sprite.vert"), shader_path("sprite.frag"));
-  shared_ptr<Texture> texture = make_shared<Texture>(texture_path("teleporter.png"), true);
+  shared_ptr<Texture> texture = make_shared<Texture>(texture_path("home.png"), true);
   shared_ptr<SpriteComponent> sprite = make_shared<SpriteComponent>(program, texture);
   shared_ptr<TransformComponent> transform = make_shared<TransformComponent>(position, BASE_SIZE, 0.0f);
   shared_ptr<ColorComponent> color = make_shared<ColorComponent>(BASE_COLOUR);

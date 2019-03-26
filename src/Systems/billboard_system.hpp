@@ -9,6 +9,7 @@
 #include "Components/base_component.hpp"
 #include "Components/transform_component.hpp"
 #include "Components/health_component.hpp"
+#include "Components/home_component.hpp"
 
 class BillboardSystem
 {

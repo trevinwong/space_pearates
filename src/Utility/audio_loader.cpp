@@ -17,6 +17,9 @@ AudioLoader::AudioLoader() {
   jump = Mix_LoadWAV(audio_path("jump.wav"));
   build_tower = Mix_LoadWAV(audio_path("build.wav"));
   enemy_dead = Mix_LoadWAV(audio_path("dead.wav"));
+  pause = Mix_LoadWAV(audio_path("pause.wav"));
+  base_hit = Mix_LoadWAV(audio_path("base_damage.wav"));
+  start = Mix_LoadWAV(audio_path("start.wav"));
 
   // Load music
   eurobeat_full = Mix_LoadMUS(audio_path("eurobeat_full.wav"));
@@ -63,6 +66,9 @@ void AudioLoader::destroy()
   Mix_FreeChunk(jump);
   Mix_FreeChunk(build_tower);
   Mix_FreeChunk(enemy_dead);
+  Mix_FreeChunk(pause);
+  Mix_FreeChunk(base_hit);
+  Mix_FreeChunk(start);
   Mix_FreeMusic(eurobeat_full);
   Mix_FreeMusic(hip_shop);
 }

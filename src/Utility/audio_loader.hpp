@@ -19,6 +19,9 @@ public:
   Mix_Chunk *jump;
   Mix_Chunk *build_tower;
   Mix_Chunk *enemy_dead;
+  Mix_Chunk *pause;
+  Mix_Chunk *base_hit;
+  Mix_Chunk *start;
 
   //Mix_Chunk *battle_theme1;
   Mix_Music *eurobeat_full;

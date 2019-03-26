@@ -43,6 +43,7 @@ void SceneManager::setNextSceneToHowToPlay() {
 
 void SceneManager::setNextSceneToInGame(int level) {
   // TODO: use level varibale
+  Mix_PlayChannel(-1, AudioLoader::getInstance().start, 0);
   std::weak_ptr<SceneManager> sceneManager = shared_from_this();
   auto scene = make_shared<World>(sceneManager);
   nextScene = std::dynamic_pointer_cast<AbstractScene>(scene);

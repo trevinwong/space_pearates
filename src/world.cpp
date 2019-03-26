@@ -77,6 +77,7 @@ void World::processInput(float dt, GLboolean keys[], GLboolean keysProcessed[])
   if (keys[GLFW_KEY_H] && !keysProcessed[GLFW_KEY_H])
   {
     paused = !paused;
+    Mix_PlayChannel(-1, AudioLoader::getInstance().pause, 0);
     HelpMenu::getInstance().showHelp = paused;
     keysProcessed[GLFW_KEY_H] = true;
   }
