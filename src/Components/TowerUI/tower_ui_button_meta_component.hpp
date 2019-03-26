@@ -1,10 +1,10 @@
 #ifndef TOWER_UI_BUTTON_META_H
 #define TOWER_UI_BUTTON_META_H
 
-#include <texture.hpp>
-#include <program.hpp>
-#include <text.hpp>
-#include <utility.hpp>
+#include "Utility/texture.hpp"
+#include "Utility/program.hpp"
+#include "Utility/text.hpp"
+#include "Utility/utility.hpp"
 #include "../base_component.hpp"
 
 #define BUILD_TOWER_UI_BUTTON_SIZE_DIFF 8.0f
@@ -13,9 +13,12 @@
 class TowerUiButtonMetaComponent : public BaseComponent {
 public:
   TowerUiButtonMetaComponent();
+  ~TowerUiButtonMetaComponent();
 
   shared_ptr<Program> program;
-  GLuint  quadVAO;
+
+  GLuint VBO;
+  GLuint quadVAO;
 
   // These variables are init in the constructor
   // These variables will not be changed during runtime, they are used as keyframes to compute animation path

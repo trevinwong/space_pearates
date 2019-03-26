@@ -2,7 +2,7 @@
 #define RESOURCE_FACTORY_H
 
 #include "entity.hpp"
-#include "program.hpp"
+#include "Utility/program.hpp"
 #include "entity_manager.hpp"
 #include "Components/sprite_component.hpp"
 #include "Components/transform_component.hpp"
@@ -16,8 +16,8 @@ class ResourceFactory
 {
 public:
   static Entity build(vec2 position, float scale=20.0f);
-	static vector<Entity> buildCluster(int amount, vec2 position, vec2 size, float scale=20.0f);
-  static void spawnMany(EntityManager& entities);
+	static vector<Entity> buildCluster(int amount, vec2 position, vec2 size);
+  static void spawnInitial(EntityManager& entities);
 };
 
 #endif

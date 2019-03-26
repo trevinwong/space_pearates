@@ -19,7 +19,7 @@ EntityGrid CollisionSystem::preprocessEntitiesIntoGrid(vector<shared_ptr<Entity>
       vec2 cell_size = { cell_width, cell_height };
 
       for (shared_ptr<Entity> e : entities) {
-        CollisionComponent *collision = e->getComponent<CollisionComponent>();
+				shared_ptr<CollisionComponent> collision = e->getComponent<CollisionComponent>();
         if (Math::isCollidingWith(cell_pos, cell_size, collision->position, collision->size)) {
           grid[x][y].push_back(e);
         }
@@ -41,12 +41,12 @@ void CollisionSystem::checkCollisions(EntityManager &entityManager)
       for (shared_ptr<Entity> e1 : cell) {
         for (shared_ptr<Entity> e2 : cell) {
 					if (e1 != e2) {
-						CollisionComponent *e1_collision = e1->getComponent<CollisionComponent>();
-						CollisionComponent *e2_collision = e2->getComponent<CollisionComponent>();
+						shared_ptr<CollisionComponent> e1_collision = e1->getComponent<CollisionComponent>();
+						shared_ptr<CollisionComponent> e2_collision = e2->getComponent<CollisionComponent>();
 						string hash1 = std::to_string(e1->id) + ":" + std::to_string(e2->id);
 						string hash2 = std::to_string(e2->id) + ":" + std::to_string(e1->id);
 
-						if (e1_collision->isCollidingWith(*e2_collision) && !collision_cache[hash1] && !collision_cache[hash2]) {
+						if (e1_collision && e2_collision && e1_collision->isCollidingWith(*e2_collision) && !collision_cache[hash1] && !collision_cache[hash2]) {
 							collision_cache[hash1] = true;
 							collision_cache[hash2] = true;
 							handleCollision(e1, e2, entityManager);
@@ -71,7 +71,7 @@ void CollisionSystem::handlePlayerResource(shared_ptr<Entity> player, shared_ptr
 	// remove the resouce from world
 	entityManager.removeEntity(resource);
 	// Add the resource into wallet
-	WalletComponent *wallet = player->getComponent<WalletComponent>();
+	shared_ptr<WalletComponent> wallet = player->getComponent<WalletComponent>();
 	if (wallet != nullptr) {
 		// TODO: for diff type resources, increase diff amount
 		wallet->earn(1);
@@ -84,24 +84,33 @@ void CollisionSystem::handlePlayerResource(shared_ptr<Entity> player, shared_ptr
 
 void CollisionSystem::handlePlayerEnemy(shared_ptr<Entity> player, shared_ptr<Entity> enemy, EntityManager &entityManager)
 {
+<<<<<<< HEAD
   // Add the resource into wallet
   HealthComponent *health = player->getComponent<HealthComponent>();
   if (health) {
     player->setComponent<DamageComponent>(new DamageComponent(enemy->getComponent<EnemyComponent>()->attack));
   }
+=======
+	player->setComponent<DamageComponent>(make_shared<DamageComponent>(enemy->getComponent<EnemyComponent>()->totalAtk));
+>>>>>>> 668dbca440fcc5d34844174d43462c8d3638069f
 }
 
 void CollisionSystem::handleProjectileEnemy(shared_ptr<Entity> projectile, shared_ptr<Entity> enemy, EntityManager &entityManager)
 {
-	ProjectileComponent *projectile_info = projectile->getComponent<ProjectileComponent>();
-	SplineComponent *spline = projectile->getComponent<SplineComponent>();
+	shared_ptr<ProjectileComponent> projectile_info = projectile->getComponent<ProjectileComponent>();
+	shared_ptr<SplineComponent> spline = projectile->getComponent<SplineComponent>();
+	shared_ptr<DamageComponent> damage = enemy->getComponent<DamageComponent>();
 
 	if (spline == nullptr) {
 		// Not a boomerang projectile, remove it
-		projectile->setComponent<DeathComponent>(new DeathComponent());
+		projectile->setComponent<DeathComponent>(make_shared<DeathComponent>());
 	}
 
-	enemy->setComponent<DamageComponent>(new DamageComponent(projectile_info->getAttackPower()));
+	if (damage == nullptr) {
+		enemy->setComponent<DamageComponent>(make_shared<DamageComponent>(projectile_info->getAttackPower()));
+	} else {
+		damage->addDamageInstance(projectile_info->getAttackPower());
+	}
 }
 
 void CollisionSystem::handleCollision(shared_ptr<Entity> e1, shared_ptr<Entity> e2, EntityManager &entityManager)

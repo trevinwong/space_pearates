@@ -1,9 +1,9 @@
 #include "enemy_component.hpp"
 
-EnemyComponent::EnemyComponent(int _worth, float _attack)
+EnemyComponent::EnemyComponent(int _worth, float _atkMult)
 {
 	worth =_worth;
-  attack = _attack;
+	totalAtk = std::max(1, (int)(baseAtk * _atkMult));
 }
 
 

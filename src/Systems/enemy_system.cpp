@@ -8,6 +8,7 @@
 //   vector<shared_ptr<Entity>> entityList = entityManager.getEntities(entityManager.getComponentChecker(vector<int> {ComponentType::transform, ComponentType::enemy, ComponentType::movement}));
 //   shared_ptr<Entity> home = entityManager.getEntities(entityManager.getComponentChecker(vector<int> {ComponentType::home}))[0];
 
+<<<<<<< HEAD
 //   float eps = 0.001;
 //   for (shared_ptr<Entity> e : entityList) {
 //     MovementComponent *movementComponent = e->getComponent<MovementComponent>();
@@ -52,6 +53,37 @@
 //         vel.x = -vel.x;
 //       }
 //     }
+=======
+  float eps = 0.001;
+  for (shared_ptr<Entity> e : entityList) {
+    shared_ptr<MovementComponent> movementComponent = e->getComponent<MovementComponent>();
+    shared_ptr<EnemyComponent> enemyComponent = e->getComponent<EnemyComponent>();
+    shared_ptr<TransformComponent> transformComponent = e->getComponent<TransformComponent>();
+    shared_ptr<HealthComponent> healthComponent = home->getComponent<HealthComponent>();
+
+		vec2 vel = movementComponent->velocity;
+		vec2 pos = transformComponent->position;
+		int yind = static_cast<int>(pos.y / 40);
+		int xind = static_cast<int>(pos.x / 40);
+		bool flag = false;
+		vel.y = abs(vel.y) < eps ? movementComponent->maxVelocity.y : vel.y;
+
+		if (map[yind][xind] == MAP_BASE_POSITION) {
+			entityManager.removeEntity(e);
+			WavesetSystem::getInstance().decrementEnemies(1, entityManager);
+			if (healthComponent) {
+				int damage = 20;
+				if (enemyComponent) {
+					damage = enemyComponent->totalAtk;
+				}
+				healthComponent->curHP = healthComponent->curHP - damage < 0 ? 0 : healthComponent->curHP - damage;
+
+				if (healthComponent->curHP <= 0) {
+					HUD::getInstance().game_over = true;
+				}
+			}
+		}
+>>>>>>> 668dbca440fcc5d34844174d43462c8d3638069f
 
 // 		// check if directly above base - path straight down if so
 // 		for (int i = 0; i <= ceil(vel.y*dt/40); i++)
@@ -186,6 +218,7 @@ void EnemySystem::move (float dt, EntityManager& entityManager) {
 //   }
 // }
 
+<<<<<<< HEAD
 void EnemySystem::setMap (EntityManager& entityManager) {
   shared_ptr<Entity> e = entityManager.getEntitiesHasOneOf(entityManager.getComponentChecker(vector<int>{ComponentType::map}))[0];
   MapComponent *mapComponent = e->getComponent<MapComponent>();
@@ -194,3 +227,12 @@ void EnemySystem::setMap (EntityManager& entityManager) {
   map = mapComponent->mapData2DArray;
   // return true;
 }
+=======
+bool EnemySystem::setMap (EntityManager& entityManager) {
+  shared_ptr<Entity> e = entityManager.getEntitiesHasOneOf(entityManager.getComponentChecker(vector<int>{ComponentType::map}))[0];
+	shared_ptr<MapComponent> mapComponent = e->getComponent<MapComponent>();
+  if (!mapComponent) return false;
+  map = mapComponent->mapData2DArray;
+  return true;
+}
+>>>>>>> 668dbca440fcc5d34844174d43462c8d3638069f

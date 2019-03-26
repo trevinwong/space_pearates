@@ -21,8 +21,8 @@ void PhysicsSystem::moveEntities(EntityManager &entityManager, float dt) {
     vector<int>{ComponentType::transform, ComponentType::movement}));
 
   for (shared_ptr<Entity> e : entities) {
-    TransformComponent *transform = e->getComponent<TransformComponent>();
-    MovementComponent *movement = e->getComponent<MovementComponent>();
+		shared_ptr<TransformComponent> transform = e->getComponent<TransformComponent>();
+		shared_ptr<MovementComponent> movement = e->getComponent<MovementComponent>();
 
 		movement->accel.y += getGravity(dt);
 		movement->accel.x += getFriction(movement->velocity, dt);
@@ -35,9 +35,9 @@ void PhysicsSystem::moveEntities(EntityManager &entityManager, float dt) {
 		}
 		movement->velocity = glm::clamp(newVelocity, -movement->maxVelocity, movement->maxVelocity);
 
-		CollisionComponent *collision = e->getComponent<CollisionComponent>();
-    ProjectileComponent *projectile = e->getComponent<ProjectileComponent>();
-    WaterTowerFactorComponent *waterTowerFactor = e->getComponent<WaterTowerFactorComponent>();
+		shared_ptr<CollisionComponent> collision = e->getComponent<CollisionComponent>();
+		shared_ptr<ProjectileComponent> projectile = e->getComponent<ProjectileComponent>();
+		shared_ptr<WaterTowerFactorComponent> waterTowerFactor = e->getComponent<WaterTowerFactorComponent>();
 
     if(waterTowerFactor)
       transform->position = transform->position + movement->velocity * waterTowerFactor->speedFactor * dt;
@@ -54,23 +54,26 @@ void PhysicsSystem::rotateEntities(EntityManager & entityManager, float dt)
   vector<shared_ptr<Entity>> entities = entityManager.getEntities(entityManager.getComponentChecker(
     vector<int>{ComponentType::transform, ComponentType::projectile}));
   for (shared_ptr<Entity> e : entities) {
-    TransformComponent *transform = e->getComponent<TransformComponent>();
-    ProjectileComponent *projectile = e->getComponent<ProjectileComponent>();
+		shared_ptr<TransformComponent> transform = e->getComponent<TransformComponent>();
+		shared_ptr<ProjectileComponent> projectile = e->getComponent<ProjectileComponent>();
 
     if (projectile->rotateOn) transform->rotation += 10.0 * dt;
 
-    CollisionComponent *collision = e->getComponent<CollisionComponent>();
+		shared_ptr<CollisionComponent> collision = e->getComponent<CollisionComponent>();
     if (collision != nullptr) collision->rotation = transform->rotation;
   }
 }
 
 void PhysicsSystem::adjustPositionAroundTiles(EntityManager &entityManager, shared_ptr<Entity> &e) {
 	vector<shared_ptr<Entity>> tiles = entityManager.getEntities(entityManager.getComponentChecker(vector<int>{ComponentType::tile}));
-	TransformComponent *transform = e->getComponent<TransformComponent>();
-	MovementComponent *movement = e->getComponent<MovementComponent>();
+	shared_ptr<TransformComponent> transform = e->getComponent<TransformComponent>();
+	shared_ptr<MovementComponent> movement = e->getComponent<MovementComponent>();
 
 	for (shared_ptr<Entity> tile : tiles) {
-		TransformComponent* tile_transform = tile->getComponent<TransformComponent>();
+		shared_ptr<TileComponent> tile_info = tile->getComponent<TileComponent>();
+    if (!tile_info->isPhysical) continue;
+
+		shared_ptr<TransformComponent> tile_transform = tile->getComponent<TransformComponent>();
 
 		if (transform->isCollidingWith(*tile_transform)) {
 			float radius = transform->size.x / 2.0f; // convert collision box into a circular one
@@ -104,7 +107,7 @@ void PhysicsSystem::adjustPositionAroundTiles(EntityManager &entityManager, shar
 			vec2 newVelocity = movement->velocity;
 			vec2 newAccel = movement->accel;
 
-			PlayerComponent *player = e->getComponent<PlayerComponent>();
+			shared_ptr<PlayerComponent> player = e->getComponent<PlayerComponent>();
 
 			if (player != nullptr && top_intersect_valid) {
 				player->jumps = player->maxJumps;
@@ -137,8 +140,8 @@ void PhysicsSystem::adjustPositionAroundTiles(EntityManager &entityManager, shar
 
 void PhysicsSystem::adjustPositionOntoScreen(EntityManager &entityManager, shared_ptr<Entity> &e)
 {
-	TransformComponent *transform = e->getComponent<TransformComponent>();
-	MovementComponent *movement = e->getComponent<MovementComponent>();
+	shared_ptr<TransformComponent> transform = e->getComponent<TransformComponent>();
+	shared_ptr<MovementComponent> movement = e->getComponent<MovementComponent>();
 	if (transform->position.x < 0.0f) {
 		transform->position.x = 0.0f;
 		movement->velocity.x = 0.0f;

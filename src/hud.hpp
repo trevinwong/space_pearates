@@ -1,8 +1,8 @@
 #ifndef HUD_H
 #define HUD_H
 
-#include "utility.hpp"
-#include "text.hpp"
+#include "Utility/utility.hpp"
+#include "Utility/text.hpp"
 
 // Singleton https://stackoverflow.com/questions/1008019/c-singleton-design-pattern
 class HUD

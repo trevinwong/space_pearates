@@ -1,14 +1,16 @@
 #include "render_to_texture_system.hpp"
 
 RenderToTextureSystem::~RenderToTextureSystem() {
+  glDeleteVertexArrays(1, &quadVAO);
   glDeleteBuffers(1, &VBO);
-  if (waterProgram) delete waterProgram;
+  if (renderedTexture) glDeleteTextures(1, &renderedTexture);
+  if (FramebufferName) glDeleteFramebuffers(1, &FramebufferName);
+  if (depthrenderbuffer) glDeleteRenderbuffers(1, &depthrenderbuffer);
 }
 
 bool RenderToTextureSystem::initWaterEffect()
 {
-  waterProgram = new Program(shader_path("water_tower_range_effect.vert"), 
-                             shader_path("water_tower_range_effect.frag"));
+  waterProgram = make_shared<Program>(shader_path("water_tower_range_effect.vert"), shader_path("water_tower_range_effect.frag"));
 
 	static const GLfloat vertices[] = {
     // Pos        // Tex
@@ -68,7 +70,6 @@ bool RenderToTextureSystem::prepareWaterEffect() {
   glBindTexture(GL_TEXTURE_2D, 0);
 
   // The depth buffer - optional
-  GLuint depthrenderbuffer;
   glGenRenderbuffers(1, &depthrenderbuffer);
   glBindRenderbuffer(GL_RENDERBUFFER, depthrenderbuffer);
   glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT, SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -156,8 +157,8 @@ vector<vec3> RenderToTextureSystem::getWaterTowerPosAndRange(EntityManager entit
   if (towerEntities.size() == 0) return result;
 
   for (shared_ptr<Entity> towerEntity : towerEntities) {
-    TowerAttackComponent *towerAttackComponent = towerEntity->getComponent<TowerAttackComponent>();
-    TransformComponent *transformComponent = towerEntity->getComponent<TransformComponent>();
+    shared_ptr<TowerAttackComponent> towerAttackComponent = towerEntity->getComponent<TowerAttackComponent>();
+    shared_ptr<TransformComponent> transformComponent = towerEntity->getComponent<TransformComponent>();
 
     if (transformComponent == nullptr || towerAttackComponent == nullptr) continue;
 

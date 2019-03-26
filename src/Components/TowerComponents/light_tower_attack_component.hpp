@@ -1,7 +1,7 @@
 #ifndef LIGHT_TOWER_ATTACK_COMPONENT_H
 #define LIGHT_TOWER_ATTACK_COMPONENT_H
 
-#include "utility.hpp"
+#include "Utility/utility.hpp"
 #include "../base_component.hpp"
 #include "fire_tower_attack_component.hpp"
 

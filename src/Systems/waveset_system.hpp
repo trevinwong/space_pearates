@@ -1,7 +1,7 @@
 #ifndef WAVESET_SYSTEM_H
 #define WAVESET_SYSTEM_H
 
-#include "utility.hpp"
+#include "Utility/utility.hpp"
 #include "entity.hpp"
 #include "entity_manager.hpp"
 #include "Utility/waveset_structs.hpp"
@@ -22,13 +22,14 @@ public:
     return instance;
   }
 
+  void reset();
 	void handleBuildAndDefensePhase(EntityManager &entityManager, float dt);
 	void startBuildPhase();
 	void startDefensePhase(Wave &wave);
 	bool timeToSpawnNextCluster(Wave &wave);
 	bool isWaveOver(Wave &wave);
 	bool isWavesetOver(Waveset &waveset);
-	void spawnCluster(EntityManager &entityManager, Cluster cluster);
+	void spawnCluster(EntityManager &entityManager, Cluster cluster, int hp, int spd, int atk);
 	void decrementEnemies(int amount, EntityManager &entityManager);
 
 	int waveNo = 0;

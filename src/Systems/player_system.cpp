@@ -5,9 +5,9 @@ void PlayerSystem::interpInput(EntityManager &entityManager, float dt, GLboolean
 	vector<shared_ptr<Entity>> entities = entityManager.getEntities(entityManager.getComponentChecker(vector<int>{ComponentType::player, ComponentType::movement}));
 
 	for (shared_ptr<Entity> e : entities) {
-		PlayerComponent *player = e->getComponent<PlayerComponent>();
-		MovementComponent *movement = e->getComponent<MovementComponent>();
-		SpriteComponent *sprite = e->getComponent<SpriteComponent>();
+		shared_ptr<PlayerComponent> player = e->getComponent<PlayerComponent>();
+		shared_ptr<MovementComponent> movement = e->getComponent<MovementComponent>();
+		shared_ptr<SpriteComponent> sprite = e->getComponent<SpriteComponent>();
 
 		vec2 newAcceleration = movement->accel;
 		vec2 newVelocity = movement->velocity;

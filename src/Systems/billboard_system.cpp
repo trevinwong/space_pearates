@@ -15,8 +15,8 @@ void BillboardSystem::drawBillboards(EntityManager & entityManager, glm::mat4 pr
   }));
 
   for (shared_ptr<Entity> e : filtered_entities) {
-    TransformComponent *transform = e->getComponent<TransformComponent>();
-    HealthComponent *health = e->getComponent<HealthComponent>();
+    shared_ptr<TransformComponent> transform = e->getComponent<TransformComponent>();
+    shared_ptr<HealthComponent> health = e->getComponent<HealthComponent>();
 
     // Use the program attached with the spriteComponent.
     health->program->use();

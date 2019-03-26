@@ -12,8 +12,8 @@ void TowerUiIdleState::input(EntityManager &entityManager, GLboolean keys[], GLb
 
   if (playerEntities.size() == 0 || mapEntities.size() == 0 || towerUiEntities.size() == 0) return;
 
-  TransformComponent *playerTransformComponent = playerEntities[0]->getComponent<TransformComponent>();
-  MapComponent *mapComponent = mapEntities[0]->getComponent<MapComponent>();
+  shared_ptr<TransformComponent> playerTransformComponent = playerEntities[0]->getComponent<TransformComponent>();
+  shared_ptr<MapComponent> mapComponent = mapEntities[0]->getComponent<MapComponent>();
   if (playerTransformComponent == nullptr || mapComponent == nullptr) return;
 
   vec2 playerPosition = playerTransformComponent->position;
@@ -23,34 +23,34 @@ void TowerUiIdleState::input(EntityManager &entityManager, GLboolean keys[], GLb
   // no response to key press
   if (!mapComponent->canBuildTowerAt(playerCenterPosition.x, playerCenterPosition.y)) return;
 
-  TowerUiStateComponent *newState = nullptr;
+  shared_ptr<TowerUiStateComponent> newState;
   // shift ui to left
   if (keys[GLFW_KEY_A] && !keysProcessed[GLFW_KEY_A]) {
     // set a new value
-    newState = new TowerUiShiftLeftState();
+    newState = make_shared<TowerUiShiftLeftState>();
     // update state
     for (shared_ptr<Entity> e : towerUiEntities) {
       e->setComponent<TowerUiStateComponent>(newState);
     }
     // state changed, delete currect state
-    delete this;
+    // the deletion will be handled by smart pointer
   }
     // shift ui to right
   else if (keys[GLFW_KEY_D] && !keysProcessed[GLFW_KEY_D]) {
     // set a new value
-    newState = new TowerUiShiftRightState();
+    newState = make_shared<TowerUiShiftRightState>();
     // update state
     for (shared_ptr<Entity> e : towerUiEntities) {
       e->setComponent<TowerUiStateComponent>(newState);
     }
     // state changed, delete currect state
-    delete this;
+    // the deletion will be handled by smart pointer
   }
 
   // create a new built tower event
   // use "keyPressTimeDuration" to avoid process one key multi-times
   if ((keys[GLFW_KEY_S] || keys[GLFW_KEY_SPACE])) {
-    TowerUiButtonComponent *towerUiBtn = towerUiEntities[0]->getComponent<TowerUiButtonComponent>();
+    shared_ptr<TowerUiButtonComponent> towerUiBtn = towerUiEntities[0]->getComponent<TowerUiButtonComponent>();
     if (towerUiBtn != nullptr) {
       shared_ptr<TowerUiButtonComponent::TowerUiBtn> btn = towerUiBtn->getCurrentSelectedBtn();
       processOperate(playerCenterPosition, btn->opt, entityManager);
@@ -74,10 +74,10 @@ void TowerUiIdleState::update(EntityManager &entityManager, float dt) {
 
   if (playerEntities.empty() || towerUiEntities.empty() || mapEntities.empty()) return;
 
-  TowerUiButtonComponent *towerUiButtonComponent = towerUiEntities[0]->getComponent<TowerUiButtonComponent>();
-  TowerUiButtonMetaComponent *towerUiButtonMeta = towerUiEntities[0]->getComponent<TowerUiButtonMetaComponent>();
-  MapComponent *mapComponent = mapEntities[0]->getComponent<MapComponent>();
-  TransformComponent *playerTransformComponent = playerEntities[0]->getComponent<TransformComponent>();
+  shared_ptr<TowerUiButtonComponent> towerUiButtonComponent = towerUiEntities[0]->getComponent<TowerUiButtonComponent>();
+  shared_ptr<TowerUiButtonMetaComponent> towerUiButtonMeta = towerUiEntities[0]->getComponent<TowerUiButtonMetaComponent>();
+  shared_ptr<MapComponent> mapComponent = mapEntities[0]->getComponent<MapComponent>();
+  shared_ptr<TransformComponent> playerTransformComponent = playerEntities[0]->getComponent<TransformComponent>();
 
   if (towerUiButtonComponent == nullptr || towerUiButtonMeta == nullptr || playerTransformComponent == nullptr || mapComponent == nullptr) return;
   vec2 playerCenterTopPosition = vec2(playerTransformComponent->position.x + playerTransformComponent->size.x * 0.5, playerTransformComponent->position.y);
@@ -168,8 +168,8 @@ void TowerUiIdleState::update(EntityManager &entityManager, float dt) {
     shared_ptr<Entity> targetTower = entityManager.getEntityById(towerId);
     // if can not find the tower by id
     if (targetTower != nullptr) {
-      TowerMetaComponent *towerMetaComponent = targetTower->getComponent<TowerMetaComponent>();
-      TowerAttackComponent *towerAttackComponent = targetTower->getComponent<TowerAttackComponent>();
+      shared_ptr<TowerMetaComponent> towerMetaComponent = targetTower->getComponent<TowerMetaComponent>();
+      shared_ptr<TowerAttackComponent> towerAttackComponent = targetTower->getComponent<TowerAttackComponent>();
       towerUiButtonComponent->descriptionLine2 = "";
       switch (towerUiBtn->opt) {
         case UPGRADE_TOWER_OPERATION:
@@ -208,8 +208,8 @@ void TowerUiIdleState::processOperate(glm::vec2 playerCenterPosition, TOWER_UI_O
   vector<shared_ptr<Entity>> playerEntities = entityManager.getEntities(
       entityManager.getComponentChecker(vector<int>{ComponentType::player, ComponentType::movement}));
   if (mapEntities.size() == 0 || playerEntities.size() == 0) return;
-  MapComponent *mapComponent = mapEntities[0]->getComponent<MapComponent>();
-  WalletComponent *walletComponent = playerEntities[0]->getComponent<WalletComponent>();
+  shared_ptr<MapComponent> mapComponent = mapEntities[0]->getComponent<MapComponent>();
+  shared_ptr<WalletComponent> walletComponent = playerEntities[0]->getComponent<WalletComponent>();
   if (mapComponent == nullptr || walletComponent == nullptr) return;
 
   float width_tile = mapComponent->width_tile;
@@ -243,7 +243,7 @@ void TowerUiIdleState::processOperate(glm::vec2 playerCenterPosition, TOWER_UI_O
         return; // unknown type of tower
     }
 
-    TowerMetaComponent *towerMetaComponent = towerEntity.getComponent<TowerMetaComponent>();
+    shared_ptr<TowerMetaComponent> towerMetaComponent = towerEntity.getComponent<TowerMetaComponent>();
     if (walletComponent->spend(towerMetaComponent->buildCost)) {
       Mix_PlayChannel(-1, AudioLoader::getInstance().build_tower, 0);
       entityManager.addEntity(towerEntity);
@@ -257,8 +257,8 @@ void TowerUiIdleState::processOperate(glm::vec2 playerCenterPosition, TOWER_UI_O
     shared_ptr<Entity> targetTower = entityManager.getEntityById(towerId);
     // if can not find the tower by id
     if (targetTower == nullptr) return;
-    TowerMetaComponent *towerMetaComponent = targetTower->getComponent<TowerMetaComponent>();
-    TowerAttackComponent *towerAttackComponent = targetTower->getComponent<TowerAttackComponent>();
+    shared_ptr<TowerMetaComponent> towerMetaComponent = targetTower->getComponent<TowerMetaComponent>();
+    shared_ptr<TowerAttackComponent> towerAttackComponent = targetTower->getComponent<TowerAttackComponent>();
 
     switch (operationType) {
       case SELL_TOWER_OPERATION:

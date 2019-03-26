@@ -5,12 +5,12 @@ const glm::vec4 DEFAULT_COLOR = glm::vec4(1.0f,1.0f,1.0f,1.0f);
 const float DEFAULT_LIFETIME = 2.0f;
 
 Entity ParticleFactory::build(glm::vec2 originPosition) {
-    Program *program = new Program(shader_path("sprite.vert"), shader_path("sprite.frag"));
-    Texture *texture = new Texture();  
-    SpriteComponent *sprite = new SpriteComponent(program, texture);
-    ColorComponent *color = new ColorComponent(DEFAULT_COLOR); 
-    TransformComponent *transform = new TransformComponent(originPosition, DEFAULT_SCALE, 0.0f);
-    ParticleComponent *particle = new ParticleComponent(DEFAULT_LIFETIME);
+    shared_ptr<Program> program = make_shared<Program>(shader_path("sprite.vert"), shader_path("sprite.frag"));
+    shared_ptr<Texture> texture = make_shared<Texture>();
+    shared_ptr<SpriteComponent> sprite = make_shared<SpriteComponent>(program, texture);
+    shared_ptr<ColorComponent> color = make_shared<ColorComponent>(DEFAULT_COLOR);
+    shared_ptr<TransformComponent> transform = make_shared<TransformComponent>(originPosition, DEFAULT_SCALE, 0.0f);
+    shared_ptr<ParticleComponent> particle = make_shared<ParticleComponent>(DEFAULT_LIFETIME);
 
     particle->active = false;
     particle->particleScale = DEFAULT_SCALE;

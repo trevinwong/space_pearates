@@ -2,7 +2,7 @@
 #define WAVESET_MANAGER_FACTORY_H
 
 #include "entity.hpp"
-#include "program.hpp"
+#include "Utility/program.hpp"
 #include "Components/waveset_component.hpp"
 #include "Utility/waveset_structs.hpp"
 

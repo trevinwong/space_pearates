@@ -2,19 +2,19 @@
 
 Entity ProjectileEntityFactory::createAimProjectile(vec2 size, glm::vec4 filterColor, vec2 startPosition, float speed, vec2 velocityDirection, int attackPower)
 {
-  Program *towerProgram = new Program(shader_path("sprite.vert"), shader_path("sprite.frag"));
-  Texture *towerTexture = new Texture(texture_path("fire_projectile.png"), true);
-  SpriteComponent *sprite = new SpriteComponent(towerProgram, towerTexture);
-  ColorComponent *color = new ColorComponent(filterColor);
+  shared_ptr<Program> towerProgram = make_shared<Program>(shader_path("sprite.vert"), shader_path("sprite.frag"));
+  shared_ptr<Texture> towerTexture = make_shared<Texture>(texture_path("fire_projectile.png"), true);
+  shared_ptr<SpriteComponent> sprite = make_shared<SpriteComponent>(towerProgram, towerTexture);
+  shared_ptr<ColorComponent> color = make_shared<ColorComponent>(filterColor);
 
-  TransformComponent *transform = new TransformComponent(startPosition, size, 0.0f);  // TODO: calculate rotation by velocityDirection
-  CollisionComponent *collision = new CollisionComponent(startPosition, size, 0.0f);
+  shared_ptr<TransformComponent> transform = make_shared<TransformComponent>(startPosition, size, 0.0f);  // TODO: calculate rotation by velocityDirection
+  shared_ptr<CollisionComponent> collision = make_shared<CollisionComponent>(startPosition, size, 0.0f);
 
   vec2 velocity = velocityDirection * speed;
-  MovementComponent *movement = new MovementComponent(velocity, vec2(0.0f, 0.0f), vec2(100.0f, 100.0f), vec2(0.0f, 0.0f));
+  shared_ptr<MovementComponent> movement = make_shared<MovementComponent>(velocity, vec2(0.0f, 0.0f), vec2(100.0f, 100.0f), vec2(0.0f, 0.0f));
   movement->offScreenOK = true; // a projectile can be off screen and then be destroyed by projectile_destroy_system
 
-  ProjectileComponent *projectile = new ProjectileComponent(attackPower);
+  shared_ptr<ProjectileComponent> projectile = make_shared<ProjectileComponent>(attackPower);
 
   Entity projectileEntity;
   projectileEntity.setComponent<SpriteComponent>(sprite);
@@ -47,18 +47,18 @@ vector<Entity> ProjectileEntityFactory::createSpreadProjectiles(int projectileNu
 
 Entity ProjectileEntityFactory::createStarProjectile(vec2 size, glm::vec4 filterColor, vec2 startPosition, vec2 velocity, vec2 accel, vec2 maxVelocity, vec2 maxAccel, int attackPower)
 {
-  Program *towerProgram = new Program(shader_path("sprite.vert"), shader_path("sprite.frag"));
-  Texture *towerTexture = new Texture(texture_path("star_projectile.png"), true);
-  SpriteComponent *sprite = new SpriteComponent(towerProgram, towerTexture);
-  ColorComponent *color = new ColorComponent(filterColor);
+  shared_ptr<Program> towerProgram = make_shared<Program>(shader_path("sprite.vert"), shader_path("sprite.frag"));
+  shared_ptr<Texture> towerTexture = make_shared<Texture>(texture_path("star_projectile.png"), true);
+  shared_ptr<SpriteComponent> sprite = make_shared<SpriteComponent>(towerProgram, towerTexture);
+  shared_ptr<ColorComponent> color = make_shared<ColorComponent>(filterColor);
 
-  TransformComponent *transform = new TransformComponent(startPosition, size, 0.0f);  // TODO: calculate rotation by velocityDirection
-  CollisionComponent *collision = new CollisionComponent(startPosition, size, 0.0f);
+  shared_ptr<TransformComponent> transform = make_shared<TransformComponent>(startPosition, size, 0.0f);  // TODO: calculate rotation by velocityDirection
+  shared_ptr<CollisionComponent> collision = make_shared<CollisionComponent>(startPosition, size, 0.0f);
 
-  MovementComponent *movement = new MovementComponent(velocity, accel, maxVelocity, maxAccel);
+  shared_ptr<MovementComponent> movement = make_shared<MovementComponent>(velocity, accel, maxVelocity, maxAccel);
   movement->offScreenOK = true;  // a projectile can be off screen and then be destroyed by projectile_destroy_system
 
-  ProjectileComponent *projectile = new ProjectileComponent(attackPower);
+  shared_ptr<ProjectileComponent> projectile = make_shared<ProjectileComponent>(attackPower);
 
   Entity projectileEntity;
   projectileEntity.setComponent<SpriteComponent>(sprite);
@@ -72,14 +72,14 @@ Entity ProjectileEntityFactory::createStarProjectile(vec2 size, glm::vec4 filter
 
 Entity ProjectileEntityFactory::createBoomerang(vec2 originPosition, vec2 enemyPosition, int attackPower, vec2 size, glm::vec4 filterColor)
 {
-  Program *towerProgram = new Program(shader_path("sprite.vert"), shader_path("sprite.frag"));
-  Texture *towerTexture = new Texture(texture_path("boomerang.png"), true);
-  SpriteComponent *sprite = new SpriteComponent(towerProgram, towerTexture);
-  ColorComponent *color = new ColorComponent(filterColor);
+  shared_ptr<Program> towerProgram = make_shared<Program>(shader_path("sprite.vert"), shader_path("sprite.frag"));
+  shared_ptr<Texture> towerTexture = make_shared<Texture>(texture_path("boomerang.png"), true);
+  shared_ptr<SpriteComponent> sprite = make_shared<SpriteComponent>(towerProgram, towerTexture);
+  shared_ptr<ColorComponent> color = make_shared<ColorComponent>(filterColor);
 
   vec2 leftTopPosition = originPosition - size * 0.5f;
-  TransformComponent *transform = new TransformComponent(leftTopPosition, size, 0.0f);
-  CollisionComponent *collision = new CollisionComponent(leftTopPosition, size, 0.0f);
+  shared_ptr<TransformComponent> transform = make_shared<TransformComponent>(leftTopPosition, size, 0.0f);
+  shared_ptr<CollisionComponent> collision = make_shared<CollisionComponent>(leftTopPosition, size, 0.0f);
 
   float fixedRange = 200.0f; //TODO maybe as power-up
   vec2 shootDir = glm::normalize(enemyPosition - originPosition);
@@ -93,8 +93,8 @@ Entity ProjectileEntityFactory::createBoomerang(vec2 originPosition, vec2 enemyP
     rotatedRight,
     originPosition
   };
-  SplineComponent *spline = new SplineComponent(controlPoints);
-  ProjectileComponent *projectile = new ProjectileComponent(attackPower, true);
+  shared_ptr<SplineComponent> spline = make_shared<SplineComponent>(controlPoints);
+  shared_ptr<ProjectileComponent> projectile = make_shared<ProjectileComponent>(attackPower, true);
 
   Entity projectileEntity;
   projectileEntity.setComponent<SpriteComponent>(sprite);

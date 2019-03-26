@@ -1,6 +1,11 @@
 #include "damage_component.hpp"
 
-DamageComponent::DamageComponent(float _power)
+DamageComponent::DamageComponent(float damage)
 {
-	power = _power;
+	damage_instances.push_back(damage);
+}
+
+void DamageComponent::addDamageInstance(float damage)
+{
+	damage_instances.push_back(damage);
 }

@@ -1,7 +1,7 @@
 #ifndef PARTICLE_SYSTEM_H
 #define PARTICLE_SYSTEM_H
 
-#include "utility.hpp"
+#include "Utility/utility.hpp"
 #include "entity.hpp"
 #include "entity_manager.hpp"
 #include "../Utility/timer.hpp"
@@ -14,12 +14,17 @@
 #include "../Components/home_component.hpp"
 
 class ParticleSystem {
-    public:
-        void initParticleSystem(EntityManager & manager);
-        static void emitParticleCluster(EntityManager & manager, glm::vec2 clusterOrigin); // Create a particle cluster at posn clusterOrigin
-        static void updateParticles(EntityManager & manager, float dt);
-        static std::vector<shared_ptr<Entity>> particleClusters;
-        static int findUnusedParticle();
-        static void emitSmoke(EntityManager & manager, glm::vec2 clusterOrigin);
+public:
+  void initParticleSystem(EntityManager & manager);
+  static void emitParticleCluster(EntityManager & manager, vec2 clusterOrigin); // Create a particle cluster at position clusterOrigin
+  static void emitSmoke(EntityManager & manager, vec2 clusterOrigin);
+  static void updateParticles(EntityManager & manager, float dt);
+  static void resetParticles(EntityManager & manager);
+
+private:
+  static vector<shared_ptr<Entity>> particleClusters;
+  static int findUnusedParticle();
+  static void resetParticle(shared_ptr<ColorComponent> cComponent, shared_ptr<TransformComponent> tComponent, shared_ptr<ParticleComponent> pComponent);
+
 };
 #endif

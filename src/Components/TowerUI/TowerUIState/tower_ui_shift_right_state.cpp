@@ -21,9 +21,9 @@ void TowerUiShiftRightState::update(EntityManager &entityManager, float dt) {
 
   if (playerEntities.size() == 0 || towerUiEntities.size() == 0) return;
 
-  TowerUiButtonComponent *towerUiButton = towerUiEntities[0]->getComponent<TowerUiButtonComponent>();
-  TowerUiButtonMetaComponent *towerUiButtonMeta = towerUiEntities[0]->getComponent<TowerUiButtonMetaComponent>();
-  TransformComponent *playerTransformComponent = playerEntities[0]->getComponent<TransformComponent>();
+  shared_ptr<TowerUiButtonComponent> towerUiButton = towerUiEntities[0]->getComponent<TowerUiButtonComponent>();
+  shared_ptr<TowerUiButtonMetaComponent> towerUiButtonMeta = towerUiEntities[0]->getComponent<TowerUiButtonMetaComponent>();
+  shared_ptr<TransformComponent> playerTransformComponent = playerEntities[0]->getComponent<TransformComponent>();
 
   if (towerUiButton == nullptr || towerUiButtonMeta == nullptr || playerTransformComponent == nullptr) return;
   glm::vec2 playerCenterTopPosition = glm::vec2(playerTransformComponent->position.x + playerTransformComponent->size.x * 0.5, playerTransformComponent->position.y);
@@ -93,13 +93,13 @@ void TowerUiShiftRightState::update(EntityManager &entityManager, float dt) {
     }
 
     // create a new state
-    TowerUiStateComponent *newState = new TowerUiIdleState();
+    shared_ptr<TowerUiStateComponent> newState = make_shared<TowerUiIdleState>();
     // update state
     for (shared_ptr<Entity> e : towerUiEntities) {
       e->setComponent<TowerUiStateComponent>(newState);
     }
     // towerUiStateSystem pointer points to new instace, delete currect state
-    delete this;
+    // the deletion will be handled by smart pointer
   }
 }
 

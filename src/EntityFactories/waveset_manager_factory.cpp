@@ -5,7 +5,7 @@ Entity WavesetManagerFactory::build(string fileName)
 	Entity e;
 	Waveset waveset = readWavesetFile(fileName);
 	//std::shared_ptr<WavesetComponent> wavesetComponent = std::make_shared<WavesetComponent>(WavesetComponent(waveset));
-	WavesetComponent* wavesetComponent = new WavesetComponent(waveset);
+	shared_ptr<WavesetComponent> wavesetComponent = make_shared<WavesetComponent>(waveset);
 	e.setComponent<WavesetComponent>(wavesetComponent);
 	return e;
 }
@@ -53,23 +53,40 @@ Waveset WavesetManagerFactory::readWavesetFile(string fileName)
 
 	vector<string> txtFiles;
 	vector<Wave> waves;
+	vector<int> hpMult;
+	vector<int> spdMult;
+	vector<int> atkMult;
 
 	while (!ifs.eof()) {
 		string waveFile; 
 		string line;
 		std::getline(ifs, line); 
 		std::stringstream iss(line); 
+		int hp;
+		int speed;
+		int attack;
+
 		fillVariable(iss, waveFile, "buildTime");
 
 		int i = getPreviouslyReadIndex(txtFiles, waveFile);
 		Wave wave = (i != -1) ? waves[i] : readWaveDataFile(wave_path() + waveFile);
 
+		fillVariable(iss, hp, "hp");
+		checkValidSeparatorAndMove(iss, "waveset");
+		fillVariable(iss, speed, "speed");
+		checkValidSeparatorAndMove(iss, "waveset");
+		fillVariable(iss, attack, "attack");
+		checkExtraText(iss, "waveset");
+
 		waves.push_back(wave);
 		txtFiles.push_back(waveFile);
+		hpMult.push_back(hp);
+		spdMult.push_back(speed);
+		atkMult.push_back(attack);
 	}
 
 	ifs.close();
-	return Waveset(waves);
+	return Waveset(waves, hpMult, spdMult, atkMult);
 }
 
 Wave WavesetManagerFactory::readWaveDataFile(string fileName)

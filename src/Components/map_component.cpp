@@ -1,6 +1,6 @@
 #include "map_component.hpp"
 
-MapComponent::MapComponent(std::vector<std::vector<char>> _mapData2DArray) :
+MapComponent::MapComponent(vector<vector<char>> _mapData2DArray) :
   mapData2DArray(_mapData2DArray)
 {
   this->num_y_tiles = this->mapData2DArray.size();
@@ -8,13 +8,13 @@ MapComponent::MapComponent(std::vector<std::vector<char>> _mapData2DArray) :
   this->width_tile = (float)SCREEN_WIDTH / (float)this->num_x_tiles;
   this->height_tile = (float)SCREEN_HEIGHT / (float)this->num_y_tiles;
 
-  // initial a blank map for tower distribution
-  // towerDistributionMap[row][col] or towerDistributionMap[y][x]
-  this->towerDistributionMap = std::vector<std::vector<TOWER_ID>>(num_y_tiles, std::vector<TOWER_ID>(num_x_tiles, NO_TOWER_BUILD_HERE));
+  reset();
 }
 
-MapComponent::~MapComponent()
-{
+void MapComponent::reset() {
+  // initial a blank map for tower distribution
+  // towerDistributionMap[row][col] or towerDistributionMap[y][x]
+  this->towerDistributionMap = vector<vector<TOWER_ID>>(num_y_tiles, vector<TOWER_ID>(num_x_tiles, NO_TOWER_BUILD_HERE));
 }
 
 bool MapComponent::isTowerAt(float x, float y)

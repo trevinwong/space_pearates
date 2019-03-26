@@ -1,10 +1,12 @@
 #ifndef WORLD_H
 #define WORLD_H
 
-#include "utility.hpp"
+#include "Utility/utility.hpp"
+#include "Scenes/abstract_scene.hpp"
 #include "hud.hpp"
+#include "help_menu.hpp"
+#include "Scenes/scene_manager.hpp"
 #include "Systems/enemy_system.hpp"
-#include "Systems/enemy_spawn_system.hpp"
 #include "Utility/waveset_structs.hpp"
 #include "entity_manager.hpp"
 #include "Systems/tile_map_system.hpp"
@@ -30,7 +32,6 @@
 #include "EntityFactories/background_entity_factory.hpp"
 #include "EntityFactories/player_factory.hpp"
 #include "EntityFactories/resource_factory.hpp"
-#include "EntityFactories/enemy_spawn_factory.hpp"
 #include "EntityFactories/tower_ui_entity_factory.hpp"
 #include "EntityFactories/waveset_manager_factory.hpp"
 #include "Components/collision_component.hpp"
@@ -39,38 +40,41 @@
 // TO-DO: Look into replacing Keys array with direct callback.
 // TO-DO: Look into replacing processInput with direct callback.
 // TO-DO: Look into not having to include every component file.
-class World
+class World : public AbstractScene
 {
 public:
-  void init(vec2 screen);
+  void reset();
+  World(std::weak_ptr<SceneManager> _sceneManager);
   void processInput(float dt, GLboolean keys[], GLboolean keysProcessed[]);
   void update(float dt); // dt = delta time, how much time has passed since update was last called
   void draw();
-  void destroy();
   vec2 player_spawn = vec2(0.0f, 0.0f);
 
 private:
-  glm::mat4 projection;
-  EntityManager entityManager;
+
   PhysicsSystem physicsSystem;
   InterpolationSystem interpolationSystem;
   CollisionSystem collisionSystem;
-	DeathSystem deathSystem;
+
   SpriteSystem spriteSystem;
   BackgroundSystem backgroundSystem;
   BillboardSystem billboardSystem;
+
   EnemySystem enemySystem;
   PlayerSystem playerSystem;
-  ResourceSystem resourceSystem;
-	DamageSystem damageSystem;
 
   TowerRangeDisplaySystem towerRangeDisplaySystem;
   TowerAttackSystem towerAttackSystem;
   TowerUiSystem towerUiSystem;
+  RenderToTextureSystem renderToTextureSystem;
 
   OffscreenGarbageSystem offscreenGarbageSystem;
   ParticleSystem particleSystem;
-  RenderToTextureSystem renderToTextureSystem;
+  ResourceSystem resourceSystem;
+	DamageSystem damageSystem;
+	DeathSystem deathSystem;
+
+  bool paused = false;
 };
 
 #endif

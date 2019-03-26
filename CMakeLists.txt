@@ -51,14 +51,12 @@ set(SOURCE_FILES_CORE
 	src/EntityFactories/background_entity_factory.hpp
 	src/EntityFactories/enemy_factory.cpp
 	src/EntityFactories/enemy_factory.hpp
-	src/EntityFactories/enemy_spawn_factory.cpp
-	src/EntityFactories/enemy_spawn_factory.hpp
 	src/EntityFactories/map_entity_factory.cpp
 	src/EntityFactories/map_entity_factory.hpp
 	src/EntityFactories/tower_ui_entity_factory.cpp
 	src/EntityFactories/tower_ui_entity_factory.hpp
-	src/EntityFactories/build_area_indicator_entity_factory.cpp
-	src/EntityFactories/build_area_indicator_entity_factory.hpp
+  src/EntityFactories/menu_ui_factory.cpp
+  src/EntityFactories/menu_ui_factory.hpp
 	src/EntityFactories/tile_factory.cpp
 	src/EntityFactories/tile_factory.hpp
 	src/EntityFactories/resource_factory.cpp
@@ -70,8 +68,8 @@ set(SOURCE_FILES_CORE
 	src/EntityFactories/projectile_entity_factory.hpp
 	src/EntityFactories/particle_factory.cpp
 	src/EntityFactories/particle_factory.hpp
-	src/math.hpp
-	src/math.cpp
+	src/Utility/math.hpp
+	src/Utility/math.cpp
 	src/Components/collision_component.cpp
 	src/Components/collision_component.hpp
 	src/Components/color_component.cpp
@@ -96,7 +94,7 @@ set(SOURCE_FILES_CORE
 	src/Components/TowerComponents/tower_attack_component.cpp
 	src/Components/TowerComponents/tower_attack_component.hpp
 	src/Components/TowerComponents/tower_range_sprite_component.hpp
-  src/Components/TowerComponents/water_tower_attack_component.cpp
+	src/Components/TowerComponents/water_tower_attack_component.cpp
 	src/Components/TowerComponents/water_tower_attack_component.hpp
 	src/Components/TowerComponents/water_tower_factor_component.hpp
 	src/Components/TowerComponents/fire_tower_attack_component.cpp
@@ -119,8 +117,12 @@ set(SOURCE_FILES_CORE
 	src/Components/TowerUI/TowerUIState/tower_ui_shift_left_state.hpp
 	src/Components/TowerUI/TowerUIState/tower_ui_shift_right_state.cpp
 	src/Components/TowerUI/TowerUIState/tower_ui_shift_right_state.hpp
+  src/Components/MenuUI/menu_ui_component.cpp
+  src/Components/MenuUI/menu_ui_component.hpp
 	src/Components/projectile_component.cpp
 	src/Components/projectile_component.hpp
+	src/Components/tile_component.cpp
+	src/Components/tile_component.hpp
 	src/Components/enemy_component.cpp
 	src/Components/enemy_component.hpp
   src/Components/enemy_path_component.cpp
@@ -174,18 +176,18 @@ set(SOURCE_FILES_CORE
 	src/Utility/timer.cpp
 	src/Utility/waveset_structs.hpp
 	src/Utility/waveset_structs.cpp
+	src/Systems/menu_ui_system.cpp
+	src/Systems/menu_ui_system.hpp
 	src/Systems/enemy_system.cpp
 	src/Systems/enemy_system.hpp
-	src/Systems/enemy_spawn_system.cpp
-	src/Systems/enemy_spawn_system.hpp
 	src/Systems/waveset_system.cpp
 	src/Systems/waveset_system.hpp
 	src/Systems/resource_system.cpp
 	src/Systems/resource_system.hpp
 	src/Systems/particle_system.cpp
 	src/Systems/particle_system.hpp
-	src/line.hpp
-	src/line.cpp
+	src/Utility/line.hpp
+	src/Utility/line.cpp
 	src/Utility/timer.hpp
 	src/Utility/timer.cpp
 	src/Utility/waveset_structs.hpp
@@ -194,18 +196,29 @@ set(SOURCE_FILES_CORE
 	src/entity.hpp
 	src/entity_manager.cpp
 	src/entity_manager.hpp
-	src/program.cpp
-	src/program.hpp
-	src/texture.cpp
-	src/texture.hpp
-	src/utility.cpp
-	src/utility.hpp
-	src/text.cpp
-	src/text.hpp
+	src/Utility/program.cpp
+	src/Utility/program.hpp
+	src/Utility/texture.cpp
+	src/Utility/texture.hpp
+	src/Utility/utility.cpp
+	src/Utility/utility.hpp
+	src/Utility/text.cpp
+	src/Utility/text.hpp
 	src/hud.cpp
 	src/hud.hpp
-	src/audio_loader.cpp
-	src/audio_loader.hpp
+	src/Utility/audio_loader.cpp
+	src/Utility/audio_loader.hpp
+	src/help_menu.hpp
+	src/help_menu.cpp
+	src/Scenes/scene_manager.hpp
+	src/Scenes/scene_manager.cpp
+	src/Scenes/abstract_scene.hpp
+	src/Scenes/main_menu_scene.cpp
+	src/Scenes/main_menu_scene.hpp
+  src/Scenes/level_selection_scene.cpp
+	src/Scenes/level_selection_scene.hpp
+	src/Scenes/how_to_play_scene.cpp
+	src/Scenes/how_to_play_scene.hpp
 	src/world.cpp
 	src/world.hpp
 )
