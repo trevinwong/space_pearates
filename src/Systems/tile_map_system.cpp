@@ -28,7 +28,7 @@ void TileMapSystem::loadTileMap(EntityManager & entityManager, vec2 & player_spa
           vec2(width_tile, height_tile)));
       }
       else if (*col == MAP_BASE_POSITION) {
-        Entity base = HomeFactory::createBase(vec2(col_i*width_tile - 100, row_i*height_tile - 85));
+        Entity base = HomeFactory::createBase(vec2(col_i*width_tile - 100.f, row_i*height_tile - 85.f));
         entityManager.addEntity(base);
       }
       else if (*col == MAP_TOWER_POSITION) {
