@@ -17,6 +17,7 @@ void BillboardSystem::drawBillboards(EntityManager & entityManager, glm::mat4 pr
   for (shared_ptr<Entity> e : filtered_entities) {
     shared_ptr<TransformComponent> transform = e->getComponent<TransformComponent>();
     shared_ptr<HealthComponent> health = e->getComponent<HealthComponent>();
+    shared_ptr<HomeComponent> home = e->getComponent<HomeComponent>();
 
     // Use the program attached with the spriteComponent.
     health->program->use();
@@ -30,8 +31,15 @@ void BillboardSystem::drawBillboards(EntityManager & entityManager, glm::mat4 pr
 
     float barWidth = useDefaultWidth ? defaultWidth : transform->size.x;
     barWidth *= health->curHP / health->maxHP > 0 ? health->curHP / health->maxHP : 0;
-    float barHeight = 3.5f;
+
+    float barHeight = 5.f;
     float xOffset = useDefaultWidth ? -defaultWidth/2 + transform->size.x/2 : 0.0f;
+
+    if (home != nullptr) {
+      barWidth = 100.f;
+      xOffset = -defaultWidth/2 + transform->size.x/2;
+    }
+    
     float yOffset = -10.0f;
     glm::vec2 barOffset = glm::vec2(xOffset, yOffset);
 

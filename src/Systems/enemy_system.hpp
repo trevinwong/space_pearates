@@ -7,6 +7,7 @@
 #include "hud.hpp"
 #include "waveset_system.hpp"
 #include "Components/map_component.hpp"
+#include "Utility/audio_loader.hpp"
 
 class EnemySystem
 {

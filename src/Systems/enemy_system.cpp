@@ -32,6 +32,7 @@ void EnemySystem::move (float dt, EntityManager& entityManager) {
 					damage = enemyComponent->totalAtk;
 				}
 				healthComponent->curHP = healthComponent->curHP - damage < 0 ? 0 : healthComponent->curHP - damage;
+				Mix_PlayChannel(-1, AudioLoader::getInstance().base_hit, 0);
 
 				if (healthComponent->curHP <= 0) {
 					HUD::getInstance().game_over = true;
