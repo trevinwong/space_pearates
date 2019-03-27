@@ -230,7 +230,6 @@ void TowerUiIdleState::processOperate(glm::vec2 playerCenterPosition, TOWER_UI_O
   // build a new tower
   if (!mapComponent->isTowerAt(col, row)) {
     shared_ptr<TowerData> data;
-
     switch (operationType) {
       case BUILD_FIRE_TOWER:
         data = TowerDataLoader::allTowerData[BUILD_FIRE_TOWER];
@@ -254,7 +253,7 @@ void TowerUiIdleState::processOperate(glm::vec2 playerCenterPosition, TOWER_UI_O
 	if (walletComponent->spend(data->buildCost)) {
 		towerUiButtonComponent->descriptionLine1Color = towerUiButtonComponent->defaultTextColor;
 		glm::vec2 towerCenterBottomPosition = glm::vec2(col * width_tile + width_tile / 2.0, row * height_tile + height_tile);
-		glm::vec2 towerSize = glm::vec2(40.0f, 65.0f);
+		glm::vec2 towerSize = glm::vec2(40.0f, 65.0f) * SCALING_FACTOR;
 		Entity towerEntity;
 		switch (operationType) {
 		case BUILD_FIRE_TOWER:
