@@ -2,7 +2,7 @@
 3 # build-cost
 4 # max-level
 0 6 7 8 9 # upgrade costs
-10 20 30 40 50 # size per lvl
 50 100 110 120 130 # attack per lvl
 180 200 220 240 260 # range per lvl
 2.0 2.0 2.0 2.0 2.0 # fire rate per lvl
+10 20 30 40 50 # size per lvl

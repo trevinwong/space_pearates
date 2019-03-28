@@ -15,5 +15,5 @@ void WaterTowerAttackComponent::setToLevel(int level)
 
 float WaterTowerAttackComponent::getSlowDownFactor()
 {
-  return slowDownFactor;
+  return (1 - slowDownFactor / 100);
 }

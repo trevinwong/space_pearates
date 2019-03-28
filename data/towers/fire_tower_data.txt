@@ -1,5 +1,5 @@
 0.0 -0.3 # relative fire position
-2 # build-cost
+1 # build-cost
 5 # max-level
 0 2 4 7 12 18 # upgrade costs
 35 50 65 80 100 130 # attack for each level
