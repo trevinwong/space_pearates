@@ -293,6 +293,7 @@ void TowerUiIdleState::processOperate(glm::vec2 playerCenterPosition, TOWER_UI_O
         if (towerMetaComponent->currentLevel < towerMetaComponent->maxLevel)
           // upgradeCostsPerLvl describe how much money it costs to upgrade TO that level
           if (walletComponent->spend(towerMetaComponent->upgradeCostsPerLvl[towerMetaComponent->currentLevel+1])) {
+            towerMetaComponent->totalWorth += towerMetaComponent->upgradeCostsPerLvl[towerMetaComponent->currentLevel+1];
             towerMetaComponent->currentLevel += 1;
             towerAttackComponent->setToLevel(towerMetaComponent->currentLevel);
           }
