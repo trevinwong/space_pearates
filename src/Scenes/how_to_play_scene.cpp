@@ -24,5 +24,4 @@ void HowToPlayScene::update(float dt) {}
 
 void HowToPlayScene::draw() {
   backgroundSystem.render(entityManager, projection);
-  HelpMenu::getInstance().draw(projection);
 }

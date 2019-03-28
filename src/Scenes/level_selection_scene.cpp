@@ -28,6 +28,7 @@ void LevelSelectionScene::processInput(float dt, GLboolean keys[], GLboolean key
       sceneManager_spt->setNextSceneToMainMenu();
       keysProcessed[GLFW_KEY_ESCAPE] = true;
     } else if (keys[GLFW_KEY_ENTER] && !keysProcessed[GLFW_KEY_ENTER] && sceneManager_spt) {
+      keysProcessed[GLFW_KEY_ENTER] = true;
       MenuUiComponent::MenuUiChoice selected = menuUiComponent->getSelected();
       switch (selected.choice) {
         case LevelSelectionUiList::level1:
@@ -47,7 +48,6 @@ void LevelSelectionScene::processInput(float dt, GLboolean keys[], GLboolean key
         default:
           break;
       }
-      keysProcessed[GLFW_KEY_ENTER] = true;
     }
   }
 }
