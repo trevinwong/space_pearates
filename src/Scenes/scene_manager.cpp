@@ -42,7 +42,7 @@ void SceneManager::setNextSceneToHowToPlay() {
 }
 
 void SceneManager::setNextSceneToInGame(int level) {
-  // TODO: use level varibale
+  showLoadingScreenNow();
   Mix_PlayChannel(-1, AudioLoader::getInstance().start, 0);
   std::weak_ptr<SceneManager> sceneManager = shared_from_this();
   auto scene = make_shared<World>(sceneManager);
@@ -59,4 +59,19 @@ void SceneManager::setNextSceneToMainMenu() {
   std::weak_ptr<SceneManager> sceneManager = shared_from_this();
   auto scene = make_shared<MainMenuScene>(sceneManager);
   nextScene = std::dynamic_pointer_cast<AbstractScene>(scene);
+}
+
+void SceneManager::showLoadingScreenNow() {
+  std::weak_ptr<SceneManager> sceneManager = shared_from_this();
+  auto scene = make_shared<LoadingScene>(sceneManager);
+  currentScene = std::dynamic_pointer_cast<AbstractScene>(scene); // replace currentScene directly
+
+  // draw on both buffers, otherwise a flash screen bug appears
+  currentScene->draw();
+  glfwSwapBuffers(window);
+  glfwPollEvents();
+
+  currentScene->draw();
+  glfwSwapBuffers(window);
+  glfwPollEvents();
 }

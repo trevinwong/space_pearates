@@ -8,6 +8,7 @@
 #include "level_selection_scene.hpp"
 #include "main_menu_scene.hpp"
 #include "how_to_play_scene.hpp"
+#include "loading_scene.hpp"
 
 class SceneManager : public std::enable_shared_from_this<SceneManager> {
 public:
@@ -24,6 +25,8 @@ public:
   void setNextSceneToLevelSelection();
 
   void setNextSceneToMainMenu();
+
+  void showLoadingScreenNow();
 
   void setGLFWwindow(GLFWwindow *window);
 
