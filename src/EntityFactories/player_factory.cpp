@@ -15,7 +15,7 @@ Entity PlayerFactory::build(vec2 translation, vec2 scale)
   movement->offScreenOK = false;
 
 	shared_ptr<Program> billboardProgram = make_shared<Program>(shader_path("billboard.vert"), shader_path("billboard.frag"));
-  shared_ptr<HealthComponent> health = make_shared<HealthComponent>(billboardProgram, 30);
+  shared_ptr<HealthComponent> health = make_shared<HealthComponent>(billboardProgram, 100);
   GLfloat rotation = 0.0f;
   shared_ptr<TransformComponent> transform = make_shared<TransformComponent>(translation, scale, rotation);
   shared_ptr<CollisionComponent> collision = make_shared<CollisionComponent>(translation, scale, rotation);

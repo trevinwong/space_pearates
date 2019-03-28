@@ -7,20 +7,16 @@
 
 class StarTowerAttackComponent : public TowerAttackComponent {
 public:
-  // Note: _fireRate (unit: s)
-  StarTowerAttackComponent(vec2 _relativeFirePosition,
-    float _attackRange,
-    int _maxLevel,
-    float _fireRate,
-    int projectileAttackPower,
-    vec2 projectileSize);
+  StarTowerAttackComponent(vec2 _relativeFirePosition, vector<int> _attackPerLvl, vector<float> _rangePerLvl, vector<float> _fireRatePerLvl, vector<float> _sizePerLvl);
 
   virtual int getTowerType() { return towerTypeID; };
+  virtual void setToLevel(int level);
 
   vec2 getProjectileSize();
+  vec2 projectileSize;
+  vector<float> sizePerLvl;
 
 private:
-  vec2 projectileSize;
   static const int towerTypeID = TowerTypeID::star_tower;
 };
 

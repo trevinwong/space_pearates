@@ -88,6 +88,7 @@ void printVec3(string name, vec3 vec);
 #define waveset_path(name) data_path  "waveSet/" name
 #define wave_path(name) data_path  "waveSet/wave/" name
 #define cluster_path(name) data_path  "waveSet/wave/cluster/" name
+#define towers_path(name) data_path "towers/" name
 
 #define SCREEN_WIDTH 1280
 #define SCREEN_HEIGHT 800

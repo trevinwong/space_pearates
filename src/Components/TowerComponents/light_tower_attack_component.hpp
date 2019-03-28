@@ -7,20 +7,16 @@
 
 class LightTowerAttackComponent : public TowerAttackComponent {
 public:
-  // Note: _fireRate (unit: s)
-  LightTowerAttackComponent(vec2 _relativeFirePosition,
-    float _attackRange,
-    int _maxLevel,
-    float _fireRate,
-    int projectileAttackPower,
-    int projectileNumberPerShoot);
+  LightTowerAttackComponent(vec2 _relativeFirePosition, vector<int> _attackPerLvl, vector<float> _rangePerLvl, vector<float> _fireRatePerLvl, vector<int> _numProjectilesPerLvl);
 
   int getProjectileNumberPerShoot();
+  vector<int> numProjectilesPerLvl;
+  int projectileNumberPerShoot;
 
+  virtual void setToLevel(int level);
   virtual int getTowerType() { return towerTypeID; };
 
 private:
-  int projectileNumberPerShoot;
   static const int towerTypeID = TowerTypeID::light_tower;
 };
 

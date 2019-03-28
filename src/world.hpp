@@ -38,6 +38,7 @@
 #include "EntityFactories/waveset_manager_factory.hpp"
 #include "Components/collision_component.hpp"
 #include "Components/transform_component.hpp"
+#include "DataLoaders/tower_data_loader.hpp"
 
 // TO-DO: Look into replacing Keys array with direct callback.
 // TO-DO: Look into replacing processInput with direct callback.

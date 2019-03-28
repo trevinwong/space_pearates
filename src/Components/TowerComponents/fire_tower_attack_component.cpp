@@ -1,12 +1,13 @@
 #include "fire_tower_attack_component.hpp"
 
-FireTowerAttackComponent::FireTowerAttackComponent(
-  vec2 _relativeFirePosition,
-  float _attackRange,
-  int _maxLevel,
-  float _fireRate,
-  int _projectileAttackPower
-) :
-  TowerAttackComponent(_relativeFirePosition, _attackRange, _maxLevel, _fireRate, _projectileAttackPower)
+FireTowerAttackComponent::FireTowerAttackComponent(vec2 _relativeFirePosition, vector<int> _attackPerLvl, vector<float> _rangePerLvl, vector<float> _fireRatePerLvl) :
+  TowerAttackComponent(_relativeFirePosition, _attackPerLvl, _rangePerLvl, _fireRatePerLvl)
 {
+}
+
+void FireTowerAttackComponent::setToLevel(int level)
+{
+  attackRange = rangePerLvl[level];
+  fireRate = fireRatePerLvl[level];
+  projectileAttackPower = attackPerLvl[level]; 
 }

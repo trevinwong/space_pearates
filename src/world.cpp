@@ -8,6 +8,7 @@ const vector<int> non_recyclable_components = {
 World::World(std::weak_ptr<SceneManager> _sceneManager, int _level) : AbstractScene(_sceneManager), level(_level)
 {
   vec2 screen =  vec2(SCREEN_WIDTH, SCREEN_HEIGHT);
+  TowerDataLoader::loadTowerData();
   projection = glm::ortho(0.0f, static_cast<GLfloat>(screen.x), static_cast<GLfloat>(screen.y), 0.0f, -1.0f, 1.0f);
   physicsSystem.setScreenInfo(screen);
   collisionSystem.setScreenInfo(screen);
@@ -43,6 +44,9 @@ World::~World()
 
 void World::reset()
 {
+  // Load data
+  TowerDataLoader::loadTowerData();
+
   // Reset singletons
   HUD::getInstance().reset();
   AudioLoader::getInstance().reset();

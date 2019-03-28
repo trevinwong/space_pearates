@@ -1,20 +1,21 @@
 #include "light_tower_attack_component.hpp"
 
-LightTowerAttackComponent::LightTowerAttackComponent(
-  vec2 _relativeFirePosition,
-  float _attackRange,
-  int _maxLevel,
-  float _fireRate,
-  int _projectileAttackPower,
-  int _projectileNumberPerShoot
-) :
-  TowerAttackComponent(_relativeFirePosition, _attackRange, _maxLevel, _fireRate, _projectileAttackPower),
-  projectileNumberPerShoot(_projectileNumberPerShoot)
+LightTowerAttackComponent::LightTowerAttackComponent(vec2 _relativeFirePosition, vector<int> _attackPerLvl, vector<float> _rangePerLvl, vector<float> _fireRatePerLvl, vector<int> _numProjectilesPerLvl) :
+  TowerAttackComponent(_relativeFirePosition, _attackPerLvl, _rangePerLvl, _fireRatePerLvl),
+  numProjectilesPerLvl(_numProjectilesPerLvl)
 {
+  projectileNumberPerShoot = numProjectilesPerLvl[0];
+}
+
+void LightTowerAttackComponent::setToLevel(int level)
+{
+  attackRange = rangePerLvl[level];
+  fireRate = fireRatePerLvl[level];
+  projectileAttackPower = attackPerLvl[level]; 
+  projectileNumberPerShoot = numProjectilesPerLvl[level];
 }
 
 int LightTowerAttackComponent::getProjectileNumberPerShoot()
 {
-  // light tower can shoot more in upper levels
-  return this->projectileNumberPerShoot * (currentLevel + 1);
+  return this->projectileNumberPerShoot;
 }

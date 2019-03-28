@@ -11,6 +11,8 @@
 #include "tower_ui_state_component.hpp"
 #include "tower_ui_shift_left_state.hpp"
 #include "tower_ui_shift_right_state.hpp"
+#include "DataLoaders/tower_data_loader.hpp"
+#include "DataLoaders/tower_structs.hpp"
 
 class TowerUiIdleState : public TowerUiStateComponent {
 public:

@@ -39,10 +39,12 @@ void PhysicsSystem::moveEntities(EntityManager &entityManager, float dt) {
 		shared_ptr<ProjectileComponent> projectile = e->getComponent<ProjectileComponent>();
 		shared_ptr<WaterTowerFactorComponent> waterTowerFactor = e->getComponent<WaterTowerFactorComponent>();
 
-    if(waterTowerFactor)
+    if (waterTowerFactor) {
       transform->position = transform->position + movement->velocity * waterTowerFactor->speedFactor * dt;
-		else
+		}
+		else {
       transform->position = transform->position + movement->velocity * dt;
+		}
 		if (projectile == nullptr) adjustPositionAroundTiles(entityManager, e);
 		if (collision != nullptr) collision->position = transform->position;
 		if (!movement->offScreenOK) adjustPositionOntoScreen(entityManager, e);
