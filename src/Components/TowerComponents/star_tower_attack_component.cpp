@@ -17,5 +17,5 @@ void StarTowerAttackComponent::setToLevel(int level)
 
 vec2 StarTowerAttackComponent::getProjectileSize()
 {
-  return projectileSize;
+  return projectileSize * SCALING_FACTOR;
 }
