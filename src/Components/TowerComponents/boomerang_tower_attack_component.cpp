@@ -3,6 +3,7 @@
 BoomerangTowerAttackComponent::BoomerangTowerAttackComponent(vec2 _relativeFirePosition, vector<int> _attackPerLvl, vector<float> _rangePerLvl, vector<float> _fireRatePerLvl) :
   TowerAttackComponent(_relativeFirePosition, _attackPerLvl, _rangePerLvl, _fireRatePerLvl)
 {
+  setToLevel(0);
 }
 
 void BoomerangTowerAttackComponent::setToLevel(int level)

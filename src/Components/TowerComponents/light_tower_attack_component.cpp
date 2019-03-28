@@ -4,7 +4,7 @@ LightTowerAttackComponent::LightTowerAttackComponent(vec2 _relativeFirePosition,
   TowerAttackComponent(_relativeFirePosition, _attackPerLvl, _rangePerLvl, _fireRatePerLvl),
   numProjectilesPerLvl(_numProjectilesPerLvl)
 {
-  projectileNumberPerShoot = numProjectilesPerLvl[0];
+  setToLevel(0);
 }
 
 void LightTowerAttackComponent::setToLevel(int level)

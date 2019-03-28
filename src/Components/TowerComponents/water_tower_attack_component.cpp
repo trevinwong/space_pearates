@@ -4,6 +4,7 @@ WaterTowerAttackComponent::WaterTowerAttackComponent(vec2 _relativeFirePosition,
   TowerAttackComponent(_relativeFirePosition, vector<int>{}, _rangePerLvl, vector<float>{}),
   slowPerLvl(_slowPerLvl)
 {
+  setToLevel(0);
 }
 
 void WaterTowerAttackComponent::setToLevel(int level)

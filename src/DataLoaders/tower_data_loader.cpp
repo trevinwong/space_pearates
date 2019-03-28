@@ -17,6 +17,7 @@ FireTowerData TowerDataLoader::loadFireTowerData(string fileName)
   std::ifstream ifs(fileName);
   checkValidFilename(ifs, fileName);
 
+  float relativeFirePositionX, relativeFirePositionY;
 	int buildCost;
 	int maxLvl;
 	vector<int> upgradeCostsPerLvl;
@@ -24,6 +25,9 @@ FireTowerData TowerDataLoader::loadFireTowerData(string fileName)
 	vector<float> rangePerLvl;
 	vector<float> fireRatePerLvl;
   
+  fillVariable(ifs, relativeFirePositionX, "relativeFirePositionX");
+  fillVariable(ifs, relativeFirePositionY, "relativeFirePositionY");
+  moveToNextLine(ifs);
   fillVariable(ifs, buildCost, "buildCost");
   moveToNextLine(ifs);
   fillVariable(ifs, maxLvl, "maxLvl");
@@ -37,7 +41,7 @@ FireTowerData TowerDataLoader::loadFireTowerData(string fileName)
   fillVector(ifs, fireRatePerLvl, maxLvl + 1, "fireRate");
   
   ifs.close();
-  return FireTowerData(buildCost, maxLvl, upgradeCostsPerLvl, attackPerLvl, rangePerLvl, fireRatePerLvl);
+  return FireTowerData(vec2(relativeFirePositionX, relativeFirePositionY), buildCost, maxLvl, upgradeCostsPerLvl, attackPerLvl, rangePerLvl, fireRatePerLvl);
 }
 
 LightTowerData TowerDataLoader::loadLightTowerData(string fileName)
@@ -45,6 +49,7 @@ LightTowerData TowerDataLoader::loadLightTowerData(string fileName)
   std::ifstream ifs(fileName);
   checkValidFilename(ifs, fileName);
 
+  float relativeFirePositionX, relativeFirePositionY;
 	int buildCost;
 	int maxLvl;
 	vector<int> upgradeCostsPerLvl;
@@ -53,6 +58,9 @@ LightTowerData TowerDataLoader::loadLightTowerData(string fileName)
 	vector<float> fireRatePerLvl;
 	vector<int> numProjectilesPerLvl;
   
+  fillVariable(ifs, relativeFirePositionX, "relativeFirePositionX");
+  fillVariable(ifs, relativeFirePositionY, "relativeFirePositionY");
+  moveToNextLine(ifs);
   fillVariable(ifs, buildCost, "buildCost");
   moveToNextLine(ifs);
   fillVariable(ifs, maxLvl, "maxLvl");
@@ -68,7 +76,7 @@ LightTowerData TowerDataLoader::loadLightTowerData(string fileName)
   fillVector(ifs, numProjectilesPerLvl, maxLvl + 1, "numProjectiles");
   
   ifs.close();
-  return LightTowerData(buildCost, maxLvl, upgradeCostsPerLvl, attackPerLvl, rangePerLvl, fireRatePerLvl, numProjectilesPerLvl);
+  return LightTowerData(vec2(relativeFirePositionX, relativeFirePositionY), buildCost, maxLvl, upgradeCostsPerLvl, attackPerLvl, rangePerLvl, fireRatePerLvl, numProjectilesPerLvl);
 }
 
 StarTowerData TowerDataLoader::loadStarTowerData(string fileName)
@@ -76,6 +84,7 @@ StarTowerData TowerDataLoader::loadStarTowerData(string fileName)
   std::ifstream ifs(fileName);
   checkValidFilename(ifs, fileName);
 
+  float relativeFirePositionX, relativeFirePositionY;
 	int buildCost;
 	int maxLvl;
 	vector<int> upgradeCostsPerLvl;
@@ -84,6 +93,9 @@ StarTowerData TowerDataLoader::loadStarTowerData(string fileName)
 	vector<float> fireRatePerLvl;
 	vector<float> sizePerLvl;
   
+  fillVariable(ifs, relativeFirePositionX, "relativeFirePositionX");
+  fillVariable(ifs, relativeFirePositionY, "relativeFirePositionY");
+  moveToNextLine(ifs);
   fillVariable(ifs, buildCost, "buildCost");
   moveToNextLine(ifs);
   fillVariable(ifs, maxLvl, "maxLvl");
@@ -99,7 +111,7 @@ StarTowerData TowerDataLoader::loadStarTowerData(string fileName)
   fillVector(ifs, sizePerLvl, maxLvl + 1, "size");
   
   ifs.close();
-  return StarTowerData(buildCost, maxLvl, upgradeCostsPerLvl, attackPerLvl, rangePerLvl, fireRatePerLvl, sizePerLvl);
+  return StarTowerData(vec2(relativeFirePositionX, relativeFirePositionY), buildCost, maxLvl, upgradeCostsPerLvl, attackPerLvl, rangePerLvl, fireRatePerLvl, sizePerLvl);
 }
 
 WaterTowerData TowerDataLoader::loadWaterTowerData(string fileName)
@@ -107,12 +119,16 @@ WaterTowerData TowerDataLoader::loadWaterTowerData(string fileName)
   std::ifstream ifs(fileName);
   checkValidFilename(ifs, fileName);
 
+  float relativeFirePositionX, relativeFirePositionY;
 	int buildCost;
 	int maxLvl;
 	vector<int> upgradeCostsPerLvl;
 	vector<float> slowPerLvl;
 	vector<float> rangePerLvl;
 
+  fillVariable(ifs, relativeFirePositionX, "relativeFirePositionX");
+  fillVariable(ifs, relativeFirePositionY, "relativeFirePositionY");
+  moveToNextLine(ifs);
   fillVariable(ifs, buildCost, "buildCost");
   moveToNextLine(ifs);
   fillVariable(ifs, maxLvl, "maxLvl");
@@ -124,7 +140,7 @@ WaterTowerData TowerDataLoader::loadWaterTowerData(string fileName)
   fillVector(ifs, rangePerLvl, maxLvl + 1, "range");
   
   ifs.close();
-  return WaterTowerData(buildCost, maxLvl, upgradeCostsPerLvl, slowPerLvl, rangePerLvl);
+  return WaterTowerData(vec2(relativeFirePositionX, relativeFirePositionY), buildCost, maxLvl, upgradeCostsPerLvl, slowPerLvl, rangePerLvl);
 }
 
 BoomerangTowerData TowerDataLoader::loadBoomerangTowerData(string fileName)
@@ -132,6 +148,7 @@ BoomerangTowerData TowerDataLoader::loadBoomerangTowerData(string fileName)
   std::ifstream ifs(fileName);
   checkValidFilename(ifs, fileName);
 
+  float relativeFirePositionX, relativeFirePositionY;
 	int buildCost;
 	int maxLvl;
 	vector<int> upgradeCostsPerLvl;
@@ -139,6 +156,9 @@ BoomerangTowerData TowerDataLoader::loadBoomerangTowerData(string fileName)
 	vector<float> rangePerLvl;
 	vector<float> fireRatePerLvl;
   
+  fillVariable(ifs, relativeFirePositionX, "relativeFirePositionX");
+  fillVariable(ifs, relativeFirePositionY, "relativeFirePositionY");
+  moveToNextLine(ifs);
   fillVariable(ifs, buildCost, "buildCost");
   moveToNextLine(ifs);
   fillVariable(ifs, maxLvl, "maxLvl");
@@ -152,5 +172,5 @@ BoomerangTowerData TowerDataLoader::loadBoomerangTowerData(string fileName)
   fillVector(ifs, fireRatePerLvl, maxLvl + 1, "fireRate");
   
   ifs.close();
-  return BoomerangTowerData(buildCost, maxLvl, upgradeCostsPerLvl, attackPerLvl, rangePerLvl, fireRatePerLvl);
+  return BoomerangTowerData(vec2(relativeFirePositionX, relativeFirePositionY), buildCost, maxLvl, upgradeCostsPerLvl, attackPerLvl, rangePerLvl, fireRatePerLvl);
 }

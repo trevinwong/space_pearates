@@ -7,9 +7,6 @@ TowerAttackComponent::TowerAttackComponent(vec2 _relativeFirePosition, vector<in
   fireRatePerLvl(_fireRatePerLvl) 
 {
   elapsedTimeToNextFire = 0;
-  projectileAttackPower = attackPerLvl[0];
-  attackRange = rangePerLvl[0];
-  fireRate = fireRatePerLvl[0]; 
 }
 
 void TowerAttackComponent::resetElapsedTimeToNextFire()

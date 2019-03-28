@@ -4,6 +4,7 @@ StarTowerAttackComponent::StarTowerAttackComponent(vec2 _relativeFirePosition, v
   TowerAttackComponent(_relativeFirePosition, _attackPerLvl, _rangePerLvl, _fireRatePerLvl),
   sizePerLvl(_sizePerLvl)
 {
+  setToLevel(0);
 }
 
 void StarTowerAttackComponent::setToLevel(int level)

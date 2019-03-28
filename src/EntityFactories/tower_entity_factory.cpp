@@ -16,11 +16,10 @@ Entity TowerEntityFactory::createFireTower(vec2 towerCenterBottomPosition, vec2 
   shared_ptr<Texture> towerRangeTexture = make_shared<Texture>(texture_path("fire_tower_range.png"), true);
   shared_ptr<TowerRangeSpriteComponent> towerRangeSprite = make_shared<TowerRangeSpriteComponent>(towerRangeProgram, towerRangeTexture);
 
-  vec2 relativeFirePosition(0.0, -0.3);
   shared_ptr<FireTowerData> data = std::dynamic_pointer_cast<FireTowerData>(TowerDataLoader::allTowerData[BUILD_FIRE_TOWER]);
 
   shared_ptr<FireTowerAttackComponent> fireTowerAttack = make_shared<FireTowerAttackComponent>(
-    relativeFirePosition, data->attackPerLvl, data->rangePerLvl, data->fireRatePerLvl);
+    data->relativeFirePosition, data->attackPerLvl, data->rangePerLvl, data->fireRatePerLvl);
 
   shared_ptr<TowerMetaComponent> towerMeta = make_shared<TowerMetaComponent>(data->buildCost, data->upgradeCostsPerLvl, data->maxLvl);
 
@@ -51,11 +50,10 @@ Entity TowerEntityFactory::createWaterTower(vec2 towerCenterBottomPosition, vec2
   shared_ptr<Texture> towerRangeTexture = make_shared<Texture>(texture_path("water_tower_range.png"), true);
   shared_ptr<TowerRangeSpriteComponent> towerRangeSprite = make_shared<TowerRangeSpriteComponent>(towerRangeProgram, towerRangeTexture);
 
-  vec2 relativeFirePosition(0.0, 0.0);
   shared_ptr<WaterTowerData> data = std::dynamic_pointer_cast<WaterTowerData>(TowerDataLoader::allTowerData[BUILD_WATER_TOWER]);
 
   shared_ptr<WaterTowerAttackComponent> waterTowerAttack = make_shared<WaterTowerAttackComponent>(
-    relativeFirePosition, data->rangePerLvl, data->slowPerLvl);
+    data->relativeFirePosition, data->rangePerLvl, data->slowPerLvl);
 
   shared_ptr<TowerMetaComponent> towerMeta = make_shared<TowerMetaComponent>(data->buildCost, data->upgradeCostsPerLvl, data->maxLvl);
 
@@ -86,11 +84,10 @@ Entity TowerEntityFactory::createLightTower(vec2 towerCenterBottomPosition, vec2
   shared_ptr<Texture> towerRangeTexture = make_shared<Texture>(texture_path("light_tower_range.png"), true);
   shared_ptr<TowerRangeSpriteComponent> towerRangeSprite = make_shared<TowerRangeSpriteComponent>(towerRangeProgram, towerRangeTexture);
 
-  vec2 relativeFirePosition(0.0, -0.3);
   shared_ptr<LightTowerData> data = std::dynamic_pointer_cast<LightTowerData>(TowerDataLoader::allTowerData[BUILD_LIGHT_TOWER]);
 
   shared_ptr<LightTowerAttackComponent> lightTowerAttack = make_shared<LightTowerAttackComponent>(
-    relativeFirePosition, data->attackPerLvl, data->rangePerLvl, data->fireRatePerLvl, data->numProjectilesPerLvl);
+    data->relativeFirePosition, data->attackPerLvl, data->rangePerLvl, data->fireRatePerLvl, data->numProjectilesPerLvl);
 
   shared_ptr<TowerMetaComponent> towerMeta = make_shared<TowerMetaComponent>(data->buildCost, data->upgradeCostsPerLvl, data->maxLvl);
 
@@ -121,11 +118,10 @@ Entity TowerEntityFactory::createStarTower(vec2 towerCenterBottomPosition, vec2 
   shared_ptr<Texture> towerRangeTexture = make_shared<Texture>(texture_path("star_tower_range.png"), true);
   shared_ptr<TowerRangeSpriteComponent> towerRangeSprite = make_shared<TowerRangeSpriteComponent>(towerRangeProgram, towerRangeTexture);
 
-  vec2 relativeFirePosition(0.0, -0.3);
   shared_ptr<StarTowerData> data = std::dynamic_pointer_cast<StarTowerData>(TowerDataLoader::allTowerData[BUILD_STAR_TOWER]);
 
   shared_ptr<StarTowerAttackComponent> starTowerAttack = make_shared<StarTowerAttackComponent>(
-    relativeFirePosition, data->attackPerLvl, data->rangePerLvl, data->fireRatePerLvl, data->sizePerLvl);
+    data->relativeFirePosition, data->attackPerLvl, data->rangePerLvl, data->fireRatePerLvl, data->sizePerLvl);
 
   shared_ptr<TowerMetaComponent> towerMeta = make_shared<TowerMetaComponent>(data->buildCost, data->upgradeCostsPerLvl, data->maxLvl);
 

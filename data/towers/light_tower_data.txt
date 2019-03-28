@@ -1,3 +1,4 @@
+0.0 -0.3 # relative fire position
 3 # build-cost
 3 # max-level
 0 3 6 9 # upgrade costs
