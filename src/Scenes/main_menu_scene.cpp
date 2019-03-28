@@ -6,7 +6,7 @@ MainMenuScene::MainMenuScene(std::weak_ptr<SceneManager> _sceneManager) : Abstra
   Entity bg = BackgroundEntityFactory::createBackgroundEntity("main_menu_bg.jpg", false, vec2(SCREEN_WIDTH, SCREEN_HEIGHT));
   entityManager.addEntity(bg);
 
-  Entity menuUi = MenuUiFactory::createMainMenuUi();
+  Entity menuUi = MenuUiFactory::createMainMenuUi(_sceneManager.lock()->levelReached);
   entityManager.addEntity(menuUi);
 }
 
@@ -39,6 +39,7 @@ void MainMenuScene::processInput(float dt, GLboolean keys[], GLboolean keysProce
           break;
         }
         case MainMenuUiList::continue_game:
+          sceneManager_spt->setNextSceneToInGame(sceneManager_spt->levelReached);
           break;
         case MainMenuUiList::level_selection:
           sceneManager_spt->setNextSceneToLevelSelection();

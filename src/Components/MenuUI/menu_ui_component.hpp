@@ -22,7 +22,7 @@ namespace LevelSelectionUiList {
     level2,
     level3,
     level4,
-    bosslevel,
+    level5,
     back,
     max_count
   };

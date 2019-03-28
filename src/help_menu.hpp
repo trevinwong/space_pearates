@@ -26,8 +26,8 @@ private:
 
   GLuint VAO, VBO;
   shared_ptr<Program> program;
-  glm::vec2 position = vec2(265.f, 115.f);
-  glm::vec2 scale = vec2(730.f, 570.f);
+  vec2 position = vec2(265.f, 115.f);
+  vec2 scale = vec2(730.f, 570.f);
   shared_ptr<Texture> texture;
 };
 

@@ -13,6 +13,7 @@
 class SceneManager : public std::enable_shared_from_this<SceneManager> {
 public:
   SceneManager();
+  ~SceneManager();
 
   void update(GLboolean keys[], GLboolean keysProcessed[]);
 
@@ -30,6 +31,8 @@ public:
 
   void setGLFWwindow(GLFWwindow *window);
 
+  int levelReached = 1;
+
 private:
   shared_ptr<AbstractScene> currentScene;
   shared_ptr<AbstractScene> nextScene;
@@ -38,6 +41,8 @@ private:
 
   // if nextScene is ready, then swap to next world
   void trySwapToNextScene();
+
+  int readLevelReached();
 };
 
 #endif // !SCENE_MANAGER_H

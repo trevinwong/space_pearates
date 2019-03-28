@@ -105,8 +105,6 @@ void printVec3(string name, vec3 vec);
 // tower types
 #define TOWER_ID int
 #define NO_TOWER_BUILD_HERE -1
-#define FIRE_TOWER 'F'
-#define LIGHT_TOWER 'L'
 
 // build tower ui interface types
 #define TOWER_UI_OPT_TYPE char

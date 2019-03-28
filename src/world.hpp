@@ -43,15 +43,14 @@
 class World : public AbstractScene
 {
 public:
+  World(std::weak_ptr<SceneManager> _sceneManager, int _level);
+  ~World();
   void reset();
-  World(std::weak_ptr<SceneManager> _sceneManager);
   void processInput(float dt, GLboolean keys[], GLboolean keysProcessed[]);
   void update(float dt); // dt = delta time, how much time has passed since update was last called
   void draw();
-  vec2 player_spawn = vec2(0.0f, 0.0f);
 
 private:
-
   PhysicsSystem physicsSystem;
   InterpolationSystem interpolationSystem;
   CollisionSystem collisionSystem;
@@ -71,10 +70,16 @@ private:
   OffscreenGarbageSystem offscreenGarbageSystem;
   ParticleSystem particleSystem;
   ResourceSystem resourceSystem;
-	DamageSystem damageSystem;
-	DeathSystem deathSystem;
+  DamageSystem damageSystem;
+  DeathSystem deathSystem;
 
+  int level;
+  bool hasWon = false;
   bool paused = false;
+  vec2 player_spawn = vec2(0.0f, 0.0f);
+  shared_ptr<Entity> player;
+  shared_ptr<Entity> home;
+  shared_ptr<Entity> map;
 };
 
 #endif

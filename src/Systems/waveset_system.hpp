@@ -23,12 +23,11 @@ public:
   }
 
   void reset();
-	void handleBuildAndDefensePhase(EntityManager &entityManager, float dt);
+	bool handleBuildAndDefensePhase(EntityManager &entityManager, float dt); //return if game won
 	void startBuildPhase();
 	void startDefensePhase(Wave &wave);
 	bool timeToSpawnNextCluster(Wave &wave);
 	bool isWaveOver(Wave &wave);
-	bool isWavesetOver(Waveset &waveset);
 	void spawnCluster(EntityManager &entityManager, Cluster cluster, int hp, int spd, int atk);
 	void decrementEnemies(int amount, EntityManager &entityManager);
 
@@ -43,9 +42,10 @@ public:
 	PhaseType phase = BuildPhase; 
 	float buildTimer;
 	float defenseTimer;
-	vector<glm::vec2> enemySpawnPoints;
+	vector<vec2> enemySpawnPoints;
 private:
 	WavesetSystem();
+	bool isWavesetOver(Waveset &waveset);
 };
 
 #endif
