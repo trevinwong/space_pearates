@@ -87,7 +87,8 @@ void World::processInput(float dt, GLboolean keys[], GLboolean keysProcessed[])
     HelpMenu::getInstance().showHelp = paused;
     keysProcessed[GLFW_KEY_P] = true;
   }
-  if (keys[GLFW_KEY_ESCAPE] && !keysProcessed[GLFW_KEY_ESCAPE])
+  // In game scene will quit to main menu only when game is paused
+  if (paused && keys[GLFW_KEY_ESCAPE] && !keysProcessed[GLFW_KEY_ESCAPE])
   {
     if(shared_ptr<SceneManager> sceneManager_ptr = sceneManager.lock()){
       sceneManager_ptr->setNextSceneToMainMenu();

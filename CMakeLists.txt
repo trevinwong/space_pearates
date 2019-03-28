@@ -217,6 +217,8 @@ set(SOURCE_FILES_CORE
 	src/Scenes/how_to_play_scene.hpp
 	src/world.cpp
 	src/world.hpp
+  src/Scenes/loading_scene.cpp
+	src/Scenes/loading_scene.hpp
 )
 
 set(SOURCE_FILES

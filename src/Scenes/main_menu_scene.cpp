@@ -12,21 +12,25 @@ MainMenuScene::MainMenuScene(std::weak_ptr<SceneManager> _sceneManager) : Abstra
 
 void MainMenuScene::processInput(float dt, GLboolean keys[], GLboolean keysProcessed[]) {
   vector<shared_ptr<Entity>> menuUiEntities =
-      entityManager.getEntities(entityManager.getComponentChecker(vector<int>{ComponentType::menu_ui}));
+    entityManager.getEntities(entityManager.getComponentChecker(vector<int>{ComponentType::menu_ui}));
   if (menuUiEntities.size() == 0) return;
 
   for (shared_ptr<Entity> menuUi : menuUiEntities) {
-    shared_ptr<SceneManager> sceneManager_spt = sceneManager.lock();
     shared_ptr<MenuUiComponent> menuUiComponent = menuUi->getComponent<MenuUiComponent>();
     if (keys[GLFW_KEY_DOWN] && !keysProcessed[GLFW_KEY_DOWN]) {
       menuUiComponent->selectNext();
       keysProcessed[GLFW_KEY_DOWN] = true;
-    } else if (keys[GLFW_KEY_UP] && !keysProcessed[GLFW_KEY_UP]) {
+    }
+    else if (keys[GLFW_KEY_UP] && !keysProcessed[GLFW_KEY_UP]) {
       menuUiComponent->selectPrev();
       keysProcessed[GLFW_KEY_UP] = true;
-    } else if (keys[GLFW_KEY_ENTER] && !keysProcessed[GLFW_KEY_ENTER] && sceneManager_spt) {
-      MenuUiComponent::MenuUiChoice selected = menuUiComponent->getSelected();
-      switch (selected.choice) {
+    }
+    else if (keys[GLFW_KEY_ENTER] && !keysProcessed[GLFW_KEY_ENTER]) {
+      keysProcessed[GLFW_KEY_ENTER] = true;
+      shared_ptr<SceneManager> sceneManager_spt = sceneManager.lock();
+      if (sceneManager_spt) {
+        MenuUiComponent::MenuUiChoice selected = menuUiComponent->getSelected();
+        switch (selected.choice) {
         case MainMenuUiList::how_to_play:
           sceneManager_spt->setNextSceneToHowToPlay();
           break;
@@ -44,8 +48,8 @@ void MainMenuScene::processInput(float dt, GLboolean keys[], GLboolean keysProce
           break;
         default:
           break;
+        }
       }
-      keysProcessed[GLFW_KEY_ENTER] = true;
     }
   }
 }
