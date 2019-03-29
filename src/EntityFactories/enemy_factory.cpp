@@ -9,6 +9,7 @@ Entity EnemyFactory::build(vec2 position, vec2 velocity, int hpMult, int spdMult
   shared_ptr<Texture> texture = make_shared<Texture>(texture_path("enemy0.png"), true);
   shared_ptr<SpriteComponent> sprite = make_shared<SpriteComponent>(program, texture);
   shared_ptr<TransformComponent> transform = make_shared<TransformComponent>(position, scale, 0.0f);
+  shared_ptr<EnemyPathComponent> pathfind = make_shared<EnemyPathComponent>(type);
   shared_ptr<CollisionComponent> collision = make_shared<CollisionComponent>(position, scale, 0.0f);
   shared_ptr<MovementComponent> move = make_shared<MovementComponent>(speed * velocity, vec2(0.0, 0.0), speed * vec2(40.0f, 40.0f), vec2(0.f, 0.f));
   shared_ptr<ColorComponent> colour = make_shared<ColorComponent>(glm::vec4(0.0f, 1.0f, 0.6f, 1.0f));

@@ -19,6 +19,7 @@ public:
     random
   };
 
+  bool ground;
   int type;
   void move(float dt, EntityManager& entityManager);
   void moveBasic (float dt, EntityManager& entityManager);
