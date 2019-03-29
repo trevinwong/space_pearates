@@ -84,15 +84,8 @@ void CollisionSystem::handlePlayerResource(shared_ptr<Entity> player, shared_ptr
 
 void CollisionSystem::handlePlayerEnemy(shared_ptr<Entity> player, shared_ptr<Entity> enemy, EntityManager &entityManager)
 {
-<<<<<<< HEAD
-  // Add the resource into wallet
-  HealthComponent *health = player->getComponent<HealthComponent>();
-  if (health) {
-    player->setComponent<DamageComponent>(new DamageComponent(enemy->getComponent<EnemyComponent>()->attack));
-  }
-=======
+
 	player->setComponent<DamageComponent>(make_shared<DamageComponent>(enemy->getComponent<EnemyComponent>()->totalAtk));
->>>>>>> 668dbca440fcc5d34844174d43462c8d3638069f
 }
 
 void CollisionSystem::handleProjectileEnemy(shared_ptr<Entity> projectile, shared_ptr<Entity> enemy, EntityManager &entityManager)
