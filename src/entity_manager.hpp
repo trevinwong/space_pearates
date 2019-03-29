@@ -19,6 +19,7 @@ public:
   vector<shared_ptr<Entity>> getEntitiesHasOneOf(bitset<ComponentType::max_count> component_checker);
   vector<shared_ptr<Entity>> getEntitiesHasAllOf(bitset<ComponentType::max_count> component_checker);
 	void addEntity(Entity e);
+  void addEntity(shared_ptr<Entity> e);
   bool removeEntity(shared_ptr<Entity> entity);
   int getSize();
 

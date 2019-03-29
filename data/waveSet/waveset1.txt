@@ -1,1 +1,1 @@
-wave-short.txt
+wave-short.txt 100 100 100

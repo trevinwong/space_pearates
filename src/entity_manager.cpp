@@ -67,6 +67,11 @@ void EntityManager::addEntity(Entity e)
   entities.push_back(make_shared<Entity>(e));
 }
 
+void EntityManager::addEntity(shared_ptr<Entity> e)
+{
+  entities.push_back(e);
+}
+
 bool EntityManager::removeEntity(shared_ptr<Entity> entity) {
   for (int i = 0; i < entities.size(); i++) {
     shared_ptr<Entity> e = entities[i];

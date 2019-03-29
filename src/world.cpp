@@ -5,7 +5,7 @@ const vector<int> non_recyclable_components = {
   ComponentType::tile, ComponentType::map, ComponentType::home, ComponentType::background_sprite, ComponentType::player, ComponentType::particle,
   ComponentType::waveset }; // TODO: eventually move WavesetManagerFactory(WavesetComponent) functionality to WavesetSystem singleton...
 
-World::World(std::weak_ptr<SceneManager> _sceneManager) : AbstractScene(_sceneManager)
+World::World(std::weak_ptr<SceneManager> _sceneManager, int _level) : AbstractScene(_sceneManager), level(_level)
 {
   vec2 screen =  vec2(SCREEN_WIDTH, SCREEN_HEIGHT);
   projection = glm::ortho(0.0f, static_cast<GLfloat>(screen.x), static_cast<GLfloat>(screen.y), 0.0f, -1.0f, 1.0f);
@@ -13,12 +13,16 @@ World::World(std::weak_ptr<SceneManager> _sceneManager) : AbstractScene(_sceneMa
   collisionSystem.setScreenInfo(screen);
   entityManager = EntityManager();
 
-  entityManager.addEntity(MapEntityFactory::createMapEntityFromFile(map_path("map0.txt")));
+  string mapName = "map" + std::to_string(level) + ".txt";
+  map = make_shared<Entity>(MapEntityFactory::createMapEntityFromFile(map_path()+mapName));
+  entityManager.addEntity(map);
   TileMapSystem::loadTileMap(entityManager, player_spawn);
   WavesetSystem::getInstance().enemySpawnPoints = TileMapSystem::enemySpawnPoints;
-  entityManager.addEntity(PlayerFactory::build(player_spawn));
+  player = make_shared<Entity>(PlayerFactory::build(player_spawn));
+  entityManager.addEntity(player);
   // Spawn starting resources
   ResourceFactory::spawnInitial(entityManager);
+  home = entityManager.getEntitiesHasOneOf(entityManager.getComponentChecker(ComponentType::home))[0];
 
   enemySystem.setMap(entityManager);
   entityManager.addEntity(WavesetManagerFactory::build(waveset_path("waveset0.txt")));
@@ -28,6 +32,13 @@ World::World(std::weak_ptr<SceneManager> _sceneManager) : AbstractScene(_sceneMa
 
   particleSystem.initParticleSystem(entityManager); // adds particle entities pool
   renderToTextureSystem.initWaterEffect();
+}
+
+World::~World()
+{
+  HUD::getInstance().reset();
+  AudioLoader::getInstance().reset();
+  WavesetSystem::getInstance().reset();
 }
 
 void World::reset()
@@ -41,15 +52,12 @@ void World::reset()
   entityManager.filterRemoveByComponentType(non_recyclable_components);
 
   // Reset map tower data
-  shared_ptr<Entity> map = entityManager.getEntitiesHasOneOf(entityManager.getComponentChecker(ComponentType::map))[0];
   map->getComponent<MapComponent>()->reset();
   // Reset particles pool
   particleSystem.resetParticles(entityManager);
   // Reset home health to max
-  shared_ptr<Entity> home = entityManager.getEntitiesHasOneOf(entityManager.getComponentChecker(ComponentType::home))[0];
   home->getComponent<HealthComponent>()->reset();
   // Reset player position and wallet
-  shared_ptr<Entity> player = entityManager.getEntitiesHasOneOf(entityManager.getComponentChecker(vector<int>{ComponentType::player, ComponentType::wallet}))[0];
   player->getComponent<TransformComponent>()->position = player_spawn;
   player->getComponent<WalletComponent>()->coins = 0;
   player->getComponent<HealthComponent>()->curHP = player->getComponent<HealthComponent>()->maxHP;
@@ -109,11 +117,22 @@ void World::processInput(float dt, GLboolean keys[], GLboolean keysProcessed[])
 void World::update(float dt)
 {
   if (paused) return;
+  if (hasWon && level < 5) {
+    // Go to next level if not at last level
+    auto sceneManager_spt = sceneManager.lock();
+    if (level >= sceneManager_spt->levelReached) {
+      sceneManager_spt->levelReached = level + 1;
+    }
+    sceneManager_spt->setNextSceneToInGame(level + 1);
+    return;
+  }
 
   // Note: Be careful, order may matter in some cases for systems
   HUD::getInstance().update(dt);
 
-  WavesetSystem::getInstance().handleBuildAndDefensePhase(entityManager, dt);
+  hasWon = WavesetSystem::getInstance().handleBuildAndDefensePhase(entityManager, dt);
+  if (hasWon) HUD::getInstance().you_win = true;
+
   enemySystem.move(dt, entityManager);
   physicsSystem.moveEntities(entityManager, dt);
   physicsSystem.rotateEntities(entityManager, dt);
@@ -155,7 +174,5 @@ void World::draw()
   towerRangeDisplaySystem.drawRanges(entityManager, projection);
   towerUiSystem.render(entityManager, projection);
   HUD::getInstance().draw();
-
-
   HelpMenu::getInstance().draw(projection);
 }
