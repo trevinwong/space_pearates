@@ -28,6 +28,7 @@
 #include "Systems/death_system.hpp"
 #include "Systems/particle_system.hpp"
 #include "Systems/damage_system.hpp"
+#include "Systems/home_system.hpp"
 #include "EntityFactories/map_entity_factory.hpp"
 #include "EntityFactories/background_entity_factory.hpp"
 #include "EntityFactories/player_factory.hpp"
@@ -70,8 +71,9 @@ private:
   OffscreenGarbageSystem offscreenGarbageSystem;
   ParticleSystem particleSystem;
   ResourceSystem resourceSystem;
-  DamageSystem damageSystem;
-  DeathSystem deathSystem;
+	DamageSystem damageSystem;
+	DeathSystem deathSystem;
+  HomeSystem homeSystem;
 
   int level;
   bool hasWon = false;

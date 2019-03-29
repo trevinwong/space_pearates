@@ -182,6 +182,8 @@ set(SOURCE_FILES_CORE
 	src/Systems/resource_system.hpp
 	src/Systems/particle_system.cpp
 	src/Systems/particle_system.hpp
+	src/Systems/home_system.cpp
+	src/Systems/home_system.hpp
 	src/Utility/line.hpp
 	src/Utility/line.cpp
 	src/Utility/timer.hpp

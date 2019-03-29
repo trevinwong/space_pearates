@@ -154,6 +154,7 @@ void World::update(float dt)
   offscreenGarbageSystem.destroyEntitiesContainingAll(entityManager, vector<int>{ComponentType::projectile, ComponentType::movement});
   offscreenGarbageSystem.destroyEntitiesContainingAll(entityManager, vector<int>{ComponentType::resource});
   resourceSystem.handleResourceSpawnAndDespawn(entityManager, dt);
+  homeSystem.checkState(entityManager);
   particleSystem.updateParticles(entityManager, dt);
   damageSystem.handleDamage(entityManager);
   deathSystem.handleDeaths(entityManager);
