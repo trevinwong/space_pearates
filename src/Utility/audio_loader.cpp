@@ -16,10 +16,13 @@ AudioLoader::AudioLoader() {
   collect_coin_sound = Mix_LoadWAV(audio_path("collect_coin.wav"));
   jump = Mix_LoadWAV(audio_path("jump.wav"));
   build_tower = Mix_LoadWAV(audio_path("build.wav"));
+  sell_tower = Mix_LoadWAV(audio_path("sell.wav"));
+  upgrade_tower = Mix_LoadWAV(audio_path("upgrade.wav"));
   enemy_dead = Mix_LoadWAV(audio_path("dead.wav"));
   pause = Mix_LoadWAV(audio_path("pause.wav"));
   base_hit = Mix_LoadWAV(audio_path("base_damage.wav"));
   start = Mix_LoadWAV(audio_path("start.wav"));
+  invalid = Mix_LoadWAV(audio_path("invalid.wav"));
 
   // Load music
   eurobeat_full = Mix_LoadMUS(audio_path("eurobeat_full.wav"));
