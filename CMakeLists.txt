@@ -208,6 +208,8 @@ set(SOURCE_FILES_CORE
 	src/Utility/audio_loader.hpp
 	src/help_menu.hpp
 	src/help_menu.cpp
+	src/game_over_menu.hpp
+	src/game_over_menu.cpp
 	src/Scenes/scene_manager.hpp
 	src/Scenes/scene_manager.cpp
 	src/Scenes/abstract_scene.hpp

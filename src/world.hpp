@@ -5,6 +5,7 @@
 #include "Scenes/abstract_scene.hpp"
 #include "hud.hpp"
 #include "help_menu.hpp"
+#include "game_over_menu.hpp"
 #include "Scenes/scene_manager.hpp"
 #include "Systems/enemy_system.hpp"
 #include "Utility/waveset_structs.hpp"

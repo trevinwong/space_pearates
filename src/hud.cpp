@@ -23,7 +23,7 @@ void HUD::update(float dt)
 void HUD::draw()
 {
   if (game_over) {
-    Text::getInstance().render("GAME OVER", vec2(0.f, 500.f), 4.5, vec3(1.f, 1.f, 0.f));
+    //Text::getInstance().render("GAME OVER", vec2(0.f, 500.f), 4.5, vec3(1.f, 1.f, 0.f));
     return;
   }
 
