@@ -22,16 +22,16 @@ bool WavesetSystem::handleBuildAndDefensePhase(EntityManager &entityManager, flo
 		shared_ptr<WavesetComponent> waveset_manager = e->getComponent<WavesetComponent>();
 		Waveset &waveset = waveset_manager->waveset;
 
-		if (isWavesetOver(waveset)) {	
+		if (isWavesetOver(waveset)) {
       return true;
 		}
-		
+
 		Wave &wave = waveset.waves[waveNo];
 		int hp = waveset.hpMult[waveNo];
 		int spd = waveset.spdMult[waveNo];
 		int atk = waveset.atkMult[waveNo];
 
-		if (phase == BuildPhase) {				
+		if (phase == BuildPhase) {
 			buildTimer += dt;
 			HUD::getInstance().build_phase = true;
 			if (buildTimer > wave.buildPhaseTime) startDefensePhase(wave);
@@ -48,7 +48,7 @@ bool WavesetSystem::handleBuildAndDefensePhase(EntityManager &entityManager, flo
 				if (timeToSpawnNextCluster(wave)) {
 					spawnCluster(entityManager, wave.clusters[clusterNo], hp, spd, atk);
 					clusterNo++;
-				}	
+				}
 			}
 		}
 	}
@@ -98,17 +98,17 @@ void WavesetSystem::spawnCluster(EntityManager &entityManager, Cluster cluster,
 				int xLoc = (rand() % 11 + 1) * 100;
 				int xOffset = j * 5;
 				entityManager.addEntity(EnemyFactory::build(vec2(xLoc + xOffset, 100), vec2(0.0f, 40.f),
-					hp, spd, atk));
+					hp, spd, atk, enemyData[i].x));
 			}
 			else
 			{
 				int spawnPointIndex = (rand() % enemySpawnPoints.size());
 				glm::vec2 spawnPoint = enemySpawnPoints[spawnPointIndex];
 				entityManager.addEntity(EnemyFactory::build(spawnPoint, vec2(0.0f, 40.f),
-					hp, spd, atk));
+					hp, spd, atk, enemyData[i].x));
 			}
 		}
-	}	
+	}
 }
 
 // Refactor this and refactor the waveset data out of a component and into a class.
@@ -120,7 +120,7 @@ void WavesetSystem::decrementEnemies(int amount, EntityManager &entityManager)
 		shared_ptr<WavesetComponent> waveset_manager = e->getComponent<WavesetComponent>();
 		Waveset &waveset = waveset_manager->waveset;
 		if (!isWavesetOver(waveset)) {
-			Wave &wave = waveset.waves[waveNo];	
+			Wave &wave = waveset.waves[waveNo];
 			wave.currEnemies -= amount;
 		}
 	}

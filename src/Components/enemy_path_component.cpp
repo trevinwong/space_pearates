@@ -2,10 +2,6 @@
 
 EnemyPathComponent::EnemyPathComponent(int _type) {
   type = _type;
-  ground = false;
-}
-
-EnemyPathComponent::~EnemyPathComponent() {
 }
 
 void EnemyPathComponent::move (float dt, EntityManager& entityManager) {
@@ -13,7 +9,7 @@ void EnemyPathComponent::move (float dt, EntityManager& entityManager) {
   if (type == turtle_shell) {
     moveShell(dt, entityManager);
   } else if (type == random) {
-    // EnemyPathComponent::moveRandom (dt, entityManager);
+    EnemyPathComponent::moveRandom (dt, entityManager);
   } else {
     EnemyPathComponent::moveBasic(dt, entityManager);
   }
@@ -22,6 +18,7 @@ void EnemyPathComponent::move (float dt, EntityManager& entityManager) {
 // Basic Movement: Tries to go vertically down to base until it can't, then goes in random
 // horizontal direction till it can't
 void EnemyPathComponent::moveBasic (float dt, EntityManager& entityManager) {
+  // printf("basic\n");
   srand(time(NULL));
   int arr[2] = {-1, 1};
 
@@ -39,6 +36,7 @@ void EnemyPathComponent::moveBasic (float dt, EntityManager& entityManager) {
     vec2 pos = transformComponent->position;
     int yind = static_cast<int>(pos.y / 40);
     int xind = static_cast<int>(pos.x / 40);
+
     bool flag = false;
     vel.y = abs(vel.y) < eps ? movementComponent->maxVelocity.y : vel.y;
 
@@ -46,7 +44,7 @@ void EnemyPathComponent::moveBasic (float dt, EntityManager& entityManager) {
       entityManager.removeEntity(e);
       WavesetSystem::getInstance().decrementEnemies(1, entityManager);
       if (healthComponent) {
-        healthComponent->curHP = healthComponent->curHP - 20 < 0 ? 0 : healthComponent->curHP - 20;
+        healthComponent->curHP = healthComponent->curHP - enemyComponent->totalAtk  < 0 ? 0 : healthComponent->curHP - enemyComponent->totalAtk;
          if (healthComponent->curHP <= 0) {
             HUD::getInstance().game_over = true;
          }
@@ -96,14 +94,12 @@ void EnemyPathComponent::moveShell (float dt, EntityManager& entityManager) {
     shared_ptr<EnemyComponent> enemyComponent = e->getComponent<EnemyComponent>();
     shared_ptr<TransformComponent> transformComponent = e->getComponent<TransformComponent>();
     shared_ptr<HealthComponent> healthComponent = home->getComponent<HealthComponent>();
-    shared_ptr<EnemyPathComponent> pathComponent = e->getComponent<EnemyPathComponent>();
 
     vec2 vel = movementComponent->velocity;
     vec2 pos = transformComponent->position;
     int yind = static_cast<int>(pos.y / 40);
     int xind = static_cast<int>(pos.x / 40);
 
-    int collideCount = 0;
     bool vflag = false;
     bool hflag = false;
     vel.y = abs(vel.y) < eps ? movementComponent->maxVelocity.y : vel.y;
@@ -128,21 +124,71 @@ void EnemyPathComponent::moveShell (float dt, EntityManager& entityManager) {
         break;
       }
 
-    // for (int i = 0; i <= ceil(abs(vel.x)*dt/40); i++)
-    //   if ( map[yind+1][xind+i >= 32 ? xind-i : xind+i] == MAP_PLATFORM_TILE
-    //     || map[yind+1][xind-i < 0 ? xind+i : xind-i] == MAP_PLATFORM_TILE) {
-    //     hflag = true;
-    //     break;
-    //   }
-
     if (vflag) {
-      pathComponent->ground = true;
+      enemyComponent->ground = true;
       int dir = rand() % 2;
       vel.y = 0;
       vel.x = abs(vel.x) < eps ? arr[dir]*movementComponent->maxVelocity.x : vel.x;
+    } else if (enemyComponent->ground) {
+      vel.y = 0;
+      vel.x = -vel.x;
+    }
+    if (pos.x + vel.x*dt >= (SCREEN_WIDTH - 50) || pos.x +vel.x*dt <= 20) {
+      vel.x = -vel.x;
+    }
+    movementComponent->velocity = vel;
+  }
+}
+
+void EnemyPathComponent::moveRandom (float dt, EntityManager& entityManager) {
+  srand(time(NULL));
+  int arr[2] = {-1, 1};
+
+  vector<shared_ptr<Entity>> entityList = entityManager.getEntities(entityManager.getComponentChecker(vector<int> {ComponentType::transform, ComponentType::enemy, ComponentType::movement}));
+  shared_ptr<Entity> home = entityManager.getEntities(entityManager.getComponentChecker(vector<int> {ComponentType::home}))[0];
+
+  float eps = 0.001;
+  for (shared_ptr<Entity> e : entityList) {
+    shared_ptr<MovementComponent> movementComponent = e->getComponent<MovementComponent>();
+    shared_ptr<EnemyComponent> enemyComponent = e->getComponent<EnemyComponent>();
+    shared_ptr<TransformComponent> transformComponent = e->getComponent<TransformComponent>();
+    shared_ptr<HealthComponent> healthComponent = home->getComponent<HealthComponent>();
+
+    vec2 vel = movementComponent->velocity;
+    vec2 pos = transformComponent->position;
+    int yind = static_cast<int>(pos.y / 40);
+    int xind = static_cast<int>(pos.x / 40);
+
+    bool vflag = false;
+    bool hflag = false;
+    vel.y = abs(vel.y) < eps ? movementComponent->maxVelocity.y : vel.y;
+    // vel.x = abs(vel.x) < eps ? movementComponent->maxVelocity.x : vel.x;
+
+    if (map[yind][xind] == MAP_BASE_POSITION) {
+      entityManager.removeEntity(e);
+      WavesetSystem::getInstance().decrementEnemies(1, entityManager);
+      if (healthComponent) {
+        healthComponent->curHP = healthComponent->curHP - 20 < 0 ? 0 : healthComponent->curHP - 20;
+         if (healthComponent->curHP <= 0) {
+            HUD::getInstance().game_over = true;
+         }
+      }
     }
 
-    if (pathComponent->ground && !vflag) {
+    for (int i = 0; i <= ceil(abs(vel.y)*dt/40); i++)
+      if (map[yind+i][xind] == MAP_PLATFORM_TILE
+         || map[yind+i][xind] == MAP_PLATFORM_TILE
+         || map[yind+i][xind+1] == MAP_PLATFORM_TILE) {
+        vflag = true;
+        break;
+      }
+
+    if (vflag) {
+      enemyComponent->ground = true;
+      int dir = rand() % 2;
+      vel.y = 0;
+      vel.x = abs(vel.x) < eps ? arr[dir]*movementComponent->maxVelocity.x : vel.x;
+    } else if (enemyComponent->ground) {
       vel.y = 0;
       vel.x = -vel.x;
     }
