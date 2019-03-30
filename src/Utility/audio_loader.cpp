@@ -20,6 +20,8 @@ AudioLoader::AudioLoader() {
   pause = Mix_LoadWAV(audio_path("pause.wav"));
   base_hit = Mix_LoadWAV(audio_path("base_damage.wav"));
   start = Mix_LoadWAV(audio_path("start.wav"));
+  alert = Mix_LoadWAV(audio_path("alert.wav"));
+  game_over = Mix_LoadWAV(audio_path("game_over.wav"));
 
   // Load music
   eurobeat_full = Mix_LoadMUS(audio_path("eurobeat_full.wav"));
@@ -69,6 +71,8 @@ void AudioLoader::destroy()
   Mix_FreeChunk(pause);
   Mix_FreeChunk(base_hit);
   Mix_FreeChunk(start);
+  Mix_FreeChunk(alert);
+  Mix_FreeChunk(game_over);
   Mix_FreeMusic(eurobeat_full);
   Mix_FreeMusic(hip_shop);
 }

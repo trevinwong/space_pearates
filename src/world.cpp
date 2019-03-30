@@ -55,8 +55,9 @@ void World::reset()
   map->getComponent<MapComponent>()->reset();
   // Reset particles pool
   particleSystem.resetParticles(entityManager);
-  // Reset home health to max
+  // Reset home health to max., reset to default texture
   home->getComponent<HealthComponent>()->reset();
+  homeSystem.reset(entityManager);
   // Reset player position and wallet
   player->getComponent<TransformComponent>()->position = player_spawn;
   player->getComponent<WalletComponent>()->coins = 0;
@@ -70,6 +71,7 @@ void World::reset()
 
   paused = false;
   HelpMenu::getInstance().showHelp = false;
+  GameOverMenu::getInstance().reset();
 }
 
 void World::processInput(float dt, GLboolean keys[], GLboolean keysProcessed[])
@@ -129,6 +131,10 @@ void World::update(float dt)
   // Note: Be careful, order may matter in some cases for systems
   HUD::getInstance().update(dt);
 
+  if(HUD::getInstance().game_over) {
+    paused = true;
+  }
+
   hasWon = WavesetSystem::getInstance().handleBuildAndDefensePhase(entityManager, dt);
   if (hasWon) HUD::getInstance().you_win = true;
 
@@ -153,6 +159,7 @@ void World::update(float dt)
   offscreenGarbageSystem.destroyEntitiesContainingAll(entityManager, vector<int>{ComponentType::projectile, ComponentType::movement});
   offscreenGarbageSystem.destroyEntitiesContainingAll(entityManager, vector<int>{ComponentType::resource});
   resourceSystem.handleResourceSpawnAndDespawn(entityManager, dt);
+  homeSystem.checkState(entityManager);
   particleSystem.updateParticles(entityManager, dt);
   damageSystem.handleDamage(entityManager);
   deathSystem.handleDeaths(entityManager);
@@ -174,4 +181,5 @@ void World::draw()
   towerUiSystem.render(entityManager, projection);
   HUD::getInstance().draw();
   HelpMenu::getInstance().draw(projection);
+  GameOverMenu::getInstance().draw(projection);
 }
