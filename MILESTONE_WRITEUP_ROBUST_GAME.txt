@@ -1,0 +1,17 @@
+# Robust game milestone write up
+
+* Supports real time response rate, with proper memory management (using shared ptrs, no memory leaks), game robustly handles input, gameplay is real time with grid collision detection, press R to reload, users can pause using P or H, state saving in the form of "continue", physical effects integrated using explicit euler integration, stable game code.
+
+## What's new?
+
+* Hot-loading data
+* Beautiful new background assets
+* Beautiful new loading screens, game over screens
+* Beautiful new visual fx like reworked smoke, caution signs on the base when HP low, text turning red when no coins
+* New SFX added
+* Game is RE-BALANCED
+
+
+## What's next
+* Larger maps
+* Enemy patterns
