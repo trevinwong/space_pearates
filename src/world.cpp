@@ -2,12 +2,14 @@
 
 // Entities that we do not want to erase upon resetting, can be reused
 const vector<int> non_recyclable_components = {
-  ComponentType::tile, ComponentType::map, ComponentType::home, ComponentType::background_sprite, ComponentType::player, ComponentType::particle,
+  ComponentType::tile, ComponentType::map, ComponentType::home, ComponentType::background_sprite, ComponentType::particle,
   ComponentType::waveset }; // TODO: eventually move WavesetManagerFactory(WavesetComponent) functionality to WavesetSystem singleton...
 
 World::World(std::weak_ptr<SceneManager> _sceneManager, int _level) : AbstractScene(_sceneManager), level(_level)
 {
   vec2 screen =  vec2(SCREEN_WIDTH, SCREEN_HEIGHT);
+  TowerDataLoader::loadTowerData();
+  PlayerDataLoader::loadPlayerData();
   projection = glm::ortho(0.0f, static_cast<GLfloat>(screen.x), static_cast<GLfloat>(screen.y), 0.0f, -1.0f, 1.0f);
   physicsSystem.setScreenInfo(screen);
   collisionSystem.setScreenInfo(screen);
@@ -43,6 +45,10 @@ World::~World()
 
 void World::reset()
 {
+  // Load data
+  TowerDataLoader::loadTowerData();
+  PlayerDataLoader::loadPlayerData();
+
   // Reset singletons
   HUD::getInstance().reset();
   AudioLoader::getInstance().reset();
@@ -59,11 +65,7 @@ void World::reset()
   home->getComponent<HealthComponent>()->reset();
   homeSystem.reset(entityManager);
   // Reset player position and wallet
-  player->getComponent<TransformComponent>()->position = player_spawn;
-  player->getComponent<WalletComponent>()->coins = 0;
-  player->getComponent<HealthComponent>()->curHP = player->getComponent<HealthComponent>()->maxHP;
-  player->removeComponent<DeathComponent>();
-  
+  entityManager.addEntity(PlayerFactory::build(player_spawn)); 
 
   // Spawn starting resources
   ResourceFactory::spawnInitial(entityManager);            // adds 6 entities

@@ -204,6 +204,16 @@ set(SOURCE_FILES_CORE
 	src/Utility/text.hpp
 	src/hud.cpp
 	src/hud.hpp
+	src/DataLoaders/data_loading_utility.cpp
+	src/DataLoaders/data_loading_utility.hpp
+	src/DataLoaders/tower_data_loader.cpp
+	src/DataLoaders/tower_data_loader.hpp
+	src/DataLoaders/tower_structs.cpp
+	src/DataLoaders/tower_structs.hpp
+  src/DataLoaders/player_data_loader.cpp
+  src/DataLoaders/player_data_loader.hpp
+  src/DataLoaders/player_structs.cpp
+  src/DataLoaders/player_structs.hpp
 	src/Utility/audio_loader.cpp
 	src/Utility/audio_loader.hpp
 	src/help_menu.hpp

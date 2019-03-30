@@ -8,7 +8,7 @@
 class PlayerComponent : public BaseComponent
 {
 public:
-  PlayerComponent();
+  PlayerComponent(int _maxJumps, float _jumpVelocity);
   int jumps;
   int maxJumps;
   float jumpVelocity;
@@ -19,10 +19,6 @@ public:
   shared_ptr<Texture> texture_right;
   shared_ptr<Texture> texture_idle;
   shared_ptr<Texture> texture_jump;
-
-private:
-  int INIT_MAX_JUMPS = 2;
-  float INIT_JUMP_VELOCITY = -600.0f;
 };
 
 #endif

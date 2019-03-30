@@ -14,6 +14,8 @@
 #include "Components/TowerComponents/star_tower_attack_component.hpp"
 #include "Components/TowerComponents/boomerang_tower_attack_component.hpp"
 #include "Components/TowerComponents/tower_range_sprite_component.hpp"
+#include "DataLoaders/tower_data_loader.hpp"
+#include "DataLoaders/tower_structs.hpp"
 
 class TowerEntityFactory
 {

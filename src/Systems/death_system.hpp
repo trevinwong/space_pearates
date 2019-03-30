@@ -23,7 +23,7 @@ public:
 	void handleProjectileDeath(EntityManager &entityManager, shared_ptr<Entity> projectile);
 	void handlePlayerDeath(EntityManager &entityManager, shared_ptr<Entity> player);
   void handleDeaths(EntityManager &entityManager);
-  int dropRate = 50;
+  int dropRate = 75;
 };
 
 #endif

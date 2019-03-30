@@ -7,11 +7,10 @@
 
 class FireTowerAttackComponent : public TowerAttackComponent {
 public:
-  // Note: _shootRate (unit: s)
-  FireTowerAttackComponent(vec2 _relativeFirePosition, float _attackRange, int _maxLevel, float _fireRate, int _projectileAttackPower);
+  FireTowerAttackComponent(vec2 _relativeFirePosition, vector<int> _attackPerLvl, vector<float> _rangePerLvl, vector<float> _fireRatePerLvl);
 
+  virtual void setToLevel(int level);
   virtual int getTowerType() { return towerTypeID; };
-
 private:
   static const int towerTypeID = TowerTypeID::fire_tower;
 };

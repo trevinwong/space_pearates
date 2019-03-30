@@ -8,7 +8,7 @@
 #include "tower_ui_idle_state.hpp"
 #include "tower_ui_state_component.hpp"
 
-#define SHIFT_LEFT_TOTAL_TIME 0.5f // unit: s
+#define SHIFT_LEFT_TOTAL_TIME 0.2f // unit: s
 
 /*
   TowerUiShiftLeftState --(can only)--> TowerUiIdleState

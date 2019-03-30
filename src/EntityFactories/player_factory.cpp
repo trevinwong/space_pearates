@@ -1,6 +1,6 @@
 #include "player_factory.hpp"
 
-Entity PlayerFactory::build(vec2 translation, vec2 scale)
+Entity PlayerFactory::build(vec2 translation)
 {
   shared_ptr<Program> program = make_shared<Program>(shader_path("sprite.vert"), shader_path("sprite.frag"));
   shared_ptr<Texture> texture = make_shared<Texture>(texture_path("player.png"), true);
@@ -9,16 +9,16 @@ Entity PlayerFactory::build(vec2 translation, vec2 scale)
   shared_ptr<ColorComponent> color = make_shared<ColorComponent>(glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
   shared_ptr<AnimatedComponent> animated = make_shared<AnimatedComponent>(5, 0.2);
 
-  shared_ptr<PlayerComponent> player = make_shared<PlayerComponent>();
+  shared_ptr<PlayerComponent> player = make_shared<PlayerComponent>(PlayerDataLoader::playerData.maxJumps, PlayerDataLoader::playerData.jumpVelocity);
   shared_ptr<MovementComponent> movement = make_shared<MovementComponent>(
-    vec2(0.0f, 0.0f), vec2(0.0f, 0.0f), vec2(300.0f, GRAVITY_VELOCITY), vec2(1000.0f, GRAVITY_ACCEL));
+    vec2(0.0f, 0.0f), vec2(0.0f, 0.0f), PlayerDataLoader::playerData.maxVelocity, PlayerDataLoader::playerData.maxAccel);
   movement->offScreenOK = false;
 
 	shared_ptr<Program> billboardProgram = make_shared<Program>(shader_path("billboard.vert"), shader_path("billboard.frag"));
-  shared_ptr<HealthComponent> health = make_shared<HealthComponent>(billboardProgram, 30);
+  shared_ptr<HealthComponent> health = make_shared<HealthComponent>(billboardProgram, PlayerDataLoader::playerData.health);
   GLfloat rotation = 0.0f;
-  shared_ptr<TransformComponent> transform = make_shared<TransformComponent>(translation, scale, rotation);
-  shared_ptr<CollisionComponent> collision = make_shared<CollisionComponent>(translation, scale, rotation);
+  shared_ptr<TransformComponent> transform = make_shared<TransformComponent>(translation, PlayerDataLoader::playerData.size, rotation);
+  shared_ptr<CollisionComponent> collision = make_shared<CollisionComponent>(translation, PlayerDataLoader::playerData.size, rotation);
 
   shared_ptr<WalletComponent> wallet = make_shared<WalletComponent>();
 
