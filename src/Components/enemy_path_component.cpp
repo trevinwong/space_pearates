@@ -3,14 +3,15 @@
 EnemyPathComponent::EnemyPathComponent(int _type) {
   type = _type;
 }
+
 void EnemyPathComponent::move (float dt, EntityManager& entityManager) {
   setMap(entityManager);
   if (type == turtle_shell) {
-    moveShell(dt, entityManager);
+    moveBasic(dt, entityManager);
   } else if (type == random) {
-    EnemyPathComponent::moveRandom (dt, entityManager);
+    moveBasic(dt, entityManager);
   } else {
-    EnemyPathComponent::moveBasic(dt, entityManager);
+    moveBasic(dt, entityManager);
   }
 }
 
@@ -49,7 +50,7 @@ void EnemyPathComponent::moveBasic (float dt, EntityManager& entityManager) {
     }
 
     for (int i = 0; i <= ceil(vel.y*dt/40); i++)
-      if (map[yind+i][xind] == MAP_PLATFORM_TILE || map[yind+i][xind+1] == MAP_PLATFORM_TILE)
+      if (map[(yind+i) < 32 ? yind+i : 31][xind] == MAP_PLATFORM_TILE || map[(yind+i) < 32 ? yind+i : 31][xind+1] == MAP_PLATFORM_TILE)
         flag = true;
 
     if (flag) {
@@ -70,7 +71,7 @@ void EnemyPathComponent::moveBasic (float dt, EntityManager& entityManager) {
 
     // check if directly above base - path straight down if so
     for (int i = 0; i <= ceil(vel.y*dt/40); i++)
-      if (map[yind+i][xind] == MAP_BASE_POSITION) {
+      if (map[(yind+i) < 32 ? yind+i : 31][xind] == MAP_BASE_POSITION) {
         vel.y = movementComponent->maxVelocity.y;
         movementComponent->maxVelocity.x = 0.f;
       }
