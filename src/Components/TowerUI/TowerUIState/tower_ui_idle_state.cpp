@@ -88,6 +88,7 @@ void TowerUiIdleState::update(EntityManager &entityManager, float dt) {
   towerUiButtonComponent->isDisplay = mapComponent->canBuildTowerAt(tilePosX, tilePosY);
 
   vec2 tilePosition = vec2(tilePosX, tilePosY);
+
   bool isTowerHere = mapComponent->isTowerAt(tilePosX, tilePosY);
 
   // update tower ui opt list
@@ -136,33 +137,35 @@ void TowerUiIdleState::update(EntityManager &entityManager, float dt) {
 
   // update description
   shared_ptr<TowerUiButtonComponent::TowerUiBtn> towerUiBtn = towerUiButtonComponent->getCurrentSelectedBtn();
+  shared_ptr<TowerData> data;
   if (!isTowerHere) {
     switch (towerUiBtn->opt) {
       case BUILD_FIRE_TOWER:
+        data = TowerDataLoader::allTowerData[BUILD_FIRE_TOWER];
         towerUiButtonComponent->descriptionLine2 = "FIRE TOWER";
-        towerUiButtonComponent->descriptionLine1 = "Cost 1";
         break;
       case BUILD_WATER_TOWER:
+        data = TowerDataLoader::allTowerData[BUILD_WATER_TOWER];
         towerUiButtonComponent->descriptionLine2 = "WATER TOWER";
-        towerUiButtonComponent->descriptionLine1 = "Cost 1";
         break;
       case BUILD_LIGHT_TOWER:
+        data = TowerDataLoader::allTowerData[BUILD_LIGHT_TOWER];
         towerUiButtonComponent->descriptionLine2 = "LIGHT TOWER";
-        towerUiButtonComponent->descriptionLine1 = "Cost 1";
         break;
       case BUILD_STAR_TOWER:
+        data = TowerDataLoader::allTowerData[BUILD_STAR_TOWER];
         towerUiButtonComponent->descriptionLine2 = "STAR TOWER";
-        towerUiButtonComponent->descriptionLine1 = "Cost 1";
         break;
       case BUILD_BOOMERANG_TOWER:
+        data = TowerDataLoader::allTowerData[BUILD_BOOMERANG_TOWER];
         towerUiButtonComponent->descriptionLine2 = "BOOMERANG TOWER";
-        towerUiButtonComponent->descriptionLine1 = "Cost 1";
         break;
       default:
         towerUiButtonComponent->descriptionLine2 = "";
         towerUiButtonComponent->descriptionLine1 = "";
         break;
     }
+    towerUiButtonComponent->descriptionLine1 = "Cost " + std::to_string(data->buildCost);
   } else {
     int towerId = mapComponent->getTowerIdAt(tilePosX, tilePosY);
     shared_ptr<Entity> targetTower = entityManager.getEntityById(towerId);
@@ -173,14 +176,14 @@ void TowerUiIdleState::update(EntityManager &entityManager, float dt) {
       towerUiButtonComponent->descriptionLine2 = "";
       switch (towerUiBtn->opt) {
         case UPGRADE_TOWER_OPERATION:
-          if (towerAttackComponent->currentLevel == towerAttackComponent->maxLevel) {
+          if (towerMetaComponent->currentLevel == towerMetaComponent->maxLevel) {
             towerUiButtonComponent->descriptionLine2 = "";
             towerUiButtonComponent->descriptionLine1 = "MAX Lv";
           }
           else {
-            int currentLevel = towerAttackComponent->currentLevel;
+            int currentLevel = towerMetaComponent->currentLevel;
             towerUiButtonComponent->descriptionLine2 = std::to_string(currentLevel) + " => " + std::to_string(currentLevel + 1) + " Lv";
-            towerUiButtonComponent->descriptionLine1 = "Cost 2";
+            towerUiButtonComponent->descriptionLine1 = "Cost " + std::to_string(towerMetaComponent->upgradeCostsPerLvl[currentLevel+1]); 
           }
           break;
         case FIX_TOWER_OPERATION:
@@ -189,7 +192,7 @@ void TowerUiIdleState::update(EntityManager &entityManager, float dt) {
           break;
         case SELL_TOWER_OPERATION:
           towerUiButtonComponent->descriptionLine2 = "SELL";
-          towerUiButtonComponent->descriptionLine1 = "Get  1";
+          towerUiButtonComponent->descriptionLine1 = "Get " + std::to_string(towerMetaComponent->getSellMoney());
           break;
         default:
           towerUiButtonComponent->descriptionLine2 = "";
@@ -220,31 +223,51 @@ void TowerUiIdleState::processOperate(glm::vec2 playerCenterPosition, TOWER_UI_O
 
   // build a new tower
   if (!mapComponent->isTowerAt(col, row)) {
-    glm::vec2 towerCenterBottomPosition = glm::vec2(col * width_tile + width_tile / 2.0, row * height_tile + height_tile);
-    glm::vec2 towerSize = glm::vec2(40.0f, 65.0f);
-    Entity towerEntity;
+    shared_ptr<TowerData> data;
+
     switch (operationType) {
       case BUILD_FIRE_TOWER:
-        towerEntity = TowerEntityFactory::createFireTower(towerCenterBottomPosition, towerSize);
+        data = TowerDataLoader::allTowerData[BUILD_FIRE_TOWER];
         break;
       case BUILD_WATER_TOWER:
-        towerEntity = TowerEntityFactory::createWaterTower(towerCenterBottomPosition, towerSize);
+        data = TowerDataLoader::allTowerData[BUILD_WATER_TOWER];
         break;
       case BUILD_LIGHT_TOWER:
-        towerEntity = TowerEntityFactory::createLightTower(towerCenterBottomPosition, towerSize);
+        data = TowerDataLoader::allTowerData[BUILD_LIGHT_TOWER];
         break;
       case BUILD_STAR_TOWER:
-        towerEntity = TowerEntityFactory::createStarTower(towerCenterBottomPosition, towerSize);
+        data = TowerDataLoader::allTowerData[BUILD_STAR_TOWER];
         break;
       case BUILD_BOOMERANG_TOWER:
-        towerEntity = TowerEntityFactory::createBoomerangTower(towerCenterBottomPosition);
+        data = TowerDataLoader::allTowerData[BUILD_BOOMERANG_TOWER];
         break;
       default:
         return; // unknown type of tower
     }
 
-    shared_ptr<TowerMetaComponent> towerMetaComponent = towerEntity.getComponent<TowerMetaComponent>();
-    if (walletComponent->spend(towerMetaComponent->buildCost)) {
+    if (walletComponent->spend(data->buildCost)) {
+      glm::vec2 towerCenterBottomPosition = glm::vec2(col * width_tile + width_tile / 2.0, row * height_tile + height_tile);
+      glm::vec2 towerSize = glm::vec2(40.0f, 65.0f);
+      Entity towerEntity;
+      switch (operationType) {
+        case BUILD_FIRE_TOWER:
+          towerEntity = TowerEntityFactory::createFireTower(towerCenterBottomPosition, towerSize);
+          break;
+        case BUILD_WATER_TOWER:
+          towerEntity = TowerEntityFactory::createWaterTower(towerCenterBottomPosition, towerSize);
+          break;
+        case BUILD_LIGHT_TOWER:
+          towerEntity = TowerEntityFactory::createLightTower(towerCenterBottomPosition, towerSize);
+          break;
+        case BUILD_STAR_TOWER:
+          towerEntity = TowerEntityFactory::createStarTower(towerCenterBottomPosition, towerSize);
+          break;
+        case BUILD_BOOMERANG_TOWER:
+          towerEntity = TowerEntityFactory::createBoomerangTower(towerCenterBottomPosition, towerSize);
+          break;
+        default:
+          return; // unknown type of tower
+      }
       Mix_PlayChannel(-1, AudioLoader::getInstance().build_tower, 0);
       entityManager.addEntity(towerEntity);
       mapComponent->buildTowerAt(towerEntity.id, col, row);
@@ -262,14 +285,18 @@ void TowerUiIdleState::processOperate(glm::vec2 playerCenterPosition, TOWER_UI_O
 
     switch (operationType) {
       case SELL_TOWER_OPERATION:
-        walletComponent->earn(towerMetaComponent->sellGet);
+        walletComponent->earn(towerMetaComponent->getSellMoney());
         entityManager.removeEntity(targetTower);
         mapComponent->removeTowerAt(col, row);
         break;
       case UPGRADE_TOWER_OPERATION:
-        if (towerAttackComponent->currentLevel < towerAttackComponent->maxLevel)
-          if (walletComponent->spend(towerMetaComponent->upgradeCost))
-            towerAttackComponent->currentLevel++;
+        if (towerMetaComponent->currentLevel < towerMetaComponent->maxLevel)
+          // upgradeCostsPerLvl describe how much money it costs to upgrade TO that level
+          if (walletComponent->spend(towerMetaComponent->upgradeCostsPerLvl[towerMetaComponent->currentLevel+1])) {
+            towerMetaComponent->totalWorth += towerMetaComponent->upgradeCostsPerLvl[towerMetaComponent->currentLevel+1];
+            towerMetaComponent->currentLevel += 1;
+            towerAttackComponent->setToLevel(towerMetaComponent->currentLevel);
+          }
         break;
       case FIX_TOWER_OPERATION:
         break;

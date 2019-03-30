@@ -6,7 +6,7 @@ void DeathSystem::handleEnemyDeath(EntityManager &entityManager, shared_ptr<Enti
 		shared_ptr<EnemyComponent> enemyData = enemy->getComponent<EnemyComponent>();
 		if (transform != nullptr) {
 			for (Entity resource : ResourceFactory::buildCluster(enemyData->worth, transform->position, transform->size)) {
-				if (rand() % 100 >= dropRate)
+				if (rand() % 100 >= (100 - dropRate))
 				{
 					entityManager.addEntity(resource);
 				}

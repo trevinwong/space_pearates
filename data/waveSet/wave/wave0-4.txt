@@ -9,13 +9,3 @@ cluster2.txt 7
 cluster2.txt 8
 cluster3.txt 16
 cluster3.txt 17
-cluster3.txt 18
-cluster3.txt 19
-cluster3.txt 20
-cluster3.txt 21
-cluster3.txt 22
-cluster3.txt 23
-cluster3.txt 24
-cluster3.txt 26
-cluster4.txt 35
-cluster4.txt 36

@@ -8,7 +8,7 @@
 #include "../tower_ui_button_component.hpp"
 #include "../tower_ui_button_meta_component.hpp"
 
-#define SHIFT_RIGHT_TOTAL_TIME 0.5f // unit: s
+#define SHIFT_RIGHT_TOTAL_TIME 0.2f // unit: s
 
 /*
   TowerUiShiftRightState --(can only)--> TowerUiIdleState

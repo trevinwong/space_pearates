@@ -3,11 +3,6 @@
 EnemyPathComponent::EnemyPathComponent(int _type) {
   type = _type;
 }
-
-EnemyPathComponent::~EnemyPathComponent() {
->>>>>>> 62fb42eb5a726aa733ba567250a24250d809564c
-}
-
 void EnemyPathComponent::move (float dt, EntityManager& entityManager) {
   setMap(entityManager);
   if (type == turtle_shell) {

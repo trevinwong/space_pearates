@@ -17,8 +17,8 @@ void PlayerSystem::interpInput(EntityManager &entityManager, float dt, GLboolean
 			sprite->texture = player->texture_left;
 
 			if (newAcceleration.x > 0) newAcceleration.x = 0;
-			if (newVelocity.x > 0) newVelocity.x -= movement->maxVelocity.x * 0.1;
 			newAcceleration.x -= movement->maxAccel.x * 0.8;
+			if (newVelocity.x > 0) newVelocity.x -= movement->maxVelocity.x * 0.2;
 		}
 		else if (keys[GLFW_KEY_RIGHT])
 		{
@@ -26,7 +26,7 @@ void PlayerSystem::interpInput(EntityManager &entityManager, float dt, GLboolean
 
 			if (newAcceleration.x < 0) newAcceleration.x = 0;
 			newAcceleration.x += movement->maxAccel.x * 0.8;
-			if (newVelocity.x < 0) newVelocity.x += movement->maxVelocity.x * 0.1;
+			if (newVelocity.x < 0) newVelocity.x += movement->maxVelocity.x * 0.2;
 		}
 
 		if (keys[GLFW_KEY_UP] && !keysProcessed[GLFW_KEY_UP] && player->jumps > 0)
@@ -34,7 +34,7 @@ void PlayerSystem::interpInput(EntityManager &entityManager, float dt, GLboolean
 			Mix_PlayChannel(-1, AudioLoader::getInstance().jump, 0);
 			keysProcessed[GLFW_KEY_UP] = true;
 			player->jumps--;
-			if (movement->velocity.y > 0) movement->velocity.y = 0;
+			if (newVelocity.y > 0) newVelocity.y = 0;
 			newVelocity.y += player->jumpVelocity;
 		}
 		else if (keys[GLFW_KEY_DOWN])

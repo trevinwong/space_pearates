@@ -1,14 +1,12 @@
 #include "tower_attack_component.hpp"
 
-TowerAttackComponent::TowerAttackComponent(vec2 _relativeFirePosition, float _attackRange, int _maxLevel, float _fireRate, int _projectileAttackPower) :
+TowerAttackComponent::TowerAttackComponent(vec2 _relativeFirePosition, vector<int> _attackPerLvl, vector<float> _rangePerLvl, vector<float> _fireRatePerLvl) :
   relativeFirePosition(_relativeFirePosition),
-  attackRange(_attackRange),
-  maxLevel(_maxLevel),
-  currentLevel(0), // initial to level 0
-  fireRate(_fireRate),
-  elapsedTimeToNextFire(_fireRate),
-  projectileAttackPower(_projectileAttackPower)
+  attackPerLvl(_attackPerLvl),
+  rangePerLvl(_rangePerLvl),
+  fireRatePerLvl(_fireRatePerLvl) 
 {
+  elapsedTimeToNextFire = 0;
 }
 
 void TowerAttackComponent::resetElapsedTimeToNextFire()
@@ -31,15 +29,15 @@ bool TowerAttackComponent::isReadyForNextFire()
 
 float TowerAttackComponent::getAttackRange()
 {
-  return attackRange + currentLevel * 20.0f;
+  return attackRange;
 }
 
 float TowerAttackComponent::getFireRate()
 {
-  return this->fireRate - currentLevel * 0.2f;
+  return this->fireRate;
 }
 
 int TowerAttackComponent::getProjectileAttackPower()
 {
-  return this->projectileAttackPower + currentLevel * 5.0f;
+  return this->projectileAttackPower;
 }

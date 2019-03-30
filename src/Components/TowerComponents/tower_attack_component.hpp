@@ -24,12 +24,6 @@ class TowerAttackComponent : public BaseComponent {
     // Note: global position
     vec2 relativeFirePosition;
 
-    // current level
-    int currentLevel;
-
-    // max level
-    int maxLevel;
-
     // circle radius
     float getAttackRange();
 
@@ -47,16 +41,14 @@ class TowerAttackComponent : public BaseComponent {
     void reduceElapsedTimeToNextFire(float dt);
     bool isReadyForNextFire();
 
+
     static const int typeID = ComponentType::attack_tower;
     virtual int getTypeID() const { return typeID; };
-
     virtual int getTowerType() = 0;
-
+    virtual void setToLevel(int level) = 0;
   protected:
     // this class is an abstract class, the constructor should not be invoked as a public function
-    TowerAttackComponent(vec2 _relativeFirePosition, float _attackRange, int _maxLevel, float _fireRate, int projectileAttackPower);
-
-  private:
+    TowerAttackComponent(vec2 _relativeFirePosition, vector<int> _attackPerLvl, vector<float> _rangePerLvl, vector<float> _fireRatePerLvl);
     // circle radius
     float attackRange;
 
@@ -68,6 +60,10 @@ class TowerAttackComponent : public BaseComponent {
 
     // time to fire again
     float elapsedTimeToNextFire;
+
+    vector<int> attackPerLvl;
+    vector<float> rangePerLvl;
+    vector<float> fireRatePerLvl;
 };
 
 #endif
