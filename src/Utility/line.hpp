@@ -10,6 +10,7 @@ class Line {
 		Line(vec2 Pt1, vec2 Pt2);	
 		bool isPointWithinSegment(vec2 pt);
 		vec2 getLineSegsIntersection(Line other);
+		bool isLineSegsIntersecting(Line other);
 };
 
 #endif
