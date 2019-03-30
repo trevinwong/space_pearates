@@ -1,7 +1,7 @@
 #include "particle_system.hpp"    
 
-const int MAX_PARTICLES = 250;
-const float DELAY_PERIOD = 0.15f;
+const int MAX_PARTICLES = 300;
+const float DELAY_PERIOD = 0.175f;
 const vec2 DEFAULT_PARTICLE_SCALE = vec2(50.0f, 50.0f);
 static float nextActionTime = DELAY_PERIOD;
 static int lastUsedIndex = 0;
@@ -50,19 +50,18 @@ int ParticleSystem::findUnusedParticle() {
 }
 
 void ParticleSystem::emitSmoke(EntityManager & manager, vec2 clusterOrigin) {
-  for (int i = 0; i < 5; i++) {
+  for (int i = 0; i < 15; i++) {
     shared_ptr<Entity> particle = particleClusters[findUnusedParticle()];
     shared_ptr<ParticleComponent> pComponent = particle->getComponent<ParticleComponent>();
     shared_ptr<TransformComponent> tComponent = particle->getComponent<TransformComponent>();
     shared_ptr<SpriteComponent> sComponent = particle->getComponent<SpriteComponent>();
     shared_ptr<ColorComponent> cComponent = particle->getComponent<ColorComponent>();
     tComponent->position = clusterOrigin;
-    tComponent->size = vec2(110.0f, 120.0f);
+    tComponent->size = vec2(16.f, 16.f);
     sComponent->texture = pComponent->smokeTexture;
     pComponent->type = ParticleType::smoke;
     pComponent->active = true; // Now, particle will get rendered
   }
-
 }
 
 
@@ -72,14 +71,13 @@ void ParticleSystem::updateParticles(EntityManager & manager, float dt) {
   shared_ptr<HealthComponent> hComponent = home->getComponent<HealthComponent>();
   shared_ptr<ColorComponent> hcComponent = home->getComponent<ColorComponent>();
 
-  // if (nextActionTime < 0 && (hComponent->curHP < (0.5 * hComponent->maxHP))) {
-  //   emitSmoke(manager, vec2(560.f, 710.f));
-  //   hcComponent->RGBA.a = 1.0f;
-  //   nextActionTime = DELAY_PERIOD;
-  // }
-  // else {
-  //   nextActionTime -= dt;
-  // }
+  // Emit smoke when base reaches 1/2 health
+  if (nextActionTime < 0 && (hComponent->curHP < (0.5 * hComponent->maxHP))) {
+    emitSmoke(manager, vec2(643.f, 597.f));
+    nextActionTime = DELAY_PERIOD;
+  } else {
+    nextActionTime -= dt;
+  }
 
   // Handle particles emitted when enemy dies
   for (shared_ptr<Entity> particle : particles) {
@@ -102,12 +100,11 @@ void ParticleSystem::updateParticles(EntityManager & manager, float dt) {
       cComponent->RGBA.w -= dt / 1.5f;
     }
     else if (pComponent->type == ParticleType::smoke) {
-      xVelocity = 25.f * sin(pComponent->timer.elapsedTime * 1.75f * M_PI);
-      //xVelocity = cos(pComponent->angle) * (pComponent->speed + (rand() % (20 - 5) + 5));
-      yVelocity = sin(pComponent->angle) * (pComponent->speed - (rand() % (41 - 15) + 15)) * (pComponent->timer.getTimeLeft() / pComponent->lifetime);
-      cComponent->RGBA.w -= dt * 0.5;
-      tComponent->size -= dt * 0.85f;
-    }
+      xVelocity = 1.4 * cos(pComponent->angle) * pComponent->speed;
+      yVelocity = -1.f * ((sin(pComponent->angle) * pComponent->speed) + F_g);
+      pComponent->angle += (dt * 2);
+      cComponent->RGBA.w -= dt / 1.5f;
+  }
 
     tComponent->position += vec2(xVelocity, yVelocity) * (dt * 5.f);
 

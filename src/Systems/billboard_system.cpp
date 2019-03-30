@@ -30,6 +30,7 @@ void BillboardSystem::drawBillboards(EntityManager & entityManager, glm::mat4 pr
     bool useDefaultWidth = transform->size.x < defaultWidth;
 
     float barWidth = useDefaultWidth ? defaultWidth : transform->size.x;
+
     barWidth *= health->curHP / health->maxHP > 0 ? health->curHP / health->maxHP : 0;
 
     float barHeight = 5.f;
@@ -37,6 +38,7 @@ void BillboardSystem::drawBillboards(EntityManager & entityManager, glm::mat4 pr
 
     if (home != nullptr) {
       barWidth = 100.f;
+      barWidth *= health->curHP / health->maxHP > 0 ? health->curHP / health->maxHP : 0;
       xOffset = -defaultWidth/2 + transform->size.x/2;
     }
     
