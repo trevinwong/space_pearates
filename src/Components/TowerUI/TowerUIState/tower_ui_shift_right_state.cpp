@@ -32,6 +32,7 @@ void TowerUiShiftRightState::update(EntityManager &entityManager, float dt) {
   towerUiButton->descriptionLine1Pos = towerUiButtonMeta->descriptionLine1Pos + playerCenterTopPosition;
   towerUiButton->descriptionLine2 = "";
   towerUiButton->descriptionLine2Pos = towerUiButtonMeta->descriptionLine1Pos + playerCenterTopPosition;
+  towerUiButton->descriptionLine1Color = towerUiButton->defaultTextColor;
 
   // Update buttons position/size/color
   vector<shared_ptr<TowerUiButtonComponent::TowerUiBtn>> btnList = towerUiButton->btnList;
