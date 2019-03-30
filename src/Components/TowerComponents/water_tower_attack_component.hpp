@@ -7,17 +7,15 @@
 
 class WaterTowerAttackComponent : public TowerAttackComponent {
 public:
-  // Note: _shootRate (unit: s)
-  WaterTowerAttackComponent(glm::vec2 _relativeFirePosition, 
-                            float _attackRange, 
-                            int _maxLevel,
-                            float _slowDownFactor);
+  WaterTowerAttackComponent(vec2 _relativeFirePosition, vector<float> _rangePerLvl, vector<float> _slowPerLvl);
 
   float getSlowDownFactor();
+  float slowDownFactor;
+  vector<float> slowPerLvl;
+  virtual void setToLevel(int level);
   virtual int getTowerType() { return towerTypeID; };
 
 private:
-  float slowDownFactor;
   static const int towerTypeID = TowerTypeID::water_tower;
 };
 

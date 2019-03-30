@@ -9,12 +9,12 @@
 
 class MenuUiFactory{
 public:
-  static Entity createMainMenuUi();
+  static Entity createMainMenuUi(int levelReached);
 
   /*
-   * e.g. levelReached = 3, which means the player has passed level1, 2 and 3
+   * e.g. levelReached = 3, which means the player has passed level 1, 2 and 3
    */
-  static Entity createLevelSelectionUi();
+  static Entity createLevelSelectionUi(int levelReached);
 private:
   MenuUiFactory();
 };

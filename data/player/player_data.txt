@@ -1,0 +1,6 @@
+45.0 45.0 # size
+480 400 # max velocity in x and y direction
+740 600 # max accel in x and y direction
+100 # health
+2 # max jumps
+-400 # jump velocity

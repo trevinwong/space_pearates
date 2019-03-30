@@ -8,10 +8,12 @@
 #include "level_selection_scene.hpp"
 #include "main_menu_scene.hpp"
 #include "how_to_play_scene.hpp"
+#include "loading_scene.hpp"
 
 class SceneManager : public std::enable_shared_from_this<SceneManager> {
 public:
   SceneManager();
+  ~SceneManager();
 
   void update(GLboolean keys[], GLboolean keysProcessed[]);
 
@@ -25,7 +27,11 @@ public:
 
   void setNextSceneToMainMenu();
 
+  void showLoadingScreenNow();
+
   void setGLFWwindow(GLFWwindow *window);
+
+  int levelReached = 1;
 
 private:
   shared_ptr<AbstractScene> currentScene;
@@ -35,6 +41,8 @@ private:
 
   // if nextScene is ready, then swap to next world
   void trySwapToNextScene();
+
+  int readLevelReached();
 };
 
 #endif // !SCENE_MANAGER_H

@@ -1,0 +1,8 @@
+0.0 -0.3 # relative fire position
+3 # build-cost
+4 # max-level
+0 6 6 6 6 # upgrade costs
+50 100 150 200 250 # attack per lvl
+200 230 240 250 260 # range per lvl
+2.0 2.0 2.0 2.0 2.0 # fire rate per lvl
+50 65 80 150 160 # size per lvl

@@ -14,7 +14,7 @@ void WavesetSystem::reset()
   defenseTimer = 0;
 }
 
-void WavesetSystem::handleBuildAndDefensePhase(EntityManager &entityManager, float dt)
+bool WavesetSystem::handleBuildAndDefensePhase(EntityManager &entityManager, float dt)
 {
 	vector<shared_ptr<Entity>> entities = entityManager.getEntities(entityManager.getComponentChecker(vector<int>{ComponentType::waveset}));
 
@@ -22,9 +22,8 @@ void WavesetSystem::handleBuildAndDefensePhase(EntityManager &entityManager, flo
 		shared_ptr<WavesetComponent> waveset_manager = e->getComponent<WavesetComponent>();
 		Waveset &waveset = waveset_manager->waveset;
 
-		if (isWavesetOver(waveset)) {
-			HUD::getInstance().you_win = true;	
-			return;
+		if (isWavesetOver(waveset)) {	
+      return true;
 		}
 		
 		Wave &wave = waveset.waves[waveNo];
@@ -52,7 +51,8 @@ void WavesetSystem::handleBuildAndDefensePhase(EntityManager &entityManager, flo
 				}	
 			}
 		}
-	}	
+	}
+  return false;
 }
 
 void WavesetSystem::startBuildPhase()

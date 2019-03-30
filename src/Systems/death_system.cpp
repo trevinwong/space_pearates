@@ -6,7 +6,7 @@ void DeathSystem::handleEnemyDeath(EntityManager &entityManager, shared_ptr<Enti
 		shared_ptr<EnemyComponent> enemyData = enemy->getComponent<EnemyComponent>();
 		if (transform != nullptr) {
 			for (Entity resource : ResourceFactory::buildCluster(enemyData->worth, transform->position, transform->size)) {
-				if (rand() % 100 >= dropRate)
+				if (rand() % 100 >= (100 - dropRate))
 				{
 					entityManager.addEntity(resource);
 				}
@@ -33,9 +33,9 @@ void DeathSystem::handleDeaths(EntityManager &entityManager)
 {
 	vector<shared_ptr<Entity>> dead = entityManager.getEntities(entityManager.getComponentChecker(vector<int>{ ComponentType::death }));
 	for (shared_ptr<Entity> e : dead) {
-    shared_ptr<EnemyComponent> enemy = e->getComponent<EnemyComponent>();
+		shared_ptr<EnemyComponent> enemy = e->getComponent<EnemyComponent>();
 		shared_ptr<PlayerComponent> player = e->getComponent<PlayerComponent>();
-    shared_ptr<ProjectileComponent> projectile = e->getComponent<ProjectileComponent>();
+		shared_ptr<ProjectileComponent> projectile = e->getComponent<ProjectileComponent>();
 
 		if (enemy != nullptr) handleEnemyDeath(entityManager, e);
 		if (player != nullptr) handlePlayerDeath(entityManager, e);

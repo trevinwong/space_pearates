@@ -182,6 +182,8 @@ set(SOURCE_FILES_CORE
 	src/Systems/resource_system.hpp
 	src/Systems/particle_system.cpp
 	src/Systems/particle_system.hpp
+	src/Systems/home_system.cpp
+	src/Systems/home_system.hpp
 	src/Utility/line.hpp
 	src/Utility/line.cpp
 	src/Utility/timer.hpp
@@ -202,10 +204,22 @@ set(SOURCE_FILES_CORE
 	src/Utility/text.hpp
 	src/hud.cpp
 	src/hud.hpp
+	src/DataLoaders/data_loading_utility.cpp
+	src/DataLoaders/data_loading_utility.hpp
+	src/DataLoaders/tower_data_loader.cpp
+	src/DataLoaders/tower_data_loader.hpp
+	src/DataLoaders/tower_structs.cpp
+	src/DataLoaders/tower_structs.hpp
+  src/DataLoaders/player_data_loader.cpp
+  src/DataLoaders/player_data_loader.hpp
+  src/DataLoaders/player_structs.cpp
+  src/DataLoaders/player_structs.hpp
 	src/Utility/audio_loader.cpp
 	src/Utility/audio_loader.hpp
 	src/help_menu.hpp
 	src/help_menu.cpp
+	src/game_over_menu.hpp
+	src/game_over_menu.cpp
 	src/Scenes/scene_manager.hpp
 	src/Scenes/scene_manager.cpp
 	src/Scenes/abstract_scene.hpp
@@ -217,6 +231,8 @@ set(SOURCE_FILES_CORE
 	src/Scenes/how_to_play_scene.hpp
 	src/world.cpp
 	src/world.hpp
+  src/Scenes/loading_scene.cpp
+	src/Scenes/loading_scene.hpp
 )
 
 set(SOURCE_FILES

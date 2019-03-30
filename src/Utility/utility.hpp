@@ -88,12 +88,14 @@ void printVec3(string name, vec3 vec);
 #define waveset_path(name) data_path  "waveSet/" name
 #define wave_path(name) data_path  "waveSet/wave/" name
 #define cluster_path(name) data_path  "waveSet/wave/cluster/" name
+#define towers_path(name) data_path "towers/" name
+#define player_path(name) data_path "player/" name
 
 #define SCREEN_WIDTH 1280
 #define SCREEN_HEIGHT 800
 
-#define GRAVITY_VELOCITY 350.0f
-#define GRAVITY_ACCEL 600.0f
+#define GRAVITY_VELOCITY 550.0f
+#define GRAVITY_ACCEL 800.0f
 
 #define MAP_EMPTY_BLOCK '0'
 #define MAP_PLATFORM_TILE 'B'   // B -> Block
@@ -105,8 +107,6 @@ void printVec3(string name, vec3 vec);
 // tower types
 #define TOWER_ID int
 #define NO_TOWER_BUILD_HERE -1
-#define FIRE_TOWER 'F'
-#define LIGHT_TOWER 'L'
 
 // build tower ui interface types
 #define TOWER_UI_OPT_TYPE char

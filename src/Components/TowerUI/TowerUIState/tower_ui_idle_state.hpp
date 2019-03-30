@@ -11,6 +11,8 @@
 #include "tower_ui_state_component.hpp"
 #include "tower_ui_shift_left_state.hpp"
 #include "tower_ui_shift_right_state.hpp"
+#include "DataLoaders/tower_data_loader.hpp"
+#include "DataLoaders/tower_structs.hpp"
 
 class TowerUiIdleState : public TowerUiStateComponent {
 public:
@@ -20,9 +22,6 @@ public:
   static const int typeID = ComponentType::tower_ui_state; // use same type id as parent
   inline virtual int getTypeID() const { return typeID; };
 private:
-  // TODO: is here the right place to put these two functions?
-  void processBuildNewTower(glm::vec2 playerCenterPosition, TOWER_UI_OPT_TYPE towerType, EntityManager& entityManager);
-  void processOperateNewTower(glm::vec2 playerCenterPosition, TOWER_UI_OPT_TYPE operationType, EntityManager& entityManager);
   void processOperate(glm::vec2 playerCenterPosition, TOWER_UI_OPT_TYPE operationType, EntityManager& entityManager);
 };
 

@@ -62,6 +62,8 @@ int main(int argc, char * argv[]) {
 
   // Create a GLFWwindow, which encapsulates a window and an OpenGL context.
   auto mWindow = glfwCreateWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "436D_Project", nullptr, nullptr);
+  // FULLSCREEN:
+  //auto mWindow = glfwCreateWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "436D_Project", glfwGetPrimaryMonitor(), nullptr);
   if (mWindow == nullptr) {
     fprintf(stderr, "Failed to create GLFWwindow (window + OpenGL context).");
     return EXIT_FAILURE;

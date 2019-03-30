@@ -6,7 +6,7 @@ LevelSelectionScene::LevelSelectionScene(std::weak_ptr<SceneManager> _sceneManag
   Entity bg = BackgroundEntityFactory::createBackgroundEntity("level_selection_bg.jpg", false, vec2(SCREEN_WIDTH, SCREEN_HEIGHT));
   entityManager.addEntity(bg);
 
-  Entity menuUi = MenuUiFactory::createLevelSelectionUi();
+  Entity menuUi = MenuUiFactory::createLevelSelectionUi(_sceneManager.lock()->levelReached);
   entityManager.addEntity(menuUi);
 }
 
@@ -28,18 +28,23 @@ void LevelSelectionScene::processInput(float dt, GLboolean keys[], GLboolean key
       sceneManager_spt->setNextSceneToMainMenu();
       keysProcessed[GLFW_KEY_ESCAPE] = true;
     } else if (keys[GLFW_KEY_ENTER] && !keysProcessed[GLFW_KEY_ENTER] && sceneManager_spt) {
+      keysProcessed[GLFW_KEY_ENTER] = true;
       MenuUiComponent::MenuUiChoice selected = menuUiComponent->getSelected();
       switch (selected.choice) {
         case LevelSelectionUiList::level1:
           sceneManager_spt->setNextSceneToInGame(1);
           break;
         case LevelSelectionUiList::level2:
+          sceneManager_spt->setNextSceneToInGame(2);
           break;
         case LevelSelectionUiList::level3:
+          sceneManager_spt->setNextSceneToInGame(3);
           break;
         case LevelSelectionUiList::level4:
+          sceneManager_spt->setNextSceneToInGame(4);
           break;
-        case LevelSelectionUiList::bosslevel:
+        case LevelSelectionUiList::level5:
+          sceneManager_spt->setNextSceneToInGame(5);
           break;
         case LevelSelectionUiList::back:
           sceneManager_spt->setNextSceneToMainMenu();
@@ -47,7 +52,6 @@ void LevelSelectionScene::processInput(float dt, GLboolean keys[], GLboolean key
         default:
           break;
       }
-      keysProcessed[GLFW_KEY_ENTER] = true;
     }
   }
 }
