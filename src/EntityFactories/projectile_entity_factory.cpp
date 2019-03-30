@@ -20,12 +20,12 @@ Entity ProjectileEntityFactory::createAimProjectile(vec2 size, glm::vec4 filterC
   shared_ptr<ProjectileComponent> projectile = make_shared<ProjectileComponent>(attackPower);
 
   Entity projectileEntity;
-//  projectileEntity.setComponent<SpriteComponent>(sprite);
+  projectileEntity.setComponent<SpriteComponent>(sprite);
   projectileEntity.setComponent<ColorComponent>(color);
   projectileEntity.setComponent<TransformComponent>(transform);
- // projectileEntity.setComponent<CollisionComponent>(collision);
-	projectileEntity.setComponent<MeshComponent>(mesh);
-  projectileEntity.setComponent<MeshCollisionComponent>(meshCollision);
+  projectileEntity.setComponent<CollisionComponent>(collision);
+//	projectileEntity.setComponent<MeshComponent>(mesh);
+ // projectileEntity.setComponent<MeshCollisionComponent>(meshCollision);
   projectileEntity.setComponent<MovementComponent>(movement);
   projectileEntity.setComponent<ProjectileComponent>(projectile);
   return projectileEntity;
