@@ -126,7 +126,6 @@ void World::update(float dt)
     sceneManager_spt->setNextSceneToInGame(level + 1);
     return;
   }
-
   // Note: Be careful, order may matter in some cases for systems
   HUD::getInstance().update(dt);
 

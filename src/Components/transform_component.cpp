@@ -1,6 +1,6 @@
 #include "transform_component.hpp"
 
-TransformComponent::TransformComponent(glm::vec2 _position, glm::vec2 _size, GLfloat _rotation) : 
+TransformComponent::TransformComponent(glm::vec2 _position, glm::vec2 _size, GLfloat _rotation) :
 	position(_position), size(_size), rotation(_rotation)
 {
 }
@@ -11,7 +11,7 @@ TransformComponent::TransformComponent(vec2 _position, float _scale, GLfloat _ro
 }
 
 bool TransformComponent::isCollidingWith(TransformComponent other)
-{	
+{
 	bool overlapX = position.x + size.x >= other.position.x
 		&& other.position.x + other.size.x >= position.x;
 

@@ -84,6 +84,7 @@ void CollisionSystem::handlePlayerResource(shared_ptr<Entity> player, shared_ptr
 
 void CollisionSystem::handlePlayerEnemy(shared_ptr<Entity> player, shared_ptr<Entity> enemy, EntityManager &entityManager)
 {
+
 	player->setComponent<DamageComponent>(make_shared<DamageComponent>(enemy->getComponent<EnemyComponent>()->totalAtk));
 }
 

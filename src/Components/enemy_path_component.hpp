@@ -12,7 +12,6 @@ class EnemyPathComponent : public BaseComponent
 {
 public:
   EnemyPathComponent(int _type);
-
   enum moveType {
     basic,
     turtle_shell,

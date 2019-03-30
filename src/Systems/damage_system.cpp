@@ -7,6 +7,7 @@ void DamageSystem::handleDamage(EntityManager &entityManager)
 	for (shared_ptr<Entity> e : damaged) {
 		shared_ptr<DamageComponent> damage = e->getComponent<DamageComponent>();
 		shared_ptr<HealthComponent> health = e->getComponent<HealthComponent>();
+
 		if (health != nullptr) {
 			for (float dmg : damage->damage_instances) {
 				health->curHP -= dmg;

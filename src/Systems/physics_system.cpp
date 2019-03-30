@@ -23,11 +23,11 @@ void PhysicsSystem::moveEntities(EntityManager &entityManager, float dt) {
   for (shared_ptr<Entity> e : entities) {
 		shared_ptr<TransformComponent> transform = e->getComponent<TransformComponent>();
 		shared_ptr<MovementComponent> movement = e->getComponent<MovementComponent>();
-	
+
 		movement->accel.y += getGravity(dt);
 		movement->accel.x += getFriction(movement->velocity, dt);
 		movement->accel = glm::clamp(movement->accel, -movement->maxAccel, movement->maxAccel);
-	
+
 		vec2 newVelocity = {movement->velocity.x + movement->accel.x * dt, movement->velocity.y + movement->accel.y * dt};
 		if (glm::dot(movement->velocity.x, newVelocity.x) < 0) {
 			movement->accel.x = 0;
@@ -76,7 +76,7 @@ void PhysicsSystem::adjustPositionAroundTiles(EntityManager &entityManager, shar
 		shared_ptr<TransformComponent> tile_transform = tile->getComponent<TransformComponent>();
 
 		if (transform->isCollidingWith(*tile_transform)) {
-			float radius = transform->size.x / 2.0f; // convert collision box into a circular one 
+			float radius = transform->size.x / 2.0f; // convert collision box into a circular one
 
 			vec2 center = transform->position + (transform->size / 2.0f);
 			vec2 tile_center = tile_transform->position + (tile_transform->size / 2.0f);
@@ -110,7 +110,7 @@ void PhysicsSystem::adjustPositionAroundTiles(EntityManager &entityManager, shar
 			shared_ptr<PlayerComponent> player = e->getComponent<PlayerComponent>();
 
 			if (player != nullptr && top_intersect_valid) {
-				player->jumps = player->maxJumps;	
+				player->jumps = player->maxJumps;
 			}
 
 			if (top_intersect_valid || bottom_intersect_valid) {
@@ -128,12 +128,12 @@ void PhysicsSystem::adjustPositionAroundTiles(EntityManager &entityManager, shar
 
 			vec2 newPosition = transform->position;
 
-			if (top_intersect_valid) newPosition.y = top_left_pt.y - transform->size.y; 
-			if (bottom_intersect_valid) newPosition.y = bottom_left_pt.y; 
-			if (left_intersect_valid) newPosition.x = top_left_pt.x - transform->size.x; 
-			if (right_intersect_valid) newPosition.x = top_right_pt.x; 
+			if (top_intersect_valid) newPosition.y = top_left_pt.y - transform->size.y;
+			if (bottom_intersect_valid) newPosition.y = bottom_left_pt.y;
+			if (left_intersect_valid) newPosition.x = top_left_pt.x - transform->size.x;
+			if (right_intersect_valid) newPosition.x = top_right_pt.x;
 
-			transform->position = newPosition;	
+			transform->position = newPosition;
 		}
 	}
 }

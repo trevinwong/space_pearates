@@ -4,6 +4,10 @@ EnemyPathComponent::EnemyPathComponent(int _type) {
   type = _type;
 }
 
+EnemyPathComponent::~EnemyPathComponent() {
+>>>>>>> 62fb42eb5a726aa733ba567250a24250d809564c
+}
+
 void EnemyPathComponent::move (float dt, EntityManager& entityManager) {
   setMap(entityManager);
   if (type == turtle_shell) {
@@ -18,7 +22,6 @@ void EnemyPathComponent::move (float dt, EntityManager& entityManager) {
 // Basic Movement: Tries to go vertically down to base until it can't, then goes in random
 // horizontal direction till it can't
 void EnemyPathComponent::moveBasic (float dt, EntityManager& entityManager) {
-  // printf("basic\n");
   srand(time(NULL));
   int arr[2] = {-1, 1};
 
@@ -36,7 +39,6 @@ void EnemyPathComponent::moveBasic (float dt, EntityManager& entityManager) {
     vec2 pos = transformComponent->position;
     int yind = static_cast<int>(pos.y / 40);
     int xind = static_cast<int>(pos.x / 40);
-
     bool flag = false;
     vel.y = abs(vel.y) < eps ? movementComponent->maxVelocity.y : vel.y;
 

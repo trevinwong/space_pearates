@@ -16,6 +16,7 @@ public:
   bool setMap(EntityManager& entityManager);
 private:
   vector<vector<char>> map;
+  vector<shared_ptr<Entity>> tiles;
 };
 
 #endif

@@ -1,6 +1,6 @@
 #include "enemy_factory.hpp"
 
-Entity EnemyFactory::build(vec2 position, vec2 velocity, int hpMult, int spdMult, int atkMult, vec2 scale)
+Entity EnemyFactory::build(vec2 position, vec2 velocity, int hpMult, int spdMult, int atkMult, int type, vec2 scale)
 {
 	float speed = (float)spdMult / 100.f;
 	float hp = (float)hpMult / 100.f;
@@ -29,5 +29,7 @@ Entity EnemyFactory::build(vec2 position, vec2 velocity, int hpMult, int spdMult
   e.setComponent<WaterTowerFactorComponent>(waterTowerFactor);
   e.setComponent<HealthComponent>(health);
   e.setComponent<EnemyComponent>(enemy);
+  e.setComponent<EnemyPathComponent>(pathfind);
+
   return e;
 }
