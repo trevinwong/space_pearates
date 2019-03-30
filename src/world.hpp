@@ -30,6 +30,7 @@
 #include "Systems/particle_system.hpp"
 #include "Systems/damage_system.hpp"
 #include "Systems/home_system.hpp"
+#include "Systems/mesh_system.hpp"
 #include "EntityFactories/map_entity_factory.hpp"
 #include "EntityFactories/background_entity_factory.hpp"
 #include "EntityFactories/player_factory.hpp"
@@ -65,6 +66,7 @@ private:
 
   EnemySystem enemySystem;
   PlayerSystem playerSystem;
+	MeshSystem meshSystem;
 
   TowerRangeDisplaySystem towerRangeDisplaySystem;
   TowerAttackSystem towerAttackSystem;
