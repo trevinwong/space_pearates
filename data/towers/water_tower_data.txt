@@ -1,6 +1,6 @@
 0.0 0.0 # relative fire position
 5 # build-cost
 3 # max-level
-0 7 10 15 # upgrade-costs
-15 25 35 40 # slow
-150 165 180 200 # range
+0 4 6 8 # upgrade-costs
+35 50 60 75 # slow
+200 200 250 250 # range

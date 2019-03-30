@@ -33,7 +33,13 @@ void PhysicsSystem::moveEntities(EntityManager &entityManager, float dt) {
 			movement->accel.x = 0;
 			newVelocity.x = 0;
 		}
-		movement->velocity = glm::clamp(newVelocity, -movement->maxVelocity, movement->maxVelocity);
+
+    // Clamping velocity based on magnitude now. Uses y max velocity but change later
+    float newVelocityMagnitude = glm::clamp(glm::length(newVelocity), -movement->maxVelocity.y, movement->maxVelocity.y);
+    vec2 newVelocityDirection = glm::normalize(newVelocity);
+    newVelocity = newVelocityDirection * newVelocityMagnitude;
+
+		movement->velocity = newVelocity;
 
 		shared_ptr<CollisionComponent> collision = e->getComponent<CollisionComponent>();
 		shared_ptr<ProjectileComponent> projectile = e->getComponent<ProjectileComponent>();

@@ -210,6 +210,10 @@ set(SOURCE_FILES_CORE
 	src/DataLoaders/tower_data_loader.hpp
 	src/DataLoaders/tower_structs.cpp
 	src/DataLoaders/tower_structs.hpp
+  src/DataLoaders/player_data_loader.cpp
+  src/DataLoaders/player_data_loader.hpp
+  src/DataLoaders/player_structs.cpp
+  src/DataLoaders/player_structs.hpp
 	src/Utility/audio_loader.cpp
 	src/Utility/audio_loader.hpp
 	src/help_menu.hpp
