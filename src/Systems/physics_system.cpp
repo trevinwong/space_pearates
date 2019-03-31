@@ -34,10 +34,13 @@ void PhysicsSystem::moveEntities(EntityManager &entityManager, float dt) {
 			newVelocity.x = 0;
 		}
 
+
     // Clamping velocity based on magnitude now. Uses y max velocity but change later
-    float newVelocityMagnitude = glm::clamp(glm::length(newVelocity), -movement->maxVelocity.y, movement->maxVelocity.y);
-    vec2 newVelocityDirection = glm::normalize(newVelocity);
-    newVelocity = newVelocityDirection * newVelocityMagnitude;
+    if (glm::length(newVelocity) != 0) {
+      float newVelocityMagnitude = glm::clamp(glm::length(newVelocity), -movement->maxVelocity.y, movement->maxVelocity.y);
+      vec2 newVelocityDirection = glm::normalize(newVelocity);
+      newVelocity = newVelocityDirection * newVelocityMagnitude;
+    }
 
 		movement->velocity = newVelocity;
 
