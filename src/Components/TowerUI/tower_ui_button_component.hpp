@@ -41,9 +41,9 @@ public:
   glm::vec2 descriptionLine2Pos;
   glm::vec2 descriptionLine1Pos;
 
-  vec3 defaultTextColor = vec3(1.f, 1.f, 0.f);
-  vec3 noMoneyTextColor = vec3(1.f, 0.f, 0.f);
-  vec3 descriptionLine1Color = defaultTextColor;
+  vec4 defaultTextColor = vec4(1.f, 1.f, 0.f, 1.0f);
+  vec4 noMoneyTextColor = vec4(1.f, 0.f, 0.f, 1.0f);
+  vec4 descriptionLine1Color = defaultTextColor;
 
   
 

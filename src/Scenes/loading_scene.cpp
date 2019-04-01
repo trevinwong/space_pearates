@@ -25,7 +25,7 @@ void LoadingScene::draw() {
 
   string loadingStr = "Loading...";
   vec2 loadingStrPos = vec2(SCREEN_WIDTH - 300.0, SCREEN_HEIGHT - 50.0);
-  vec3 loadingStrColor = vec3(1.0, 1.0, 1.0);
+  vec4 loadingStrColor = vec4(1.0, 1.0, 1.0, 1.0);
   int fontFamily = Text::Font::munro;
-  Text::getInstance().render(loadingStr, loadingStrPos, 1.0, loadingStrColor, fontFamily);
+  Text::getInstance().render(loadingStr, loadingStrPos, 1.0f, loadingStrColor, fontFamily);
 }

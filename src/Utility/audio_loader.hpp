@@ -2,6 +2,7 @@
 #define AUDIO_PLAYER_H
 
 #include "Utility/utility.hpp"
+#include "hud.hpp"
 
 // Singleton https://stackoverflow.com/questions/1008019/c-singleton-design-pattern
 class AudioLoader
@@ -31,8 +32,13 @@ public:
   //Mix_Chunk *battle_theme1;
   Mix_Music *eurobeat_full;
   Mix_Music *hip_shop;
-  bool isHipOn = false;
 
+  Mix_Music *mainmenu_bgm;
+  vector<pair<string, Mix_Music*>> music_list;
+  int currentBGMIndex = 0;
+
+  void playMainMenuBGM();
+  void playGameMusic();
   void reset();
   void changeBgm();
   void endgameBgm();

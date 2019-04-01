@@ -7,6 +7,7 @@ const vector<int> non_recyclable_components = {
 
 World::World(std::weak_ptr<SceneManager> _sceneManager, int _level) : AbstractScene(_sceneManager), level(_level)
 {
+  AudioLoader::getInstance().playGameMusic();
   vec2 screen =  vec2(SCREEN_WIDTH, SCREEN_HEIGHT);
   TowerDataLoader::loadTowerData();
   PlayerDataLoader::loadPlayerData();
@@ -39,7 +40,6 @@ World::World(std::weak_ptr<SceneManager> _sceneManager, int _level) : AbstractSc
 World::~World()
 {
   HUD::getInstance().reset();
-  AudioLoader::getInstance().reset();
   WavesetSystem::getInstance().reset();
 }
 

@@ -14,10 +14,10 @@ Entity MenuUiFactory::createMainMenuUi(int levelReached) {
   vec2 position = vec2(SCREEN_WIDTH - 350, SCREEN_HEIGHT - 270);
   float marginInBtw = 2.0f;  //left, top, right, bottom
   float fontScale = 1.0f;
-  vec3 fontColor = vec3(1.f, 1.f, 1.f);
-  vec3 unavaliableFontColor = vec3(0.4f, 0.4f, 0.4f);
+  vec4 fontColor = vec4(1.f, 1.f, 1.f, 1.0f);
+  vec4 unavaliableFontColor = vec4(0.4f, 0.4f, 0.4f, 1.0f);
   float selectedFontScale = 1.0f;
-  vec3 selectedFontColor = vec3(1.f, 0.f, 0.f);
+  vec4 selectedFontColor = vec4(1.f, 0.f, 0.f, 1.0f);
   int fontFamily = Text::Font::munro;
 
   shared_ptr<MenuUiComponent> menuUi = make_shared<MenuUiComponent>();
@@ -53,10 +53,10 @@ Entity MenuUiFactory::createLevelSelectionUi(int levelReached) {
   vec2 position = vec2(SCREEN_WIDTH - 350, SCREEN_HEIGHT - 300);
   float marginInBtw = 2.0f;  //left, top, right, bottom
   float fontScale = 1.0f;
-  vec3 fontColor = vec3(1.f, 1.f, 1.f);
-  vec3 unavaliableFontColor = vec3(0.4f, 0.4f, 0.4f);
+  vec4 fontColor = vec4(1.f, 1.f, 1.f, 1.0f);
+  vec4 unavaliableFontColor = vec4(0.4f, 0.4f, 0.4f, 1.0f);
   float selectedFontScale = 1.0f;
-  vec3 selectedFontColor = vec3(1.f, 0.f, 0.f);
+  vec4 selectedFontColor = vec4(1.f, 0.f, 0.f, 1.0f);
   int fontFamily = Text::Font::munro;
 
   shared_ptr<MenuUiComponent> menuUi = make_shared<MenuUiComponent>();

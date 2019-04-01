@@ -7,7 +7,7 @@ Text::Text()
 
   //loadFont("arial.ttf");
   const int numFonts = Font::count;
-  string fonts[numFonts] = { "munro.ttf", "munro_small.ttf" };
+  string fonts[numFonts] = { "munro.ttf", "munro_small.ttf", "mod_pixel_dingbats.otf" };
   for (int i = 0; i < numFonts; i++) {
     loadFont(fonts[i], i);
   }
@@ -116,16 +116,16 @@ void Text::initVertexObjects()
   glBindVertexArray(0);
 }
 
-void Text::render(string text, glm::vec2 position, float scale, glm::vec3 color, int font)
+void Text::render(string text, glm::vec2 position, float scale, glm::vec4 color, int font)
 {
   render(text, GLfloat(position.x), GLfloat(position.y), GLfloat(scale), color, font);
 }
 
-void Text::render(string text, GLfloat x, GLfloat y, GLfloat scale, glm::vec3 color, int font)
+void Text::render(string text, GLfloat x, GLfloat y, GLfloat scale, glm::vec4 color, int font)
 {
   // Activate corresponding render state	
   program->use();
-  program->setVec3("textColor", color);
+  program->setVec4("textColor", color);
   program->setMat4("projection", projection);
   glActiveTexture(GL_TEXTURE0);
   glBindVertexArray(VAO);
