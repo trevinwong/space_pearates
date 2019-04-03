@@ -36,7 +36,7 @@ void MainMenuScene::processInput(float dt, GLboolean keys[], GLboolean keysProce
           sceneManager_spt->setNextSceneToHowToPlay();
           break;
         case MainMenuUiList::new_game: {
-          sceneManager_spt->setNextSceneToInGame(1); // level 1
+          sceneManager_spt->setNextSceneToTutorial(); // tutorial level
           break;
         }
         case MainMenuUiList::continue_game:

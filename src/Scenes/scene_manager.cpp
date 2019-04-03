@@ -62,6 +62,7 @@ void SceneManager::trySwapToNextScene() {
   if (nextScene != nullptr) {
     currentScene = nextScene;
     nextScene = nullptr;
+    prevScene = nullptr;
     lastFrame = glfwGetTime();
   }
 }
@@ -69,6 +70,14 @@ void SceneManager::trySwapToNextScene() {
 void SceneManager::setNextSceneToHowToPlay() {
   std::weak_ptr<SceneManager> sceneManager = shared_from_this();
   auto scene = make_shared<HowToPlayScene>(sceneManager);
+  nextScene = std::dynamic_pointer_cast<AbstractScene>(scene);
+}
+
+void SceneManager::setNextSceneToTutorial() {
+  showLoadingScreenNow();
+  Mix_PlayChannel(-1, AudioLoader::getInstance().start, 0);
+  std::weak_ptr<SceneManager> sceneManager = shared_from_this();
+  auto scene = make_shared<TutorialScene>(sceneManager);
   nextScene = std::dynamic_pointer_cast<AbstractScene>(scene);
 }
 
@@ -95,6 +104,8 @@ void SceneManager::setNextSceneToMainMenu() {
 void SceneManager::showLoadingScreenNow() {
   std::weak_ptr<SceneManager> sceneManager = shared_from_this();
   auto scene = make_shared<LoadingScene>(sceneManager);
+  // make a backup of prev scene since prev scene is still on flying, to avoid smart pointer auto garbage collection
+  prevScene = currentScene;
   currentScene = std::dynamic_pointer_cast<AbstractScene>(scene); // replace currentScene directly
 
   // draw on both buffers, otherwise a flash screen bug appears
