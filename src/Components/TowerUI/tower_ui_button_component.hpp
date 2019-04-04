@@ -41,6 +41,12 @@ public:
   glm::vec2 descriptionLine2Pos;
   glm::vec2 descriptionLine1Pos;
 
+  vec3 defaultTextColor = vec3(1.f, 1.f, 0.f);
+  vec3 noMoneyTextColor = vec3(1.f, 0.f, 0.f);
+  vec3 descriptionLine1Color = defaultTextColor;
+
+  
+
   shared_ptr<TowerUiBtn> getCurrentSelectedBtn();
 
   int getSelectedOptIndex();

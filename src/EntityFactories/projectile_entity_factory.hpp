@@ -14,6 +14,8 @@
 #include "../Components/spline_component.hpp"
 #include "../Utility/texture.hpp"
 #include "../Utility/program.hpp"
+#include "../Components/mesh_component.hpp"
+#include "../Components/mesh_collision_component.hpp"
 
 class ProjectileEntityFactory {
 public:

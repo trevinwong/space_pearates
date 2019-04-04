@@ -33,6 +33,8 @@ configure_file("${CMAKE_CURRENT_SOURCE_DIR}/src/project_path.hpp.in" "${CMAKE_CU
 set(SOURCE_FILES_SHADERS
 	shaders/sprite.frag
 	shaders/sprite.vert
+	shaders/mesh.frag
+	shaders/mesh.vert
 )
 set(SOURCE_FILES_MAIN
 	src/main.cpp
@@ -89,6 +91,8 @@ set(SOURCE_FILES_CORE
 	src/Components/player_component.hpp
 	src/Components/wallet_component.cpp
 	src/Components/wallet_component.hpp
+	src/Components/mesh_component.hpp
+	src/Components/mesh_component.cpp
 	src/Components/TowerComponents/tower_meta_component.cpp
 	src/Components/TowerComponents/tower_meta_component.hpp
 	src/Components/TowerComponents/tower_attack_component.cpp
@@ -140,6 +144,8 @@ set(SOURCE_FILES_CORE
 	src/Components/particle_component.hpp
 	src/Components/damage_component.hpp
 	src/Components/damage_component.cpp
+	src/Components/mesh_collision_component.hpp
+	src/Components/mesh_collision_component.cpp
 	src/Systems/sprite_system.cpp
 	src/Systems/sprite_system.hpp
 	src/Systems/background_system.cpp
@@ -188,6 +194,10 @@ set(SOURCE_FILES_CORE
 	src/Systems/home_system.hpp
 	src/Utility/line.hpp
 	src/Utility/line.cpp
+	src/Systems/mesh_system.hpp
+	src/Systems/mesh_system.cpp
+	src/triangle.hpp
+	src/triangle.cpp
 	src/Utility/timer.hpp
 	src/Utility/timer.cpp
 	src/Utility/waveset_structs.hpp

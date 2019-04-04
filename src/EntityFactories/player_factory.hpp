@@ -16,7 +16,6 @@
 #include "DataLoaders/player_data_loader.hpp"
 #include "DataLoaders/player_structs.hpp"
 
-
 class PlayerFactory
 {
 public:

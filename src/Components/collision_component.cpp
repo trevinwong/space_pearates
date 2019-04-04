@@ -11,13 +11,18 @@ CollisionComponent::CollisionComponent(vec2 _position, float _scale, GLfloat _ro
 }
 
 
-bool CollisionComponent::isCollidingWith(CollisionComponent other)
+bool CollisionComponent::isCollidingWith(CollisionComponent &other)
 {
+	if (other.getCollisionType() == CollisionTypeID::mesh_collision) {
+		return other.isCollidingWith(*this);
+	}
+
 	bool overlapX = position.x + size.x >= other.position.x
 		&& other.position.x + other.size.x >= position.x;
 
 	bool overlapY = position.y + size.y >= other.position.y
 	&& other.position.y + other.size.y >= position.y;
+
 
 	return overlapX && overlapY;
 }

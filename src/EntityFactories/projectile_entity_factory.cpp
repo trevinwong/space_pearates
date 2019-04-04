@@ -10,6 +10,9 @@ Entity ProjectileEntityFactory::createAimProjectile(vec2 size, glm::vec4 filterC
   shared_ptr<TransformComponent> transform = make_shared<TransformComponent>(startPosition, size, 0.0f);  // TODO: calculate rotation by velocityDirection
   shared_ptr<CollisionComponent> collision = make_shared<CollisionComponent>(startPosition, size, 0.0f);
 
+	shared_ptr<MeshComponent> mesh = make_shared<MeshComponent>(mesh_path("hexagon.ply"));
+	shared_ptr<MeshCollisionComponent> meshCollision = make_shared<MeshCollisionComponent>(startPosition, size, 0.0f, mesh);
+
   vec2 velocity = velocityDirection * speed;
   shared_ptr<MovementComponent> movement = make_shared<MovementComponent>(velocity, vec2(0.0f, 0.0f), vec2(100.0f, 100.0f), vec2(0.0f, 0.0f));
   movement->offScreenOK = true; // a projectile can be off screen and then be destroyed by projectile_destroy_system
@@ -21,6 +24,8 @@ Entity ProjectileEntityFactory::createAimProjectile(vec2 size, glm::vec4 filterC
   projectileEntity.setComponent<ColorComponent>(color);
   projectileEntity.setComponent<TransformComponent>(transform);
   projectileEntity.setComponent<CollisionComponent>(collision);
+//	projectileEntity.setComponent<MeshComponent>(mesh);
+ // projectileEntity.setComponent<MeshCollisionComponent>(meshCollision);
   projectileEntity.setComponent<MovementComponent>(movement);
   projectileEntity.setComponent<ProjectileComponent>(projectile);
   return projectileEntity;

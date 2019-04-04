@@ -34,7 +34,8 @@ namespace ComponentType {
     death,
     waveset,
     particle,
-    max_count // Add above.
+		mesh,
+		max_count // Add above.
   };
 }
 

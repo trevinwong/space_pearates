@@ -41,3 +41,8 @@ vec2 Line::getLineSegsIntersection(Line other)
 
   return invalid;
 }
+
+bool Line::isLineSegsIntersecting(Line other)
+{
+	return (getLineSegsIntersection(other) != vec2(INT_MIN, INT_MIN));
+}

@@ -50,6 +50,7 @@ using std::make_pair;
 
 using glm::vec2;
 using glm::vec3;
+using glm::vec4;
 using glm::to_string;
 using glm::distance;
 using glm::sqrt;
