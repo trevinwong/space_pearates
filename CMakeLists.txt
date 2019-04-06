@@ -348,6 +348,28 @@ elseif (IS_OS_WINDOWS)
         "${SDLMIXER_DLL}"
         "$<TARGET_FILE_DIR:${PROJECT_NAME}>/SDL2_mixer.dll")
 
+	# create a list of files to copy
+	set( THIRD_PARTY_DLLS
+	   "${CMAKE_CURRENT_SOURCE_DIR}/ext/sdl/lib/libFLAC-8.dll"
+	   "${CMAKE_CURRENT_SOURCE_DIR}/ext/sdl/lib/libmodplug-1.dll"
+	   "${CMAKE_CURRENT_SOURCE_DIR}/ext/sdl/lib/libmpg123-0.dll"
+	   "${CMAKE_CURRENT_SOURCE_DIR}/ext/sdl/lib/libogg-0.dll"
+	   "${CMAKE_CURRENT_SOURCE_DIR}/ext/sdl/lib/libopus-0.dll"
+	   "${CMAKE_CURRENT_SOURCE_DIR}/ext/sdl/lib/libopusfile-0.dll"
+	   "${CMAKE_CURRENT_SOURCE_DIR}/ext/sdl/lib/libvorbis-0.dll"
+	   "${CMAKE_CURRENT_SOURCE_DIR}/ext/sdl/lib/libvorbisfile-3.dll"
+	)
+
+	# do the copying
+	foreach( file_i ${THIRD_PARTY_DLLS})
+		add_custom_command(
+		TARGET ${PROJECT_NAME}
+		POST_BUILD
+		COMMAND ${CMAKE_COMMAND}
+		ARGS -E copy ${file_i} "$<TARGET_FILE_DIR:${PROJECT_NAME}>/"
+	)
+	endforeach( file_i )
+
 	# Finally get rid of msvc warnings for printf, scanf, ...
 	# Also try to keep stuff from Windows.h to a minimum
     add_definitions("-DNOMINMAX")
