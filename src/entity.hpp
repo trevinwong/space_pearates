@@ -27,8 +27,6 @@ public:
   template <typename T>
   void removeComponent()
   {
-    // TO-DO: Move to c++11 unique_ptrs as this can cause seg fault
-    // if something is holding onto this pointer still...
     shared_ptr<BaseComponent> component = components[T::typeID];
     if (component) component.reset();
     components[T::typeID] = nullptr;

@@ -17,6 +17,7 @@
 #include "Components/spline_component.hpp"
 #include "Components/death_component.hpp"
 #include "Components/damage_component.hpp"
+#include "Components/sprite_component.hpp"
 #include "EntityFactories/resource_factory.hpp"
 #include "Systems/waveset_system.hpp"
 

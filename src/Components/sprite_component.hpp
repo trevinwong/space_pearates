@@ -5,6 +5,7 @@
 #include "base_component.hpp"
 #include "Utility/program.hpp"
 #include "Utility/texture.hpp"
+#include "Utility/timer.hpp"
 
 class SpriteComponent : public BaseComponent
 {
@@ -13,6 +14,7 @@ public:
 	~SpriteComponent();
 	static const int typeID = ComponentType::sprite;
 	inline virtual int getTypeID() const { return typeID; };
+  Timer blinkTimer;
 	shared_ptr<Program> program;
 	shared_ptr<Texture> texture;
 	GLuint VBO; // We want to create a square in which we can overlay our texture on.

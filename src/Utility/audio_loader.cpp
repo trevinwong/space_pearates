@@ -13,6 +13,7 @@ AudioLoader::AudioLoader() {
   }
 
   // Load sound effects
+  player_hurt = Mix_LoadWAV(audio_path("player_hurt.mp3"));
   collect_coin_sound = Mix_LoadWAV(audio_path("collect_coin.wav"));
   jump = Mix_LoadWAV(audio_path("jump.wav"));
   build_tower = Mix_LoadWAV(audio_path("build.wav"));

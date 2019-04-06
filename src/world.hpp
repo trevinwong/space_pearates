@@ -31,6 +31,7 @@
 #include "Systems/damage_system.hpp"
 #include "Systems/home_system.hpp"
 #include "Systems/mesh_system.hpp"
+#include "Systems/state_system.hpp"
 #include "EntityFactories/map_entity_factory.hpp"
 #include "EntityFactories/background_entity_factory.hpp"
 #include "EntityFactories/player_factory.hpp"
@@ -67,6 +68,7 @@ private:
   EnemySystem enemySystem;
   PlayerSystem playerSystem;
 	MeshSystem meshSystem;
+  StateSystem stateSystem;
 
   TowerRangeDisplaySystem towerRangeDisplaySystem;
   TowerAttackSystem towerAttackSystem;

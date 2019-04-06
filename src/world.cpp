@@ -148,6 +148,7 @@ void World::update(float dt)
   interpolationSystem.update(entityManager, dt);
   collisionSystem.checkCollisions(entityManager);
   spriteSystem.updateElapsedTime(dt);
+  stateSystem.handleStateChanges(entityManager, dt);
 
   // Background Update
   backgroundSystem.update(entityManager);
