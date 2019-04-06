@@ -5,6 +5,8 @@ PlayerComponent::PlayerComponent(int _maxJumps, float _jumpVelocity) :
   jumpVelocity(_jumpVelocity)
 {	
   jumps = 0;
+  movementState = PlayerMovementState::NEUTRAL;
+  healthState = PlayerHealthState::VULNERABLE;
 	texture_left = make_shared<Texture>(texture_path("player-left0.png"), true);
 	texture_right = make_shared<Texture>(texture_path("player-right0.png"), true);
 	texture_idle = make_shared<Texture>(texture_path("player-idle0.png"), true);

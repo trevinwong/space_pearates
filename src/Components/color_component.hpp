@@ -3,8 +3,8 @@
 
 #include "Utility/utility.hpp"
 #include "base_component.hpp"
+#include "Utility/timer.hpp"
 
-// Change to RGBA after we get everything running.
 class ColorComponent : public BaseComponent
 {
 public:

@@ -15,6 +15,7 @@ public:
     return instance;
   }
 
+  Mix_Chunk *player_hurt;
   Mix_Chunk *collect_coin_sound;
   Mix_Chunk *jump;
   Mix_Chunk *build_tower;
