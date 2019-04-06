@@ -31,29 +31,42 @@ AudioLoader::AudioLoader() {
   eurobeat_full = Mix_LoadMUS(audio_path("eurobeat_full.wav"));
   hip_shop = Mix_LoadMUS(audio_path("hip_shop.wav"));
 
-  reset();
+  mainmenu_bgm = Mix_LoadMUS(audio_path("arcade_space.ogg"));
+  music_list.push_back(make_pair("Back to Basics", Mix_LoadMUS(audio_path("back_to_basics.ogg"))));
+  music_list.push_back(make_pair("Electrozap", Mix_LoadMUS(audio_path("electrozap.ogg"))));
+  music_list.push_back(make_pair("Surface Tension", Mix_LoadMUS(audio_path("surface_tension.ogg"))));
+  music_list.push_back(make_pair("Chaoz Fantasy", Mix_LoadMUS(audio_path("chaoz_fantasy.ogg"))));
+  music_list.push_back(make_pair("Galactic Journey", Mix_LoadMUS(audio_path("galactic_journey.ogg"))));
+  music_list.push_back(make_pair("Paradise on E", Mix_LoadMUS(audio_path("paradise_on_e.ogg"))));
+
+}
+
+void AudioLoader::playMainMenuBGM()
+{
+  if (Mix_PlayMusic(mainmenu_bgm, -1) == -1) {
+    cout << "Mix_PlayMusic: " << Mix_GetError() << endl;
+  } 
+}
+
+void AudioLoader::playGameMusic()
+{
+  string music_name = music_list[currentBGMIndex].first; 
+  HUD::getInstance().setMusicName(music_name);
+  Mix_Music *music_chunk = music_list[currentBGMIndex].second;
+  Mix_RewindMusic();
+  if (Mix_PlayMusic(music_chunk, -1) == -1) {
+    cout << "Mix_PlayMusic: " << Mix_GetError() << endl;
+  } 
 }
 
 void AudioLoader::reset()
 {
-  if (Mix_PlayMusic(eurobeat_full, -1) == -1) {
-    cout << "Mix_PlayMusic: " << Mix_GetError() << endl;
-  }
-  isHipOn = false;
+  playGameMusic();
 }
 
 void AudioLoader::changeBgm() {
-  if (!isHipOn) {
-    if (Mix_PlayMusic(hip_shop, -1) == -1) {
-      cout << "Mix_PlayMusic: " << Mix_GetError() << endl;
-    }
-  }
-  else {
-    if (Mix_PlayMusic(eurobeat_full, -1) == -1) {
-      cout << "Mix_PlayMusic: " << Mix_GetError() << endl;
-    }
-  }
-  isHipOn = !isHipOn;
+  currentBGMIndex = (currentBGMIndex + 1) % music_list.size();
+  playGameMusic();
 }
 
 void AudioLoader::endgameBgm() { // TODO: cue on GAMEOVER
@@ -61,7 +74,6 @@ void AudioLoader::endgameBgm() { // TODO: cue on GAMEOVER
   if (Mix_FadeInMusic(hip_shop, -1, 5000) == -1) {
     cout << "Mix_FadeInMusic: " << Mix_GetError() << endl;
   }
-  isHipOn = true;
 }
 
 void AudioLoader::destroy()
@@ -79,4 +91,8 @@ void AudioLoader::destroy()
   Mix_FreeChunk(game_over);
   Mix_FreeMusic(eurobeat_full);
   Mix_FreeMusic(hip_shop);
+  
+  for (pair<string, Mix_Music*> music : music_list) {
+    Mix_FreeMusic(music.second);
+  }
 }

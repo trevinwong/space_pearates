@@ -3,6 +3,7 @@
 
 #include "Utility/utility.hpp"
 #include "Utility/text.hpp"
+#include "Utility/timer.hpp"
 
 // Singleton https://stackoverflow.com/questions/1008019/c-singleton-design-pattern
 class HUD
@@ -23,6 +24,10 @@ public:
   bool game_over;
 	bool build_phase;
 
+  string current_music_name;
+  Timer current_music_fade;
+
+  void setMusicName(string musicName);
   void reset();
   void update(float dt);
   void draw();

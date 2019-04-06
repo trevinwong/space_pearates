@@ -103,6 +103,6 @@ void TowerUiSystem::renderDescription(shared_ptr<TowerUiButtonMetaComponent> tow
     Text::getInstance().render(towerUiButton->descriptionLine1, towerUiButton->descriptionLine1Pos, 0.5, towerUiButton->descriptionLine1Color, Text::Font::munro_small);
   }
   if(towerUiButton->descriptionLine2.size() != 0) {
-    Text::getInstance().render(towerUiButton->descriptionLine2, towerUiButton->descriptionLine2Pos, 0.5, vec3(1.f, 1.f, 0.f), Text::Font::munro_small);
+    Text::getInstance().render(towerUiButton->descriptionLine2, towerUiButton->descriptionLine2Pos, 0.5, vec4(1.f, 1.f, 0.f, 1.0f), Text::Font::munro_small);
   }
 }

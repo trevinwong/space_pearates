@@ -2,6 +2,7 @@
 
 HUD::HUD()
 {
+  current_music_fade = Timer(3);
   reset();
 }
 
@@ -17,7 +18,14 @@ void HUD::reset()
 
 void HUD::update(float dt)
 {
+  current_music_fade.update(dt);
   play_time += dt;
+}
+
+void HUD::setMusicName(string musicName)
+{
+  current_music_name = musicName;
+  current_music_fade.reset();
 }
 
 void HUD::draw()
@@ -47,7 +55,19 @@ void HUD::draw()
   Text::getInstance().render("Enemies left:", vec2(900.0f, 120.0f));
   Text::getInstance().render(std::to_string(enemy_count), vec2(1200.0f, 120.0f));
 
-  Text::getInstance().render("Press H for help", vec2(20.f, 154.0f), 0.5f, vec3(0.5f, 0.5f, 0.5f));
+  Text::getInstance().render("Press H for help", vec2(1070.0f, 160.0f), 0.5f, vec4(0.5f, 0.5f, 0.5f, 1.0f));
+
+  if (current_music_fade.getTimeLeft() > 0) {
+    float t = 1.3 * (1.0f - current_music_fade.getParameterQuadratic());
+    float p = 1.1 * (1.0f - current_music_fade.getParameterQuadratic());
+    p = glm::clamp(p, 0.0f, 1.0f);
+    vec2 pos = vec2(((p * 72) + ((1 - p) * 300)), 180.0f);
+    vec4 color = vec4(0.9f, 0.9f, 0.3f, t);
+    // Text::getInstance().render(string(1, (char) 162), pos - 50.0f, 1.0f, color, Text::Font::mod_pixel_dingbats);
+    Text::getInstance().render(string("A"), vec2(pos.x - 50.f, pos.y), 0.8f, color, Text::Font::mod_pixel_dingbats);
+    Text::getInstance().render(current_music_name, pos, 0.7f, color);
+  }
+
 
   if (you_win) Text::getInstance().render("YOU WIN!", vec2(400.0f, 420.0f), 3.0f);
 }
