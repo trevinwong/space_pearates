@@ -17,7 +17,7 @@ class ResourceFactory
 public:
   static Entity build(vec2 position, float scale=20.0f);
 	static vector<Entity> buildCluster(int amount, vec2 position, vec2 size);
-  static void spawnInitial(EntityManager& entities);
+  static void spawnInitial(EntityManager& entities, vec2 location);
 };
 
 #endif

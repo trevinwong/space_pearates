@@ -19,13 +19,14 @@ World::World(std::weak_ptr<SceneManager> _sceneManager, int _level) : AbstractSc
   string mapName = "map" + std::to_string(level) + ".txt";
   map = make_shared<Entity>(MapEntityFactory::createMapEntityFromFile(map_path()+mapName));
   entityManager.addEntity(map);
-  TileMapSystem::loadTileMap(entityManager, player_spawn);
-  WavesetSystem::getInstance().enemySpawnPoints = TileMapSystem::enemySpawnPoints;
-  player = make_shared<Entity>(PlayerFactory::build(player_spawn));
-  entityManager.addEntity(player);
-  // Spawn starting resources
-  ResourceFactory::spawnInitial(entityManager);
+  TileMapSystem::loadTileMap(entityManager);
   home = entityManager.getEntitiesHasOneOf(entityManager.getComponentChecker(ComponentType::home))[0];
+  WavesetSystem::getInstance().enemySpawnPoints = TileMapSystem::enemySpawnPoints;
+  player = make_shared<Entity>(PlayerFactory::build(TileMapSystem::player_spawn));
+  entityManager.addEntity(player);
+
+  // Spawn starting resources
+  ResourceFactory::spawnInitial(entityManager, TileMapSystem::home_spawn);
 
   enemySystem.setMap(entityManager);
   entityManager.addEntity(WavesetManagerFactory::build(waveset_path("waveset0.txt")));
@@ -65,11 +66,11 @@ void World::reset()
   home->getComponent<HealthComponent>()->reset();
   homeSystem.reset(entityManager);
   // Reset player position and wallet
-  entityManager.addEntity(PlayerFactory::build(player_spawn)); 
+  entityManager.addEntity(PlayerFactory::build(TileMapSystem::player_spawn));
 
   // Spawn starting resources
-  ResourceFactory::spawnInitial(entityManager);            // adds 6 entities
-  entityManager.addEntity(TowerUiEntityFactory::create()); // adds 1 entity
+  ResourceFactory::spawnInitial(entityManager, TileMapSystem::home_spawn);
+  entityManager.addEntity(TowerUiEntityFactory::create());
 
   paused = false;
   HelpMenu::getInstance().showHelp = false;
