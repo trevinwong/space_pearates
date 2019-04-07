@@ -96,10 +96,10 @@ void TowerUiIdleState::update(EntityManager &entityManager, float dt) {
   // case#2: a tower was built or sold, then "isTowerHere" changed, update ui and reset index
   // case#3: the player moved to another tile, then "tilePosition" changed, update tower ui and reset index
   if (towerUiButtonComponent->tilePosition != tilePosition || towerUiButtonComponent->isTowerHere != isTowerHere) {
-    towerUiButtonComponent->resetSelectedOptIndex();  // reset the index to avoid accidentally select "SELL"
     towerUiButtonComponent->tilePosition = tilePosition;
     towerUiButtonComponent->isTowerHere = isTowerHere;
-
+    //if (towerUiButtonComponent->isTowerHere) towerUiButtonComponent->resetSelectedOptIndex();  // reset the index to avoid accidentally select "SELL"
+    
     if (towerUiButtonComponent->isTowerHere) towerUiButtonComponent->setOptList(towerUiButtonMeta->towerOptList);
     else towerUiButtonComponent->setOptList(towerUiButtonMeta->buildOptList);
   }

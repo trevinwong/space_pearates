@@ -26,20 +26,19 @@ public:
 
   struct TowerUiBtn{
     int relativeIndex;
-    glm::vec2 size;
-    glm::vec2 position;
-    glm::vec4 RGBA;
+    vec2 size;
+    vec2 position;
+    vec4 RGBA;
     TOWER_UI_OPT_TYPE opt;
     shared_ptr<Texture> icon;
   };
   vector<shared_ptr<TowerUiBtn>> btnList;
 
-  // line 1 is below line2
+  // line 1 is below line 2
   string descriptionLine2;
   string descriptionLine1;
-  // descriptionLine1 pos
-  glm::vec2 descriptionLine2Pos;
-  glm::vec2 descriptionLine1Pos;
+  vec2 descriptionLine2Pos;
+  vec2 descriptionLine1Pos;
 
   vec4 defaultTextColor = vec4(1.f, 1.f, 0.f, 1.0f);
   vec4 noMoneyTextColor = vec4(1.f, 0.f, 0.f, 1.0f);

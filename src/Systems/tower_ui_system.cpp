@@ -2,7 +2,7 @@
 
 void TowerUiSystem::interpInput(EntityManager &entityManager, GLboolean keys[], GLboolean keysProcessed[]) {
   vector<shared_ptr<Entity>> towerBuildUiEntities =
-      entityManager.getEntities(entityManager.getComponentChecker(vector<int>{ComponentType::tower_ui_state}));
+    entityManager.getEntities(entityManager.getComponentChecker(vector<int>{ComponentType::tower_ui_state}));
   if (towerBuildUiEntities.size() == 0) return;
 
   shared_ptr<TowerUiStateComponent> towerUiStateComponent = towerBuildUiEntities[0]->getComponent<TowerUiStateComponent>();
@@ -13,7 +13,7 @@ void TowerUiSystem::interpInput(EntityManager &entityManager, GLboolean keys[], 
 
 void TowerUiSystem::update(EntityManager &entityManager, float dt) {
   vector<shared_ptr<Entity>> towerBuildUiEntities =
-      entityManager.getEntities(entityManager.getComponentChecker(vector<int>{ComponentType::tower_ui_state}));
+    entityManager.getEntities(entityManager.getComponentChecker(vector<int>{ComponentType::tower_ui_state}));
   if (towerBuildUiEntities.size() == 0) return;
 
   // get state machine
@@ -26,9 +26,9 @@ void TowerUiSystem::update(EntityManager &entityManager, float dt) {
 
 void TowerUiSystem::render(EntityManager &entityManager, glm::mat4 projection) {
   vector<shared_ptr<Entity>> playerEntities =
-      entityManager.getEntities(entityManager.getComponentChecker(vector<int>{ComponentType::player}));
+    entityManager.getEntities(entityManager.getComponentChecker(vector<int>{ComponentType::player}));
   vector<shared_ptr<Entity>> towerBuildUiEntities =
-      entityManager.getEntities(entityManager.getComponentChecker(vector<int>{ComponentType::tower_ui_button, ComponentType::tower_ui_button_meta, ComponentType::tower_ui_state}));
+    entityManager.getEntities(entityManager.getComponentChecker(vector<int>{ComponentType::tower_ui_button, ComponentType::tower_ui_button_meta, ComponentType::tower_ui_state}));
 
   if (playerEntities.size() == 0 || towerBuildUiEntities.size() == 0) return;
 
@@ -43,8 +43,8 @@ void TowerUiSystem::render(EntityManager &entityManager, glm::mat4 projection) {
   // if the player is not at a block which can be used to build a tower, then do not render ui
   if (!towerUiButton->isDisplay)
   {
-	  towerUiButton->descriptionLine1Color = towerUiButton->defaultTextColor;
-	  return;
+    towerUiButton->descriptionLine1Color = towerUiButton->defaultTextColor;
+    return;
   }
 
   renderTowerUiButtons(towerUiButtonMeta, towerUiButton, projection);
@@ -57,9 +57,9 @@ void TowerUiSystem::renderTowerUiButtons(shared_ptr<TowerUiButtonMetaComponent> 
   // sort by size
   // larger button will be rendered in the front, smaller button will be rendered in the back
   std::sort(btnList.begin(), btnList.end(),
-            [](const shared_ptr<TowerUiButtonComponent::TowerUiBtn> c1, const shared_ptr<TowerUiButtonComponent::TowerUiBtn> c2) -> bool {
-              return (c1->size.x * c1->size.y) < (c2->size.x * c2->size.y);
-            });
+    [](const shared_ptr<TowerUiButtonComponent::TowerUiBtn> c1, const shared_ptr<TowerUiButtonComponent::TowerUiBtn> c2) -> bool {
+    return (c1->size.x * c1->size.y) < (c2->size.x * c2->size.y);
+  });
 
   towerUiButtonMeta->program->use();
   for (const shared_ptr<TowerUiButtonComponent::TowerUiBtn> btn : btnList) {
@@ -98,11 +98,11 @@ void TowerUiSystem::renderTowerUiButtons(shared_ptr<TowerUiButtonMetaComponent> 
   }
 }
 
-void TowerUiSystem::renderDescription(shared_ptr<TowerUiButtonMetaComponent> towerUiButtonMeta, shared_ptr<TowerUiButtonComponent> towerUiButton, glm::mat4 projection){
-  if(towerUiButton->descriptionLine1.size() != 0) {
+void TowerUiSystem::renderDescription(shared_ptr<TowerUiButtonMetaComponent> towerUiButtonMeta, shared_ptr<TowerUiButtonComponent> towerUiButton, glm::mat4 projection) {
+  if (towerUiButton->descriptionLine1.size() != 0) {
     Text::getInstance().render(towerUiButton->descriptionLine1, towerUiButton->descriptionLine1Pos, 0.5, towerUiButton->descriptionLine1Color, Text::Font::munro_small);
   }
-  if(towerUiButton->descriptionLine2.size() != 0) {
+  if (towerUiButton->descriptionLine2.size() != 0) {
     Text::getInstance().render(towerUiButton->descriptionLine2, towerUiButton->descriptionLine2Pos, 0.5, vec4(1.f, 1.f, 0.f, 1.0f), Text::Font::munro_small);
   }
 }
