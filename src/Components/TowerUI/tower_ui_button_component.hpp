@@ -61,7 +61,8 @@ public:
   inline virtual int getTypeID() const { return typeID; };
 
 private:
-  int currentSelectedOptIndex;
+  int currentSelectedBuildOptIndex; // used for tower build
+  int currentSelectedOptIndex;      // used for tower upgrade
   vector<TOWER_UI_OPT_TYPE> optList;
 
   // use this function to avoid out of boundary index

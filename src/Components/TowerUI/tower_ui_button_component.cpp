@@ -5,6 +5,7 @@ TowerUiButtonComponent::TowerUiButtonComponent() {
 
   tilePosition = vec2(0, 0);
   isTowerHere = false;
+  currentSelectedBuildOptIndex = 0;
   currentSelectedOptIndex = 0;
 
   for (int i = 0; i < TOWER_UI_BUTTON_NUMBER; i++) {
@@ -41,21 +42,31 @@ TOWER_UI_OPT_TYPE TowerUiButtonComponent::getOptListAt(int index) {
 
 void TowerUiButtonComponent::resetSelectedOptIndex() {
   currentSelectedOptIndex = 0;
+  // currentSelectedBuildOptIndex will not be reset
 }
 
 void TowerUiButtonComponent::shiftLeftSelectedOptIndex() {
-  currentSelectedOptIndex = wrapIndex(currentSelectedOptIndex + 1, optList.size());
+  if (isTowerHere)
+    currentSelectedOptIndex = wrapIndex(currentSelectedOptIndex + 1, optList.size());
+  else
+    currentSelectedBuildOptIndex = wrapIndex(currentSelectedBuildOptIndex + 1, optList.size());
 }
 
 void TowerUiButtonComponent::shiftRightSelectedOptIndex() {
-  currentSelectedOptIndex = wrapIndex(currentSelectedOptIndex - 1, optList.size());
+  if (isTowerHere)
+    currentSelectedOptIndex = wrapIndex(currentSelectedOptIndex - 1, optList.size());
+  else
+    currentSelectedBuildOptIndex = wrapIndex(currentSelectedBuildOptIndex - 1, optList.size());
 }
 
 int TowerUiButtonComponent::getSelectedOptIndex() {
-  return currentSelectedOptIndex;
+  if (isTowerHere)
+    return currentSelectedOptIndex;
+  else
+    return currentSelectedBuildOptIndex;
 }
 
 int TowerUiButtonComponent::wrapIndex(int inputIndex, size_t totalLength) {
-  int totalLength_int = (int) totalLength;
+  int totalLength_int = (int)totalLength;
   return (inputIndex % totalLength_int + totalLength_int) % totalLength_int;
 }
