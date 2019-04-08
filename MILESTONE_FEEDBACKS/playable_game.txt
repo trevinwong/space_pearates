@@ -1,0 +1,3 @@
+Grade: 90/100
+
+The game has unique visuals and gameplay features which felt polished right from the start. For the final milestone, I would spend some time making the gameplay and numbers smoother, but my impression is that you can also find the time to implement some extended features. I didn’t make it far into the game :), but I had the impression that as the game progresses it could convey the player the increase in pace through sounds, visual effects, … All the members contributed substantially to this milestone. Extra marks were given in the creative features exactly. The grade unfortunately doesn’t reflect the current progress in the game so far as the required features remain a major part of the marks.
