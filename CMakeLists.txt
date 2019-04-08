@@ -68,6 +68,8 @@ set(SOURCE_FILES_CORE
 	src/Components/base_component.hpp
 	src/EntityFactories/projectile_entity_factory.cpp
 	src/EntityFactories/projectile_entity_factory.hpp
+  src/EntityFactories/simple_sprite_factory.cpp
+	src/EntityFactories/simple_sprite_factory.hpp
 	src/EntityFactories/particle_factory.cpp
 	src/EntityFactories/particle_factory.hpp
 	src/Utility/math.hpp
@@ -239,6 +241,8 @@ set(SOURCE_FILES_CORE
 	src/Scenes/main_menu_scene.hpp
   src/Scenes/level_selection_scene.cpp
 	src/Scenes/level_selection_scene.hpp
+  src/Scenes/tutorial_scene.cpp
+	src/Scenes/tutorial_scene.hpp
 	src/Scenes/how_to_play_scene.cpp
 	src/Scenes/how_to_play_scene.hpp
 	src/world.cpp
