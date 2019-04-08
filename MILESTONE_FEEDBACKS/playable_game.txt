@@ -1,3 +1,16 @@
 Grade: 90/100
 
 The game has unique visuals and gameplay features which felt polished right from the start. For the final milestone, I would spend some time making the gameplay and numbers smoother, but my impression is that you can also find the time to implement some extended features. I didn’t make it far into the game :), but I had the impression that as the game progresses it could convey the player the increase in pace through sounds, visual effects, … All the members contributed substantially to this milestone. Extra marks were given in the creative features exactly. The grade unfortunately doesn’t reflect the current progress in the game so far as the required features remain a major part of the marks.
+
+## Milestone Requirements (60):
++10/15 Geometry: Reduced complexity of the polygonal asset (hexagon)
++10/20 Collisions: The collision detection method still uses the approximate naive shapes
++15/15 Physics: Particle systems
++15/15 Non-linear: Boomerang trajectory follows a parametric curve constructed from the target position
++10/10 Stable game code
+
+## Milestone creative (30):
++ 10 Water Shader effect 
++ 15 Tower selection UI
++ 5 Blood+Smoke effects
+
