@@ -7,12 +7,17 @@
 #include "hud.hpp"
 #include "waveset_system.hpp"
 #include "Components/map_component.hpp"
+#include "Components/enemy_path_component.hpp"
 #include "Utility/audio_loader.hpp"
+
 
 class EnemySystem
 {
 public:
   void move(float dt, EntityManager& entities);
+  void moveShell(float dt, EntityManager& entityManager, shared_ptr<Entity> home, shared_ptr<Entity> e);
+  void moveBasic(float dt, EntityManager& entityManager, shared_ptr<Entity> home, shared_ptr<Entity> e);
+  // void moveRandom(float dt, shared_ptr<Entity> home, shared_ptr<Entity> enemy);
   bool setMap(EntityManager& entityManager);
 private:
   vector<vector<char>> map;
