@@ -39,9 +39,8 @@ bool MapComponent::canBuildTowerAt(float x, float y)
 
 bool MapComponent::canBuildTowerAt(int col, int row)
 {
-  // check row below is a platform tile
-  if (col < 0 || col >= num_x_tiles || row+1 < 0 || row+1 >= num_y_tiles) return false;
-  return this->mapData2DArray[row+1][col] == MAP_PLATFORM_TILE;
+  if (col < 0 || col >= num_x_tiles || row < 0 || row >= num_y_tiles) return false;
+  return this->mapData2DArray[row][col] == MAP_TOWER_POSITION;
 }
 
 void MapComponent::buildTowerAt(TOWER_ID towerId, float x, float y)

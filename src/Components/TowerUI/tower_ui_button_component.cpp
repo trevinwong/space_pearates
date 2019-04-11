@@ -13,7 +13,7 @@ TowerUiButtonComponent::TowerUiButtonComponent() {
     btn->relativeIndex = i - 1; //TODO: find a better way
     btn->size = vec2(1, 1);
     btn->position = vec2(1, 1);
-    btn->RGBA = vec4(1, 1, 1, 1);
+    btn->RGBA = glm::vec4(1, 1, 1, 1);
     btn->opt = NO_OPT;
     btn->icon = nullptr;
 
