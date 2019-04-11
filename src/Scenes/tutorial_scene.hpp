@@ -85,7 +85,6 @@ private:
   HomeSystem homeSystem;
 
   bool paused = false;
-  vec2 player_spawn = vec2(0.0f, 0.0f);
 
   TutorialStep::TutorialStep currentStep;
 

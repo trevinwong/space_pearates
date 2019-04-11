@@ -17,8 +17,8 @@ TutorialScene::TutorialScene(std::weak_ptr<SceneManager> _sceneManager) : Abstra
   shared_ptr<Entity> map = make_shared<Entity>(MapEntityFactory::createMapEntityFromFile(map_path() + mapName));
   entityManager.addEntity(map);
 
-  TileMapSystem::loadTileMap(entityManager, player_spawn);
-  shared_ptr<Entity> player = make_shared<Entity>(PlayerFactory::build(player_spawn));
+  TileMapSystem::loadTileMap(entityManager, true);
+  shared_ptr<Entity> player = make_shared<Entity>(PlayerFactory::build(TileMapSystem::player_spawn));
   entityManager.addEntity(player);
 
   Entity coin = ResourceFactory::build(vec2(320.0f, SCREEN_HEIGHT - 100.0f));
