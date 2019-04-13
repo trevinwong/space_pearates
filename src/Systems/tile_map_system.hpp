@@ -12,8 +12,10 @@
 class TileMapSystem
 {
 public:
-  static void loadTileMap(EntityManager &entityManager, vec2 &player_spawn);
+  static void loadTileMap(EntityManager &entityManager, bool drawBuildIndicators=false);
   static vector<vec2> enemySpawnPoints;
+  static vec2 player_spawn;
+  static vec2 home_spawn;
 };
 
 #endif

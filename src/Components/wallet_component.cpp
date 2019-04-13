@@ -1,7 +1,6 @@
 #include "wallet_component.hpp"
 
-WalletComponent::WalletComponent() :
-  coins(0)
+WalletComponent::WalletComponent(int _coins) : coins(_coins)
 {
 }
 

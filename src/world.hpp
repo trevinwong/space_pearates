@@ -85,7 +85,6 @@ private:
   int level;
   bool hasWon = false;
   bool paused = false;
-  vec2 player_spawn = vec2(0.0f, 0.0f);
   shared_ptr<Entity> player;
   shared_ptr<Entity> home;
   shared_ptr<Entity> map;
