@@ -16,6 +16,7 @@ class PlayerSystem
 {
 public:	
 	void interpInput(EntityManager &entityManager, float dt, GLboolean keys[], GLboolean keysProcessed[]);
+	bool outOfBoundsFailsafe(shared_ptr<Entity> player);
   void handleActionsInNeutral(shared_ptr<Entity> player, float dt, GLboolean keys[], GLboolean keysProcessed[]);
   void handleActionsInHitstun(shared_ptr<Entity> player, float dt, GLboolean keys[], GLboolean keysProcessed[]);
 };
