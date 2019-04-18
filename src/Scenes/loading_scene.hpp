@@ -22,10 +22,18 @@ public:
 
 private:
   string loadingScreenDir = "loading_screens/";
-  string loadingScreenTextures[3] = {
+  string loadingScreenTextures[11] = {
     "loading_screen_tips0.jpg", 
     "loading_screen_tips1.jpg",
-    "loading_screen_tips2.jpg"
+    "loading_screen_tips2.jpg",
+    "loading_screen_tips3.jpg",
+    "loading_screen_tips4.jpg",
+    "loading_screen_tips5.jpg",
+    "loading_screen_tips6.jpg",
+    "loading_screen_tips7.jpg",
+    "loading_screen_tips8.jpg",
+    "loading_screen_tips9.jpg",
+    "loading_screen_tips10.jpg"
   };
 
   BackgroundSystem backgroundSystem;
