@@ -121,6 +121,7 @@ void World::processInput(float dt, GLboolean keys[], GLboolean keysProcessed[])
 
 void World::update(float dt)
 {
+  if (dt >= 0.05) dt = 0.05;
   if (paused) return;
   if (hasWon && level < 5) {
     // Go to next level if not at last level

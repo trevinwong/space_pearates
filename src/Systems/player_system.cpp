@@ -15,6 +15,22 @@ void PlayerSystem::interpInput(EntityManager &entityManager, float dt, GLboolean
   }   
 }
 
+bool PlayerSystem::outOfBoundsFailsafe(shared_ptr<Entity> player)
+{
+	shared_ptr<TransformComponent> transform = player->getComponent<TransformComponent>();
+	if (transform->position.y > SCREEN_HEIGHT)
+	{
+		transform->position.y = 0;
+		return true;
+	}
+	if (transform->position.x > SCREEN_WIDTH || transform->position.x < 0)
+	{
+		transform->position.x = SCREEN_WIDTH/2;
+		return true;
+	}
+	return false;
+}
+
 
 void PlayerSystem::handleActionsInNeutral(shared_ptr<Entity> player, float dt, GLboolean keys[], GLboolean keysProcessed[])
 {
@@ -59,7 +75,7 @@ void PlayerSystem::handleActionsInNeutral(shared_ptr<Entity> player, float dt, G
       sprite->texture = playerComponent->texture_idle;
     }
   }
-
+  outOfBoundsFailsafe(player);
   movement->accel = newAcceleration;
   movement->velocity = newVelocity;
 }
