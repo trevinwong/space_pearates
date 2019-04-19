@@ -28,7 +28,8 @@ class CollisionSystem
 public:
   void setScreenInfo(vec2 screen);
   EntityGrid preprocessEntitiesIntoGrid(vector<shared_ptr<Entity>> entities);
-  void checkCollisions(EntityManager &entityManager);
+	bool checkIfCellIndicesAreInBound(pair<int, int> cell, int num_cells_in_row, int num_cells_in_col);
+	void checkCollisions(EntityManager &entityManager);
 	void handleCollisionOfType(bitset<ComponentType::max_count> components1, bitset<ComponentType::max_count> components2, shared_ptr<Entity> e1, shared_ptr<Entity> e2, EntityManager &entityManager, void(*handleCollisionFn)(shared_ptr<Entity>, shared_ptr<Entity>, EntityManager&));
 	static void handlePlayerResource(shared_ptr<Entity> player, shared_ptr<Entity> resource, EntityManager &entityManager);
   static void handlePlayerEnemy(shared_ptr<Entity> player, shared_ptr<Entity> enemy, EntityManager &entityManager);

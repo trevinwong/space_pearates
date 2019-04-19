@@ -195,8 +195,8 @@ void World::update(float dt)
   towerAttackSystem.reduceElapsedTimeToNextFire(entityManager, dt);
 
   // Remove entities
-  offscreenGarbageSystem.destroyEntitiesContainingAll(entityManager, vector<int>{ComponentType::projectile, ComponentType::movement});
-  offscreenGarbageSystem.destroyEntitiesContainingAll(entityManager, vector<int>{ComponentType::resource});
+  offscreenGarbageSystem.destroyEntitiesContaining(entityManager, vector<int>{ComponentType::projectile});
+  offscreenGarbageSystem.destroyEntitiesContaining(entityManager, vector<int>{ComponentType::resource});
   resourceSystem.handleResourceSpawnAndDespawn(entityManager, dt);
   homeSystem.checkState(entityManager);
   particleSystem.updateParticles(entityManager, dt);
