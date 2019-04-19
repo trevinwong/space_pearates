@@ -34,7 +34,8 @@ World::World(std::weak_ptr<SceneManager> _sceneManager, int _level) : AbstractSc
   LevelAssetsSystem::getInstance().set_level(level);
   LevelAssetsSystem::getInstance().set_resources(entityManager);
 
-  entityManager.addEntity(BackgroundEntityFactory::createBackgroundEntity(LevelAssetsSystem::getInstance().getBgImageFileName(level), false, vec2(2048, 1500)));
+  entityManager.addEntity(BackgroundEntityFactory::createBackgroundEntity(
+    LevelAssetsSystem::getInstance().getBgImageFileName(level), false, vec2(2048, 1500)));
   entityManager.addEntity(TowerUiEntityFactory::create());
 
   particleSystem.initParticleSystem(entityManager); // adds particle entities pool
@@ -82,17 +83,20 @@ void World::reset()
 
 void World::processInput(float dt, GLboolean keys[], GLboolean keysProcessed[])
 {
+  // Reset anytime
   if (keys[GLFW_KEY_R] && !keysProcessed[GLFW_KEY_R])
   {
     reset();
     keysProcessed[GLFW_KEY_R] = true;
     return;
   }
+  // Change music anytime
   if (keys[GLFW_KEY_M] && !keysProcessed[GLFW_KEY_M])
   {
     AudioLoader::getInstance().changeBgm();
     keysProcessed[GLFW_KEY_M] = true;
   }
+  // Pause and unpause anytime
   if (keys[GLFW_KEY_H] && !keysProcessed[GLFW_KEY_H])
   {
     paused = !paused;
@@ -104,45 +108,42 @@ void World::processInput(float dt, GLboolean keys[], GLboolean keysProcessed[])
     keysProcessed[GLFW_KEY_H] = true;
   }
 
-  if (keys[GLFW_KEY_RIGHT] && !keysProcessed[GLFW_KEY_RIGHT])
-  {
-    if (HelpMenu::getInstance().showHelp && paused) {
-      if(!HelpMenu::getInstance().showTowerHelp) {
-        Mix_PlayChannel(-1, AudioLoader::getInstance().next, 0);
+  if (paused) { // Only when pause--help menu showing
+    if (keys[GLFW_KEY_RIGHT] && !keysProcessed[GLFW_KEY_RIGHT])
+    {
+      if (HelpMenu::getInstance().showHelp) {
+        if (!HelpMenu::getInstance().showTowerHelp) {
+          Mix_PlayChannel(-1, AudioLoader::getInstance().next, 0);
+        }
+        HelpMenu::getInstance().showTowerHelp = true;
       }
-      HelpMenu::getInstance().showTowerHelp = true;
+      keysProcessed[GLFW_KEY_RIGHT] = true;
     }
-    keysProcessed[GLFW_KEY_RIGHT] = true;
-  }
-  if (keys[GLFW_KEY_LEFT] && !keysProcessed[GLFW_KEY_LEFT])
-  {
-    if (HelpMenu::getInstance().showTowerHelp && paused) {
-      if(HelpMenu::getInstance().showTowerHelp) {
-        Mix_PlayChannel(-1, AudioLoader::getInstance().next, 0);
+    if (keys[GLFW_KEY_LEFT] && !keysProcessed[GLFW_KEY_LEFT])
+    {
+      if (HelpMenu::getInstance().showTowerHelp) {
+        if (HelpMenu::getInstance().showTowerHelp) {
+          Mix_PlayChannel(-1, AudioLoader::getInstance().next, 0);
+        }
+        HelpMenu::getInstance().showTowerHelp = false;
+        //HelpMenu::getInstance().showHelp = true;
       }
-      HelpMenu::getInstance().showTowerHelp = false;
-      HelpMenu::getInstance().showHelp = true;
+      keysProcessed[GLFW_KEY_LEFT] = true;
     }
-    keysProcessed[GLFW_KEY_LEFT] = true;
+
+    // In game scene will quit to main menu only when game is paused
+    if (keys[GLFW_KEY_ESCAPE] && !keysProcessed[GLFW_KEY_ESCAPE])
+    {
+      if (shared_ptr<SceneManager> sceneManager_ptr = sceneManager.lock()) {
+        sceneManager_ptr->setNextSceneToMainMenu();
+      }
+      paused = false;
+      HelpMenu::getInstance().showHelp = false;
+      keysProcessed[GLFW_KEY_ESCAPE] = true;
+    }
   }
 
-  if (keys[GLFW_KEY_P] && !keysProcessed[GLFW_KEY_P])
-  {
-    paused = !paused;
-    HelpMenu::getInstance().showHelp = paused;
-    keysProcessed[GLFW_KEY_P] = true;
-  }
-  // In game scene will quit to main menu only when game is paused
-  if (paused && keys[GLFW_KEY_ESCAPE] && !keysProcessed[GLFW_KEY_ESCAPE])
-  {
-    if(shared_ptr<SceneManager> sceneManager_ptr = sceneManager.lock()){
-      sceneManager_ptr->setNextSceneToMainMenu();
-    }
-    paused = false;
-    HelpMenu::getInstance().showHelp = false;
-    keysProcessed[GLFW_KEY_ESCAPE] = true;
-  }
-  if (paused) return;
+  if (paused) return; // Don't process the rest if paused
 
   playerSystem.interpInput(entityManager, dt, keys, keysProcessed);
   towerUiSystem.interpInput(entityManager, keys, keysProcessed);

@@ -29,7 +29,7 @@ private:
   shared_ptr<Program> program;
   const vec2 position = vec2(265.f, 115.f);
   const vec2 scale = vec2(730.f, 570.f);
-  shared_ptr<Texture> texture;
+  shared_ptr<Texture> controls_texture;
   shared_ptr<Texture> tower_help_texture;
 };
 

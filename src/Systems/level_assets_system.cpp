@@ -1,11 +1,11 @@
 #include "level_assets_system.hpp"
 
 LevelAssetsSystem::LevelAssetsSystem() {
-    tile_level_1 = make_shared<Texture>(texture_path("tile_block.png"), true);
-    tile_level_2 = make_shared<Texture>(texture_path("tile_block2.png"), true);
-    tile_level_3 = make_shared<Texture>(texture_path("tile_block3.png"), true);
-    tile_level_4 = make_shared<Texture>(texture_path("tile_block4.png"), true);
-    tile_level_5 = make_shared<Texture>(texture_path("tile_block5.png"), true);
+    tile_level_1 = make_shared<Texture>(texture_path("level_assets/tile_block.png"), true);
+    tile_level_2 = make_shared<Texture>(texture_path("level_assets/tile_block2.png"), true);
+    tile_level_3 = make_shared<Texture>(texture_path("level_assets/tile_block3.png"), true);
+    tile_level_4 = make_shared<Texture>(texture_path("level_assets/tile_block4.png"), true);
+    tile_level_5 = make_shared<Texture>(texture_path("level_assets/tile_block5.png"), true);
 }
 
 void LevelAssetsSystem::set_level(int level) {
@@ -13,7 +13,7 @@ void LevelAssetsSystem::set_level(int level) {
 }
 
 string LevelAssetsSystem::getBgImageFileName(int level) {
-    string imgName = "bg" + std::to_string(level) + ".png";
+    string imgName = "level_assets/bg" + std::to_string(level) + ".png";
     return imgName;
 }
 
