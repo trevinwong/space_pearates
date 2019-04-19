@@ -1,8 +1,17 @@
 #include "enemy_system.hpp"
 
-const int TILE_SIZE =  40 * SCALING_FACTOR;
-const int MAP_WIDTH = static_cast<int>(SCREEN_WIDTH / TILE_SIZE);
-const int MAP_HEIGHT = static_cast<int>(SCREEN_HEIGHT / TILE_SIZE);
+bool EnemySystem::setMap(EntityManager& entityManager) {
+  shared_ptr<Entity> e = entityManager.getEntitiesHasOneOf(entityManager.getComponentChecker(vector<int>{ComponentType::map}))[0];
+  shared_ptr<MapComponent> mapComponent = e->getComponent<MapComponent>();
+  tiles = entityManager.getEntities(entityManager.getComponentChecker(vector<int>{ComponentType::tile}));
+  if (!mapComponent) return false;
+  map = mapComponent->mapData2DArray;
+  TILE_SIZE_X = mapComponent->width_tile;
+  TILE_SIZE_Y = mapComponent->height_tile;
+  MAP_WIDTH = mapComponent->num_x_tiles;
+  MAP_HEIGHT = mapComponent->num_y_tiles;
+  return true;
+}
 
 void EnemySystem::move (float dt, EntityManager& entityManager) {
   vector<shared_ptr<Entity>> entityList = entityManager.getEntities(entityManager.getComponentChecker(vector<int> {ComponentType::transform, ComponentType::enemy, ComponentType::movement}));
@@ -32,8 +41,8 @@ void EnemySystem::moveBasic(float dt, EntityManager& entityManager, shared_ptr<E
 
   vec2 vel = movementComponent->velocity;
   vec2 pos = transformComponent->position;
-  int yind = static_cast<int>(pos.y / TILE_SIZE);
-  int xind = static_cast<int>(pos.x / TILE_SIZE);
+  int yind = static_cast<int>(pos.y / TILE_SIZE_Y);
+  int xind = static_cast<int>(pos.x / TILE_SIZE_X);
   bool flag = false;
   vel.y = abs(vel.y) < eps ? movementComponent->maxVelocity.y : vel.y;
 
@@ -48,7 +57,7 @@ void EnemySystem::moveBasic(float dt, EntityManager& entityManager, shared_ptr<E
     }
   }
 
-  for (int i = 0; i <= ceil(abs(vel.y)*dt/TILE_SIZE); i++)
+  for (int i = 0; i <= ceil(abs(vel.y)*dt/TILE_SIZE_Y); i++)
     if (map[(yind+i) < MAP_WIDTH ? yind+i : (MAP_WIDTH - 1)][xind] == MAP_PLATFORM_TILE
         || map[(yind+i) < MAP_WIDTH ? yind+i : (MAP_WIDTH - 1)][xind+1] == MAP_PLATFORM_TILE
         || map[(yind+i) < MAP_WIDTH ? yind+i : (MAP_WIDTH - 1)][xind-1] == MAP_PLATFORM_TILE)
@@ -64,7 +73,7 @@ void EnemySystem::moveBasic(float dt, EntityManager& entityManager, shared_ptr<E
   } else vel.x = 0;
 
   // check if directly above base - path straight down if so
-  for (int i = 0; i <= ceil(abs(vel.y)*dt/TILE_SIZE); i++)
+  for (int i = 0; i <= ceil(abs(vel.y)*dt/TILE_SIZE_Y); i++)
     if (map[(yind+i) < MAP_WIDTH ? yind+i : (MAP_WIDTH - 1)][xind] == MAP_BASE_POSITION) {
       vel.y = movementComponent->maxVelocity.y;
       movementComponent->maxVelocity.x = 0.f;
@@ -84,8 +93,8 @@ void EnemySystem::moveShell (float dt, EntityManager& entityManager, shared_ptr<
 
   vec2 vel = movementComponent->velocity;
   vec2 pos = transformComponent->position;
-  int yind = static_cast<int>(pos.y / TILE_SIZE);
-  int xind = static_cast<int>(pos.x / TILE_SIZE);
+  int yind = static_cast<int>(pos.y / TILE_SIZE_Y);
+  int xind = static_cast<int>(pos.x / TILE_SIZE_X);
 
   bool vflag = false;
   bool hflag = false;
@@ -102,7 +111,7 @@ void EnemySystem::moveShell (float dt, EntityManager& entityManager, shared_ptr<
     }
   }
 
-  for (int i = 0; i <= ceil(abs(vel.y)*dt/TILE_SIZE); i++)
+  for (int i = 0; i <= ceil(abs(vel.y)*dt/TILE_SIZE_Y); i++)
     if (map[yind+i][xind] == MAP_PLATFORM_TILE
        || map[yind+i][xind] == MAP_PLATFORM_TILE
        || map[yind+i][xind+1] == MAP_PLATFORM_TILE) {
@@ -186,12 +195,3 @@ void EnemySystem::moveShell (float dt, EntityManager& entityManager, shared_ptr<
 //     movementComponent->velocity = vel;
 //   }
 // }
-
-bool EnemySystem::setMap (EntityManager& entityManager) {
-  shared_ptr<Entity> e = entityManager.getEntitiesHasOneOf(entityManager.getComponentChecker(vector<int>{ComponentType::map}))[0];
-  shared_ptr<MapComponent> mapComponent = e->getComponent<MapComponent>();
-  tiles = entityManager.getEntities(entityManager.getComponentChecker(vector<int>{ComponentType::tile}));
-  if (!mapComponent) return false;
-  map = mapComponent->mapData2DArray;
-  return true;
-}
