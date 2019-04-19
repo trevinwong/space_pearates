@@ -32,6 +32,7 @@
 #include "Systems/home_system.hpp"
 #include "Systems/mesh_system.hpp"
 #include "Systems/state_system.hpp"
+#include "Systems/level_assets_system.hpp"
 #include "EntityFactories/map_entity_factory.hpp"
 #include "EntityFactories/background_entity_factory.hpp"
 #include "EntityFactories/player_factory.hpp"
@@ -53,6 +54,10 @@ public:
   ~World();
   void reset();
   void processInput(float dt, GLboolean keys[], GLboolean keysProcessed[]);
+
+  void on_mouse_move(GLFWwindow* window, double xpos, double ypos);
+
+
   void update(float dt); // dt = delta time, how much time has passed since update was last called
   void draw();
 

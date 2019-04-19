@@ -14,6 +14,7 @@ HelpMenu::~HelpMenu()
 
 void HelpMenu::init() {
     texture = make_shared<Texture>(texture_path("helpmenu.png"), true); // TODO: FIX
+    tower_help_texture = make_shared<Texture>(texture_path("towermenu.png"), true);
     program = make_shared<Program>(shader_path("sprite.vert"), shader_path("sprite.frag"));
 
     GLfloat vertices[] = {
@@ -67,7 +68,12 @@ void HelpMenu::draw(glm::mat4 projection) {
         
         glActiveTexture(GL_TEXTURE0);
 
-        texture->bind();
+        if (showTowerHelp) {
+            tower_help_texture->bind();
+        } else {
+            texture->bind();
+        }
+        
 
         glBindVertexArray(VAO);
         glDrawArrays(GL_TRIANGLES, 0, 6);

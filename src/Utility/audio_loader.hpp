@@ -28,6 +28,7 @@ public:
   Mix_Chunk *start;
   Mix_Chunk *invalid;
   Mix_Chunk *alert;
+  Mix_Chunk *next;
   Mix_Chunk *game_over;
 
   //Mix_Chunk *battle_theme1;

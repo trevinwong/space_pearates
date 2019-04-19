@@ -19,6 +19,7 @@ public:
   void init();
   void draw(glm::mat4 projection);
   bool showHelp = false;
+  bool showTowerHelp = false;
 
 private:
   HelpMenu();
@@ -26,9 +27,10 @@ private:
 
   GLuint VAO, VBO;
   shared_ptr<Program> program;
-  vec2 position = vec2(265.f, 115.f);
-  vec2 scale = vec2(730.f, 570.f);
+  const vec2 position = vec2(265.f, 115.f);
+  const vec2 scale = vec2(730.f, 570.f);
   shared_ptr<Texture> texture;
+  shared_ptr<Texture> tower_help_texture;
 };
 
 #endif

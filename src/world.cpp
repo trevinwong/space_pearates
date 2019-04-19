@@ -30,7 +30,11 @@ World::World(std::weak_ptr<SceneManager> _sceneManager, int _level) : AbstractSc
   enemySystem.setMap(entityManager);
   entityManager.addEntity(WavesetManagerFactory::build(waveset_path("waveset0.txt")));
 
-  entityManager.addEntity(BackgroundEntityFactory::createBackgroundEntity("earth_bg.png", false, vec2(2304, 1620)));
+  // Load assets 
+  LevelAssetsSystem::getInstance().set_level(level);
+  LevelAssetsSystem::getInstance().set_resources(entityManager);
+
+  entityManager.addEntity(BackgroundEntityFactory::createBackgroundEntity(LevelAssetsSystem::getInstance().getBgImageFileName(level), false, vec2(2048, 1500)));
   entityManager.addEntity(TowerUiEntityFactory::create());
 
   particleSystem.initParticleSystem(entityManager); // adds particle entities pool
@@ -94,8 +98,34 @@ void World::processInput(float dt, GLboolean keys[], GLboolean keysProcessed[])
     paused = !paused;
     Mix_PlayChannel(-1, AudioLoader::getInstance().pause, 0);
     HelpMenu::getInstance().showHelp = paused;
+    if (!HelpMenu::getInstance().showHelp) {
+      HelpMenu::getInstance().showTowerHelp = false;
+    }
     keysProcessed[GLFW_KEY_H] = true;
   }
+
+  if (keys[GLFW_KEY_RIGHT] && !keysProcessed[GLFW_KEY_RIGHT])
+  {
+    if (HelpMenu::getInstance().showHelp && paused) {
+      if(!HelpMenu::getInstance().showTowerHelp) {
+        Mix_PlayChannel(-1, AudioLoader::getInstance().next, 0);
+      }
+      HelpMenu::getInstance().showTowerHelp = true;
+    }
+    keysProcessed[GLFW_KEY_RIGHT] = true;
+  }
+  if (keys[GLFW_KEY_LEFT] && !keysProcessed[GLFW_KEY_LEFT])
+  {
+    if (HelpMenu::getInstance().showTowerHelp && paused) {
+      if(HelpMenu::getInstance().showTowerHelp) {
+        Mix_PlayChannel(-1, AudioLoader::getInstance().next, 0);
+      }
+      HelpMenu::getInstance().showTowerHelp = false;
+      HelpMenu::getInstance().showHelp = true;
+    }
+    keysProcessed[GLFW_KEY_LEFT] = true;
+  }
+
   if (keys[GLFW_KEY_P] && !keysProcessed[GLFW_KEY_P])
   {
     paused = !paused;
@@ -127,6 +157,7 @@ void World::update(float dt)
     if (level >= sceneManager_spt->levelReached) {
       sceneManager_spt->levelReached = level + 1;
     }
+    LevelAssetsSystem::getInstance().set_level(level + 1);
     sceneManager_spt->setNextSceneToInGame(level + 1);
     return;
   }

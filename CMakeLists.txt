@@ -198,6 +198,8 @@ set(SOURCE_FILES_CORE
 	src/Utility/line.cpp
 	src/Systems/mesh_system.hpp
 	src/Systems/mesh_system.cpp
+	src/Systems/level_assets_system.hpp
+	src/Systems/level_assets_system.cpp
 	src/triangle.hpp
 	src/triangle.cpp
 	src/Utility/timer.hpp
@@ -288,6 +290,7 @@ endif()
 
 # glfw, sdl and freetype could be precompiled (on windows) or installed by a package manager (on OSX and Linux)
 set(FREETYPE_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/ext/freetype/include")
+
 
 if (IS_OS_LINUX OR IS_OS_MAC)
     # Try to find packages rather than to use the precompiled ones
