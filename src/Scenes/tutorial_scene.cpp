@@ -194,7 +194,7 @@ void TutorialScene::tutorialInputProcess(float dt, GLboolean keys[], GLboolean k
     case TutorialStep::tutorial_done:
     {
       if (auto sceneManager_spt = sceneManager.lock()) {
-        if (sceneManager_spt->levelReached <= 0) sceneManager_spt->levelReached = 1;
+        if (sceneManager_spt->getLevelReached() <= 0) sceneManager_spt->incrementLevelReached();
         sceneManager_spt->setNextSceneToInGame(1); // go to level 1
       }
       break;

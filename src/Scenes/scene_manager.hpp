@@ -34,9 +34,11 @@ public:
 
   void setGLFWwindow(GLFWwindow *window);
 
-  int levelReached = 1;
+  void incrementLevelReached();
+  int getLevelReached();
 
 private:
+  int levelReached = 1;
   /* 
     Why we need to store prevScene?
     Usually the scene will be changed in the meanwhile some scene, i.e. a new scene changed in the update() or input()
@@ -55,6 +57,7 @@ private:
   void trySwapToNextScene();
 
   int readLevelReached();
+  void saveToDisk();
 };
 
 #endif // !SCENE_MANAGER_H

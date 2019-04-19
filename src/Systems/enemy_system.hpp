@@ -22,8 +22,6 @@ public:
 
 private:
   vector<vector<char>> map;
-  vector<shared_ptr<Entity>> tiles;
-
   int TILE_SIZE_X;
   int TILE_SIZE_Y;
   int MAP_WIDTH;

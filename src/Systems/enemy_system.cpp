@@ -3,8 +3,8 @@
 bool EnemySystem::setMap(EntityManager& entityManager) {
   shared_ptr<Entity> e = entityManager.getEntitiesHasOneOf(entityManager.getComponentChecker(vector<int>{ComponentType::map}))[0];
   shared_ptr<MapComponent> mapComponent = e->getComponent<MapComponent>();
-  tiles = entityManager.getEntities(entityManager.getComponentChecker(vector<int>{ComponentType::tile}));
   if (!mapComponent) return false;
+
   map = mapComponent->mapData2DArray;
   TILE_SIZE_X = mapComponent->width_tile;
   TILE_SIZE_Y = mapComponent->height_tile;

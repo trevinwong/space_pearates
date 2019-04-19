@@ -157,8 +157,8 @@ void World::update(float dt)
   if (hasWon && level < 5) {
     // Go to next level if not at last level
     auto sceneManager_spt = sceneManager.lock();
-    if (level >= sceneManager_spt->levelReached) {
-      sceneManager_spt->levelReached = level + 1;
+    if (level >= sceneManager_spt->getLevelReached()) {
+      sceneManager_spt->incrementLevelReached();
     }
     LevelAssetsSystem::getInstance().set_level(level + 1);
     sceneManager_spt->setNextSceneToInGame(level + 1);

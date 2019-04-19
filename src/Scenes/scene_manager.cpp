@@ -28,6 +28,11 @@ int SceneManager::readLevelReached()
 
 SceneManager::~SceneManager()
 {
+  saveToDisk();
+}
+
+void SceneManager::saveToDisk()
+{
   // Save level reached to disk
   std::ofstream save_file(data_path "save0.txt");
   if (save_file.is_open()) {
@@ -56,6 +61,17 @@ void SceneManager::terminateAndCloseWindow() {
 
 void SceneManager::setGLFWwindow(GLFWwindow *_window) {
   if (_window) window = _window;
+}
+
+void SceneManager::incrementLevelReached()
+{
+  levelReached++;
+  saveToDisk();
+}
+
+int SceneManager::getLevelReached()
+{
+  return levelReached;
 }
 
 void SceneManager::trySwapToNextScene() {
