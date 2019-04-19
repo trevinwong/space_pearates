@@ -3,7 +3,7 @@
 Entity TileFactory::buildTile(vec2 position, vec2 scale)
 {
   shared_ptr<Program> program = make_shared<Program>(shader_path("sprite.vert"), shader_path("sprite.frag"));
-  shared_ptr<SpriteComponent> sprite = make_shared<SpriteComponent>(program, make_shared<Texture>(texture_path("tile_block.png"), true));
+  shared_ptr<SpriteComponent> sprite = make_shared<SpriteComponent>(program, make_shared<Texture>(texture_path("level_assets/tile_block.png"), true));
   shared_ptr<TransformComponent> transform = make_shared<TransformComponent>(position, scale, 0.0f);
  // CollisionComponent> collision = make_shared<CollisionComponent(position, scale, 0.0f);
   shared_ptr<ColorComponent> colour = make_shared<ColorComponent>(glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));

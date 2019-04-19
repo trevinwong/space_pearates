@@ -9,6 +9,7 @@
 #include "Systems/background_system.hpp"
 #include "Systems/menu_ui_system.hpp"
 #include "scene_manager.hpp"
+#include "Utility/audio_loader.hpp"
 
 class MainMenuScene : public AbstractScene {
 public:

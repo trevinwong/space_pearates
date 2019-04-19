@@ -1,13 +1,12 @@
 #include "particle_system.hpp"    
 
-const int MAX_PARTICLES = 300;
+const int MAX_PARTICLES = 275;
 const float DELAY_PERIOD = 0.175f;
-const vec2 DEFAULT_PARTICLE_SCALE = vec2(50.0f, 50.0f);
+const float F_g = 9.8;  // force of gravity
+const vec2 DEFAULT_PARTICLE_SCALE = vec2(57.0f, 57.0f);
 static float nextActionTime = DELAY_PERIOD;
 static int lastUsedIndex = 0;
 vector<shared_ptr<Entity>> ParticleSystem::particleClusters;
-
-const float F_g = 9.8;  // force of gravity
 
 void ParticleSystem::initParticleSystem(EntityManager & manager) {
   for (int i = 0; i < MAX_PARTICLES; i++) {
@@ -18,7 +17,7 @@ void ParticleSystem::initParticleSystem(EntityManager & manager) {
 }
 
 void ParticleSystem::emitParticleCluster(EntityManager & manager, vec2 clusterOrigin) {
-  for (int i = 0; i < 20; i++) {
+  for (int i = 0; i < 10; i++) {
     shared_ptr<Entity> particle = particleClusters[findUnusedParticle()];
     shared_ptr<ParticleComponent> pComponent = particle->getComponent<ParticleComponent>();
     shared_ptr<TransformComponent> tComponent = particle->getComponent<TransformComponent>();
@@ -64,6 +63,22 @@ void ParticleSystem::emitSmoke(EntityManager & manager, vec2 clusterOrigin) {
   }
 }
 
+void ParticleSystem::emitSparkle(EntityManager & manager, vec2 clusterOrigin) {
+	for (int i = 0; i < 15; i++) {
+		shared_ptr<Entity> particle = particleClusters[findUnusedParticle()];
+		shared_ptr<ParticleComponent> pComponent = particle->getComponent<ParticleComponent>();
+		shared_ptr<TransformComponent> tComponent = particle->getComponent<TransformComponent>();
+		shared_ptr<SpriteComponent> sComponent = particle->getComponent<SpriteComponent>();
+		shared_ptr<ColorComponent> cComponent = particle->getComponent<ColorComponent>();
+		//shared_ptr<AnimatedComponent> aComponent = make_shared<AnimatedComponent>(5, 0.2);
+		tComponent->position = clusterOrigin;
+		tComponent->size = vec2(16.f, 16.f);
+		sComponent->texture = pComponent->healTexture;
+		pComponent->type = ParticleType::heal;
+		pComponent->active = true; // Now, particle will get rendered
+	}
+}
+
 
 void ParticleSystem::updateParticles(EntityManager & manager, float dt) {
   vector<shared_ptr<Entity>> particles = manager.getEntities(manager.getComponentChecker(vector<int> {ComponentType::particle}));
@@ -94,7 +109,7 @@ void ParticleSystem::updateParticles(EntityManager & manager, float dt) {
     float xVelocity, yVelocity = 0.0f;
 
     if (pComponent->type == ParticleType::blood) {
-      xVelocity = cos(pComponent->angle) * pComponent->speed;
+      xVelocity = (cos(pComponent->angle) * pComponent->speed) * 0.9f;
       yVelocity = (sin(pComponent->angle) * pComponent->speed) + F_g;
       pComponent->angle += dt;
       cComponent->RGBA.w -= dt / 1.5f;
@@ -104,7 +119,13 @@ void ParticleSystem::updateParticles(EntityManager & manager, float dt) {
       yVelocity = -1.f * ((sin(pComponent->angle) * pComponent->speed) + F_g);
       pComponent->angle += (dt * 2);
       cComponent->RGBA.w -= dt / 1.5f;
-  }
+	}
+	else if (pComponent->type == ParticleType::heal) {
+		xVelocity = 1.4 * cos(pComponent->angle) * pComponent->speed;
+		yVelocity = -1.f * ((sin(pComponent->angle) * pComponent->speed) + F_g);
+		pComponent->angle += (dt * 2);
+		cComponent->RGBA.w -= dt / 1.5f;
+	}
 
     tComponent->position += vec2(xVelocity, yVelocity) * (dt * 5.f);
 

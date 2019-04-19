@@ -3,8 +3,11 @@
 
 class Timer {
 public:
+  Timer();
 	Timer(float _maxTime, float _elapsedTime = 0.0f);
 	void update(float dt);
+  float getParameterLinear();
+  float getParameterQuadratic();
 	float getTimeLeft();
 	void reset();
 	float elapsedTime;

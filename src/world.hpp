@@ -31,6 +31,8 @@
 #include "Systems/damage_system.hpp"
 #include "Systems/home_system.hpp"
 #include "Systems/mesh_system.hpp"
+#include "Systems/state_system.hpp"
+#include "Systems/level_assets_system.hpp"
 #include "EntityFactories/map_entity_factory.hpp"
 #include "EntityFactories/background_entity_factory.hpp"
 #include "EntityFactories/player_factory.hpp"
@@ -52,6 +54,10 @@ public:
   ~World();
   void reset();
   void processInput(float dt, GLboolean keys[], GLboolean keysProcessed[]);
+
+  void on_mouse_move(GLFWwindow* window, double xpos, double ypos);
+
+
   void update(float dt); // dt = delta time, how much time has passed since update was last called
   void draw();
 
@@ -67,6 +73,7 @@ private:
   EnemySystem enemySystem;
   PlayerSystem playerSystem;
 	MeshSystem meshSystem;
+  StateSystem stateSystem;
 
   TowerRangeDisplaySystem towerRangeDisplaySystem;
   TowerAttackSystem towerAttackSystem;
@@ -83,7 +90,6 @@ private:
   int level;
   bool hasWon = false;
   bool paused = false;
-  vec2 player_spawn = vec2(0.0f, 0.0f);
   shared_ptr<Entity> player;
   shared_ptr<Entity> home;
   shared_ptr<Entity> map;

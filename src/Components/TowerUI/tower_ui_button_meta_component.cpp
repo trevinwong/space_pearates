@@ -11,7 +11,7 @@ TowerUiButtonMetaComponent::TowerUiButtonMetaComponent() {
   buildOptList.push_back(BUILD_STAR_TOWER);
   buildOptList.push_back(BUILD_BOOMERANG_TOWER);
 
-  towerOptList.push_back(FIX_TOWER_OPERATION);
+  //towerOptList.push_back(FIX_TOWER_OPERATION);
   towerOptList.push_back(UPGRADE_TOWER_OPERATION);
   towerOptList.push_back(SELL_TOWER_OPERATION);
 }

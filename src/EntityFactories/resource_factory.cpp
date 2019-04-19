@@ -49,12 +49,11 @@ vector<Entity> ResourceFactory::buildCluster(int amount, vec2 position, vec2 siz
 }
 
 
-// Just for lazy testing.. spawns some coins along the floor, hardcoded
-void ResourceFactory::spawnInitial(EntityManager & entities)
+void ResourceFactory::spawnInitial(EntityManager & entities, vec2 location)
 {
-  vec2 position = vec2(SCREEN_WIDTH / 4, SCREEN_HEIGHT - 200.0f);
-  for (int i = 0; i < 6; i++) {
+  vec2 position = location + vec2(-60.0f, -60.0f);
+  for (int i = 0; i < 4; i++) {
     entities.addEntity(build(position));
-    position.x += SCREEN_WIDTH / 11;
+    position.x += 60.0f;
   }
 }

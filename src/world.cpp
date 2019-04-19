@@ -7,6 +7,7 @@ const vector<int> non_recyclable_components = {
 
 World::World(std::weak_ptr<SceneManager> _sceneManager, int _level) : AbstractScene(_sceneManager), level(_level)
 {
+  AudioLoader::getInstance().playGameMusic();
   vec2 screen =  vec2(SCREEN_WIDTH, SCREEN_HEIGHT);
   TowerDataLoader::loadTowerData();
   PlayerDataLoader::loadPlayerData();
@@ -18,18 +19,24 @@ World::World(std::weak_ptr<SceneManager> _sceneManager, int _level) : AbstractSc
   string mapName = "map" + std::to_string(level) + ".txt";
   map = make_shared<Entity>(MapEntityFactory::createMapEntityFromFile(map_path()+mapName));
   entityManager.addEntity(map);
-  TileMapSystem::loadTileMap(entityManager, player_spawn);
-  WavesetSystem::getInstance().enemySpawnPoints = TileMapSystem::enemySpawnPoints;
-  player = make_shared<Entity>(PlayerFactory::build(player_spawn));
-  entityManager.addEntity(player);
-  // Spawn starting resources
-  ResourceFactory::spawnInitial(entityManager);
+  TileMapSystem::loadTileMap(entityManager);
   home = entityManager.getEntitiesHasOneOf(entityManager.getComponentChecker(ComponentType::home))[0];
+  WavesetSystem::getInstance().enemySpawnPoints = TileMapSystem::enemySpawnPoints;
+  player = make_shared<Entity>(PlayerFactory::build(TileMapSystem::player_spawn));
+  entityManager.addEntity(player);
+
+  // Spawn starting resources
+  ResourceFactory::spawnInitial(entityManager, TileMapSystem::home_spawn);
 
   enemySystem.setMap(entityManager);
   entityManager.addEntity(WavesetManagerFactory::build(waveset_path("waveset0.txt")));
 
-  entityManager.addEntity(BackgroundEntityFactory::createBackgroundEntity("earth_bg.png", false, vec2(2304, 1620)));
+  // Load assets
+  LevelAssetsSystem::getInstance().set_level(level);
+  LevelAssetsSystem::getInstance().set_resources(entityManager);
+
+  entityManager.addEntity(BackgroundEntityFactory::createBackgroundEntity(
+    LevelAssetsSystem::getInstance().getBgImageFileName(level), false, vec2(2048, 1500)));
   entityManager.addEntity(TowerUiEntityFactory::create());
 
   particleSystem.initParticleSystem(entityManager); // adds particle entities pool
@@ -39,7 +46,6 @@ World::World(std::weak_ptr<SceneManager> _sceneManager, int _level) : AbstractSc
 World::~World()
 {
   HUD::getInstance().reset();
-  AudioLoader::getInstance().reset();
   WavesetSystem::getInstance().reset();
 }
 
@@ -65,11 +71,11 @@ void World::reset()
   home->getComponent<HealthComponent>()->reset();
   homeSystem.reset(entityManager);
   // Reset player position and wallet
-  entityManager.addEntity(PlayerFactory::build(player_spawn));
+  entityManager.addEntity(PlayerFactory::build(TileMapSystem::player_spawn));
 
   // Spawn starting resources
-  ResourceFactory::spawnInitial(entityManager);            // adds 6 entities
-  entityManager.addEntity(TowerUiEntityFactory::create()); // adds 1 entity
+  ResourceFactory::spawnInitial(entityManager, TileMapSystem::home_spawn);
+  entityManager.addEntity(TowerUiEntityFactory::create());
 
   paused = false;
   HelpMenu::getInstance().showHelp = false;
@@ -78,41 +84,67 @@ void World::reset()
 
 void World::processInput(float dt, GLboolean keys[], GLboolean keysProcessed[])
 {
+  // Reset anytime
   if (keys[GLFW_KEY_R] && !keysProcessed[GLFW_KEY_R])
   {
     reset();
     keysProcessed[GLFW_KEY_R] = true;
     return;
   }
+  // Change music anytime
   if (keys[GLFW_KEY_M] && !keysProcessed[GLFW_KEY_M])
   {
     AudioLoader::getInstance().changeBgm();
     keysProcessed[GLFW_KEY_M] = true;
   }
+  // Pause and unpause anytime
   if (keys[GLFW_KEY_H] && !keysProcessed[GLFW_KEY_H])
   {
     paused = !paused;
     Mix_PlayChannel(-1, AudioLoader::getInstance().pause, 0);
     HelpMenu::getInstance().showHelp = paused;
+    if (!HelpMenu::getInstance().showHelp) {
+      HelpMenu::getInstance().showTowerHelp = false;
+    }
     keysProcessed[GLFW_KEY_H] = true;
   }
-  if (keys[GLFW_KEY_P] && !keysProcessed[GLFW_KEY_P])
-  {
-    paused = !paused;
-    HelpMenu::getInstance().showHelp = paused;
-    keysProcessed[GLFW_KEY_P] = true;
-  }
-  // In game scene will quit to main menu only when game is paused
-  if (paused && keys[GLFW_KEY_ESCAPE] && !keysProcessed[GLFW_KEY_ESCAPE])
-  {
-    if(shared_ptr<SceneManager> sceneManager_ptr = sceneManager.lock()){
-      sceneManager_ptr->setNextSceneToMainMenu();
+
+  if (paused) { // Only when pause--help menu showing
+    if (keys[GLFW_KEY_RIGHT] && !keysProcessed[GLFW_KEY_RIGHT])
+    {
+      if (HelpMenu::getInstance().showHelp) {
+        if (!HelpMenu::getInstance().showTowerHelp) {
+          Mix_PlayChannel(-1, AudioLoader::getInstance().next, 0);
+        }
+        HelpMenu::getInstance().showTowerHelp = true;
+      }
+      keysProcessed[GLFW_KEY_RIGHT] = true;
     }
-    paused = false;
-    HelpMenu::getInstance().showHelp = false;
-    keysProcessed[GLFW_KEY_ESCAPE] = true;
+    if (keys[GLFW_KEY_LEFT] && !keysProcessed[GLFW_KEY_LEFT])
+    {
+      if (HelpMenu::getInstance().showTowerHelp) {
+        if (HelpMenu::getInstance().showTowerHelp) {
+          Mix_PlayChannel(-1, AudioLoader::getInstance().next, 0);
+        }
+        HelpMenu::getInstance().showTowerHelp = false;
+        //HelpMenu::getInstance().showHelp = true;
+      }
+      keysProcessed[GLFW_KEY_LEFT] = true;
+    }
+
+    // In game scene will quit to main menu only when game is paused
+    if (keys[GLFW_KEY_ESCAPE] && !keysProcessed[GLFW_KEY_ESCAPE])
+    {
+      if (shared_ptr<SceneManager> sceneManager_ptr = sceneManager.lock()) {
+        sceneManager_ptr->setNextSceneToMainMenu();
+      }
+      paused = false;
+      HelpMenu::getInstance().showHelp = false;
+      keysProcessed[GLFW_KEY_ESCAPE] = true;
+    }
   }
-  if (paused) return;
+
+  if (paused) return; // Don't process the rest if paused
 
   playerSystem.interpInput(entityManager, dt, keys, keysProcessed);
   towerUiSystem.interpInput(entityManager, keys, keysProcessed);
@@ -120,6 +152,7 @@ void World::processInput(float dt, GLboolean keys[], GLboolean keysProcessed[])
 
 void World::update(float dt)
 {
+  if (dt >= 0.05) dt = 0.05;
   if (paused) return;
   if (hasWon && level < 5) {
     // Go to next level if not at last level
@@ -127,6 +160,7 @@ void World::update(float dt)
     if (level >= sceneManager_spt->levelReached) {
       sceneManager_spt->levelReached = level + 1;
     }
+    LevelAssetsSystem::getInstance().set_level(level + 1);
     sceneManager_spt->setNextSceneToInGame(level + 1);
     return;
   }
@@ -147,6 +181,7 @@ void World::update(float dt)
   interpolationSystem.update(entityManager, dt);
   collisionSystem.checkCollisions(entityManager);
   spriteSystem.updateElapsedTime(dt);
+  stateSystem.handleStateChanges(entityManager, dt);
 
   // Background Update
   backgroundSystem.update(entityManager);

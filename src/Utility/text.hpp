@@ -29,11 +29,12 @@ public:
     return instance;
   }
 
-  void render(string text, vec2 position, float scale=1.0f, vec3 color=vec3(1.0f, 1.0f, 1.0f), int font=0);
-  void render(string text, GLfloat x, GLfloat y, GLfloat scale=1.0f, vec3 color=vec3(1.0f, 1.0f, 1.0f), int font=0);
+  void render(string text, vec2 position, float scale=1.0f, vec4 color=vec4(1.0f, 1.0f, 1.0f, 1.0f), int font=0);
+  void render(string text, GLfloat x, GLfloat y, GLfloat scale=1.0f, vec4 color=vec4(1.0f, 1.0f, 1.0f, 1.0f), int font=0);
 	enum Font {
 		munro,
 		munro_small,
+    	mod_pixel_dingbats,
 		count
 	};
 

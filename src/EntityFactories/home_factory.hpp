@@ -11,7 +11,7 @@
 class HomeFactory
 {
 public:
-  static Entity createBase(vec2 position);
+  static Entity createHome(vec2 position);
 private:
   HomeFactory();
 };

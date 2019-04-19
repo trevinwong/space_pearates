@@ -1,14 +1,15 @@
 #include "tile_map_system.hpp"
 
 vector<vec2> TileMapSystem::enemySpawnPoints;
+vec2 TileMapSystem::player_spawn;
+vec2 TileMapSystem::home_spawn;
 
-void TileMapSystem::loadTileMap(EntityManager & entityManager, vec2 & player_spawn)
+void TileMapSystem::loadTileMap(EntityManager & entityManager, bool drawBuildIndicators)
 {
   shared_ptr<Entity> mapEntity = entityManager.getEntities(entityManager.getComponentChecker(vector<int>{ComponentType::map}))[0];
   shared_ptr<MapComponent> mapComponent = mapEntity->getComponent<MapComponent>();
   if (mapComponent == nullptr) return;
 
-  //vector<glm::vec2> enemySpawnPoints;
   auto tileMap = mapComponent->mapData2DArray;
   int num_y_tiles = mapComponent->num_y_tiles;
   int num_x_tiles = mapComponent->num_x_tiles;
@@ -28,10 +29,11 @@ void TileMapSystem::loadTileMap(EntityManager & entityManager, vec2 & player_spa
           vec2(width_tile, height_tile)));
       }
       else if (*col == MAP_BASE_POSITION) {
-        Entity base = HomeFactory::createBase(vec2(col_i*width_tile - 100.f, row_i*height_tile - 85.f));
-        entityManager.addEntity(base);
+        home_spawn = vec2(col_i*width_tile, row_i*height_tile);
+        Entity home = HomeFactory::createHome(vec2(col_i*width_tile - 100.f, row_i*height_tile - 85.f));
+        entityManager.addEntity(home);
       }
-      else if (*col == MAP_TOWER_POSITION) {
+      else if (*col == MAP_TOWER_POSITION && drawBuildIndicators) {
         Entity towerBuildAreaIndicator = TileFactory::buildTowerAreaIndicator(
           vec2(col_i*width_tile, row_i*height_tile),
           vec2(width_tile, height_tile));

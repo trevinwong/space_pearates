@@ -68,6 +68,8 @@ set(SOURCE_FILES_CORE
 	src/Components/base_component.hpp
 	src/EntityFactories/projectile_entity_factory.cpp
 	src/EntityFactories/projectile_entity_factory.hpp
+  src/EntityFactories/simple_sprite_factory.cpp
+	src/EntityFactories/simple_sprite_factory.hpp
 	src/EntityFactories/particle_factory.cpp
 	src/EntityFactories/particle_factory.hpp
 	src/Utility/math.hpp
@@ -192,10 +194,14 @@ set(SOURCE_FILES_CORE
 	src/Systems/particle_system.hpp
 	src/Systems/home_system.cpp
 	src/Systems/home_system.hpp
+  src/Systems/state_system.hpp
+  src/Systems/state_system.cpp
 	src/Utility/line.hpp
 	src/Utility/line.cpp
 	src/Systems/mesh_system.hpp
 	src/Systems/mesh_system.cpp
+	src/Systems/level_assets_system.hpp
+	src/Systems/level_assets_system.cpp
 	src/triangle.hpp
 	src/triangle.cpp
 	src/Utility/timer.hpp
@@ -239,6 +245,8 @@ set(SOURCE_FILES_CORE
 	src/Scenes/main_menu_scene.hpp
   src/Scenes/level_selection_scene.cpp
 	src/Scenes/level_selection_scene.hpp
+  src/Scenes/tutorial_scene.cpp
+	src/Scenes/tutorial_scene.hpp
 	src/Scenes/how_to_play_scene.cpp
 	src/Scenes/how_to_play_scene.hpp
 	src/world.cpp
@@ -284,6 +292,7 @@ endif()
 
 # glfw, sdl and freetype could be precompiled (on windows) or installed by a package manager (on OSX and Linux)
 set(FREETYPE_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/ext/freetype/include")
+
 
 if (IS_OS_LINUX OR IS_OS_MAC)
     # Try to find packages rather than to use the precompiled ones
@@ -349,6 +358,28 @@ elseif (IS_OS_WINDOWS)
     COMMAND ${CMAKE_COMMAND} -E copy_if_different
         "${SDLMIXER_DLL}"
         "$<TARGET_FILE_DIR:${PROJECT_NAME}>/SDL2_mixer.dll")
+
+	# create a list of files to copy
+	set( THIRD_PARTY_DLLS
+	   "${CMAKE_CURRENT_SOURCE_DIR}/ext/sdl/lib/libFLAC-8.dll"
+	   "${CMAKE_CURRENT_SOURCE_DIR}/ext/sdl/lib/libmodplug-1.dll"
+	   "${CMAKE_CURRENT_SOURCE_DIR}/ext/sdl/lib/libmpg123-0.dll"
+	   "${CMAKE_CURRENT_SOURCE_DIR}/ext/sdl/lib/libogg-0.dll"
+	   "${CMAKE_CURRENT_SOURCE_DIR}/ext/sdl/lib/libopus-0.dll"
+	   "${CMAKE_CURRENT_SOURCE_DIR}/ext/sdl/lib/libopusfile-0.dll"
+	   "${CMAKE_CURRENT_SOURCE_DIR}/ext/sdl/lib/libvorbis-0.dll"
+	   "${CMAKE_CURRENT_SOURCE_DIR}/ext/sdl/lib/libvorbisfile-3.dll"
+	)
+
+	# do the copying
+	foreach( file_i ${THIRD_PARTY_DLLS})
+		add_custom_command(
+		TARGET ${PROJECT_NAME}
+		POST_BUILD
+		COMMAND ${CMAKE_COMMAND}
+		ARGS -E copy ${file_i} "$<TARGET_FILE_DIR:${PROJECT_NAME}>/"
+	)
+	endforeach( file_i )
 
 	# Finally get rid of msvc warnings for printf, scanf, ...
 	# Also try to keep stuff from Windows.h to a minimum

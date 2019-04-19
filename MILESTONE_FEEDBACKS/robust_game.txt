@@ -1,0 +1,26 @@
+# Team 6
+Grades: 86/100
+
+The game has a new start menu, loading screen, and some new musics. There are several new features/improvements still under development (I’m looking forward to seeing them in the finale). Before polishing and working on the new features, I strongly suggest fixing the rendering issues. It is understandable that the repo can be slightly broken when multiple members contribute to it. But the game makers don’t want to show the player buggy rendering. E.g. the weird tower texture and disappearing player during the grading.
+
+Here are some extra comments for polishing the game:
+The tower interaction UI can be improved. For instance, the player can activate the UI by pressing a key. The functions (building, selling) are valid only when the player is close to a valid tower/building slot. One can use colors to indicate whether the player can build/sell and which tower the player is interacting with.
+
+## Milestone requirements (61)
+
++10/10 Gameplay (6 min): The game has enough contents.
++15/15 Performance & Robust Playing: The game runs without lag or crash and terminates gracefully.
++5/5 Correct Time Step.
++20/20 Memory: No leaks.
++8/10 Reloadable: The save & load only load the player to the most recent level without saving the towers and enemies on the map.
++3/15 Bugs & Glitches:
+- -6 The tower texture is not correctly rendered.
+- -6 The player disappears after playing for 1-2 min and the background image becomes blue.
+
+## Milestone creative (25)
+
++5 Player can change music.
++5 New visuals: a new start screen; new loading screens.
++5 Improved particle effect for the burning base.
++10 Improved towers: player can sell towers and towers are defined in files now.
+

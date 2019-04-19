@@ -13,6 +13,7 @@ class HomeSystem
 {
 public:
   void handleCriticalState(shared_ptr<Entity> home);
+  void resetCriticalState(shared_ptr<Entity> home);
   void checkState(EntityManager &entityManager);
   void reset(EntityManager &entityManager);
   bool alert_played = false;

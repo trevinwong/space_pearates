@@ -39,10 +39,10 @@ public:
   vec2 position;
   float marginInBtw;  //margin between each choice
   float fontScale;
-  glm::vec3 fontColor;
-  glm::vec3 unavaliableFontColor;
+  glm::vec4 fontColor;
+  glm::vec4 unavaliableFontColor;
   float selectedFontScale;
-  glm::vec3 selectedFontColor;
+  glm::vec4 selectedFontColor;
   int fontFamily;
 
   MenuUiChoice getSelected();

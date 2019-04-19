@@ -41,9 +41,9 @@ public:
   glm::vec2 descriptionLine2Pos;
   glm::vec2 descriptionLine1Pos;
 
-  vec3 defaultTextColor = vec3(1.f, 1.f, 0.f);
-  vec3 noMoneyTextColor = vec3(1.f, 0.f, 0.f);
-  vec3 descriptionLine1Color = defaultTextColor;
+  vec4 defaultTextColor = vec4(1.f, 1.f, 0.f, 1.0f);
+  vec4 noMoneyTextColor = vec4(1.f, 0.f, 0.f, 1.0f);
+  vec4 descriptionLine1Color = defaultTextColor;
 
   
 
@@ -61,7 +61,8 @@ public:
   inline virtual int getTypeID() const { return typeID; };
 
 private:
-  int currentSelectedOptIndex;
+  int currentSelectedBuildOptIndex; // used for tower build
+  int currentSelectedOptIndex;      // used for tower upgrade
   vector<TOWER_UI_OPT_TYPE> optList;
 
   // use this function to avoid out of boundary index

@@ -1,6 +1,7 @@
 #include "main_menu_scene.hpp"
 
 MainMenuScene::MainMenuScene(std::weak_ptr<SceneManager> _sceneManager) : AbstractScene(_sceneManager) {
+  AudioLoader::getInstance().playMainMenuBGM();
   projection = glm::ortho(0.0f, static_cast<GLfloat>(SCREEN_WIDTH), static_cast<GLfloat>(SCREEN_HEIGHT), 0.0f, -1.0f, 1.0f);
 
   Entity bg = BackgroundEntityFactory::createBackgroundEntity("main_menu_bg.jpg", false, vec2(SCREEN_WIDTH, SCREEN_HEIGHT));
@@ -35,7 +36,7 @@ void MainMenuScene::processInput(float dt, GLboolean keys[], GLboolean keysProce
           sceneManager_spt->setNextSceneToHowToPlay();
           break;
         case MainMenuUiList::new_game: {
-          sceneManager_spt->setNextSceneToInGame(1); // level 1
+          sceneManager_spt->setNextSceneToTutorial(); // tutorial level
           break;
         }
         case MainMenuUiList::continue_game:

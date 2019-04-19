@@ -6,7 +6,7 @@
 
 class WalletComponent : public BaseComponent {
 public:
-  WalletComponent();
+  WalletComponent(int _coins=0);
 
   bool spend(int amount);
   void earn(int amount);

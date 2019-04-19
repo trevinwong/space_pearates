@@ -2,7 +2,7 @@
 
 static const glm::vec2 DEFAULT_SCALE = glm::vec2(50.0f,50.0f);
 const glm::vec4 DEFAULT_COLOR = glm::vec4(1.0f,1.0f,1.0f,1.0f);
-const float DEFAULT_LIFETIME = 2.0f;
+const float DEFAULT_LIFETIME = 1.5f;
 
 Entity ParticleFactory::build(glm::vec2 originPosition) {
     shared_ptr<Program> program = make_shared<Program>(shader_path("sprite.vert"), shader_path("sprite.frag"));

@@ -84,8 +84,27 @@ void CollisionSystem::handlePlayerResource(shared_ptr<Entity> player, shared_ptr
 
 void CollisionSystem::handlePlayerEnemy(shared_ptr<Entity> player, shared_ptr<Entity> enemy, EntityManager &entityManager)
 {
+  shared_ptr<PlayerComponent> playerComponent = player->getComponent<PlayerComponent>();
+  shared_ptr<MovementComponent> playerMovement = player->getComponent<MovementComponent>();
+  shared_ptr<TransformComponent> playerTransform = player->getComponent<TransformComponent>();
+  shared_ptr<SpriteComponent> playerSprite = player->getComponent<SpriteComponent>();
+  shared_ptr<TransformComponent> enemyTransform = enemy->getComponent<TransformComponent>();
 
-	player->setComponent<DamageComponent>(make_shared<DamageComponent>(enemy->getComponent<EnemyComponent>()->totalAtk));
+	player->setComponent<DamageComponent>(make_shared<DamageComponent>(1.0f));
+  playerComponent->movementState = PlayerMovementState::HITSTUN;
+  playerComponent->movementStateDuration = Timer(0.5);
+  playerComponent->healthState = PlayerHealthState::INVINCIBLE;
+  playerComponent->healthStateDuration = Timer(3);
+  Mix_PlayChannel(-1, AudioLoader::getInstance().player_hurt, 0);
+
+  vec2 relativePosition = enemyTransform->position - playerTransform->position;
+  vec2 knockback = vec2(300, -150);
+  if (relativePosition.x > 0) knockback.x = -knockback.x;
+  playerMovement->velocity = knockback;
+
+  playerSprite->blinkTimer = Timer(0.2);
+
+  player->removeComponent<CollisionComponent>();
 }
 
 void CollisionSystem::handleProjectileEnemy(shared_ptr<Entity> projectile, shared_ptr<Entity> enemy, EntityManager &entityManager)
@@ -115,5 +134,5 @@ void CollisionSystem::handleCollision(shared_ptr<Entity> e1, shared_ptr<Entity> 
 
 	handleCollisionOfType(isPlayer, isResource, e1, e2, entityManager, handlePlayerResource);
 	handleCollisionOfType(isProjectile, isEnemy, e1, e2, entityManager, handleProjectileEnemy);
-  // handleCollisionOfType(isPlayer, isEnemy, e1, e2, entityManager, handlePlayerEnemy);
+  handleCollisionOfType(isPlayer, isEnemy, e1, e2, entityManager, handlePlayerEnemy);
 }

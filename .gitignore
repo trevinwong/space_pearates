@@ -10,7 +10,7 @@ cmake-build-debug/
 src/project_path.hpp
 
 ## Ignore data files
-
+save*
 *.mp4
 
 ## Ignore libraries
