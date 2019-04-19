@@ -1,3 +1,0 @@
-/home/subi/CPSC436/game/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/subi/CPSC436/game/cmake-build-debug/CMakeFiles/436d.dir
-/home/subi/CPSC436/game/cmake-build-debug/CMakeFiles/edit_cache.dir
