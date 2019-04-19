@@ -58,7 +58,7 @@ void TowerAttackSystem::checkRangeAndShootProjectiles(EntityManager& entityManag
         {
         case TowerTypeID::fire_tower:
         {
-          auto projectileSize = vec2(15.0, 15.0);
+          auto projectileSize = vec2(15.0, 15.0) * SCALING_FACTOR;
           auto projectileColor = glm::vec4(1, 1, 1, 1);
           auto projectileLeftTopPosition = firePointPosition - projectileSize * 0.5f;
           auto speed = 100.0f;
@@ -75,7 +75,7 @@ void TowerAttackSystem::checkRangeAndShootProjectiles(EntityManager& entityManag
         case TowerTypeID::light_tower:
         {
           auto projectileNumberPerShoot = std::dynamic_pointer_cast<LightTowerAttackComponent>(towerAttackComponent)->getProjectileNumberPerShoot();
-          auto projectileSize = vec2(15.0, 15.0);
+          auto projectileSize = vec2(15.0, 15.0) * SCALING_FACTOR;
           auto projectileColor = glm::vec4(1, 1, 1, 1);
           auto projectileLeftTopPosition = firePointPosition - projectileSize * 0.5f;
 

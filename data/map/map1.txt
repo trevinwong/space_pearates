@@ -1,20 +1,25 @@
-0	E	0	0	0	0	0	E	0	0	0	0	0	0	E	0	0	E	0	0	0	0	0	0	E	0	0	0	0	0	E	0
-0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
-0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
-0	0	0	0	0	0	0	0	T	T	T	T	T	T	0	0	0	0	T	T	T	T	T	T	0	0	0	0	0	0	0	0
-0	0	0	0	0	0	0	0	B	B	B	B	B	B	0	0	0	0	B	B	B	B	B	B	0	0	0	0	0	0	0	0
-0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
-0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
-T	T	T	T	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	T	T	T	T
-B	B	B	B	T	T	T	T	T	0	0	0	0	T	T	T	T	T	T	0	0	0	0	T	T	T	T	T	B	B	B	B
-0	E	0	B	B	B	B	B	B	0	0	0	0	B	B	B	B	B	B	0	0	0	0	B	B	B	B	B	B	0	E	0
-0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
-0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
-0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
-T	T	T	T	0	0	0	0	0	T	T	T	T	T	0	P	0	0	T	T	T	T	T	0	0	0	0	0	T	T	T	T
-B	B	B	B	0	0	0	0	0	B	B	B	B	B	0	0	0	0	B	B	B	B	B	0	0	0	0	0	B	B	B	B
-0	E	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	E	0
-0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
-T	T	T	T	T	T	T	T	T	T	T	T	T	0	0	H	0	0	T	T	T	T	T	T	T	T	T	T	T	T	T	T
-B	B	B	B	B	B	B	B	B	B	B	B	B	B	B	B	B	B	B	B	B	B	B	B	B	B	B	B	B	B	B	B
-B	B	B	B	B	B	B	B	B	B	B	B	B	B	B	B	B	B	B	B	B	B	B	B	B	B	B	B	B	B	B	B
+0	E	0	0	0	0	0	0	0	0	E	0	0	0	0	0	0	E	0	0	0	E	0	0	0	0	0	0	E	0	0	0	0	0	0	0	0	E	0
+0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	T	T	T	T	T	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+T	T	T	T	T	T	0	0	0	0	0	0	0	0	0	0	0	B	B	B	B	B	0	0	0	0	0	0	0	0	0	0	0	T	T	T	T	T	T
+B	B	B	B	B	B	T	T	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	T	T	B	B	B	B	B	B
+0	E	0	0	0	B	B	B	0	0	0	T	T	T	T	T	0	0	0	0	0	0	0	T	T	T	T	T	0	0	0	B	B	B	0	0	0	E	0
+0	0	0	0	0	0	0	0	0	0	0	B	B	B	B	B	0	0	0	0	0	0	0	B	B	B	B	B	0	0	0	0	0	0	0	0	0	0	0
+0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+T	T	T	T	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	T	T	T	T
+B	B	B	B	T	T	T	T	T	T	T	0	0	0	0	0	T	T	T	T	T	T	T	0	0	0	0	0	T	T	T	T	T	T	T	B	B	B	B
+0	E	0	B	B	B	B	B	B	B	B	0	0	0	0	0	B	B	B	B	B	B	B	0	0	0	0	0	B	B	B	B	B	B	B	B	0	E	0
+0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+T	T	T	T	T	T	T	0	0	0	0	T	T	T	T	T	T	0	0	P	0	0	T	T	T	T	T	T	0	0	0	0	T	T	T	T	T	T	T
+B	B	B	B	B	B	B	0	0	0	0	B	B	B	B	B	B	0	0	0	0	0	B	B	B	B	B	B	0	0	0	0	B	B	B	B	B	B	B
+0	E	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	E	0
+0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+T	T	T	T	T	T	T	T	T	T	T	T	T	T	T	T	T	T	0	H	0	0	T	T	T	T	T	T	T	T	T	T	T	T	T	T	T	T	T
+B	B	B	B	B	B	B	B	B	B	B	B	B	B	B	B	B	B	B	B	B	B	B	B	B	B	B	B	B	B	B	B	B	B	B	B	B	B	B
+B	B	B	B	B	B	B	B	B	B	B	B	B	B	B	B	B	B	B	B	B	B	B	B	B	B	B	B	B	B	B	B	B	B	B	B	B	B	B
