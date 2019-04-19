@@ -3,6 +3,7 @@
 Entity EnemyFactory::build(vec2 position, vec2 velocity, int hpMult, int spdMult, int atkMult, int type, vec2 scale)
 {
 	scale = scale * SCALING_FACTOR;
+  printVec2("scale", scale);
 	float speed = (float)spdMult / 100.f;
 	float hp = (float)hpMult / 100.f;
 	float attack = (float)atkMult / 100.f;

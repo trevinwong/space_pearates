@@ -69,7 +69,7 @@ void WavesetSystem::healBase(EntityManager &entityManager, int healAmount)
 			ParticleSystem::emitSparkle(entityManager, glm::vec2(transform->position.x + ((BASE_WIDTH / 2) + 25) * SCALING_FACTOR, transform->position.y));
 			wasHealed = true;
 		}
-		
+
 	}
 	vector<shared_ptr<Entity>> playerEntities = entityManager.getEntities(entityManager.getComponentChecker(vector<int>{ComponentType::player}));
 	for (shared_ptr<Entity> p : playerEntities) {
@@ -86,7 +86,7 @@ void WavesetSystem::healBase(EntityManager &entityManager, int healAmount)
 	{
 		Mix_PlayChannel(-1, AudioLoader::getInstance().heal, 0);
 	}
-	
+
 }
 
 void WavesetSystem::startBuildPhase()
