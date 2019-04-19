@@ -14,10 +14,18 @@ void HowToPlayScene::processInput(float dt, GLboolean keys[], GLboolean keysProc
   if (keys[GLFW_KEY_H] && !keysProcessed[GLFW_KEY_H])
   {
     if (shared_ptr<SceneManager> sceneManager_ptr = sceneManager.lock()) {
-      HelpMenu::getInstance().showHelp = false;
       sceneManager_ptr->setNextSceneToMainMenu();
     }
+    HelpMenu::getInstance().showHelp = false;
     keysProcessed[GLFW_KEY_H] = true;
+  }
+  if (keys[GLFW_KEY_ESCAPE] && !keysProcessed[GLFW_KEY_ESCAPE])
+  {
+    if (shared_ptr<SceneManager> sceneManager_ptr = sceneManager.lock()) {
+      sceneManager_ptr->setNextSceneToMainMenu();
+    }
+    HelpMenu::getInstance().showHelp = false;
+    keysProcessed[GLFW_KEY_ESCAPE] = true;
   }
 
   if (keys[GLFW_KEY_RIGHT] && !keysProcessed[GLFW_KEY_RIGHT])
@@ -41,7 +49,6 @@ void HowToPlayScene::processInput(float dt, GLboolean keys[], GLboolean keysProc
     }
     keysProcessed[GLFW_KEY_LEFT] = true;
   }
-
 }
 
 void HowToPlayScene::update(float dt) {}

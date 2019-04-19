@@ -13,6 +13,7 @@ HelpMenu::~HelpMenu()
 
 
 void HelpMenu::init() {
+  //mainmenu_help_texture = make_shared<Texture>(texture_path("mainmenu_help.png"), true);
   controls_texture = make_shared<Texture>(texture_path("helpmenu.png"), true);
   tower_help_texture = make_shared<Texture>(texture_path("towermenu.png"), true);
   program = make_shared<Program>(shader_path("sprite.vert"), shader_path("sprite.frag"));
