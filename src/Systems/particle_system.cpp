@@ -1,13 +1,12 @@
 #include "particle_system.hpp"    
 
-const int MAX_PARTICLES = 300;
+const int MAX_PARTICLES = 275;
 const float DELAY_PERIOD = 0.175f;
-const vec2 DEFAULT_PARTICLE_SCALE = vec2(50.0f, 50.0f);
+const float F_g = 9.8;  // force of gravity
+const vec2 DEFAULT_PARTICLE_SCALE = vec2(57.0f, 57.0f);
 static float nextActionTime = DELAY_PERIOD;
 static int lastUsedIndex = 0;
 vector<shared_ptr<Entity>> ParticleSystem::particleClusters;
-
-const float F_g = 9.8;  // force of gravity
 
 void ParticleSystem::initParticleSystem(EntityManager & manager) {
   for (int i = 0; i < MAX_PARTICLES; i++) {
@@ -18,7 +17,7 @@ void ParticleSystem::initParticleSystem(EntityManager & manager) {
 }
 
 void ParticleSystem::emitParticleCluster(EntityManager & manager, vec2 clusterOrigin) {
-  for (int i = 0; i < 20; i++) {
+  for (int i = 0; i < 10; i++) {
     shared_ptr<Entity> particle = particleClusters[findUnusedParticle()];
     shared_ptr<ParticleComponent> pComponent = particle->getComponent<ParticleComponent>();
     shared_ptr<TransformComponent> tComponent = particle->getComponent<TransformComponent>();
@@ -94,7 +93,7 @@ void ParticleSystem::updateParticles(EntityManager & manager, float dt) {
     float xVelocity, yVelocity = 0.0f;
 
     if (pComponent->type == ParticleType::blood) {
-      xVelocity = cos(pComponent->angle) * pComponent->speed;
+      xVelocity = (cos(pComponent->angle) * pComponent->speed) * 0.9f;
       yVelocity = (sin(pComponent->angle) * pComponent->speed) + F_g;
       pComponent->angle += dt;
       cComponent->RGBA.w -= dt / 1.5f;
