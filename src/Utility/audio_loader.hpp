@@ -25,6 +25,8 @@ public:
   Mix_Chunk *enemy_dead;
   Mix_Chunk *pause;
   Mix_Chunk *base_hit;
+  Mix_Chunk *heal;
+  Mix_Chunk *defense_phase;
   Mix_Chunk *start;
   Mix_Chunk *invalid;
   Mix_Chunk *alert;

@@ -1,6 +1,6 @@
 #include "home_factory.hpp"
 
-const vec2 BASE_SIZE = glm::vec2(250.f, 170.f);
+const vec2 BASE_SIZE = glm::vec2(BASE_WIDTH, BASE_HEIGHT);
 const glm::vec4 BASE_COLOUR = glm::vec4(0.75f, 0.75f, 0.75f, 1.0f);
 
 Entity HomeFactory::createHome(vec2 position)

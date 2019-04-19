@@ -18,6 +18,7 @@ public:
   void initParticleSystem(EntityManager & manager);
   static void emitParticleCluster(EntityManager & manager, vec2 clusterOrigin); // Create a particle cluster at position clusterOrigin
   static void emitSmoke(EntityManager & manager, vec2 clusterOrigin);
+  static void emitSparkle(EntityManager & manager, vec2 clusterOrigin);
   static void updateParticles(EntityManager & manager, float dt);
   static void resetParticles(EntityManager & manager);
 

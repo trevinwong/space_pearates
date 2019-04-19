@@ -13,7 +13,7 @@ AudioLoader::AudioLoader() {
   }
 
   // Load sound effects
-  player_hurt = Mix_LoadWAV(audio_path("player_hurt.mp3"));
+  player_hurt = Mix_LoadWAV(audio_path("dead.wav"));
   collect_coin_sound = Mix_LoadWAV(audio_path("collect_coin.wav"));
   jump = Mix_LoadWAV(audio_path("jump.wav"));
   build_tower = Mix_LoadWAV(audio_path("build.wav"));
@@ -22,11 +22,14 @@ AudioLoader::AudioLoader() {
   enemy_dead = Mix_LoadWAV(audio_path("dead.wav"));
   pause = Mix_LoadWAV(audio_path("pause.wav"));
   base_hit = Mix_LoadWAV(audio_path("base_damage.wav"));
+  heal = Mix_LoadWAV(audio_path("heal.wav"));
+  defense_phase = Mix_LoadWAV(audio_path("defense_phase.wav"));
   start = Mix_LoadWAV(audio_path("start.wav"));
   invalid = Mix_LoadWAV(audio_path("invalid.wav"));
   alert = Mix_LoadWAV(audio_path("alert.wav"));
   next = Mix_LoadWAV(audio_path("next.wav"));
   game_over = Mix_LoadWAV(audio_path("game_over.wav"));
+  
 
   // Load music
   eurobeat_full = Mix_LoadMUS(audio_path("eurobeat_full.wav"));

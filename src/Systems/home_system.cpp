@@ -11,6 +11,14 @@ void HomeSystem::handleCriticalState(shared_ptr<Entity> home) {
     sprite_component->texture = new_texture;
 }
 
+void HomeSystem::resetCriticalState(shared_ptr<Entity> home) {
+	shared_ptr<SpriteComponent> sprite_component = home->getComponent<SpriteComponent>();
+	shared_ptr<HomeComponent> home_component = home->getComponent<HomeComponent>();
+	alert_played = false;
+	shared_ptr<Texture> new_texture = home_component->default_texture;
+	sprite_component->texture = new_texture;
+}
+
 void HomeSystem::checkState(EntityManager &entityManager) {
     shared_ptr<Entity> home = entityManager.getEntities(entityManager.getComponentChecker(vector<int> {ComponentType::home}))[0];
 	shared_ptr<HealthComponent> health_component = home->getComponent<HealthComponent>();
@@ -18,6 +26,10 @@ void HomeSystem::checkState(EntityManager &entityManager) {
     if (health_component->curHP <= (health_component->maxHP * 0.5)) {
         handleCriticalState(home);     
     } 
+	else if (alert_played == true)
+	{
+		resetCriticalState(home);
+	}
 }
 
   void HomeSystem::reset(EntityManager &entityManager) {

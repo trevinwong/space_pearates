@@ -43,6 +43,7 @@ bool WavesetSystem::handleBuildAndDefensePhase(EntityManager &entityManager, flo
 			HUD::getInstance().enemy_count = wave.currEnemies;
 			if (isWaveOver(wave)) {
 				waveNo++;
+				healBase(entityManager, 30);
 				startBuildPhase();
 			} else {
 				if (timeToSpawnNextCluster(wave)) {
@@ -55,6 +56,39 @@ bool WavesetSystem::handleBuildAndDefensePhase(EntityManager &entityManager, flo
   return false;
 }
 
+void WavesetSystem::healBase(EntityManager &entityManager, int healAmount)
+{
+	bool wasHealed = false;
+	vector<shared_ptr<Entity>> homeEntities = entityManager.getEntities(entityManager.getComponentChecker(vector<int>{ComponentType::home}));
+	for (shared_ptr<Entity> h : homeEntities) {
+		shared_ptr<HealthComponent> health = h->getComponent<HealthComponent>();
+		shared_ptr<TransformComponent> transform = h->getComponent<TransformComponent>();
+		if (health->curHP != health->maxHP)
+		{
+			health->curHP += healAmount;
+			ParticleSystem::emitSparkle(entityManager, glm::vec2(transform->position.x + (BASE_WIDTH / 2) + 25, transform->position.y));
+			wasHealed = true;
+		}
+		
+	}
+	vector<shared_ptr<Entity>> playerEntities = entityManager.getEntities(entityManager.getComponentChecker(vector<int>{ComponentType::player}));
+	for (shared_ptr<Entity> p : playerEntities) {
+		shared_ptr<HealthComponent> health = p->getComponent<HealthComponent>();
+		shared_ptr<TransformComponent> transform = p->getComponent<TransformComponent>();
+		if (health->curHP != health->maxHP)
+		{
+			health->curHP += 1;
+			ParticleSystem::emitSparkle(entityManager, glm::vec2(transform->position.x + 18, transform->position.y));
+			wasHealed = true;
+		}
+	}
+	if (wasHealed)
+	{
+		Mix_PlayChannel(-1, AudioLoader::getInstance().heal, 0);
+	}
+	
+}
+
 void WavesetSystem::startBuildPhase()
 {
 	phase = BuildPhase;
@@ -63,6 +97,7 @@ void WavesetSystem::startBuildPhase()
 
 void WavesetSystem::startDefensePhase(Wave &wave)
 {
+	Mix_PlayChannel(-1, AudioLoader::getInstance().defense_phase, 0);
 	phase = DefensePhase;
 	defenseTimer = 0;
 	clusterNo = 0;

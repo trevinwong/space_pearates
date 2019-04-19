@@ -63,6 +63,22 @@ void ParticleSystem::emitSmoke(EntityManager & manager, vec2 clusterOrigin) {
   }
 }
 
+void ParticleSystem::emitSparkle(EntityManager & manager, vec2 clusterOrigin) {
+	for (int i = 0; i < 15; i++) {
+		shared_ptr<Entity> particle = particleClusters[findUnusedParticle()];
+		shared_ptr<ParticleComponent> pComponent = particle->getComponent<ParticleComponent>();
+		shared_ptr<TransformComponent> tComponent = particle->getComponent<TransformComponent>();
+		shared_ptr<SpriteComponent> sComponent = particle->getComponent<SpriteComponent>();
+		shared_ptr<ColorComponent> cComponent = particle->getComponent<ColorComponent>();
+		//shared_ptr<AnimatedComponent> aComponent = make_shared<AnimatedComponent>(5, 0.2);
+		tComponent->position = clusterOrigin;
+		tComponent->size = vec2(16.f, 16.f);
+		sComponent->texture = pComponent->healTexture;
+		pComponent->type = ParticleType::heal;
+		pComponent->active = true; // Now, particle will get rendered
+	}
+}
+
 
 void ParticleSystem::updateParticles(EntityManager & manager, float dt) {
   vector<shared_ptr<Entity>> particles = manager.getEntities(manager.getComponentChecker(vector<int> {ComponentType::particle}));
@@ -103,7 +119,13 @@ void ParticleSystem::updateParticles(EntityManager & manager, float dt) {
       yVelocity = -1.f * ((sin(pComponent->angle) * pComponent->speed) + F_g);
       pComponent->angle += (dt * 2);
       cComponent->RGBA.w -= dt / 1.5f;
-  }
+	}
+	else if (pComponent->type == ParticleType::heal) {
+		xVelocity = 1.4 * cos(pComponent->angle) * pComponent->speed;
+		yVelocity = -1.f * ((sin(pComponent->angle) * pComponent->speed) + F_g);
+		pComponent->angle += (dt * 2);
+		cComponent->RGBA.w -= dt / 1.5f;
+	}
 
     tComponent->position += vec2(xVelocity, yVelocity) * (dt * 5.f);
 

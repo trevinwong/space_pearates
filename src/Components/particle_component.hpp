@@ -11,7 +11,8 @@ namespace ParticleType {
   enum type {
       nothing,
       blood,
-      smoke
+      smoke,
+	  heal
   };
 }
 
@@ -33,6 +34,7 @@ public:
 
     shared_ptr<Texture> bloodTexture = make_shared<Texture>(texture_path("blood.png"), true);
     shared_ptr<Texture> smokeTexture = make_shared<Texture>(texture_path("smoke.png"), true);
+	shared_ptr<Texture> healTexture = make_shared<Texture>(texture_path("heal.png"), true);
 };
 
 #endif
