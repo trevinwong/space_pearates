@@ -13,7 +13,7 @@ void HowToPlayScene::processInput(float dt, GLboolean keys[], GLboolean keysProc
   // FIXME: eww lots of duplicated code with different scenes/worlds
   if (keys[GLFW_KEY_H] && !keysProcessed[GLFW_KEY_H])
   {
-    if(shared_ptr<SceneManager> sceneManager_ptr = sceneManager.lock()){
+    if (shared_ptr<SceneManager> sceneManager_ptr = sceneManager.lock()) {
       HelpMenu::getInstance().showHelp = false;
       sceneManager_ptr->setNextSceneToMainMenu();
     }

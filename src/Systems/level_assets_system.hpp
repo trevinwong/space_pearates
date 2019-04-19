@@ -13,7 +13,7 @@
 class LevelAssetsSystem
 {
 public:
-// Singleton design pattern
+  // Singleton design pattern
   LevelAssetsSystem(LevelAssetsSystem const&) = delete;
   void operator=(LevelAssetsSystem const&) = delete;
   static LevelAssetsSystem& getInstance()
@@ -22,19 +22,19 @@ public:
     return instance;
   }
 
-  int curr_level = 1; 
-  
+  int curr_level = 1;
+
   void set_level(int level);
   void set_resources(EntityManager & manager);
   string getBgImageFileName(int level);
 
 private:
-    LevelAssetsSystem();
-    shared_ptr<Texture> tile_level_2; 
-    shared_ptr<Texture> tile_level_1;
-    shared_ptr<Texture> tile_level_3;
-    shared_ptr<Texture> tile_level_4;
-    shared_ptr<Texture> tile_level_5;
+  LevelAssetsSystem();
+  shared_ptr<Texture> tile_level_2;
+  shared_ptr<Texture> tile_level_1;
+  shared_ptr<Texture> tile_level_3;
+  shared_ptr<Texture> tile_level_4;
+  shared_ptr<Texture> tile_level_5;
 };
 
 #endif
