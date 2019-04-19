@@ -98,7 +98,7 @@ void printVec3(string name, vec3 vec);
 #define BASE_WIDTH 250.f
 #define BASE_HEIGHT 170.f
 
-#define SCALING_FACTOR 0.75f
+#define SCALING_FACTOR 0.80f
 
 #define GRAVITY_VELOCITY 550.0f
 #define GRAVITY_ACCEL 800.0f
