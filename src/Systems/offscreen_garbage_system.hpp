@@ -6,6 +6,8 @@
 #include "entity.hpp"
 #include "entity_manager.hpp"
 #include "../Components/transform_component.hpp"
+#include "../Components/spline_component.hpp"
+
 
 /*
   Destory offscreen entities

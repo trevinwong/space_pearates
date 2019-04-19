@@ -5,6 +5,11 @@ void CollisionSystem::setScreenInfo(vec2 _screen)
   screen = _screen;
 }
 
+bool CollisionSystem::checkIfCellIndicesAreInBound(pair<int, int> cell, int num_cells_in_row, int num_cells_in_col)
+{
+    return (cell.first >= 0 && cell.first < num_cells_in_row && cell.second >= 0 && cell.second < num_cells_in_col);
+}
+
 EntityGrid CollisionSystem::preprocessEntitiesIntoGrid(vector<shared_ptr<Entity>> entities)
 {
   int num_cells_in_row = screen.x / MIN_CELL_SIZE;
@@ -13,19 +18,38 @@ EntityGrid CollisionSystem::preprocessEntitiesIntoGrid(vector<shared_ptr<Entity>
   float cell_height = screen.y / num_cells_in_col;
   EntityGrid grid(num_cells_in_row, vector<vector<shared_ptr<Entity>>>(num_cells_in_col, vector<shared_ptr<Entity>>{}));
 
-  for (int x = 0; x < num_cells_in_row; x++) {
-    for (int y = 0; y < num_cells_in_col; y++) {
-      vec2 cell_pos = { x * cell_width, y * cell_height };
-      vec2 cell_size = { cell_width, cell_height };
+  for (shared_ptr<Entity> e : entities) {
+      shared_ptr<TransformComponent> transform = e->getComponent<TransformComponent>();
+      vec2 top_left = transform->position;
+      vec2 top_right = {transform->position.x + transform->size.x, transform->position.y};
+      vec2 bottom_left = {transform->position.x, transform->position.y + transform->size.y};
+      vec2 bottom_right = {transform->position.x + transform->position.x, transform->position.y + transform->size.y};
 
-      for (shared_ptr<Entity> e : entities) {
-				shared_ptr<CollisionComponent> collision = e->getComponent<CollisionComponent>();
-        if (Math::isCollidingWith(cell_pos, cell_size, collision->position, collision->size)) {
-          grid[x][y].push_back(e);
-        }
+      pair<int, int> top_left_cell = make_pair((int) floor(top_left.x / MIN_CELL_SIZE), (int) floor(top_left.y / MIN_CELL_SIZE));
+      pair<int, int> top_right_cell = make_pair((int) floor(top_right.x / MIN_CELL_SIZE), (int) floor(top_right.y / MIN_CELL_SIZE));
+      pair<int, int> bottom_left_cell = make_pair((int) floor(bottom_left.x / MIN_CELL_SIZE), (int) floor(bottom_left.y / MIN_CELL_SIZE));
+      pair<int, int> bottom_right_cell = make_pair((int) floor(bottom_right.x / MIN_CELL_SIZE), (int) floor(bottom_right.y / MIN_CELL_SIZE));
+
+      if (checkIfCellIndicesAreInBound(top_left_cell, num_cells_in_row, num_cells_in_col)) {
+          grid[top_left_cell.first][top_left_cell.second].push_back(e);
       }
-    }
+      if (top_right_cell.first != top_left_cell.first) {
+          if (checkIfCellIndicesAreInBound(top_right_cell, num_cells_in_row, num_cells_in_col)) {
+              grid[top_right_cell.first][top_right_cell.second].push_back(e); // also in the cell next to it
+          }
+      }
+      if (bottom_left_cell.second != top_left_cell.second) {
+          if (checkIfCellIndicesAreInBound(bottom_left_cell, num_cells_in_row, num_cells_in_col)) {
+              grid[bottom_left_cell.first][bottom_left_cell.second].push_back(e); // also in the cell below it
+          }
+      }
+      if (bottom_right_cell.first != top_left_cell.first && bottom_right_cell.second != top_left_cell.second) {
+          if (checkIfCellIndicesAreInBound(bottom_right_cell, num_cells_in_row, num_cells_in_col)) {
+              grid[bottom_right_cell.first][bottom_right_cell.second].push_back(e);
+          }
+      }
   }
+
   return grid;
 }
 
@@ -33,6 +57,7 @@ void CollisionSystem::checkCollisions(EntityManager &entityManager)
 {
   vector<shared_ptr<Entity>> collidables = entityManager.getEntities(
     entityManager.getComponentChecker(vector<int> {ComponentType::collision}));
+
   EntityGrid grid = preprocessEntitiesIntoGrid(collidables);
 	unordered_map<string, bool> collision_cache;
 

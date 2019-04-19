@@ -21,6 +21,8 @@ void OffscreenGarbageSystem::destroyOffscreen(EntityManager & entityManager, vec
 {
   for (shared_ptr<Entity> targetEntity : entities) {
     shared_ptr<TransformComponent> transformComponent = targetEntity->getComponent<TransformComponent>();
+    shared_ptr<SplineComponent> splineComponent = targetEntity->getComponent<SplineComponent>();
+    if (splineComponent != nullptr) continue;
     if (transformComponent == nullptr) continue;
 
     auto leftTopPositon = transformComponent->position;
