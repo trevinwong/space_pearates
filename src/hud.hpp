@@ -20,9 +20,10 @@ public:
   double play_time;
   int resource_count;
   int enemy_count;
-	bool you_win;
+  int wave_count;
+  bool you_win;
   bool game_over;
-	bool build_phase;
+  bool build_phase;
 
   string current_music_name;
   Timer current_music_fade;

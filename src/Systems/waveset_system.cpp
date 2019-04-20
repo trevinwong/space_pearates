@@ -43,6 +43,7 @@ bool WavesetSystem::handleBuildAndDefensePhase(EntityManager &entityManager, flo
 			HUD::getInstance().enemy_count = wave.currEnemies;
 			if (isWaveOver(wave)) {
 				waveNo++;
+        HUD::getInstance().wave_count++;
 				healBase(entityManager, 30);
 				startBuildPhase();
 			} else {

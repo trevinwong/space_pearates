@@ -238,6 +238,7 @@ void TutorialScene::tutorialUpdate(float dt)
       entityManager.getEntities(entityManager.getComponentChecker(vector<int>{ComponentType::attack_tower}));
     if (towers.size() > 0) {
       sampleEnemy->getComponent<MovementComponent>()->velocity = vec2(-40.0f, 0.0f);
+      HUD::getInstance().build_phase = false;
 
       currentStep = TutorialStep::the_enemy_is_moving;
       changeTutorialIndicatorImage(tutorialIndicator, "the_enemy_is_moving.png");
