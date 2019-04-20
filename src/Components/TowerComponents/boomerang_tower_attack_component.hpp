@@ -4,6 +4,7 @@
 #include "Utility/utility.hpp"
 #include "../base_component.hpp"
 #include "tower_attack_component.hpp"
+#include <DataLoaders/tower_data_loader.hpp>
 
 class BoomerangTowerAttackComponent : public TowerAttackComponent {
 public:
@@ -11,6 +12,7 @@ public:
 
   virtual void setToLevel(int level);
   virtual int getTowerType() { return towerTypeID; };
+    virtual shared_ptr<Texture> getLevelTexture(int level);
 
 private:
   static const int towerTypeID = TowerTypeID::boomerang_tower;

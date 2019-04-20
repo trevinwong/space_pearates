@@ -27,20 +27,6 @@ bool TowerAttackComponent::isReadyForNextFire()
   return elapsedTimeToNextFire <= 0.0;
 }
 
-shared_ptr<Texture> TowerAttackComponent::getLevelTexture(int level)
-{
-	if (level < towerTextures.size())
-	{
-		return towerTextures[level];
-	}
-	else
-	{
-		//Safeguard in-case texture is not found.
-		return towerTextures[0];
-	}
-	
-}
-
 float TowerAttackComponent::getAttackRange()
 {
   return attackRange;
