@@ -3,7 +3,7 @@
 Entity PlayerFactory::build(vec2 translation)
 {
   shared_ptr<Program> program = make_shared<Program>(shader_path("sprite.vert"), shader_path("sprite.frag"));
-  shared_ptr<Texture> texture = make_shared<Texture>(texture_path("player.png"), true);
+  shared_ptr<Texture> texture = make_shared<Texture>(texture_path("player-idle0.png"), true);
 
   shared_ptr<SpriteComponent> sprite = make_shared<SpriteComponent>(program, texture);
   shared_ptr<ColorComponent> color = make_shared<ColorComponent>(glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
