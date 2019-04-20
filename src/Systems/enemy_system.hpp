@@ -21,8 +21,6 @@ public:
   void moveAstar(float dt, EntityManager& entityManager, shared_ptr<Entity> home, shared_ptr<Entity> e);
   void moveGhost(float dt, EntityManager& entityManager, shared_ptr<Entity> home, shared_ptr<Entity> e);
 
-  // void moveRandom(float dt, shared_ptr<Entity> home, shared_ptr<Entity> enemy);
-
 private:
   vector<vector<char>> map;
   int TILE_SIZE_X;
