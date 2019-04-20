@@ -89,8 +89,7 @@ void ParticleSystem::updateParticles(EntityManager & manager, float dt) {
 
   // Emit smoke when base reaches 1/2 health
   if (nextActionTime < 0 && (hComponent->curHP < (0.5 * hComponent->maxHP))) {
-	  emitSmoke(manager, vec2(htComponent->position.x + (htComponent->size.x / 2) + 15 * SCALING_FACTOR, htComponent->position.y));//vec2(643.f, 597.f) * SCALING_FACTOR);
-	//vec2(htComponent->position.x + (htComponent->size.x / 2) + 25 * SCALING_FACTOR, htComponent->position.y)
+	emitSmoke(manager, vec2(htComponent->position.x + (htComponent->size.x / 2) + 15 * SCALING_FACTOR, htComponent->position.y));
     nextActionTime = DELAY_PERIOD;
   } else {
     nextActionTime -= dt;
