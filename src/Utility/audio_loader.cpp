@@ -1,6 +1,7 @@
 #include "Utility/audio_loader.hpp"
 
 AudioLoader::AudioLoader() {
+  srand(time(NULL));
   // Loading music and sounds
   if (SDL_Init(SDL_INIT_AUDIO) < 0)
   {
@@ -13,12 +14,13 @@ AudioLoader::AudioLoader() {
   }
 
   // Load sound effects
-  player_hurt = Mix_LoadWAV(audio_path("dead.wav"));
+  player_hurt = Mix_LoadWAV(audio_path("player_hurt.wav"));
   collect_coin_sound = Mix_LoadWAV(audio_path("collect_coin.wav"));
   jump = Mix_LoadWAV(audio_path("jump.wav"));
   build_tower = Mix_LoadWAV(audio_path("build.wav"));
   sell_tower = Mix_LoadWAV(audio_path("sell.wav"));
   upgrade_tower = Mix_LoadWAV(audio_path("upgrade.wav"));
+  max_upgrade_tower = Mix_LoadWAV(audio_path("upgrade2.wav"));
   enemy_dead = Mix_LoadWAV(audio_path("dead.wav"));
   pause = Mix_LoadWAV(audio_path("pause.wav"));
   base_hit = Mix_LoadWAV(audio_path("base_damage.wav"));
@@ -37,11 +39,23 @@ AudioLoader::AudioLoader() {
 
   mainmenu_bgm = Mix_LoadMUS(audio_path("arcade_space.ogg"));
   music_list.push_back(make_pair("Back to Basics", Mix_LoadMUS(audio_path("back_to_basics.ogg"))));
+  music_list.push_back(make_pair("Eurobeat Full", Mix_LoadMUS(audio_path("eurobeat_full.ogg"))));
+  music_list.push_back(make_pair("Hip Shop", Mix_LoadMUS(audio_path("hip_shop.ogg"))));
   music_list.push_back(make_pair("Electrozap", Mix_LoadMUS(audio_path("electrozap.ogg"))));
   music_list.push_back(make_pair("Surface Tension", Mix_LoadMUS(audio_path("surface_tension.ogg"))));
   music_list.push_back(make_pair("Chaoz Fantasy", Mix_LoadMUS(audio_path("chaoz_fantasy.ogg"))));
   music_list.push_back(make_pair("Galactic Journey", Mix_LoadMUS(audio_path("galactic_journey.ogg"))));
   music_list.push_back(make_pair("Paradise on E", Mix_LoadMUS(audio_path("paradise_on_e.ogg"))));
+  music_list.push_back(make_pair("Gray Hued", Mix_LoadMUS(audio_path("gray_hued.ogg"))));
+  music_list.push_back(make_pair("Up To You", Mix_LoadMUS(audio_path("up_to_you.ogg"))));
+  music_list.push_back(make_pair("The Awaking", Mix_LoadMUS(audio_path("the_awaking.ogg"))));
+  music_list.push_back(make_pair("Bullet Hell Monday Black", Mix_LoadMUS(audio_path("bullet_hell_monday_black.ogg"))));
+  music_list.push_back(make_pair("Burnt Field", Mix_LoadMUS(audio_path("burnt_field.ogg"))));
+  music_list.push_back(make_pair("Decisive Battle", Mix_LoadMUS(audio_path("decisive_battle.ogg"))));
+  music_list.push_back(make_pair("Battle Above the Clouds", Mix_LoadMUS(audio_path("battle_above_the_clouds.ogg"))));
+  music_list.push_back(make_pair("On the Edge", Mix_LoadMUS(audio_path("on_the_edge.ogg"))));
+  music_list.push_back(make_pair("Rumbling HWY", Mix_LoadMUS(audio_path("rumbling_hwy.ogg"))));
+  music_list.push_back(make_pair("Blue Sky", Mix_LoadMUS(audio_path("blue_sky.ogg"))));
 
 }
 
@@ -66,6 +80,11 @@ void AudioLoader::playGameMusic()
 void AudioLoader::reset()
 {
   playGameMusic();
+}
+
+void AudioLoader::randomizeBgm() {
+	currentBGMIndex = rand() % music_list.size();
+	playGameMusic();
 }
 
 void AudioLoader::changeBgm() {

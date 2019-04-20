@@ -51,6 +51,7 @@ void EnemySystem::moveBasic(float dt, EntityManager& entityManager, shared_ptr<E
     WavesetSystem::getInstance().decrementEnemies(1, entityManager);
     if (healthComponent) {
       healthComponent->curHP = healthComponent->curHP - enemyComponent->totalAtk  < 0 ? 0 : healthComponent->curHP - enemyComponent->totalAtk;
+	  Mix_PlayChannel(-1, AudioLoader::getInstance().base_hit, 0);
        if (healthComponent->curHP <= 0) {
           HUD::getInstance().game_over = true;
        }
@@ -105,6 +106,7 @@ void EnemySystem::moveShell (float dt, EntityManager& entityManager, shared_ptr<
     WavesetSystem::getInstance().decrementEnemies(1, entityManager);
     if (healthComponent) {
       healthComponent->curHP = healthComponent->curHP - 20 < 0 ? 0 : healthComponent->curHP - 20;
+	  Mix_PlayChannel(-1, AudioLoader::getInstance().base_hit, 0);
        if (healthComponent->curHP <= 0) {
           HUD::getInstance().game_over = true;
        }
