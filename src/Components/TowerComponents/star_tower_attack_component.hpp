@@ -4,6 +4,7 @@
 #include "Utility/utility.hpp"
 #include "../base_component.hpp"
 #include "tower_attack_component.hpp"
+#include <DataLoaders/tower_data_loader.hpp>
 
 class StarTowerAttackComponent : public TowerAttackComponent {
 public:
@@ -15,6 +16,8 @@ public:
   vec2 getProjectileSize();
   vec2 projectileSize;
   vector<float> sizePerLvl;
+    virtual shared_ptr<Texture> getLevelTexture(int level);
+
 
 private:
   static const int towerTypeID = TowerTypeID::star_tower;

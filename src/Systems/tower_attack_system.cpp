@@ -61,11 +61,11 @@ void TowerAttackSystem::checkRangeAndShootProjectiles(EntityManager& entityManag
           auto projectileSize = vec2(15.0, 15.0) * SCALING_FACTOR;
           auto projectileColor = glm::vec4(1, 1, 1, 1);
           auto projectileLeftTopPosition = firePointPosition - projectileSize * 0.5f;
-          auto speed = 100.0f;
+          auto speed = 300.0f;
           auto velocityDirection = glm::normalize(enemyCenterPosition - firePointPosition);
           auto attackPower = towerAttackComponent->getProjectileAttackPower();
           Entity projectileEntity = ProjectileEntityFactory::createAimProjectile(
-            projectileSize, projectileColor, projectileLeftTopPosition, speed, velocityDirection, attackPower);
+            projectileSize, projectileColor, projectileLeftTopPosition, speed, velocityDirection, attackPower, texture_path("fire_projectile.png"));
 
           entityManager.addEntity(projectileEntity);
           // fired, wait until next time to fire
@@ -95,7 +95,7 @@ void TowerAttackSystem::checkRangeAndShootProjectiles(EntityManager& entityManag
           auto projectileSize = std::dynamic_pointer_cast<StarTowerAttackComponent>(towerAttackComponent)->getProjectileSize();
           auto projectileColor = glm::vec4(1, 1, 1, 1);
           auto projectileLeftTopPosition = firePointPosition - projectileSize * 0.5f;
-          vec2 velocity = glm::normalize(enemyCenterPosition - firePointPosition) * 400.0f;
+          vec2 velocity = glm::normalize(enemyCenterPosition - firePointPosition) * 500.0f;
           vec2 acc = vec2(0, 0);
           vec2 maxVelocity = vec2(1000.0f, 1000.0f);
           vec2 maxAcc = vec2(0.0f, 1000.0f);

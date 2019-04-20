@@ -2,6 +2,7 @@
 #define TOWER_ATTACK_COMPONENT_H
 
 #include "Utility/utility.hpp"
+#include "Utility/texture.hpp"
 #include "../base_component.hpp"
 
 namespace TowerTypeID {
@@ -46,7 +47,9 @@ class TowerAttackComponent : public BaseComponent {
     virtual int getTypeID() const { return typeID; };
     virtual int getTowerType() = 0;
     virtual void setToLevel(int level) = 0;
-  protected:
+    virtual shared_ptr<Texture> getLevelTexture(int level) = 0;
+
+protected:
     // this class is an abstract class, the constructor should not be invoked as a public function
     TowerAttackComponent(vec2 _relativeFirePosition, vector<int> _attackPerLvl, vector<float> _rangePerLvl, vector<float> _fireRatePerLvl);
     // circle radius

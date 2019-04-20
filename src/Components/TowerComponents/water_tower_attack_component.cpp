@@ -7,6 +7,11 @@ WaterTowerAttackComponent::WaterTowerAttackComponent(vec2 _relativeFirePosition,
   setToLevel(0);
 }
 
+shared_ptr<Texture> WaterTowerAttackComponent::getLevelTexture(int level) {
+  shared_ptr<WaterTowerData> data = std::dynamic_pointer_cast<WaterTowerData>(TowerDataLoader::allTowerData[BUILD_WATER_TOWER]);
+  return data->towerTextures[level];
+}
+
 void WaterTowerAttackComponent::setToLevel(int level)
 {
   attackRange = rangePerLvl[level];

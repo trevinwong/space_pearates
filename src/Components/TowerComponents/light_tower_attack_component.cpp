@@ -7,6 +7,11 @@ LightTowerAttackComponent::LightTowerAttackComponent(vec2 _relativeFirePosition,
   setToLevel(0);
 }
 
+shared_ptr<Texture> LightTowerAttackComponent::getLevelTexture(int level) {
+  shared_ptr<LightTowerData> data = std::dynamic_pointer_cast<LightTowerData>(TowerDataLoader::allTowerData[BUILD_LIGHT_TOWER]);
+  return data->towerTextures[level];
+}
+
 void LightTowerAttackComponent::setToLevel(int level)
 {
   attackRange = rangePerLvl[level];

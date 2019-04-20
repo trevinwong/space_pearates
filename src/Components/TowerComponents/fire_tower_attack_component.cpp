@@ -6,6 +6,11 @@ FireTowerAttackComponent::FireTowerAttackComponent(vec2 _relativeFirePosition, v
   setToLevel(0);
 }
 
+shared_ptr<Texture> FireTowerAttackComponent::getLevelTexture(int level) {
+  shared_ptr<FireTowerData> data = std::dynamic_pointer_cast<FireTowerData>(TowerDataLoader::allTowerData[BUILD_FIRE_TOWER]);
+  return data->towerTextures[level];
+}
+
 void FireTowerAttackComponent::setToLevel(int level)
 {
   attackRange = rangePerLvl[level];

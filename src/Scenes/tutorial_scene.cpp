@@ -89,7 +89,6 @@ void TutorialScene::update(float dt)
 
   physicsSystem.moveEntities(entityManager, dt);
   physicsSystem.rotateEntities(entityManager, dt);
-  meshSystem.updateMeshCollision(entityManager);
   interpolationSystem.update(entityManager, dt);
   collisionSystem.checkCollisions(entityManager);
   spriteSystem.updateElapsedTime(dt);
@@ -121,7 +120,6 @@ void TutorialScene::draw()
   // Background will render first
   backgroundSystem.render(entityManager, projection);
   spriteSystem.drawSprites(entityManager, projection);
-  meshSystem.drawMeshes(entityManager, projection);
   // so far everything rendered into buffer
   // add effects to the buffer and render this buffer to screen
   renderToTextureSystem.drawWaterEffect(entityManager, projection);

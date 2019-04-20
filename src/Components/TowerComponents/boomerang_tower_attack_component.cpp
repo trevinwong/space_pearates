@@ -6,6 +6,11 @@ BoomerangTowerAttackComponent::BoomerangTowerAttackComponent(vec2 _relativeFireP
   setToLevel(0);
 }
 
+shared_ptr<Texture> BoomerangTowerAttackComponent::getLevelTexture(int level) {
+  shared_ptr<BoomerangTowerData> data = std::dynamic_pointer_cast<BoomerangTowerData>(TowerDataLoader::allTowerData[BUILD_BOOMERANG_TOWER]);
+  return data->towerTextures[level];
+}
+
 void BoomerangTowerAttackComponent::setToLevel(int level)
 {
   attackRange = rangePerLvl[level];

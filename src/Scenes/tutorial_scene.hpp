@@ -72,7 +72,6 @@ private:
   BillboardSystem billboardSystem;
   EnemySystem enemySystem;
   PlayerSystem playerSystem;
-  MeshSystem meshSystem;
   TowerRangeDisplaySystem towerRangeDisplaySystem;
   TowerAttackSystem towerAttackSystem;
   TowerUiSystem towerUiSystem;

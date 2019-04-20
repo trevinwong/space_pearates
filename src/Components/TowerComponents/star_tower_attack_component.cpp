@@ -7,6 +7,11 @@ StarTowerAttackComponent::StarTowerAttackComponent(vec2 _relativeFirePosition, v
   setToLevel(0);
 }
 
+shared_ptr<Texture> StarTowerAttackComponent::getLevelTexture(int level) {
+  shared_ptr<StarTowerData> data = std::dynamic_pointer_cast<StarTowerData>(TowerDataLoader::allTowerData[BUILD_STAR_TOWER]);
+  return data->towerTextures[level];
+}
+
 void StarTowerAttackComponent::setToLevel(int level)
 {
   attackRange = rangePerLvl[level];

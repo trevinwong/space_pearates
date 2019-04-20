@@ -1,6 +1,7 @@
 #ifndef TOWER_STRUCTS_H
 #define TOWER_STRUCTS_H
 
+#include <Utility/texture.hpp>
 #include "Utility/utility.hpp"
 
 class TowerData {
@@ -9,7 +10,8 @@ class TowerData {
 		int buildCost;
 		int maxLvl;
 		vector<int> upgradeCostsPerLvl; // you start at level 0
-    TowerData();
+	vector<shared_ptr<Texture>> towerTextures;
+	TowerData();
     virtual ~TowerData() = default;
 		TowerData(vec2 _relativeFirePosition, int buildCost, int maxLvl, vector<int> upgradeCostsPerLvl);
 };

@@ -104,10 +104,17 @@ void EnemySystem::moveAstar(float dt, EntityManager& entityManager, shared_ptr<E
   vel.y = abs(vel.y) < eps ? movementComponent->maxVelocity.y : vel.y;
   vel.x = abs(vel.x) < eps ? movementComponent->maxVelocity.x : vel.x;
 
+  for (auto e: enemies) {
+    auto epos = e->getComponent<TransformComponent>()->position;
+    if (abs(epos.x - pos.x) < 2*TILE_SIZE_X && abs(epos.y - pos.y) < 2*TILE_SIZE_Y)
+      epos.x - pos.x < 0 ? lscore ++ : rscore++;
+  }
+  if (lscore + rscore < 5) return moveBasic(dt, entityManager, home, e);
+
   for (auto t: towers) {
     auto tpos = t->getComponent<TransformComponent>()->position;
-    if (abs(tpos.x - pos.x) < 2*TILE_SIZE_X && abs(tpos.y - pos.y) < 2*TILE_SIZE_X)
-      tpos.x - pos.x < 0 ? lscore += 3 : rscore+=3;
+    if (abs(tpos.x - pos.x) < 2*TILE_SIZE_X && abs(tpos.y - pos.y) < 2*TILE_SIZE_Y)
+      tpos.x - pos.x < 0 ? lscore -= 3 : rscore-=3;
   }
 
   if (map[yind][xind] == MAP_BASE_POSITION) {
@@ -128,8 +135,6 @@ void EnemySystem::moveAstar(float dt, EntityManager& entityManager, shared_ptr<E
       flag = true;
 
   if (flag) {
-    // int dir = rand() % 2;
-    // vel.x = abs(vel.x) < eps ? arr[dir]*movementComponent->maxVelocity.x : vel.x;
     vel.y = 0;
   }
   // check if directly above base - path straight down if so
