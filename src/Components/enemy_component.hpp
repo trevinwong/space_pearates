@@ -10,7 +10,8 @@ public:
 	int worth;
 	int baseAtk = 20;
 	int totalAtk;
-	
+  bool ground = false;
+
   EnemyComponent(int _worth, float _atkMult);
   ~EnemyComponent();
   static const int typeID = ComponentType::enemy;

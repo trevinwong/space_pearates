@@ -1,14 +1,18 @@
 #include "enemy_factory.hpp"
 
-Entity EnemyFactory::build(vec2 position, vec2 velocity, int hpMult, int spdMult, int atkMult, vec2 scale)
+Entity EnemyFactory::build(vec2 position, vec2 velocity, int hpMult, int spdMult, int atkMult, int type, vec2 scale)
 {
+	scale = scale * SCALING_FACTOR;
 	float speed = (float)spdMult / 100.f;
 	float hp = (float)hpMult / 100.f;
 	float attack = (float)atkMult / 100.f;
   shared_ptr<Program> program = make_shared<Program>(shader_path("sprite.vert"), shader_path("sprite.frag"));
-  shared_ptr<Texture> texture = make_shared<Texture>(texture_path("enemy0.png"), true);
-  shared_ptr<SpriteComponent> sprite = make_shared<SpriteComponent>(program, texture);
+  shared_ptr<Texture> texture0 = make_shared<Texture>(texture_path("enemy0.png"), true);
+  shared_ptr<Texture> texture1 = make_shared<Texture>(texture_path("turtle.png"), true);
+  shared_ptr<Texture> texture2 = make_shared<Texture>(texture_path("ship.png"), true);
+  shared_ptr<SpriteComponent> sprite = make_shared<SpriteComponent>(program, type == 0 ? texture0 : type == 1 ? texture1 : texture2);
   shared_ptr<TransformComponent> transform = make_shared<TransformComponent>(position, scale, 0.0f);
+  shared_ptr<EnemyPathComponent> pathfind = make_shared<EnemyPathComponent>(type);
   shared_ptr<CollisionComponent> collision = make_shared<CollisionComponent>(position, scale, 0.0f);
   shared_ptr<MovementComponent> move = make_shared<MovementComponent>(speed * velocity, vec2(0.0, 0.0), speed * vec2(40.0f, 40.0f), vec2(0.f, 0.f));
   shared_ptr<ColorComponent> colour = make_shared<ColorComponent>(glm::vec4(0.0f, 1.0f, 0.6f, 1.0f));
@@ -26,5 +30,7 @@ Entity EnemyFactory::build(vec2 position, vec2 velocity, int hpMult, int spdMult
   e.setComponent<WaterTowerFactorComponent>(waterTowerFactor);
   e.setComponent<HealthComponent>(health);
   e.setComponent<EnemyComponent>(enemy);
+  e.setComponent<EnemyPathComponent>(pathfind);
+
   return e;
 }

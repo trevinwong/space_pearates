@@ -31,7 +31,7 @@ World::World(std::weak_ptr<SceneManager> _sceneManager, int _level) : AbstractSc
   enemySystem.setMap(entityManager);
   entityManager.addEntity(WavesetManagerFactory::build(waveset_path("waveset0.txt")));
 
-  // Load assets 
+  // Load assets
   LevelAssetsSystem::getInstance().set_level(level);
   LevelAssetsSystem::getInstance().set_resources(entityManager);
 
@@ -157,14 +157,13 @@ void World::update(float dt)
   if (hasWon && level < 5) {
     // Go to next level if not at last level
     auto sceneManager_spt = sceneManager.lock();
-    if (level >= sceneManager_spt->levelReached) {
-      sceneManager_spt->levelReached = level + 1;
+    if (level >= sceneManager_spt->getLevelReached()) {
+      sceneManager_spt->incrementLevelReached();
     }
     LevelAssetsSystem::getInstance().set_level(level + 1);
     sceneManager_spt->setNextSceneToInGame(level + 1);
     return;
   }
-
   // Note: Be careful, order may matter in some cases for systems
   HUD::getInstance().update(dt);
 

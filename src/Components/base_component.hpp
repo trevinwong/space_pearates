@@ -11,6 +11,8 @@ namespace ComponentType {
     water_tower_factor,
     map,
     enemy,
+    enemy_spawn,
+    enemy_path,
     background_sprite,
     player,
     wallet,

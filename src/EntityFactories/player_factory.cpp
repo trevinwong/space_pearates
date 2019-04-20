@@ -17,8 +17,8 @@ Entity PlayerFactory::build(vec2 translation)
 	shared_ptr<Program> billboardProgram = make_shared<Program>(shader_path("billboard.vert"), shader_path("billboard.frag"));
   shared_ptr<HealthComponent> health = make_shared<HealthComponent>(billboardProgram, PlayerDataLoader::playerData.health);
   GLfloat rotation = 0.0f;
-  shared_ptr<TransformComponent> transform = make_shared<TransformComponent>(translation, PlayerDataLoader::playerData.size, rotation);
-  shared_ptr<CollisionComponent> collision = make_shared<CollisionComponent>(translation, PlayerDataLoader::playerData.size, rotation);
+  shared_ptr<TransformComponent> transform = make_shared<TransformComponent>(translation, PlayerDataLoader::playerData.size  * SCALING_FACTOR, rotation);
+  shared_ptr<CollisionComponent> collision = make_shared<CollisionComponent>(translation, PlayerDataLoader::playerData.size  * SCALING_FACTOR, rotation);
 
   shared_ptr<WalletComponent> wallet = make_shared<WalletComponent>(2);
 

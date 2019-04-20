@@ -2,6 +2,7 @@
 
 Entity ResourceFactory::build(vec2 position, float scale)
 {
+	scale = scale * SCALING_FACTOR;
   shared_ptr<Program> program = make_shared<Program>(shader_path("sprite.vert"), shader_path("sprite.frag"));
   shared_ptr<Texture> texture = make_shared<Texture>(texture_path("coin_rotating.png"), true);
 

@@ -55,7 +55,7 @@ public:
     vec2 startPosition,
     vec2 enemyPosition,
     int attackPower,
-    vec2 size = vec2(25.0, 25.0),
+    vec2 size = vec2(25.0, 25.0) * SCALING_FACTOR,
     glm::vec4 filterColor = glm::vec4(1, 1, 1, 1)
   );
 

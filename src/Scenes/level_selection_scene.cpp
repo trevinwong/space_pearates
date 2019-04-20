@@ -6,7 +6,7 @@ LevelSelectionScene::LevelSelectionScene(std::weak_ptr<SceneManager> _sceneManag
   Entity bg = BackgroundEntityFactory::createBackgroundEntity("level_selection_bg.jpg", false, vec2(SCREEN_WIDTH, SCREEN_HEIGHT));
   entityManager.addEntity(bg);
 
-  Entity menuUi = MenuUiFactory::createLevelSelectionUi(_sceneManager.lock()->levelReached);
+  Entity menuUi = MenuUiFactory::createLevelSelectionUi(_sceneManager.lock()->getLevelReached());
   entityManager.addEntity(menuUi);
 }
 

@@ -22,16 +22,16 @@ bool WavesetSystem::handleBuildAndDefensePhase(EntityManager &entityManager, flo
 		shared_ptr<WavesetComponent> waveset_manager = e->getComponent<WavesetComponent>();
 		Waveset &waveset = waveset_manager->waveset;
 
-		if (isWavesetOver(waveset)) {	
+		if (isWavesetOver(waveset)) {
       return true;
 		}
-		
+
 		Wave &wave = waveset.waves[waveNo];
 		int hp = waveset.hpMult[waveNo];
 		int spd = waveset.spdMult[waveNo];
 		int atk = waveset.atkMult[waveNo];
 
-		if (phase == BuildPhase) {				
+		if (phase == BuildPhase) {
 			buildTimer += dt;
 			HUD::getInstance().build_phase = true;
 			if (buildTimer > wave.buildPhaseTime) startDefensePhase(wave);
@@ -49,7 +49,7 @@ bool WavesetSystem::handleBuildAndDefensePhase(EntityManager &entityManager, flo
 				if (timeToSpawnNextCluster(wave)) {
 					spawnCluster(entityManager, wave.clusters[clusterNo], hp, spd, atk);
 					clusterNo++;
-				}	
+				}
 			}
 		}
 	}
@@ -66,10 +66,10 @@ void WavesetSystem::healBase(EntityManager &entityManager, int healAmount)
 		if (health->curHP != health->maxHP)
 		{
 			health->curHP += healAmount;
-			ParticleSystem::emitSparkle(entityManager, glm::vec2(transform->position.x + (BASE_WIDTH / 2) + 25, transform->position.y));
+			ParticleSystem::emitSparkle(entityManager, glm::vec2(transform->position.x + ((BASE_WIDTH / 2) + 25) * SCALING_FACTOR, transform->position.y));
 			wasHealed = true;
 		}
-		
+
 	}
 	vector<shared_ptr<Entity>> playerEntities = entityManager.getEntities(entityManager.getComponentChecker(vector<int>{ComponentType::player}));
 	for (shared_ptr<Entity> p : playerEntities) {
@@ -78,7 +78,7 @@ void WavesetSystem::healBase(EntityManager &entityManager, int healAmount)
 		if (health->curHP != health->maxHP)
 		{
 			health->curHP += 1;
-			ParticleSystem::emitSparkle(entityManager, glm::vec2(transform->position.x + 18, transform->position.y));
+			ParticleSystem::emitSparkle(entityManager, glm::vec2(transform->position.x + 18 * SCALING_FACTOR, transform->position.y));
 			wasHealed = true;
 		}
 	}
@@ -86,7 +86,7 @@ void WavesetSystem::healBase(EntityManager &entityManager, int healAmount)
 	{
 		Mix_PlayChannel(-1, AudioLoader::getInstance().heal, 0);
 	}
-	
+
 }
 
 void WavesetSystem::startBuildPhase()
@@ -133,17 +133,17 @@ void WavesetSystem::spawnCluster(EntityManager &entityManager, Cluster cluster,
 				int xLoc = (rand() % 11 + 1) * 100;
 				int xOffset = j * 5;
 				entityManager.addEntity(EnemyFactory::build(vec2(xLoc + xOffset, 100), vec2(0.0f, 40.f),
-					hp, spd, atk));
+					hp, spd, atk, enemyData[i].x));
 			}
 			else
 			{
 				int spawnPointIndex = (rand() % enemySpawnPoints.size());
 				glm::vec2 spawnPoint = enemySpawnPoints[spawnPointIndex];
 				entityManager.addEntity(EnemyFactory::build(spawnPoint, vec2(0.0f, 40.f),
-					hp, spd, atk));
+					hp, spd, atk, enemyData[i].x));
 			}
 		}
-	}	
+	}
 }
 
 // Refactor this and refactor the waveset data out of a component and into a class.
@@ -155,7 +155,7 @@ void WavesetSystem::decrementEnemies(int amount, EntityManager &entityManager)
 		shared_ptr<WavesetComponent> waveset_manager = e->getComponent<WavesetComponent>();
 		Waveset &waveset = waveset_manager->waveset;
 		if (!isWavesetOver(waveset)) {
-			Wave &wave = waveset.waves[waveNo];	
+			Wave &wave = waveset.waves[waveNo];
 			wave.currEnemies -= amount;
 		}
 	}
