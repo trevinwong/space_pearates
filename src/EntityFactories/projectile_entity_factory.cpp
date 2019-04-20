@@ -1,20 +1,20 @@
 #include "projectile_entity_factory.hpp"
 
-Entity ProjectileEntityFactory::createAimProjectile(vec2 size, glm::vec4 filterColor, vec2 startPosition, float speed, vec2 velocityDirection, int attackPower)
+Entity ProjectileEntityFactory::createAimProjectile(vec2 size, glm::vec4 filterColor, vec2 startPosition, float speed, vec2 velocityDirection, int attackPower, char* texture)
 {
   shared_ptr<Program> towerProgram = make_shared<Program>(shader_path("sprite.vert"), shader_path("sprite.frag"));
-  shared_ptr<Texture> towerTexture = make_shared<Texture>(texture_path("fire_projectile.png"), true);
+  shared_ptr<Texture> towerTexture = make_shared<Texture>(texture, true);
   shared_ptr<SpriteComponent> sprite = make_shared<SpriteComponent>(towerProgram, towerTexture);
   shared_ptr<ColorComponent> color = make_shared<ColorComponent>(filterColor);
 
   shared_ptr<TransformComponent> transform = make_shared<TransformComponent>(startPosition, size, 0.0f);  // TODO: calculate rotation by velocityDirection
   shared_ptr<CollisionComponent> collision = make_shared<CollisionComponent>(startPosition, size, 0.0f);
 
-	shared_ptr<MeshComponent> mesh = make_shared<MeshComponent>(mesh_path("hexagon.ply"));
-	shared_ptr<MeshCollisionComponent> meshCollision = make_shared<MeshCollisionComponent>(startPosition, size, 0.0f, mesh);
+//	shared_ptr<MeshComponent> mesh = make_shared<MeshComponent>(mesh_path("hexagon.ply"));
+//	shared_ptr<MeshCollisionComponent> meshCollision = make_shared<MeshCollisionComponent>(startPosition, size, 0.0f, mesh);
 
   vec2 velocity = velocityDirection * speed;
-  shared_ptr<MovementComponent> movement = make_shared<MovementComponent>(velocity, vec2(0.0f, 0.0f), vec2(100.0f, 100.0f), vec2(0.0f, 0.0f));
+  shared_ptr<MovementComponent> movement = make_shared<MovementComponent>(velocity, vec2(0.0f, 0.0f), vec2(300.0f, 300.0f), vec2(0.0f, 0.0f));
   movement->offScreenOK = true; // a projectile can be off screen and then be destroyed by projectile_destroy_system
 
   shared_ptr<ProjectileComponent> projectile = make_shared<ProjectileComponent>(attackPower);
@@ -43,7 +43,7 @@ vector<Entity> ProjectileEntityFactory::createSpreadProjectiles(int projectileNu
     float radians = glm::pi<float>() * angleSize * (float)i / 180.0f;
     vec2 velocityDirection = vec2(cos(radians), sin(radians));
 
-    Entity entity = createAimProjectile(size, filterColor, startPosition, speed, velocityDirection, attackPower);
+    Entity entity = createAimProjectile(size, filterColor, startPosition, speed, velocityDirection, attackPower, texture_path("light_projectile.png"));
     spreadProjectileEntities.push_back(entity);
   }
 
