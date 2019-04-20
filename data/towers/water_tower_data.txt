@@ -2,5 +2,5 @@
 5 # build-cost
 3 # max-level
 0 4 6 8 # upgrade-costs
-30 40 50 60 # slow
+25 35 45 55 # slow
 200 200 250 250 # range
