@@ -85,10 +85,12 @@ void ParticleSystem::updateParticles(EntityManager & manager, float dt) {
   shared_ptr<Entity> home = manager.getEntities(manager.getComponentChecker(vector<int> {ComponentType::home}))[0];
   shared_ptr<HealthComponent> hComponent = home->getComponent<HealthComponent>();
   shared_ptr<ColorComponent> hcComponent = home->getComponent<ColorComponent>();
+  shared_ptr<TransformComponent> htComponent = home->getComponent<TransformComponent>();
 
   // Emit smoke when base reaches 1/2 health
   if (nextActionTime < 0 && (hComponent->curHP < (0.5 * hComponent->maxHP))) {
-    emitSmoke(manager, vec2(643.f, 597.f));
+	  emitSmoke(manager, vec2(htComponent->position.x + (htComponent->size.x / 2) + 15 * SCALING_FACTOR, htComponent->position.y));//vec2(643.f, 597.f) * SCALING_FACTOR);
+	//vec2(htComponent->position.x + (htComponent->size.x / 2) + 25 * SCALING_FACTOR, htComponent->position.y)
     nextActionTime = DELAY_PERIOD;
   } else {
     nextActionTime -= dt;
