@@ -37,10 +37,10 @@ void HUD::draw()
 
   Text::getInstance().render("Time:", vec2(20.0f, 60.0f));
   if (build_phase) {
-    Text::getInstance().render("Build Phase", vec2(20.0f, 120.0f));
+    Text::getInstance().render("Build Phase", vec2(20.0f, 120.0f), 1.0f, vec4(0.0, 0.7, 0.3, 1.0));
   }
   else {
-    Text::getInstance().render("Defense Phase", vec2(20.0f, 120.0f));
+    Text::getInstance().render("Defense Phase", vec2(20.0f, 120.0f), 1.0f, vec4(0.8, 0.2, 0.0, 1.0));
   }
 
   int time = round(play_time* 10.0) / 10.0;
