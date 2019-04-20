@@ -1,6 +1,5 @@
 #include "tower_data_loader.hpp"
 
-
 unordered_map<TOWER_UI_OPT_TYPE, shared_ptr<TowerData>> TowerDataLoader::allTowerData = unordered_map<TOWER_UI_OPT_TYPE, shared_ptr<TowerData>>{};
 
 void TowerDataLoader::loadTowerData()
@@ -39,9 +38,24 @@ FireTowerData TowerDataLoader::loadFireTowerData(string fileName)
   fillVector(ifs, rangePerLvl, maxLvl + 1, "range");
   moveToNextLine(ifs);
   fillVector(ifs, fireRatePerLvl, maxLvl + 1, "fireRate");
-  
+
   ifs.close();
-  return FireTowerData(vec2(relativeFirePositionX, relativeFirePositionY), buildCost, maxLvl, upgradeCostsPerLvl, attackPerLvl, rangePerLvl, fireRatePerLvl);
+
+  FireTowerData ftd = FireTowerData(vec2(relativeFirePositionX, relativeFirePositionY), buildCost, maxLvl, upgradeCostsPerLvl, attackPerLvl, rangePerLvl, fireRatePerLvl);
+  shared_ptr<Texture> lvl1_texture = make_shared<Texture>(texture_path("towers/fire_tower.png"), true);
+  shared_ptr<Texture> lvl2_texture = make_shared<Texture>(texture_path("towers/fire_tower2.png"), true);
+  shared_ptr<Texture> lvl3_texture = make_shared<Texture>(texture_path("towers/fire_tower3.png"), true);
+  shared_ptr<Texture> lvl4_texture = make_shared<Texture>(texture_path("towers/fire_tower4.png"), true);
+  shared_ptr<Texture> lvl5_texture = make_shared<Texture>(texture_path("towers/fire_tower5.png"), true);
+  shared_ptr<Texture> lvl6_texture = make_shared<Texture>(texture_path("towers/fire_tower6.png"), true);
+  ftd.towerTextures.push_back(lvl1_texture);
+  ftd.towerTextures.push_back(lvl2_texture);
+  ftd.towerTextures.push_back(lvl4_texture);
+  ftd.towerTextures.push_back(lvl3_texture);
+  ftd.towerTextures.push_back(lvl5_texture);
+  ftd.towerTextures.push_back(lvl6_texture);
+
+  return ftd;
 }
 
 LightTowerData TowerDataLoader::loadLightTowerData(string fileName)
@@ -76,7 +90,19 @@ LightTowerData TowerDataLoader::loadLightTowerData(string fileName)
   fillVector(ifs, numProjectilesPerLvl, maxLvl + 1, "numProjectiles");
   
   ifs.close();
-  return LightTowerData(vec2(relativeFirePositionX, relativeFirePositionY), buildCost, maxLvl, upgradeCostsPerLvl, attackPerLvl, rangePerLvl, fireRatePerLvl, numProjectilesPerLvl);
+
+  LightTowerData ltd = LightTowerData(vec2(relativeFirePositionX, relativeFirePositionY), buildCost, maxLvl, upgradeCostsPerLvl, attackPerLvl, rangePerLvl, fireRatePerLvl, numProjectilesPerLvl);
+
+  shared_ptr<Texture> lvl1_texture = make_shared<Texture>(texture_path("towers/light_tower.png"), true);
+  shared_ptr<Texture> lvl2_texture = make_shared<Texture>(texture_path("towers/light_tower2.png"), true);
+  shared_ptr<Texture> lvl3_texture = make_shared<Texture>(texture_path("towers/light_tower3.png"), true);
+  shared_ptr<Texture> lvl4_texture = make_shared<Texture>(texture_path("towers/light_tower4.png"), true);
+  ltd.towerTextures.push_back(lvl1_texture);
+  ltd.towerTextures.push_back(lvl2_texture);
+  ltd.towerTextures.push_back(lvl3_texture);
+  ltd.towerTextures.push_back(lvl4_texture);
+
+  return ltd;
 }
 
 StarTowerData TowerDataLoader::loadStarTowerData(string fileName)
@@ -111,7 +137,20 @@ StarTowerData TowerDataLoader::loadStarTowerData(string fileName)
   fillVector(ifs, sizePerLvl, maxLvl + 1, "size");
   
   ifs.close();
-  return StarTowerData(vec2(relativeFirePositionX, relativeFirePositionY), buildCost, maxLvl, upgradeCostsPerLvl, attackPerLvl, rangePerLvl, fireRatePerLvl, sizePerLvl);
+
+  StarTowerData std = StarTowerData(vec2(relativeFirePositionX, relativeFirePositionY), buildCost, maxLvl, upgradeCostsPerLvl, attackPerLvl, rangePerLvl, fireRatePerLvl, sizePerLvl);
+  shared_ptr<Texture> lvl1_texture = make_shared<Texture>(texture_path("towers/star_tower.png"), true);
+  shared_ptr<Texture> lvl2_texture = make_shared<Texture>(texture_path("towers/star_tower2.png"), true);
+  shared_ptr<Texture> lvl3_texture = make_shared<Texture>(texture_path("towers/star_tower3.png"), true);
+  shared_ptr<Texture> lvl4_texture = make_shared<Texture>(texture_path("towers/star_tower4.png"), true);
+  shared_ptr<Texture> lvl5_texture = make_shared<Texture>(texture_path("towers/star_tower5.png"), true);
+  std.towerTextures.push_back(lvl1_texture);
+  std.towerTextures.push_back(lvl2_texture);
+  std.towerTextures.push_back(lvl3_texture);
+  std.towerTextures.push_back(lvl4_texture);
+  std.towerTextures.push_back(lvl5_texture);
+
+  return std;
 }
 
 WaterTowerData TowerDataLoader::loadWaterTowerData(string fileName)
@@ -140,22 +179,32 @@ WaterTowerData TowerDataLoader::loadWaterTowerData(string fileName)
   fillVector(ifs, rangePerLvl, maxLvl + 1, "range");
   
   ifs.close();
-  return WaterTowerData(vec2(relativeFirePositionX, relativeFirePositionY), buildCost, maxLvl, upgradeCostsPerLvl, slowPerLvl, rangePerLvl);
+
+  WaterTowerData wtd = WaterTowerData(vec2(relativeFirePositionX, relativeFirePositionY), buildCost, maxLvl, upgradeCostsPerLvl, slowPerLvl, rangePerLvl);
+  shared_ptr<Texture> lvl1_texture = make_shared<Texture>(texture_path("towers/water_tower.png"), true);
+  shared_ptr<Texture> lvl2_texture = make_shared<Texture>(texture_path("towers/water_tower2.png"), true);
+  shared_ptr<Texture> lvl3_texture = make_shared<Texture>(texture_path("towers/water_tower3.png"), true);
+  shared_ptr<Texture> lvl4_texture = make_shared<Texture>(texture_path("towers/water_tower4.png"), true);
+  wtd.towerTextures.push_back(lvl1_texture);
+  wtd.towerTextures.push_back(lvl2_texture);
+  wtd.towerTextures.push_back(lvl3_texture);
+  wtd.towerTextures.push_back(lvl4_texture);
+
+  return wtd;
 }
 
-BoomerangTowerData TowerDataLoader::loadBoomerangTowerData(string fileName)
-{
+BoomerangTowerData TowerDataLoader::loadBoomerangTowerData(string fileName) {
   std::ifstream ifs(fileName);
   checkValidFilename(ifs, fileName);
 
   float relativeFirePositionX, relativeFirePositionY;
-	int buildCost;
-	int maxLvl;
-	vector<int> upgradeCostsPerLvl;
-	vector<int> attackPerLvl;
-	vector<float> rangePerLvl;
-	vector<float> fireRatePerLvl;
-  
+  int buildCost;
+  int maxLvl;
+  vector<int> upgradeCostsPerLvl;
+  vector<int> attackPerLvl;
+  vector<float> rangePerLvl;
+  vector<float> fireRatePerLvl;
+
   fillVariable(ifs, relativeFirePositionX, "relativeFirePositionX");
   fillVariable(ifs, relativeFirePositionY, "relativeFirePositionY");
   moveToNextLine(ifs);
@@ -170,7 +219,22 @@ BoomerangTowerData TowerDataLoader::loadBoomerangTowerData(string fileName)
   fillVector(ifs, rangePerLvl, maxLvl + 1, "range");
   moveToNextLine(ifs);
   fillVector(ifs, fireRatePerLvl, maxLvl + 1, "fireRate");
-  
+
   ifs.close();
-  return BoomerangTowerData(vec2(relativeFirePositionX, relativeFirePositionY), buildCost, maxLvl, upgradeCostsPerLvl, attackPerLvl, rangePerLvl, fireRatePerLvl);
+
+  BoomerangTowerData btd = BoomerangTowerData(vec2(relativeFirePositionX, relativeFirePositionY), buildCost, maxLvl,
+                                              upgradeCostsPerLvl, attackPerLvl, rangePerLvl, fireRatePerLvl);
+
+  shared_ptr<Texture> lvl1_texture = make_shared<Texture>(texture_path("towers/boomerang_tower.png"), true);
+  shared_ptr<Texture> lvl2_texture = make_shared<Texture>(texture_path("towers/boomerang_tower2.png"), true);
+  shared_ptr<Texture> lvl3_texture = make_shared<Texture>(texture_path("towers/boomerang_tower3.png"), true);
+  shared_ptr<Texture> lvl4_texture = make_shared<Texture>(texture_path("towers/boomerang_tower4.png"), true);
+  shared_ptr<Texture> lvl5_texture = make_shared<Texture>(texture_path("towers/boomerang_tower5.png"), true);
+  btd.towerTextures.push_back(lvl1_texture);
+  btd.towerTextures.push_back(lvl2_texture);
+  btd.towerTextures.push_back(lvl3_texture);
+  btd.towerTextures.push_back(lvl4_texture);
+  btd.towerTextures.push_back(lvl5_texture);
+
+  return btd;
 }

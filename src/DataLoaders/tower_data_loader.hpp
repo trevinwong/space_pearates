@@ -4,6 +4,7 @@
 #include "Utility/utility.hpp"
 #include "data_loading_utility.hpp"
 #include "tower_structs.hpp"
+#include <Utility/texture.hpp>
 
 class TowerDataLoader {
 	public:
