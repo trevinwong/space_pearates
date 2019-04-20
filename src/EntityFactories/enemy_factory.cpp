@@ -25,7 +25,6 @@ Entity EnemyFactory::build(vec2 position, vec2 velocity, int hpMult, int spdMult
   }
   if (type == 2) {
     tex = make_shared<Texture>(texture_path("ghost_enemy.png"), true);
-    move->maxVelocity = move->maxVelocity * 0.7f;
     colour->RGBA = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
   }
   if (type == 1) tex = make_shared<Texture>(texture_path("turtle.png"), true);
