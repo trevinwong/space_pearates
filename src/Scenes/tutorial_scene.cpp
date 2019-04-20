@@ -120,7 +120,6 @@ void TutorialScene::draw()
   // Background will render first
   backgroundSystem.render(entityManager, projection);
   spriteSystem.drawSprites(entityManager, projection);
-  meshSystem.drawMeshes(entityManager, projection);
   // so far everything rendered into buffer
   // add effects to the buffer and render this buffer to screen
   renderToTextureSystem.drawWaterEffect(entityManager, projection);
