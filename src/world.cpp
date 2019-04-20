@@ -52,7 +52,7 @@ World::~World()
 void World::reset()
 {
   // Load data
-  TowerDataLoader::loadTowerData();
+  // TowerDataLoader::loadTowerData();
   PlayerDataLoader::loadPlayerData();
 
   // Reset singletons

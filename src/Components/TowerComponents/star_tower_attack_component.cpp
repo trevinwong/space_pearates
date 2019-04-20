@@ -5,16 +5,11 @@ StarTowerAttackComponent::StarTowerAttackComponent(vec2 _relativeFirePosition, v
   sizePerLvl(_sizePerLvl)
 {
   setToLevel(0);
-  shared_ptr<Texture> lvl1_texture = make_shared<Texture>(texture_path("towers/star_tower.png"), true);
-  shared_ptr<Texture> lvl2_texture = make_shared<Texture>(texture_path("towers/star_tower2.png"), true);
-  shared_ptr<Texture> lvl3_texture = make_shared<Texture>(texture_path("towers/star_tower3.png"), true);
-  shared_ptr<Texture> lvl4_texture = make_shared<Texture>(texture_path("towers/star_tower4.png"), true);
-  shared_ptr<Texture> lvl5_texture = make_shared<Texture>(texture_path("towers/star_tower5.png"), true);
-  towerTextures.push_back(lvl1_texture);
-  towerTextures.push_back(lvl2_texture);
-  towerTextures.push_back(lvl3_texture);
-  towerTextures.push_back(lvl4_texture);
-  towerTextures.push_back(lvl5_texture);
+}
+
+shared_ptr<Texture> StarTowerAttackComponent::getLevelTexture(int level) {
+  shared_ptr<StarTowerData> data = std::dynamic_pointer_cast<StarTowerData>(TowerDataLoader::allTowerData[BUILD_STAR_TOWER]);
+  return data->towerTextures[level];
 }
 
 void StarTowerAttackComponent::setToLevel(int level)

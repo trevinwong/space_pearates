@@ -42,14 +42,14 @@ class TowerAttackComponent : public BaseComponent {
     void reduceElapsedTimeToNextFire(float dt);
     bool isReadyForNextFire();
 
-	shared_ptr<Texture> getLevelTexture(int level);
 
     static const int typeID = ComponentType::attack_tower;
     virtual int getTypeID() const { return typeID; };
     virtual int getTowerType() = 0;
     virtual void setToLevel(int level) = 0;
-	
-  protected:
+    virtual shared_ptr<Texture> getLevelTexture(int level) = 0;
+
+protected:
     // this class is an abstract class, the constructor should not be invoked as a public function
     TowerAttackComponent(vec2 _relativeFirePosition, vector<int> _attackPerLvl, vector<float> _rangePerLvl, vector<float> _fireRatePerLvl);
     // circle radius
@@ -67,7 +67,6 @@ class TowerAttackComponent : public BaseComponent {
     vector<int> attackPerLvl;
     vector<float> rangePerLvl;
     vector<float> fireRatePerLvl;
-	vector<shared_ptr<Texture>> towerTextures;
 };
 
 #endif

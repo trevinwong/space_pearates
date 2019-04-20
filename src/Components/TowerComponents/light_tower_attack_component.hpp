@@ -15,6 +15,8 @@ public:
 
   virtual void setToLevel(int level);
   virtual int getTowerType() { return towerTypeID; };
+    virtual shared_ptr<Texture> getLevelTexture(int level);
+
 
 private:
   static const int towerTypeID = TowerTypeID::light_tower;
