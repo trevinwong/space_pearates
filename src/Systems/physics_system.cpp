@@ -23,8 +23,9 @@ void PhysicsSystem::moveEntities(EntityManager &entityManager, float dt) {
   for (shared_ptr<Entity> e : entities) {
 		shared_ptr<TransformComponent> transform = e->getComponent<TransformComponent>();
 		shared_ptr<MovementComponent> movement = e->getComponent<MovementComponent>();
-
-		movement->accel.y += getGravity(dt);
+		shared_ptr<EnemyPathComponent> pathfind = e->getComponent<EnemyPathComponent>();
+		auto pathtype = pathfind ? pathfind->type : NULL;
+		if (pathtype != 2 && pathtype != 3) movement->accel.y += getGravity(dt);
 		movement->accel.x += getFriction(movement->velocity, dt);
 		movement->accel = glm::clamp(movement->accel, -movement->maxAccel, movement->maxAccel);
 
@@ -54,7 +55,7 @@ void PhysicsSystem::moveEntities(EntityManager &entityManager, float dt) {
 		else {
       transform->position = transform->position + movement->velocity * dt;
 		}
-		if (projectile == nullptr) adjustPositionAroundTiles(entityManager, e);
+		if (projectile == nullptr && pathtype !=2 && pathtype != 3) adjustPositionAroundTiles(entityManager, e);
 		if (collision != nullptr) collision->position = transform->position;
 		if (!movement->offScreenOK) adjustPositionOntoScreen(entityManager, e);
 	}
