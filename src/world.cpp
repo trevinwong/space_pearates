@@ -179,7 +179,7 @@ void World::update(float dt)
   physicsSystem.rotateEntities(entityManager, dt);
   interpolationSystem.update(entityManager, dt);
   collisionSystem.checkCollisions(entityManager);
-  spriteSystem.updateElapsedTime(dt);
+  spriteSystem.updateAnimatedSprites(entityManager);
   stateSystem.handleStateChanges(entityManager, dt);
 
   // Background Update

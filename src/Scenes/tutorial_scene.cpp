@@ -91,7 +91,7 @@ void TutorialScene::update(float dt)
   physicsSystem.rotateEntities(entityManager, dt);
   interpolationSystem.update(entityManager, dt);
   collisionSystem.checkCollisions(entityManager);
-  spriteSystem.updateElapsedTime(dt);
+  spriteSystem.updateAnimatedSprites(entityManager);
 
   // Background Update
   backgroundSystem.update(entityManager);

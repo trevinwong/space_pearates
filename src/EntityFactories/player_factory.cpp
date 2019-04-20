@@ -7,7 +7,7 @@ Entity PlayerFactory::build(vec2 translation)
 
   shared_ptr<SpriteComponent> sprite = make_shared<SpriteComponent>(program, texture);
   shared_ptr<ColorComponent> color = make_shared<ColorComponent>(glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
-  shared_ptr<AnimatedComponent> animated = make_shared<AnimatedComponent>(5, 0.2);
+  shared_ptr<AnimatedComponent> animated = make_shared<AnimatedComponent>(5, 5);
 
   shared_ptr<PlayerComponent> player = make_shared<PlayerComponent>(PlayerDataLoader::playerData.maxJumps, PlayerDataLoader::playerData.jumpVelocity);
   shared_ptr<MovementComponent> movement = make_shared<MovementComponent>(

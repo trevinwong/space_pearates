@@ -16,6 +16,7 @@ public:
 
   int currFrame = 0;
   int numFrames;
+  float timeToNextFrame = 0;
   float frameRate;
 };
 
