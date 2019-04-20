@@ -17,6 +17,7 @@ void HowToPlayScene::processInput(float dt, GLboolean keys[], GLboolean keysProc
       sceneManager_ptr->setNextSceneToMainMenu();
     }
     HelpMenu::getInstance().showHelp = false;
+    HelpMenu::getInstance().showTowerHelp = false;
     keysProcessed[GLFW_KEY_H] = true;
   }
   if (keys[GLFW_KEY_ESCAPE] && !keysProcessed[GLFW_KEY_ESCAPE])
@@ -25,6 +26,7 @@ void HowToPlayScene::processInput(float dt, GLboolean keys[], GLboolean keysProc
       sceneManager_ptr->setNextSceneToMainMenu();
     }
     HelpMenu::getInstance().showHelp = false;
+    HelpMenu::getInstance().showTowerHelp = false;
     keysProcessed[GLFW_KEY_ESCAPE] = true;
   }
 

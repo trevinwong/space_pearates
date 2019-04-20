@@ -12,7 +12,8 @@ GameOverMenu::~GameOverMenu()
 }
 
 void GameOverMenu::init() {
-    texture = make_shared<Texture>(texture_path("gameover.png"), true); // TODO: FIX
+    lose = make_shared<Texture>(texture_path("gameover.png"), true); 
+    win = make_shared<Texture>(texture_path("youwin.png"), true); 
     program = make_shared<Program>(shader_path("sprite.vert"), shader_path("sprite.frag"));
 
     GLfloat vertices[] = {
@@ -57,7 +58,11 @@ void GameOverMenu::draw(glm::mat4 projection) {
     if(HUD::getInstance().game_over == true) {
 
         if(!audio_played) {
-            Mix_PlayChannel(-1, AudioLoader::getInstance().game_over, 0);
+            if (HUD::getInstance().you_win) {
+               Mix_PlayChannel(-1, AudioLoader::getInstance().win_game, 0); 
+            } else {
+                Mix_PlayChannel(-1, AudioLoader::getInstance().game_over, 0);
+            }
             audio_played = true;
         }
         program->use();
@@ -75,7 +80,11 @@ void GameOverMenu::draw(glm::mat4 projection) {
         
         glActiveTexture(GL_TEXTURE0);
 
-        texture->bind();
+        if(HUD::getInstance().you_win) {
+            win->bind();
+        } else {
+            lose->bind();
+        }
 
         glBindVertexArray(VAO);
         glDrawArrays(GL_TRIANGLES, 0, 6);

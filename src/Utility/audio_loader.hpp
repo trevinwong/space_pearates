@@ -32,6 +32,7 @@ public:
   Mix_Chunk *alert;
   Mix_Chunk *next;
   Mix_Chunk *game_over;
+  Mix_Chunk *win_game;
 
   //Mix_Chunk *battle_theme1;
   Mix_Music *eurobeat_full;
