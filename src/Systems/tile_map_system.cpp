@@ -30,7 +30,7 @@ void TileMapSystem::loadTileMap(EntityManager & entityManager, bool drawBuildInd
       }
       else if (*col == MAP_BASE_POSITION) {
         home_spawn = vec2(col_i*width_tile, row_i*height_tile);
-        Entity home = HomeFactory::createHome(vec2(col_i*width_tile - 100.f * scaling, row_i*height_tile - 85.f * scaling), scaling);
+        Entity home = HomeFactory::createHome(vec2(col_i*width_tile - 100.f * scaling, row_i*height_tile - 75.f * scaling), scaling);
         entityManager.addEntity(home);
       }
       else if (*col == MAP_TOWER_POSITION && drawBuildIndicators) {
