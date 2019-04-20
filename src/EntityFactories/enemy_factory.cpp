@@ -7,18 +7,8 @@ Entity EnemyFactory::build(vec2 position, vec2 velocity, int hpMult, int spdMult
 	float hp = (float)hpMult / 100.f;
 	float attack = (float)atkMult / 100.f;
   shared_ptr<Program> program = make_shared<Program>(shader_path("sprite.vert"), shader_path("sprite.frag"));
-  shared_ptr<Texture> texture0 = make_shared<Texture>(texture_path("enemy0.png"), true);
-  shared_ptr<Texture> texture1 = make_shared<Texture>(texture_path("turtle.png"), true);
-  shared_ptr<Texture> texture2 = make_shared<Texture>(texture_path("ship.png"), true);
   shared_ptr<Texture> tex;
-  if (type == 2) {
-    tex = texture2;
-  } else if (type == 1){
-    tex = texture1;
-  } else {
-    tex = texture0;
-  }
-  shared_ptr<SpriteComponent> sprite = make_shared<SpriteComponent>(program, tex);
+
   shared_ptr<TransformComponent> transform = make_shared<TransformComponent>(position, scale, 0.0f);
   shared_ptr<EnemyPathComponent> pathfind = make_shared<EnemyPathComponent>(type);
   shared_ptr<CollisionComponent> collision = make_shared<CollisionComponent>(position, scale, 0.0f);
@@ -28,6 +18,20 @@ Entity EnemyFactory::build(vec2 position, vec2 velocity, int hpMult, int spdMult
   shared_ptr<HealthComponent> health = make_shared<HealthComponent>(billboardProgram, 100 * hp);
   shared_ptr<EnemyComponent> enemy = make_shared<EnemyComponent>(1, attack);
   shared_ptr<WaterTowerFactorComponent> waterTowerFactor = make_shared<WaterTowerFactorComponent>();
+
+  if (type == 3) {
+    tex = make_shared<Texture>(texture_path("astar_enemy.png"), true);
+    colour->RGBA = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
+  }
+  if (type == 2) {
+    tex = make_shared<Texture>(texture_path("ghost_enemy.png"), true);
+    move->maxVelocity = move->maxVelocity * 0.7f;
+    colour->RGBA = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
+  }
+  if (type == 1) tex = make_shared<Texture>(texture_path("turtle.png"), true);
+  if (type == 0)   tex = make_shared<Texture>(texture_path("enemy0.png"), true);
+
+  shared_ptr<SpriteComponent> sprite = make_shared<SpriteComponent>(program, tex);
 
   Entity e;
   e.setComponent<SpriteComponent>(sprite);
