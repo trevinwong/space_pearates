@@ -95,10 +95,9 @@ void printVec3(string name, vec3 vec);
 #define SCREEN_WIDTH 1280
 #define SCREEN_HEIGHT 800
 
-#define BASE_WIDTH 250.f
-#define BASE_HEIGHT 170.f
-
 #define SCALING_FACTOR 0.80f
+// FIXME: ideally to set scaling factor dynamically ... something like?
+// map->getComponent<MapComponent>()->width_tile / map->getComponent<MapComponent>()->num_x_tiles;
 
 #define GRAVITY_VELOCITY 550.0f
 #define GRAVITY_ACCEL 800.0f

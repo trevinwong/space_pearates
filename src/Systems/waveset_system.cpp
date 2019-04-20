@@ -66,7 +66,7 @@ void WavesetSystem::healBase(EntityManager &entityManager, int healAmount)
 		if (health->curHP != health->maxHP)
 		{
 			health->curHP += healAmount;
-			ParticleSystem::emitSparkle(entityManager, glm::vec2(transform->position.x + ((BASE_WIDTH / 2) + 25) * SCALING_FACTOR, transform->position.y));
+			ParticleSystem::emitSparkle(entityManager, vec2(transform->position.x + (transform->size.x / 2) + 25*SCALING_FACTOR, transform->position.y));
 			wasHealed = true;
 		}
 

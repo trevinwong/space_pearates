@@ -4,7 +4,7 @@ vector<vec2> TileMapSystem::enemySpawnPoints;
 vec2 TileMapSystem::player_spawn;
 vec2 TileMapSystem::home_spawn;
 
-void TileMapSystem::loadTileMap(EntityManager & entityManager, bool drawBuildIndicators)
+void TileMapSystem::loadTileMap(EntityManager & entityManager, bool drawBuildIndicators, float scaling)
 {
   shared_ptr<Entity> mapEntity = entityManager.getEntities(entityManager.getComponentChecker(vector<int>{ComponentType::map}))[0];
   shared_ptr<MapComponent> mapComponent = mapEntity->getComponent<MapComponent>();
@@ -30,7 +30,7 @@ void TileMapSystem::loadTileMap(EntityManager & entityManager, bool drawBuildInd
       }
       else if (*col == MAP_BASE_POSITION) {
         home_spawn = vec2(col_i*width_tile, row_i*height_tile);
-        Entity home = HomeFactory::createHome(vec2(col_i*width_tile - 100.f * SCALING_FACTOR, row_i*height_tile - 85.f * SCALING_FACTOR));
+        Entity home = HomeFactory::createHome(vec2(col_i*width_tile - 100.f * scaling, row_i*height_tile - 85.f * scaling), scaling);
         entityManager.addEntity(home);
       }
       else if (*col == MAP_TOWER_POSITION && drawBuildIndicators) {

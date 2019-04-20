@@ -11,7 +11,7 @@
 class HomeFactory
 {
 public:
-  static Entity createHome(vec2 position);
+  static Entity createHome(vec2 position, float scaling=SCALING_FACTOR);
 private:
   HomeFactory();
 };
