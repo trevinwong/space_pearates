@@ -20,7 +20,7 @@ Entity PlayerFactory::build(vec2 translation)
   shared_ptr<TransformComponent> transform = make_shared<TransformComponent>(translation, PlayerDataLoader::playerData.size  * SCALING_FACTOR, rotation);
   shared_ptr<CollisionComponent> collision = make_shared<CollisionComponent>(translation, PlayerDataLoader::playerData.size  * SCALING_FACTOR, rotation);
 
-  shared_ptr<WalletComponent> wallet = make_shared<WalletComponent>(1000);
+  shared_ptr<WalletComponent> wallet = make_shared<WalletComponent>(2);
 
   Entity e;
   e.setComponent<SpriteComponent>(sprite);
