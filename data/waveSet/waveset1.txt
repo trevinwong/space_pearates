@@ -1,1 +1,4 @@
-wave-short.txt 100 100 100
+wave1-1.txt 1 100 50
+wave1-2.txt 100 100 50
+wave1-3.txt 100 150 50
+wave1-4.txt 100 250 50

@@ -18,6 +18,7 @@ World::World(std::weak_ptr<SceneManager> _sceneManager, int _level) : AbstractSc
   entityManager = EntityManager();
 
   string mapName = "map" + std::to_string(level) + ".txt";
+  string wavesetName = "waveset" + std::to_string(level) + ".txt";
   map = make_shared<Entity>(MapEntityFactory::createMapEntityFromFile(map_path()+mapName));
   entityManager.addEntity(map);
   TileMapSystem::loadTileMap(entityManager);
@@ -30,7 +31,7 @@ World::World(std::weak_ptr<SceneManager> _sceneManager, int _level) : AbstractSc
   ResourceFactory::spawnInitial(entityManager, TileMapSystem::home_spawn);
 
   enemySystem.setMap(entityManager);
-  entityManager.addEntity(WavesetManagerFactory::build(waveset_path("waveset0.txt")));
+  entityManager.addEntity(WavesetManagerFactory::build(waveset_path()+wavesetName));
 
   // Load assets
   LevelAssetsSystem::getInstance().set_level(level);
