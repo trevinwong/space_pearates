@@ -106,14 +106,13 @@ void EnemySystem::moveAstar(float dt, EntityManager& entityManager, shared_ptr<E
 
   for (auto e: enemies) {
     auto epos = e->getComponent<TransformComponent>()->position;
-    if (abs(epos.x - pos.x) < 2*TILE_SIZE_X && abs(epos.y - pos.y) < 2*TILE_SIZE_Y)
+    if (abs(epos.x - pos.x) < 4*TILE_SIZE_X && abs(epos.y - pos.y) < 4*TILE_SIZE_Y)
       epos.x - pos.x < 0 ? lscore ++ : rscore++;
   }
-  if (lscore + rscore < 5) return moveBasic(dt, entityManager, home, e);
 
   for (auto t: towers) {
     auto tpos = t->getComponent<TransformComponent>()->position;
-    if (abs(tpos.x - pos.x) < 2*TILE_SIZE_X && abs(tpos.y - pos.y) < 2*TILE_SIZE_Y)
+    if (abs(tpos.x - pos.x) < 4*TILE_SIZE_X && abs(tpos.y - pos.y) < 4*TILE_SIZE_Y)
       tpos.x - pos.x < 0 ? lscore -= 3 : rscore-=3;
   }
 
@@ -127,22 +126,11 @@ void EnemySystem::moveAstar(float dt, EntityManager& entityManager, shared_ptr<E
        }
     }
   }
+  // add score to move towards base / middle of map
+  if (xind < (MAP_WIDTH / 2)) {
+    rscore += 3;
+  } else lscore += 3;
 
-  for (int i = 0; i <= ceil(abs(vel.y)*dt/TILE_SIZE_Y); i++)
-    if (map[(yind+i) < MAP_WIDTH ? yind+i : (MAP_WIDTH - 1)][xind] == MAP_PLATFORM_TILE
-        || map[(yind+i) < MAP_WIDTH ? yind+i : (MAP_WIDTH - 1)][xind+1] == MAP_PLATFORM_TILE
-        || map[(yind+i) < MAP_WIDTH ? yind+i : (MAP_WIDTH - 1)][xind-1] == MAP_PLATFORM_TILE)
-      flag = true;
-
-  if (flag) {
-    vel.y = 0;
-  }
-  // check if directly above base - path straight down if so
-  for (int i = 0; i <= ceil(abs(vel.y)*dt/TILE_SIZE_Y); i++)
-    if (map[(yind+i) < MAP_WIDTH ? yind+i : (MAP_WIDTH - 1)][xind] == MAP_BASE_POSITION) {
-      vel.y = movementComponent->maxVelocity.y;
-      movementComponent->maxVelocity.x = 0.f;
-    }
   vel.x = rscore > lscore ? abs(vel.x) : -abs(vel.x);
   if (vel.x > 0)
     vel.x = pos.x + vel.x*dt < (SCREEN_WIDTH - 80.f) ? vel.x : -vel.x;

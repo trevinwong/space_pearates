@@ -25,7 +25,7 @@ void PhysicsSystem::moveEntities(EntityManager &entityManager, float dt) {
 		shared_ptr<MovementComponent> movement = e->getComponent<MovementComponent>();
 		shared_ptr<EnemyPathComponent> pathfind = e->getComponent<EnemyPathComponent>();
 		auto pathtype = pathfind ? pathfind->type : NULL;
-		if (pathtype != 2) movement->accel.y += getGravity(dt);
+		if (pathtype != 2 && pathtype != 3) movement->accel.y += getGravity(dt);
 		movement->accel.x += getFriction(movement->velocity, dt);
 		movement->accel = glm::clamp(movement->accel, -movement->maxAccel, movement->maxAccel);
 
@@ -55,7 +55,7 @@ void PhysicsSystem::moveEntities(EntityManager &entityManager, float dt) {
 		else {
       transform->position = transform->position + movement->velocity * dt;
 		}
-		if (projectile == nullptr && pathtype !=2) adjustPositionAroundTiles(entityManager, e);
+		if (projectile == nullptr && pathtype !=2 && pathtype != 3) adjustPositionAroundTiles(entityManager, e);
 		if (collision != nullptr) collision->position = transform->position;
 		if (!movement->offScreenOK) adjustPositionOntoScreen(entityManager, e);
 	}
