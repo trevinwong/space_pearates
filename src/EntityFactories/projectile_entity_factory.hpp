@@ -25,7 +25,8 @@ public:
     vec2 startPosition,
     float speed,
     vec2 velocityDirection,
-    int attackPower
+    int attackPower,
+    char* texture
   );
 
   /*

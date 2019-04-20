@@ -13,7 +13,7 @@ void InterpolationSystem::update(EntityManager & entityManager, float dt)
     vec2 new_pos = catmull_rom_spline(spline->controlPoints, spline->getTime());
     transform->position = new_pos;
     collision->position = new_pos;
-    spline->incrementTime(dt);
+    spline->incrementTime(dt * 1.7);
     if (spline->isExpired) {
       entityManager.removeEntity(e);
     }
