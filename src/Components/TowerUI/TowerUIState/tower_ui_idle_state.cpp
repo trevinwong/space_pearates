@@ -307,10 +307,18 @@ void TowerUiIdleState::processOperate(glm::vec2 playerCenterPosition, TOWER_UI_O
 		{
 			// upgradeCostsPerLvl describe how much money it costs to upgrade TO that level
 			if (walletComponent->spend(towerMetaComponent->upgradeCostsPerLvl[towerMetaComponent->currentLevel + 1])) {
-				Mix_PlayChannel(-1, AudioLoader::getInstance().upgrade_tower, 0);
+				
 				towerUiButtonComponent->descriptionLine1Color = towerUiButtonComponent->defaultTextColor;
 				towerMetaComponent->totalWorth += towerMetaComponent->upgradeCostsPerLvl[towerMetaComponent->currentLevel + 1];
 				towerMetaComponent->currentLevel += 1;
+				if (towerMetaComponent->currentLevel != towerMetaComponent->maxLevel)
+				{
+					Mix_PlayChannel(-1, AudioLoader::getInstance().upgrade_tower, 0);
+				}
+				else
+				{
+					Mix_PlayChannel(-1, AudioLoader::getInstance().max_upgrade_tower, 0);
+				}
 				towerAttackComponent->setToLevel(towerMetaComponent->currentLevel);
 				shared_ptr<Texture> newSprite = towerAttackComponent->getLevelTexture(towerMetaComponent->currentLevel);
 				spriteComponent->texture = newSprite;
