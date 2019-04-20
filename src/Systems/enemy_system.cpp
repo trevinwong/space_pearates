@@ -123,7 +123,8 @@ void EnemySystem::moveAstar(float dt, EntityManager& entityManager, shared_ptr<E
     WavesetSystem::getInstance().decrementEnemies(1, entityManager);
     if (healthComponent) {
       healthComponent->curHP = healthComponent->curHP - enemyComponent->totalAtk  < 0 ? 0 : healthComponent->curHP - enemyComponent->totalAtk;
-       if (healthComponent->curHP <= 0) {
+      Mix_PlayChannel(-1, AudioLoader::getInstance().base_hit, 0);
+      if (healthComponent->curHP <= 0) {
           HUD::getInstance().game_over = true;
        }
     }
