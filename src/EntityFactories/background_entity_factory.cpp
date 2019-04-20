@@ -2,7 +2,7 @@
 
 Entity BackgroundEntityFactory::createBackgroundEntity(string bgImageFileName, GLboolean alpha, vec2 size)
 {
-  vec2 positionOffset(-200, -200); // another weird initialization?!?! cpp...
+  vec2 positionOffset(-200, 0);
   shared_ptr<Program> program = make_shared<Program>(shader_path("sprite.vert"), shader_path("sprite.frag"));
 
   std::string imagePath = string(texture_path()) + bgImageFileName;
