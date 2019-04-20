@@ -9,7 +9,7 @@ Entity TowerEntityFactory::createFireTower(vec2 towerCenterBottomPosition, vec2 
   shared_ptr<ColorComponent> color = make_shared<ColorComponent>(glm::vec4(1.0f, 1.0f, 1.0f, 1.0f)); // diff tower can have diff color
 
   shared_ptr<Program> towerProgram = make_shared<Program>(shader_path("sprite.vert"), shader_path("sprite.frag"));
-  shared_ptr<Texture> towerTexture = make_shared<Texture>(texture_path("fire_tower.png"), true);
+  shared_ptr<Texture> towerTexture = make_shared<Texture>(texture_path("towers/fire_tower.png"), true);
   shared_ptr<SpriteComponent> sprite = make_shared<SpriteComponent>(towerProgram, towerTexture);
 
   shared_ptr<Program> towerRangeProgram = make_shared<Program>(shader_path("sprite.vert"), shader_path("sprite.frag"));
@@ -43,7 +43,7 @@ Entity TowerEntityFactory::createWaterTower(vec2 towerCenterBottomPosition, vec2
   shared_ptr<ColorComponent> color = make_shared<ColorComponent>(glm::vec4(1.0f, 1.0f, 1.0f, 1.0f)); // diff tower can have diff color
 
   shared_ptr<Program> towerProgram = make_shared<Program>(shader_path("sprite.vert"), shader_path("sprite.frag"));
-  shared_ptr<Texture> towerTexture = make_shared<Texture>(texture_path("water_tower.png"), true);
+  shared_ptr<Texture> towerTexture = make_shared<Texture>(texture_path("towers/water_tower.png"), true);
   shared_ptr<SpriteComponent> sprite = make_shared<SpriteComponent>(towerProgram, towerTexture);
 
   shared_ptr<Program> towerRangeProgram = make_shared<Program>(shader_path("sprite.vert"), shader_path("sprite.frag"));
@@ -77,7 +77,7 @@ Entity TowerEntityFactory::createLightTower(vec2 towerCenterBottomPosition, vec2
   shared_ptr<ColorComponent> color = make_shared<ColorComponent>(glm::vec4(1.0f, 1.0f, 1.0f, 1.0f)); // diff tower can have diff color
 
   shared_ptr<Program> towerProgram = make_shared<Program>(shader_path("sprite.vert"), shader_path("sprite.frag"));
-  shared_ptr<Texture> towerTexture = make_shared<Texture>(texture_path("light_tower.png"), true);
+  shared_ptr<Texture> towerTexture = make_shared<Texture>(texture_path("towers/light_tower.png"), true);
   shared_ptr<SpriteComponent> sprite = make_shared<SpriteComponent>(towerProgram, towerTexture);
 
   shared_ptr<Program> towerRangeProgram = make_shared<Program>(shader_path("sprite.vert"), shader_path("sprite.frag"));
@@ -111,7 +111,7 @@ Entity TowerEntityFactory::createStarTower(vec2 towerCenterBottomPosition, vec2 
   shared_ptr<ColorComponent> color = make_shared<ColorComponent>(glm::vec4(1.0f, 1.0f, 1.0f, 1.0f)); // diff tower can have diff color
 
   shared_ptr<Program> towerProgram = make_shared<Program>(shader_path("sprite.vert"), shader_path("sprite.frag"));
-  shared_ptr<Texture> towerTexture = make_shared<Texture>(texture_path("star_tower.png"), true);
+  shared_ptr<Texture> towerTexture = make_shared<Texture>(texture_path("towers/star_tower.png"), true);
   shared_ptr<SpriteComponent> sprite = make_shared<SpriteComponent>(towerProgram, towerTexture);
 
   shared_ptr<Program> towerRangeProgram = make_shared<Program>(shader_path("sprite.vert"), shader_path("sprite.frag"));
@@ -145,7 +145,7 @@ Entity TowerEntityFactory::createBoomerangTower(vec2 towerCenterBottomPosition, 
   shared_ptr<ColorComponent> color = make_shared<ColorComponent>(glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
 
   shared_ptr<Program> towerProgram = make_shared<Program>(shader_path("sprite.vert"), shader_path("sprite.frag"));
-  shared_ptr<Texture> towerTexture = make_shared<Texture>(texture_path("boomerang_tower.png"), true);
+  shared_ptr<Texture> towerTexture = make_shared<Texture>(texture_path("towers/boomerang_tower.png"), true);
   shared_ptr<SpriteComponent> sprite = make_shared<SpriteComponent>(towerProgram, towerTexture);
 
   shared_ptr<Program> towerRangeProgram = make_shared<Program>(shader_path("sprite.vert"), shader_path("sprite.frag"));
