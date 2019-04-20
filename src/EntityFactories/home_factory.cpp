@@ -1,14 +1,14 @@
 #include "home_factory.hpp"
 
-const vec2 BASE_SIZE = glm::vec2(BASE_WIDTH, BASE_HEIGHT) * SCALING_FACTOR;
-const glm::vec4 BASE_COLOUR = glm::vec4(0.75f, 0.75f, 0.75f, 1.0f);
+const vec2 BASE_SIZE = vec2(250.0f, 170.0f);
+const vec4 BASE_COLOUR = vec4(0.75f, 0.75f, 0.75f, 1.0f);
 
-Entity HomeFactory::createHome(vec2 position)
+Entity HomeFactory::createHome(vec2 position, float scaling)
 {
   shared_ptr<Program> program = make_shared<Program>(shader_path("sprite.vert"), shader_path("sprite.frag"));
   shared_ptr<Texture> texture = make_shared<Texture>(texture_path("home.png"), true);
   shared_ptr<SpriteComponent> sprite = make_shared<SpriteComponent>(program, texture);
-  shared_ptr<TransformComponent> transform = make_shared<TransformComponent>(position, BASE_SIZE, 0.0f);
+  shared_ptr<TransformComponent> transform = make_shared<TransformComponent>(position, BASE_SIZE * scaling, 0.0f);
   shared_ptr<ColorComponent> color = make_shared<ColorComponent>(BASE_COLOUR);
   shared_ptr<HomeComponent> home = make_shared<HomeComponent>();
   shared_ptr<Program> billboardProgram = make_shared<Program>(shader_path("billboard.vert"), shader_path("billboard.frag"));

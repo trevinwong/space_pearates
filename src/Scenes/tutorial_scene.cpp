@@ -17,7 +17,7 @@ TutorialScene::TutorialScene(std::weak_ptr<SceneManager> _sceneManager) : Abstra
   shared_ptr<Entity> map = make_shared<Entity>(MapEntityFactory::createMapEntityFromFile(map_path() + mapName));
   entityManager.addEntity(map);
 
-  TileMapSystem::loadTileMap(entityManager, true);
+  TileMapSystem::loadTileMap(entityManager, true, 1.0f); // FIXME: hacky because the base was floating too much...
   shared_ptr<Entity> player = make_shared<Entity>(PlayerFactory::build(TileMapSystem::player_spawn));
   entityManager.addEntity(player);
 
