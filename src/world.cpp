@@ -177,7 +177,6 @@ void World::update(float dt)
   enemySystem.move(dt, entityManager);
   physicsSystem.moveEntities(entityManager, dt);
   physicsSystem.rotateEntities(entityManager, dt);
-	meshSystem.updateMeshCollision(entityManager);
   interpolationSystem.update(entityManager, dt);
   collisionSystem.checkCollisions(entityManager);
   spriteSystem.updateElapsedTime(dt);

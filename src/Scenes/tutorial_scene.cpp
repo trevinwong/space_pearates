@@ -89,7 +89,6 @@ void TutorialScene::update(float dt)
 
   physicsSystem.moveEntities(entityManager, dt);
   physicsSystem.rotateEntities(entityManager, dt);
-  meshSystem.updateMeshCollision(entityManager);
   interpolationSystem.update(entityManager, dt);
   collisionSystem.checkCollisions(entityManager);
   spriteSystem.updateElapsedTime(dt);
