@@ -72,7 +72,6 @@ private:
 
   EnemySystem enemySystem;
   PlayerSystem playerSystem;
-	MeshSystem meshSystem;
   StateSystem stateSystem;
 
   TowerRangeDisplaySystem towerRangeDisplaySystem;
