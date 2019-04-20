@@ -2,7 +2,7 @@
 4 # build-cost
 3 # max-level
 0 4 6 8 # upgrade costs
-20 40 55 65 # attack for each level
+25 30 40 45 # attack for each level
 200 200 225 225 # range per lvl
-1.9 1.8 1.7 1.6 # fire rate for each level
-4 6 8 12 # num projectiles for each level
+2.0 1.9 1.8 1.7 # fire rate for each level
+4 5 6 7 # num projectiles for each level

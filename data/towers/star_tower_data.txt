@@ -5,4 +5,4 @@
 100 150 200 250 300 # attack per lvl
 200 240 280 320 360 # range per lvl
 2.0 2.0 2.0 2.0 2.0 # fire rate per lvl
-50 65 80 150 160 # size per lvl
+50 65 80 90 100 # size per lvl
