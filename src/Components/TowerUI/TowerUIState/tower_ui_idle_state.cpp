@@ -293,6 +293,7 @@ void TowerUiIdleState::processOperate(glm::vec2 playerCenterPosition, TOWER_UI_O
     if (targetTower == nullptr) return;
     shared_ptr<TowerMetaComponent> towerMetaComponent = targetTower->getComponent<TowerMetaComponent>();
     shared_ptr<TowerAttackComponent> towerAttackComponent = targetTower->getComponent<TowerAttackComponent>();
+	shared_ptr<SpriteComponent> spriteComponent = targetTower->getComponent<SpriteComponent>();
 
 	switch (operationType) {
 	case SELL_TOWER_OPERATION:
@@ -311,6 +312,8 @@ void TowerUiIdleState::processOperate(glm::vec2 playerCenterPosition, TOWER_UI_O
 				towerMetaComponent->totalWorth += towerMetaComponent->upgradeCostsPerLvl[towerMetaComponent->currentLevel + 1];
 				towerMetaComponent->currentLevel += 1;
 				towerAttackComponent->setToLevel(towerMetaComponent->currentLevel);
+				shared_ptr<Texture> newSprite = towerAttackComponent->getLevelTexture(towerMetaComponent->currentLevel);
+				spriteComponent->texture = newSprite;
 			}
 			else
 			{
