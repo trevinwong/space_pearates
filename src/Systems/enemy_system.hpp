@@ -18,6 +18,9 @@ public:
   void move(float dt, EntityManager& entities);
   void moveShell(float dt, EntityManager& entityManager, shared_ptr<Entity> home, shared_ptr<Entity> e);
   void moveBasic(float dt, EntityManager& entityManager, shared_ptr<Entity> home, shared_ptr<Entity> e);
+  void moveAstar(float dt, EntityManager& entityManager, shared_ptr<Entity> home, shared_ptr<Entity> e);
+  void moveGhost(float dt, EntityManager& entityManager, shared_ptr<Entity> home, shared_ptr<Entity> e);
+
   // void moveRandom(float dt, shared_ptr<Entity> home, shared_ptr<Entity> enemy);
 
 private:

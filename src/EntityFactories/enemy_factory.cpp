@@ -10,7 +10,15 @@ Entity EnemyFactory::build(vec2 position, vec2 velocity, int hpMult, int spdMult
   shared_ptr<Texture> texture0 = make_shared<Texture>(texture_path("enemy0.png"), true);
   shared_ptr<Texture> texture1 = make_shared<Texture>(texture_path("turtle.png"), true);
   shared_ptr<Texture> texture2 = make_shared<Texture>(texture_path("ship.png"), true);
-  shared_ptr<SpriteComponent> sprite = make_shared<SpriteComponent>(program, type == 0 ? texture0 : type == 1 ? texture1 : texture2);
+  shared_ptr<Texture> tex;
+  if (type == 2) {
+    tex = texture2;
+  } else if (type == 1){
+    tex = texture1;
+  } else {
+    tex = texture0;
+  }
+  shared_ptr<SpriteComponent> sprite = make_shared<SpriteComponent>(program, tex);
   shared_ptr<TransformComponent> transform = make_shared<TransformComponent>(position, scale, 0.0f);
   shared_ptr<EnemyPathComponent> pathfind = make_shared<EnemyPathComponent>(type);
   shared_ptr<CollisionComponent> collision = make_shared<CollisionComponent>(position, scale, 0.0f);

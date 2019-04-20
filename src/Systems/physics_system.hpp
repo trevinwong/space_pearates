@@ -10,6 +10,7 @@
 #include "Components/transform_component.hpp"
 #include "Components/collision_component.hpp"
 #include "Components/movement_component.hpp"
+#include "Components/enemy_path_component.hpp"
 #include "Components/tile_component.hpp"
 #include "Components/player_component.hpp"
 #include "Components/TowerComponents/water_tower_factor_component.hpp"
