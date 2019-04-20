@@ -115,6 +115,8 @@ void CollisionSystem::handlePlayerEnemy(shared_ptr<Entity> player, shared_ptr<En
   shared_ptr<SpriteComponent> playerSprite = player->getComponent<SpriteComponent>();
   shared_ptr<TransformComponent> enemyTransform = enemy->getComponent<TransformComponent>();
 
+  if (playerComponent->healthState == PlayerHealthState::INVINCIBLE) return;
+
 	player->setComponent<DamageComponent>(make_shared<DamageComponent>(1.0f));
   playerComponent->movementState = PlayerMovementState::HITSTUN;
   playerComponent->movementStateDuration = Timer(0.5);
@@ -128,8 +130,6 @@ void CollisionSystem::handlePlayerEnemy(shared_ptr<Entity> player, shared_ptr<En
   playerMovement->velocity = knockback;
 
   playerSprite->blinkTimer = Timer(0.2);
-
-  player->removeComponent<CollisionComponent>();
 }
 
 void CollisionSystem::handleProjectileEnemy(shared_ptr<Entity> projectile, shared_ptr<Entity> enemy, EntityManager &entityManager)
