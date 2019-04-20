@@ -68,8 +68,7 @@ void HUD::draw()
     Text::getInstance().render(current_music_name, pos, 0.7f, color);
   }
 
-
-  if (you_win) Text::getInstance().render("YOU WIN!", vec2(400.0f, 420.0f), 3.0f);
+  //if (you_win) Text::getInstance().render("YOU WIN!", vec2(400.0f, 420.0f), 3.0f);
 }
 
 
