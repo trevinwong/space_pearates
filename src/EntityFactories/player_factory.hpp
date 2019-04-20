@@ -19,7 +19,7 @@
 class PlayerFactory
 {
 public:
-  static Entity build(vec2 translation);
+  static Entity build(vec2 translation, int money=2);
 };
 
 #endif

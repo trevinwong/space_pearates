@@ -18,7 +18,7 @@ TutorialScene::TutorialScene(std::weak_ptr<SceneManager> _sceneManager) : Abstra
   entityManager.addEntity(map);
 
   TileMapSystem::loadTileMap(entityManager, true, 1.0f); // FIXME: hacky-- default is 0.8f so this map is technically a bit bigger scaled
-  shared_ptr<Entity> player = make_shared<Entity>(PlayerFactory::build(TileMapSystem::player_spawn));
+  shared_ptr<Entity> player = make_shared<Entity>(PlayerFactory::build(TileMapSystem::player_spawn, 5));
   entityManager.addEntity(player);
 
   Entity coin = ResourceFactory::build(vec2(320.0f, SCREEN_HEIGHT - 100.0f));
@@ -163,7 +163,7 @@ void TutorialScene::tutorialInputProcess(float dt, GLboolean keys[], GLboolean k
     case TutorialStep::learned_move_done:
     {
       // create a sample enemy 
-      Entity enemy = EnemyFactory::build(vec2(1200, 670), vec2(0.0f, 0.0f));
+      Entity enemy = EnemyFactory::build(vec2(1200, 670), vec2(0.0f, 0.0f),100, 100, 100, 0);
       sampleEnemy = make_shared<Entity>(enemy);
       entityManager.addEntity(sampleEnemy);
 

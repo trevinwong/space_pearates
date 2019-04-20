@@ -1,6 +1,6 @@
 #include "player_factory.hpp"
 
-Entity PlayerFactory::build(vec2 translation)
+Entity PlayerFactory::build(vec2 translation, int money)
 {
   shared_ptr<Program> program = make_shared<Program>(shader_path("sprite.vert"), shader_path("sprite.frag"));
   shared_ptr<Texture> texture = make_shared<Texture>(texture_path("player-idle0.png"), true);
@@ -20,7 +20,7 @@ Entity PlayerFactory::build(vec2 translation)
   shared_ptr<TransformComponent> transform = make_shared<TransformComponent>(translation, PlayerDataLoader::playerData.size  * SCALING_FACTOR, rotation);
   shared_ptr<CollisionComponent> collision = make_shared<CollisionComponent>(translation, PlayerDataLoader::playerData.size  * SCALING_FACTOR, rotation);
 
-  shared_ptr<WalletComponent> wallet = make_shared<WalletComponent>(2);
+  shared_ptr<WalletComponent> wallet = make_shared<WalletComponent>(money);
 
   Entity e;
   e.setComponent<SpriteComponent>(sprite);
