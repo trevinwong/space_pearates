@@ -1,0 +1,13 @@
+# Robust game milestone write up
+
+* All technical requirements met
+
+## What's new?
+
+* New enemies (a* and ghost)
+* Build anywhere
+* Tons of new assets and sfx and audio
+* Heal after every wave
+* Optimizations and bug fixes for animations and collision
+* Tons more stuff i cant remember
+
