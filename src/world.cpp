@@ -156,6 +156,14 @@ void World::update(float dt)
 {
   if (dt >= 0.05) dt = 0.05;
   if (paused) return;
+  // Note: Be careful, order may matter in some cases for systems
+  HUD::getInstance().update(dt);
+
+  if(HUD::getInstance().game_over) {
+    paused = true;
+  }
+
+  hasWon = WavesetSystem::getInstance().handleBuildAndDefensePhase(entityManager, dt);
   if (hasWon && level < 5) {
     // Go to next level if not at last level
     auto sceneManager_spt = sceneManager.lock();
@@ -166,14 +174,6 @@ void World::update(float dt)
     sceneManager_spt->setNextSceneToInGame(level + 1);
     return;
   }
-  // Note: Be careful, order may matter in some cases for systems
-  HUD::getInstance().update(dt);
-
-  if(HUD::getInstance().game_over) {
-    paused = true;
-  }
-
-  hasWon = WavesetSystem::getInstance().handleBuildAndDefensePhase(entityManager, dt);
   if (hasWon) HUD::getInstance().you_win = true;
 
   enemySystem.move(dt, entityManager);
