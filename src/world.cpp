@@ -180,7 +180,7 @@ void World::update(float dt)
 	meshSystem.updateMeshCollision(entityManager);
   interpolationSystem.update(entityManager, dt);
   collisionSystem.checkCollisions(entityManager);
-  spriteSystem.updateElapsedTime(dt);
+  spriteSystem.updateAnimatedSprites(entityManager);
   stateSystem.handleStateChanges(entityManager, dt);
 
   // Background Update

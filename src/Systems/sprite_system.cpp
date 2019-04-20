@@ -1,11 +1,15 @@
 #include "sprite_system.hpp"
 
-void SpriteSystem::updateElapsedTime(float dt) {
-  elapsedTime += dt;
-}
-
-float SpriteSystem::getElapsedTime() {
-  return elapsedTime;
+void SpriteSystem::updateAnimatedSprites(EntityManager &entityManager) {
+    vector<shared_ptr<Entity>> animated = entityManager.getEntities(entityManager.getComponentChecker(vector<int> {ComponentType::animated}));
+    for (shared_ptr<Entity> a : animated) {
+        shared_ptr<AnimatedComponent> animatedComponent = a->getComponent<AnimatedComponent>();
+        animatedComponent->timeToNextFrame += 1;
+        if (animatedComponent->timeToNextFrame >= animatedComponent->frameRate) {
+            animatedComponent->timeToNextFrame = 0;
+            animatedComponent->updateCurrFrame();
+        }
+    }
 }
 
 void SpriteSystem::drawSprites(EntityManager &entityManager, glm::mat4 projection)
@@ -58,17 +62,10 @@ void SpriteSystem::drawSprites(EntityManager &entityManager, glm::mat4 projectio
     shared_ptr<AnimatedComponent> animatedComponent = e->getComponent<AnimatedComponent>();
 
     if (animatedComponent != nullptr) {
-
-      if (elapsedTime >= animatedComponent->frameRate) {
-        frame = (animatedComponent->currFrame + 1) % animatedComponent->numFrames;
-        animatedComponent->updateCurrFrame();
-        elapsedTime = 0;
-      }
-
       // Modify VBO data for animated sprites
-      float spriteWidth = (transformComponent->size.x / animatedComponent->numFrames) / transformComponent->size.x;
-      float spriteEndX = spriteWidth * frame;
-      float spriteStartX = spriteEndX - spriteWidth;
+      float spriteOffset = 1 / ((float) animatedComponent->numFrames);
+      float spriteStartX = spriteOffset * animatedComponent->getCurrFrame();
+      float spriteEndX = spriteStartX + spriteOffset;
 
       GLfloat vertices[] = {
         // Pos      // Tex

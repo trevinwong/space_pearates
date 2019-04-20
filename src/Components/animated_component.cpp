@@ -10,5 +10,5 @@ int AnimatedComponent::getCurrFrame() {
 }
 
 void AnimatedComponent::updateCurrFrame() {
-  currFrame++;
+    currFrame = (currFrame + 1) % numFrames;
 }

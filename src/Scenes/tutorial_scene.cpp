@@ -92,7 +92,7 @@ void TutorialScene::update(float dt)
   meshSystem.updateMeshCollision(entityManager);
   interpolationSystem.update(entityManager, dt);
   collisionSystem.checkCollisions(entityManager);
-  spriteSystem.updateElapsedTime(dt);
+  spriteSystem.updateAnimatedSprites(entityManager);
 
   // Background Update
   backgroundSystem.update(entityManager);

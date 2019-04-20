@@ -19,11 +19,7 @@ class SpriteSystem
 {
 public:
 	void drawSprites(EntityManager &entityManager, glm::mat4 projection);
-	
-	void updateElapsedTime(float dt);
-	float getElapsedTime();
-	float elapsedTime = 0.0f;
-	int frame = 0;
+	void updateAnimatedSprites(EntityManager &entityManager);
 };
 
 #endif

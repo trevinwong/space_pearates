@@ -8,7 +8,7 @@ Entity ResourceFactory::build(vec2 position, float scale)
 
   shared_ptr<SpriteComponent> sprite = make_shared<SpriteComponent>(program, texture);
   shared_ptr<ColorComponent> colour = make_shared<ColorComponent>(glm::vec4(1.0f, 1.0f, 0.0f, 1.0f));
-  shared_ptr<AnimatedComponent> animated = make_shared<AnimatedComponent>(6, 0.2);
+  shared_ptr<AnimatedComponent> animated = make_shared<AnimatedComponent>(6, 5);
 
   shared_ptr<ResourceComponent> resource = make_shared<ResourceComponent>(20.0); // resource stays on screen for 20s
   shared_ptr<MovementComponent> movement = make_shared<MovementComponent>(
