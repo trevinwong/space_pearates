@@ -112,8 +112,9 @@ void EnemySystem::moveAstar(float dt, EntityManager& entityManager, shared_ptr<E
 
   for (auto t: towers) {
     auto tpos = t->getComponent<TransformComponent>()->position;
+    auto tcost = t->getComponent<TowerMetaComponent>()->totalWorth;
     if (abs(tpos.x - pos.x) < 4*TILE_SIZE_X && abs(tpos.y - pos.y) < 4*TILE_SIZE_Y)
-      tpos.x - pos.x < 0 ? lscore -= 3 : rscore-=3;
+      tpos.x - pos.x < 0 ? lscore -= tcost : rscore -= tcost;
   }
 
   if (map[yind][xind] == MAP_BASE_POSITION) {
@@ -136,6 +137,7 @@ void EnemySystem::moveAstar(float dt, EntityManager& entityManager, shared_ptr<E
     vel.x = pos.x + vel.x*dt < (SCREEN_WIDTH - 80.f) ? vel.x : -vel.x;
   else vel.x = pos.x + vel.x*dt > 60.f ? vel.x : -vel.x;
 
+  if (pos.y > 750) vel.y = 0;
   movementComponent->velocity = vel;
 }
 
