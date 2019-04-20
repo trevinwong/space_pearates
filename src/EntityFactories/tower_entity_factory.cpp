@@ -3,7 +3,6 @@
 Entity TowerEntityFactory::createFireTower(vec2 towerCenterBottomPosition, vec2 _size)
 {
   shared_ptr<Program> billboardProgram = make_shared<Program>(shader_path("billboard.vert"), shader_path("billboard.frag"));
-  shared_ptr<HealthComponent> health = make_shared<HealthComponent>(billboardProgram, 100);
 
   shared_ptr<TransformComponent> transform = make_shared<TransformComponent>(getTopLeftPosition(towerCenterBottomPosition, _size), _size, 0.0f);
   shared_ptr<ColorComponent> color = make_shared<ColorComponent>(glm::vec4(1.0f, 1.0f, 1.0f, 1.0f)); // diff tower can have diff color
@@ -28,7 +27,6 @@ Entity TowerEntityFactory::createFireTower(vec2 towerCenterBottomPosition, vec2 
   towerEntity.setComponent<TransformComponent>(transform);
   towerEntity.setComponent<ColorComponent>(color);
   towerEntity.setComponent<TowerMetaComponent>(towerMeta);
-  towerEntity.setComponent<HealthComponent>(health);
   towerEntity.setComponent<FireTowerAttackComponent>(fireTowerAttack);
   towerEntity.setComponent<TowerRangeSpriteComponent>(towerRangeSprite);
   return towerEntity;
@@ -37,7 +35,6 @@ Entity TowerEntityFactory::createFireTower(vec2 towerCenterBottomPosition, vec2 
 Entity TowerEntityFactory::createWaterTower(vec2 towerCenterBottomPosition, vec2 _size)
 {
   shared_ptr<Program> billboardProgram = make_shared<Program>(shader_path("billboard.vert"), shader_path("billboard.frag"));
-  shared_ptr<HealthComponent> health = make_shared<HealthComponent>(billboardProgram, 100);
 
   shared_ptr<TransformComponent> transform = make_shared<TransformComponent>(getTopLeftPosition(towerCenterBottomPosition, _size), _size, 0.0f);
   shared_ptr<ColorComponent> color = make_shared<ColorComponent>(glm::vec4(1.0f, 1.0f, 1.0f, 1.0f)); // diff tower can have diff color
@@ -61,7 +58,6 @@ Entity TowerEntityFactory::createWaterTower(vec2 towerCenterBottomPosition, vec2
   towerEntity.setComponent<SpriteComponent>(sprite);
   towerEntity.setComponent<TransformComponent>(transform);
   towerEntity.setComponent<ColorComponent>(color);
-  towerEntity.setComponent<HealthComponent>(health);
   towerEntity.setComponent<TowerMetaComponent>(towerMeta);
   towerEntity.setComponent<WaterTowerAttackComponent>(waterTowerAttack);
   towerEntity.setComponent<TowerRangeSpriteComponent>(towerRangeSprite);
@@ -71,7 +67,6 @@ Entity TowerEntityFactory::createWaterTower(vec2 towerCenterBottomPosition, vec2
 Entity TowerEntityFactory::createLightTower(vec2 towerCenterBottomPosition, vec2 _size)
 {
   shared_ptr<Program> billboardProgram = make_shared<Program>(shader_path("billboard.vert"), shader_path("billboard.frag"));
-  shared_ptr<HealthComponent> health = make_shared<HealthComponent>(billboardProgram, 100);
 
   shared_ptr<TransformComponent> transform = make_shared<TransformComponent>(getTopLeftPosition(towerCenterBottomPosition, _size), _size, 0.0f);
   shared_ptr<ColorComponent> color = make_shared<ColorComponent>(glm::vec4(1.0f, 1.0f, 1.0f, 1.0f)); // diff tower can have diff color
@@ -95,7 +90,6 @@ Entity TowerEntityFactory::createLightTower(vec2 towerCenterBottomPosition, vec2
   towerEntity.setComponent<SpriteComponent>(sprite);
   towerEntity.setComponent<TransformComponent>(transform);
   towerEntity.setComponent<ColorComponent>(color);
-  towerEntity.setComponent<HealthComponent>(health);
   towerEntity.setComponent<TowerMetaComponent>(towerMeta);
   towerEntity.setComponent<LightTowerAttackComponent>(lightTowerAttack);
   towerEntity.setComponent<TowerRangeSpriteComponent>(towerRangeSprite);
@@ -105,7 +99,6 @@ Entity TowerEntityFactory::createLightTower(vec2 towerCenterBottomPosition, vec2
 Entity TowerEntityFactory::createStarTower(vec2 towerCenterBottomPosition, vec2 _size)
 {
   shared_ptr<Program> billboardProgram = make_shared<Program>(shader_path("billboard.vert"), shader_path("billboard.frag"));
-  shared_ptr<HealthComponent> health = make_shared<HealthComponent>(billboardProgram, 100);
 
   shared_ptr<TransformComponent> transform = make_shared<TransformComponent>(getTopLeftPosition(towerCenterBottomPosition, _size), _size, 0.0f);
   shared_ptr<ColorComponent> color = make_shared<ColorComponent>(glm::vec4(1.0f, 1.0f, 1.0f, 1.0f)); // diff tower can have diff color
@@ -129,7 +122,6 @@ Entity TowerEntityFactory::createStarTower(vec2 towerCenterBottomPosition, vec2 
   towerEntity.setComponent<SpriteComponent>(sprite);
   towerEntity.setComponent<TransformComponent>(transform);
   towerEntity.setComponent<ColorComponent>(color);
-  towerEntity.setComponent<HealthComponent>(health);
   towerEntity.setComponent<TowerMetaComponent>(towerMeta);
   towerEntity.setComponent<StarTowerAttackComponent>(starTowerAttack);
   towerEntity.setComponent<TowerRangeSpriteComponent>(towerRangeSprite);
@@ -139,7 +131,6 @@ Entity TowerEntityFactory::createStarTower(vec2 towerCenterBottomPosition, vec2 
 Entity TowerEntityFactory::createBoomerangTower(vec2 towerCenterBottomPosition, vec2 _size)
 {
   shared_ptr<Program> billboardProgram = make_shared<Program>(shader_path("billboard.vert"), shader_path("billboard.frag"));
-  shared_ptr<HealthComponent> health = make_shared<HealthComponent>(billboardProgram, 100);
 
   shared_ptr<TransformComponent> transform = make_shared<TransformComponent>(getTopLeftPosition(towerCenterBottomPosition, _size), _size, 0.0f);
   shared_ptr<ColorComponent> color = make_shared<ColorComponent>(glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
@@ -164,7 +155,6 @@ Entity TowerEntityFactory::createBoomerangTower(vec2 towerCenterBottomPosition, 
   towerEntity.setComponent<SpriteComponent>(sprite);
   towerEntity.setComponent<TransformComponent>(transform);
   towerEntity.setComponent<ColorComponent>(color);
-  towerEntity.setComponent<HealthComponent>(health);
   towerEntity.setComponent<TowerMetaComponent>(towerMeta);
   towerEntity.setComponent<BoomerangTowerAttackComponent>(boomerangTowerAttack);
   towerEntity.setComponent<TowerRangeSpriteComponent>(towerRangeSprite);
