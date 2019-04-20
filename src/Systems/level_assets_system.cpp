@@ -23,22 +23,25 @@ void LevelAssetsSystem::set_resources(EntityManager & manager) {
     shared_ptr<TileComponent> tComponent = tile->getComponent<TileComponent>();
     if (tComponent != nullptr) {
       if (tComponent->isPhysical) {
-        if (curr_level == 1) {
-          tile->getComponent<SpriteComponent>()->texture = tile_level_1;
+        switch(curr_level) {
+          case 1: 
+            tile->getComponent<SpriteComponent>()->texture = tile_level_1;
+            break;
+          case 2:
+            tile->getComponent<SpriteComponent>()->texture = tile_level_2;
+            break;
+          case 3:
+            tile->getComponent<SpriteComponent>()->texture = tile_level_3;
+            break;
+          case 4: 
+            tile->getComponent<SpriteComponent>()->texture = tile_level_4;
+            break;
+          case 5: 
+            tile->getComponent<SpriteComponent>()->texture = tile_level_5;
+            break;
+          default:
+            tile->getComponent<SpriteComponent>()->texture = tile_level_1;
         }
-        else if (curr_level == 2) {
-          tile->getComponent<SpriteComponent>()->texture = tile_level_2;
-        }
-        else if (curr_level == 3) {
-          tile->getComponent<SpriteComponent>()->texture = tile_level_3;
-        }
-        else if (curr_level == 4) {
-          tile->getComponent<SpriteComponent>()->texture = tile_level_4;
-        }
-        else {
-          tile->getComponent<SpriteComponent>()->texture = tile_level_5;
-        }
-
       }
     }
   }
