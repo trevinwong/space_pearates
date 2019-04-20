@@ -18,8 +18,6 @@ void StateSystem::handlePlayerState(shared_ptr<Entity> player, float dt)
      playerComponent->healthStateDuration.update(dt);                            
      if (playerComponent->healthStateDuration.getTimeLeft() <= 0) {              
        shared_ptr<TransformComponent> transform = player->getComponent<TransformComponent>();
-       shared_ptr<CollisionComponent> collision = make_shared<CollisionComponent>(transform->position, transform->size, transform->rotation);            
-       player->setComponent<CollisionComponent>(collision);                 
        playerComponent->healthState = PlayerHealthState::VULNERABLE;
        color->RGBA.w = 1.0f;
      } else {
