@@ -11,7 +11,8 @@ void HUD::reset()
   play_time = 0.0;
   resource_count = 0;
   enemy_count = 0;
-  you_win = false; // TODO: Change this later.
+  wave_count = 1;
+  you_win = false;
   game_over = false;
   build_phase = true;
 }
@@ -35,7 +36,7 @@ void HUD::draw()
     return;
   }
 
-  Text::getInstance().render("Time:", vec2(20.0f, 60.0f));
+  Text::getInstance().render("Wave:", vec2(20.0f, 60.0f));
   if (build_phase) {
     Text::getInstance().render("Build Phase", vec2(20.0f, 120.0f), 1.0f, vec4(0.0, 0.7, 0.3, 1.0));
   }
@@ -43,11 +44,11 @@ void HUD::draw()
     Text::getInstance().render("Defense Phase", vec2(20.0f, 120.0f), 1.0f, vec4(0.8, 0.2, 0.0, 1.0));
   }
 
-  int time = round(play_time* 10.0) / 10.0;
+  //int time = round(play_time* 10.0) / 10.0;
   //std::stringstream stream;
   //stream << std::fixed << std::setprecision(2) << time;
   //string strTime = stream.str();
-  Text::getInstance().render(std::to_string(time), vec2(200.0f, 60.0f));
+  Text::getInstance().render(std::to_string(wave_count), vec2(200.0f, 60.0f));
 
   Text::getInstance().render("Coins:", vec2(1000.0f, 60.0f));
   Text::getInstance().render(std::to_string(resource_count), vec2(1200.0f, 60.0f));
